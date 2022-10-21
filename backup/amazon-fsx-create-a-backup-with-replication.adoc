@@ -1,0 +1,62 @@
+---
+sidebar: sidebar 
+permalink: backup/amazon-fsx-create-a-backup-with-replication.html 
+keywords: backup, local snapshot, copy 
+summary: Cette section décrit comment créer une sauvegarde avec réplication. 
+---
+= Créer une sauvegarde avec la réplication
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:amazon-fsx-add-a-policy-to-resource-protection.html["Précédent : ajouter une règle à la protection des ressources."]
+
+La création d'une sauvegarde est effectuée de la même manière que pour une copie Snapshot locale.
+
+Pour créer une sauvegarde avec réplication, sélectionnez la stratégie qui inclut la réplication de sauvegarde et cliquez sur Sauvegarder.
+
+image:amazon-fsx-image88.png["Erreur : image graphique manquante"]
+
+Dans le journal des tâches SnapCenter, vous pouvez voir l'étape mise à jour secondaire, qui lance une opération de mise à jour SnapVault. Réplication des blocs modifiés depuis le volume source vers le volume cible.
+
+image:amazon-fsx-image89.png["Erreur : image graphique manquante"]
+
+Sur le système de fichiers FSX pour ONTAP, un snapshot du volume source est créé à l'aide de l'étiquette SnapMirror, `snapcenter`, Tel qu'il est configuré dans la politique SnapCenter.
+
+....
+FsxId00fa9e3c784b6abbb::> snapshot show -vserver sapcc-hana-svm -volume PFX_data_mnt00001 -fields snapmirror-label
+vserver        volume            snapshot                                                    snapmirror-label
+-------------- ----------------- ----------------------------------------------------------- ----------------
+sapcc-hana-svm PFX_data_mnt00001 SnapCenter_hana-1_LocalSnap_Hourly_03-31-2022_13.10.26.5482 -
+sapcc-hana-svm PFX_data_mnt00001 SnapCenter_hana-1_LocalSnap_Hourly_03-31-2022_14.00.05.2023 -
+sapcc-hana-svm PFX_data_mnt00001 SnapCenter_hana-1_LocalSnap_Hourly_04-05-2022_08.00.06.3380 -
+sapcc-hana-svm PFX_data_mnt00001 SnapCenter_hana-1_LocalSnap_Hourly_04-05-2022_14.00.01.6482 -
+sapcc-hana-svm PFX_data_mnt00001 SnapCenter_hana-1_LocalSnap_Hourly_04-14-2022_20.00.05.0316 -
+sapcc-hana-svm PFX_data_mnt00001 SnapCenter_hana-1_LocalSnap_Hourly_04-28-2022_08.00.06.3629 -
+sapcc-hana-svm PFX_data_mnt00001 SnapCenter_hana-1_LocalSnap_Hourly_04-28-2022_14.00.01.7275 -
+sapcc-hana-svm PFX_data_mnt00001 SnapCenter_hana-1_LocalSnapAndSnapVault_Daily_04-28-2022_16.21.41.5853
+                                                                                             snapcenter
+8 entries were displayed.
+....
+Au niveau du volume cible, une copie Snapshot portant le même nom est créée.
+
+....
+FsxId05f7f00af49dc7a3e::> snapshot show -vserver sapcc-backup-target-zone5 -volume PFX_data_mnt00001 -fields snapmirror-label
+vserver                   volume            snapshot                                                               snapmirror-label
+------------------------- ----------------- ---------------------------------------------------------------------- ----------------
+sapcc-backup-target-zone5 PFX_data_mnt00001 SnapCenter_hana-1_LocalSnapAndSnapVault_Daily_04-28-2022_16.21.41.5853 snapcenter
+FsxId05f7f00af49dc7a3e::>
+....
+La nouvelle sauvegarde Snapshot est également incluse dans le catalogue de sauvegardes HANA.
+
+image:amazon-fsx-image90.png["Erreur : image graphique manquante"]
+
+Dans SnapCenter, vous pouvez lister les sauvegardes répliquées en cliquant sur les copies du coffre-fort dans la vue topologique.
+
+image:amazon-fsx-image91.png["Erreur : image graphique manquante"]
+
+link:amazon-fsx-restore-and-recover-from-secondary-storage.html["Suivant : restauration et restauration à partir du stockage secondaire."]

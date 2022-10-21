@@ -1,0 +1,34 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-sr-scs-storage-snapshot-backups-and-sap-system-replication.html 
+keywords: Snapshot, storage, backup, primary host, sql 
+summary: 'Les opérations de sauvegarde sont toujours effectuées sur l"hôte SAP HANA principal. Les commandes SQL requises pour l"opération de sauvegarde ne peuvent pas être exécutées sur l"hôte SAP HANA secondaire.' 
+---
+= Sauvegardes Snapshot de stockage et réplication système SAP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-sr-scs-sap-hana-system-replication-overview.html["Précédent : présentation de la réplication système SAP HANA."]
+
+Les opérations de sauvegarde sont toujours effectuées sur l'hôte SAP HANA principal. Les commandes SQL requises pour l'opération de sauvegarde ne peuvent pas être exécutées sur l'hôte SAP HANA secondaire.
+
+Pour les opérations de sauvegarde SAP HANA, les hôtes SAP HANA principaux et secondaires sont une entité unique. Ils partagent le même catalogue de sauvegardes SAP HANA et utilisent les sauvegardes pour la restauration et la restauration, que la sauvegarde ait été créée sur l'hôte SAP HANA principal ou secondaire.
+
+Pour utiliser n'importe quelle sauvegarde pour la restauration et effectuer une restauration avant via des sauvegardes de journaux depuis les deux hôtes, vous devez disposer d'un emplacement de sauvegarde de journal partagé accessible depuis les deux hôtes. NetApp recommande d'utiliser un volume de stockage partagé. Cependant, vous devez également séparer la destination de sauvegarde du journal en sous-répertoires dans le volume partagé.
+
+Chaque hôte SAP HANA dispose de son propre volume de stockage. Lorsque vous utilisez un Snapshot basé sur le stockage pour effectuer une sauvegarde, un Snapshot cohérent avec la base de données est créé sur le volume de stockage de l'hôte SAP HANA principal.
+
+image:saphana-sr-scs-image3.png["Erreur : image graphique manquante"]
+
+Lorsqu'un basculement vers l'hôte 2 est effectué, l'hôte 2 devient l'hôte principal, les sauvegardes sont exécutées sur l'hôte 2 et les sauvegardes Snapshot sont créées au niveau du volume de stockage de l'hôte 2.
+
+La sauvegarde créée au niveau de l'hôte 2 peut être restaurée directement au niveau de la couche de stockage. Si vous devez utiliser une sauvegarde créée sur l'hôte 1, la sauvegarde doit être copiée depuis le volume de stockage de l'hôte 1 vers le volume de stockage de l'hôte 2. La restauration par transfert utilise les sauvegardes des journaux des deux hôtes.
+
+image:saphana-sr-scs-image4.png["Erreur : image graphique manquante"]
+
+link:saphana-sr-scs-snapcenter-configuration-options-for-sap-system-replication.html["Next : options de configuration de SnapCenter pour la réplication système SAP."]

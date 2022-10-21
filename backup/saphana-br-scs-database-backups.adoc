@@ -1,0 +1,119 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-br-scs-database-backups.html 
+keywords: sap hana studio, on-demand backup, replication 
+summary: 'Dans SnapCenter, les sauvegardes de bases de données sont généralement exécutées à l"aide des planifications définies dans la configuration de protection des ressources de chaque base de données HANA. Il est possible d"effectuer une sauvegarde de base de données à la demande via l"interface graphique SnapCenter, une ligne de commande PowerShell ou des API REST.' 
+---
+= Sauvegardes de bases de données
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-br-scs-snapcenter-resource-specific-configuration-for-non-data-volume-backups.html["Précédent : configuration spécifique aux ressources de SnapCenter pour les sauvegardes de volumes sans données."]
+
+Dans SnapCenter, les sauvegardes de bases de données sont généralement exécutées à l'aide des planifications définies dans la configuration de protection des ressources de chaque base de données HANA.
+
+Il est possible d'effectuer une sauvegarde de base de données à la demande via l'interface graphique SnapCenter, une ligne de commande PowerShell ou des API REST.
+
+
+
+== Identification des sauvegardes SnapCenter dans SAP HANA Studio
+
+La topologie de ressource SnapCenter affiche la liste des sauvegardes créées à l'aide de SnapCenter. La figure suivante montre les sauvegardes disponibles dans le stockage primaire et souligne la sauvegarde la plus récente.
+
+image:saphana-br-scs-image82.png["Erreur : image graphique manquante"]
+
+Lors de l'exécution d'une sauvegarde avec des copies Snapshot de stockage pour un système SAP HANA MDC, une copie Snapshot du volume de données est créée. Ce volume de données contient les données de la base de données système ainsi que les données de toutes les bases de données des locataires. Pour refléter cette architecture physique, SAP HANA effectue en interne une sauvegarde combinée de la base de données système et de toutes les bases de données en locataire lorsqu'SnapCenter déclenche une sauvegarde Snapshot. Ce qui entraîne la création de plusieurs entrées de sauvegarde distinctes dans le catalogue des sauvegardes SAP HANA : une pour la base de données système et une pour chaque locataire.
+
+
+NOTE: Pour les systèmes à conteneur unique SAP HANA, le volume de base de données ne contient que la seule base de données et il n'existe qu'une seule entrée dans le catalogue de sauvegarde de SAP HANA.
+
+Dans le catalogue des sauvegardes SAP HANA, le nom de la sauvegarde SnapCenter est stocké comme A. `Comment` champ également `External Backup ID (EBID)`. Cette illustration est présentée dans la capture d'écran suivante pour la base de données du système et dans la capture d'écran qui suit pour la base de données du locataire SS1. Les deux chiffres mettent en évidence le nom de sauvegarde SnapCenter stocké dans le champ de commentaire et EBID.
+
+
+NOTE: La version HANA 2.0 SPS4 (révision 40 et 41) affiche toujours une taille de sauvegarde de zéro pour les sauvegardes basées sur des snapshots. Ceci a été corrigé avec la révision 42. Pour plus d'informations, consultez la note SAP https://launchpad.support.sap.com/["https://launchpad.support.sap.com/#/notes/2795010"^].
+
+image:saphana-br-scs-image83.png["Erreur : image graphique manquante"]
+
+image:saphana-br-scs-image84.png["Erreur : image graphique manquante"]
+
+
+NOTE: SnapCenter ne connaît que ses propres sauvegardes. Les sauvegardes supplémentaires créées, par exemple avec SAP HANA Studio, sont visibles dans le catalogue SAP HANA, mais pas dans SnapCenter.
+
+
+
+== Identification des sauvegardes SnapCenter sur les systèmes de stockage
+
+Pour afficher les sauvegardes sur la couche de stockage, utilisez NetApp OnCommand System Manager et sélectionnez le volume de base de données dans la vue SVM—Volume. L'onglet inférieur des copies Snapshot affiche les copies Snapshot du volume. La capture d'écran suivante montre les sauvegardes disponibles pour le volume de base de données `SS1_data_mnt00001` au niveau du stockage primaire. La sauvegarde mise en surbrillance est la sauvegarde présentée dans SnapCenter et SAP HANA Studio dans les images précédentes et respectant la même convention de nom.
+
+image:saphana-br-scs-image85.png["Erreur : image graphique manquante"]
+
+La capture d'écran suivante présente les sauvegardes disponibles pour le volume cible de réplication `hana_SA1_data_mnt00001_dest` au niveau du système de stockage secondaire.
+
+image:saphana-br-scs-image86.png["Erreur : image graphique manquante"]
+
+
+
+== Sauvegarde de base de données sur demande dans le stockage primaire
+
+. Dans la vue ressource, sélectionnez la ressource et double-cliquez sur la ligne pour passer à la vue topologique.
++
+La vue topologie des ressources fournit une vue d'ensemble de toutes les sauvegardes disponibles qui ont été créées à l'aide de SnapCenter. La partie supérieure de cette vue affiche la topologie de sauvegarde, en affichant les sauvegardes sur le stockage primaire (copies locales) et, le cas échéant, sur le stockage de sauvegarde hors site (copies vault).
+
++
+image:saphana-br-scs-image86.5.png["Erreur : image graphique manquante"]
+
+. Dans la ligne supérieure, sélectionnez l'icône Sauvegarder maintenant pour lancer une sauvegarde à la demande. Dans la liste déroulante, sélectionnez la stratégie de sauvegarde `LocalSnap` Cliquez ensuite sur Sauvegarder pour lancer la sauvegarde à la demande.
++
+image:saphana-br-scs-image87.png["Erreur : image graphique manquante"]
+
++
+Cette opération démarre la procédure de sauvegarde. Un journal des cinq tâches précédentes est affiché dans la zone activité sous la vue topologique. Une fois la sauvegarde terminée, une nouvelle entrée s'affiche dans la vue topologique. Les noms de sauvegarde suivent la même nomenclature que le nom de Snapshot défini dans la section link:saphana-br-scs-snapcenter-resource-specific-configuration-for-sap-hana-database-backups.html#resource-protection-configuration["“Configuration de la protection des ressources.”"]
+
++
+
+NOTE: Vous devez fermer et rouvrir la vue topologique pour afficher la liste des sauvegardes mise à jour.
+
++
+image:saphana-br-scs-image88.png["Erreur : image graphique manquante"]
+
+. Les détails du travail s'affichent lorsque vous cliquez sur la ligne d'activité du travail dans la zone activité. Vous pouvez ouvrir un journal détaillé des travaux en cliquant sur Afficher les journaux.
++
+image:saphana-br-scs-image89.png["Erreur : image graphique manquante"]
+
+. Dans SAP HANA Studio, la nouvelle sauvegarde est visible dans le catalogue des sauvegardes. Le même nom de sauvegarde dans SnapCenter est également utilisé dans le commentaire et dans le champ EBID du catalogue de sauvegarde.
+
+
+
+
+== Sauvegardes de bases de données sur demande avec la réplication SnapVault
+
+. Dans la vue ressource, sélectionnez la ressource et double-cliquez sur la ligne pour passer à la vue topologique.
+. Dans la ligne supérieure, sélectionnez l'icône Sauvegarder maintenant pour lancer une sauvegarde à la demande. Dans la liste déroulante, sélectionnez la stratégie de sauvegarde `LocalSnapAndSnapVault`, Puis cliquez sur Sauvegarder pour démarrer la sauvegarde à la demande.
++
+image:saphana-br-scs-image90.png["Erreur : image graphique manquante"]
+
+. Les détails du travail s'affichent lorsque vous cliquez sur la ligne d'activité du travail dans la zone activité.
++
+image:saphana-br-scs-image91.png["Erreur : image graphique manquante"]
+
+. Une fois la sauvegarde terminée, une nouvelle entrée s'affiche dans la vue topologique. Les noms de sauvegarde suivent la même nomenclature que le nom de Snapshot défini dans la section link:saphana-br-scs-snapcenter-resource-specific-configuration-for-sap-hana-database-backups.html#resource-protection-configuration["“Configuration de la protection des ressources.”"]
++
+
+NOTE: Vous devez fermer et rouvrir la vue topologique pour afficher la liste des sauvegardes mise à jour.
+
++
+image:saphana-br-scs-image92.png["Erreur : image graphique manquante"]
+
+. En sélectionnant les copies du coffre-fort, les sauvegardes sur le stockage secondaire sont affichées. Le nom de la sauvegarde répliquée est identique au nom de la sauvegarde sur le stockage primaire.
++
+image:saphana-br-scs-image93.png["Erreur : image graphique manquante"]
+
+. Dans SAP HANA Studio, la nouvelle sauvegarde est visible dans le catalogue des sauvegardes. Le même nom de sauvegarde dans SnapCenter est également utilisé dans le commentaire et dans le champ EBID du catalogue de sauvegarde.
+
+
+link:saphana-br-scs-block-integrity-check.html["Suivant : vérification de l'intégrité du bloc."]

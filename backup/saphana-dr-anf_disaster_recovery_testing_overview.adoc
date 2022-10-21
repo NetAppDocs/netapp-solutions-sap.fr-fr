@@ -1,0 +1,43 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-dr-anf_disaster_recovery_testing_overview.html 
+keywords: disaster, recovery, strategy, workflow, testing, internal, documentation 
+summary: Pour mettre en œuvre une stratégie de reprise après incident efficace, vous devez tester le workflow requis. Les tests montrent si la stratégie fonctionne et si la documentation interne est suffisante, et ils permettent également aux administrateurs de suivre les procédures requises. 
+---
+= Test de reprise après incident
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-dr-anf_monitoring_anf_cross-region_replication.html["Précédent : surveillance de la réplication ANF interrégion."]
+
+Pour mettre en œuvre une stratégie de reprise après incident efficace, vous devez tester le workflow requis. Les tests montrent si la stratégie fonctionne et si la documentation interne est suffisante, et ils permettent également aux administrateurs de suivre les procédures requises.
+
+La réplication interrégion d'ANF permet de tester la reprise après incident sans mettre en péril le RTO et le RPO. Des tests de reprise après incident sont possibles sans interrompre la réplication des données.
+
+Le workflow de test de reprise d'activité utilise l'ensemble de fonctionnalités ANF pour créer des volumes basés sur des sauvegardes Snapshot existantes à la cible de reprise d'activité. Voir https://docs.microsoft.com/en-us/azure/azure-netapp-files/snapshots-introduction["Fonctionnement des snapshots Azure NetApp Files | Microsoft Docs"^].
+
+Selon que la réplication des sauvegardes de journaux fait partie de la configuration de la reprise sur incident ou non, les étapes de la reprise sur incident sont légèrement différentes. Cette section décrit les tests de reprise après incident pour la réplication de données uniquement à des fins de sauvegarde, ainsi que pour la réplication de volume de données associée à la réplication de volume de sauvegarde des journaux.
+
+Pour tester la reprise après incident, procédez comme suit :
+
+. Préparez l'hôte cible.
+. Créer de nouveaux volumes basés sur des sauvegardes Snapshot sur le site de reprise d'activité
+. Montez les nouveaux volumes sur l'hôte cible.
+. Restaurez la base de données HANA.
++
+** Restauration du volume de données uniquement.
+** Restauration par transfert à l'aide de sauvegardes des journaux répliqués.
+
+
+
+
+Les sous-sections suivantes décrivent ces étapes en détail.
+
+image:saphana-dr-anf_image18.png["Erreur : image graphique manquante"]
+
+link:saphana-dr-anf_prepare_the_target_host.html["Suivant : préparer l'hôte cible."]

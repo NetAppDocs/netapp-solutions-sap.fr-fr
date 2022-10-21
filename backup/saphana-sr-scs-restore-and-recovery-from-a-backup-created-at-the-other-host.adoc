@@ -1,0 +1,84 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-sr-scs-restore-and-recovery-from-a-backup-created-at-the-other-host.html 
+keywords: restore, backup, recovery 
+summary: 'Une opération de restauration à partir d"une sauvegarde créée sur l"autre hôte SAP HANA est un scénario valide pour les deux options de configuration SnapCenter.' 
+---
+= Restauration et récupération à partir d'une sauvegarde créée sur l'autre hôte
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-sr-scs-snapcenter-configuration-with-a-single-resource.html["Précédent : configuration SnapCenter avec une seule ressource."]
+
+Une opération de restauration à partir d'une sauvegarde créée sur l'autre hôte SAP HANA est un scénario valide pour les deux options de configuration SnapCenter.
+
+La figure suivante présente un aperçu du scénario de restauration et de récupération décrit dans cette section.
+
+Une sauvegarde a été créée au niveau de T1 sur l'hôte 1. Un basculement a été effectué sur l'hôte 2. Au point actuel dans le temps, l'hôte 2 est l'hôte principal.
+
+. Un échec s'est produit et vous devez restaurer la sauvegarde créée sur T1 à l'hôte 1.
+. L'hôte principal (hôte 1) est arrêté.
+. Les données de sauvegarde T1 de l'hôte 1 sont restaurées sur l'hôte 2.
+. Une restauration de transfert est effectuée à l'aide des journaux de l'hôte 1 et de l'hôte 2.
+. L'hôte 1 est démarré et une resynchronisation de réplication système de l'hôte 1 est automatiquement démarrée.
+
+
+image:saphana-sr-scs-image48.png["Erreur : image graphique manquante"]
+
+La figure suivante montre le catalogue de sauvegardes SAP HANA et met en évidence la sauvegarde créée sur l'hôte 1, qui a été utilisée pour l'opération de restauration et de reprise.
+
+image:saphana-sr-scs-image49.png["Erreur : image graphique manquante"]
+
+L'opération de restauration implique les étapes suivantes :
+
+. Créez un clone à partir de la sauvegarde créée sur l'hôte 1.
+. Monter le volume cloné sur l'hôte 2.
+. Copiez les données à partir du volume cloné vers l'emplacement d'origine.
+
+
+Dans SnapCenter, la sauvegarde est sélectionnée et l'opération de clonage est démarrée.
+
+image:saphana-sr-scs-image50.png["Erreur : image graphique manquante"]
+
+Vous devez fournir le serveur clone et l'adresse IP d'exportation NFS.
+
+
+NOTE: Dans une configuration SnapCenter à ressource unique, le plug-in SAP HANA n'est pas installé sur l'hôte de la base de données. Pour exécuter le workflow de clone SnapCenter, tout hôte disposant d'un plug-in HANA installé peut être utilisé comme serveur clone.
+
++ dans une configuration SnapCenter avec des ressources distinctes, l'hôte de base de données HANA est sélectionné comme serveur clone, et un script de montage est utilisé pour monter le clone sur l'hôte cible.
+
+image:saphana-sr-scs-image51.png["Erreur : image graphique manquante"]
+
+Pour déterminer le chemin de jonction nécessaire au montage du volume cloné, vérifiez le journal des tâches de la tâche de clonage, comme le montre la figure suivante.
+
+image:saphana-sr-scs-image52.png["Erreur : image graphique manquante"]
+
+Le volume cloné peut désormais être monté.
+
+....
+stlrx300s8-5:/mnt/tmp # mount 192.168.173.101:/Scc373da37-00ff-4694-b1e1-8153dbd46caf /mnt/tmp
+....
+Le volume cloné contient les données de la base de données HANA.
+
+....
+stlrx300s8-5:/mnt/tmp/# ls –al
+drwxr-x--x 2 ssradm sapsys 4096 Jun 27 11:12 hdb00001
+drwx------ 2 ssradm sapsys 4096 Jun 21 09:38 hdb00002.00003
+drwx------ 2 ssradm sapsys 4096 Jun 27 11:12 hdb00003.00003
+-rw-r--r-- 1 ssradm sapsys   22 Jun 27 11:12 nameserver.lck
+....
+Les données sont copiées à l'emplacement d'origine.
+
+....
+stlrx300s8-5:/mnt/tmp # cp -Rp hdb00001 /hana/data/SSR/mnt00001/
+stlrx300s8-5:/mnt/tmp # cp -Rp hdb00002.00003/ /hana/data/SSR/mnt00001/
+stlrx300s8-5:/mnt/tmp # cp -Rp hdb00003.00003/ /hana/data/SSR/mnt00001/
+....
+La restauration avec SAP HANA Studio est effectuée comme décrit dans la section link:saphana-sr-scs-snapcenter-configuration-with-a-single-resource.html#snapcenter-restore-of-the-valid-backup-only["Restauration SnapCenter de la sauvegarde valide uniquement"].
+
+link:saphana-sr-scs-where-to-find-additional-information_overview.html["Suivant : où trouver des informations supplémentaires ?"]

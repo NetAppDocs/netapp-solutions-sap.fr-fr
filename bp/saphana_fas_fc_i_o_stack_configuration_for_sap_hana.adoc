@@ -1,0 +1,68 @@
+---
+sidebar: sidebar 
+permalink: bp/saphana_fas_fc_i_o_stack_configuration_for_sap_hana.html 
+keywords: i, o, stack, configuration, sap, hana, fas, fc 
+summary: 'À partir de SAP HANA 1.0 SPS10, SAP a introduit des paramètres permettant d"ajuster le comportement des E/S et d"optimiser la base de données pour le système de fichiers et de stockage utilisé.' 
+---
+= Configuration de la pile d'E/S pour SAP HANA
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana_fas_fc_host_setup.html["Précédent : configuration de l'hôte."]
+
+À partir de SAP HANA 1.0 SPS10, SAP a introduit des paramètres permettant d'ajuster le comportement des E/S et d'optimiser la base de données pour le système de fichiers et de stockage utilisé.
+
+Des tests de performances ont été menés par NetApp pour définir les valeurs qui conviennent le mieux. Le tableau suivant répertorie les valeurs optimales résultant des tests de performances.
+
+|===
+| Paramètre | Valeur 
+
+
+| max_parallel_io_requests | 128 
+
+
+| async_read_submit | marche 
+
+
+| async_write_submit_active | marche 
+
+
+| async_write_submit_blocks | tous 
+|===
+Pour SAP HANA 1.0 à SPS12, ces paramètres peuvent être définis lors de l'installation de la base de données SAP HANA, comme décrit dans SAP Note https://launchpad.support.sap.com/["2267798 – Configuration de la base de données SAP HANA lors de l'installation à l'aide de hdbparam"^].
+
+Autre possibilité : définir les paramètres après l'installation de la base de données SAP HANA à l'aide de `hdbparam` structure.
+
+....
+SS3adm@stlrx300s8-6:/usr/sap/SS3/HDB00> hdbparam --paramset fileio.max_parallel_io_requests=128
+SS3adm@stlrx300s8-6:/usr/sap/SS3/HDB00> hdbparam --paramset fileio.async_write_submit_active=on
+SS3adm@stlrx300s8-6:/usr/sap/SS3/HDB00> hdbparam --paramset fileio.async_read_submit=on
+SS3adm@stlrx300s8-6:/usr/sap/SS3/HDB00> hdbparam --paramset fileio.async_write_submit_blocks=all
+....
+SAP HANA 2.0 et `hdbparam` est obsolète et les paramètres ont été déplacés vers le `global.ini` fichier. Les paramètres peuvent être définis à l'aide des commandes SQL ou SAP HANA Studio. Pour plus d'informations, reportez-vous à la note SAP https://launchpad.support.sap.com/["2399079 - élimination de l'hdbparam à HANA 2"^]. Les paramètres peuvent également être définis dans l' `global.ini` fichier.
+
+....
+SS3adm@stlrx300s8-6:/usr/sap/SS3/SYS/global/hdb/custom/config> cat global.ini
+…
+[fileio]
+async_read_submit = on
+async_write_submit_active = on
+max_parallel_io_requests = 128
+async_write_submit_blocks = all
+…
+....
+Avec SAP HANA 2.0 SPS5 et versions ultérieures, vous pouvez utiliser le `setParameter.py `manuscrit pour définir les paramètres mentionnés ci-dessus.
+
+....
+fc5adm@sapcc-hana-tst-03:/usr/sap/FC5/HDB00/exe/python_support>
+python setParameter.py -set=SYSTEM/global.ini/fileio/max_parallel_io_requests=128
+python setParameter.py -set=SYSTEM/global.ini/fileio/async_read_submit=on
+python setParameter.py -set=SYSTEM/global.ini/fileio/async_write_submit_active=on
+python setParameter.py -set=SYSTEM/global.ini/fileio/async_write_submit_blocks=all
+....
+link:saphana_fas_fc_sap_hana_software_installation.html["Suivant : installation du logiciel SAP HANA."]

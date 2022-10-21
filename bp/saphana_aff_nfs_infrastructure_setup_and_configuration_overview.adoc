@@ -1,0 +1,20 @@
+---
+sidebar: sidebar 
+permalink: bp/saphana_aff_nfs_infrastructure_setup_and_configuration_overview.html 
+keywords:  
+summary:  
+---
+= Présentation
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana_aff_nfs_storage_sizing.html["Précédent : dimensionnement du stockage."]
+
+Les sections suivantes fournissent des instructions d'installation et de configuration de l'infrastructure SAP HANA.
+
+link:saphana_aff_nfs_network_setup.html["Suivant : configuration du réseau."]

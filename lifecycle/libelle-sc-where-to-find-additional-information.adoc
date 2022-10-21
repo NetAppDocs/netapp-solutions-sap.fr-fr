@@ -1,0 +1,35 @@
+---
+sidebar: sidebar 
+permalink: lifecycle/libelle-sc-where-to-find-additional-information.html 
+keywords:  
+summary:  
+---
+= Où trouver des informations complémentaires
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:libelle-sc-sap-hana-system-refresh-with-lsc,-azacsnap,-and-azure-netapp-files.html]["Précédente : mise à jour du système SAP HANA avec LSC, AzAcSnap et Azure NetApp Files."]
+
+Pour en savoir plus sur les informations données dans ce livre blanc, consultez ces documents et/ou sites web :
+
+* Documentation produit NetApp
++
+https://docs.netapp.com["https://docs.netapp.com"^]
+
+
+
+
+
+=== Historique des versions
+
+|===
+| Version | Date | Historique des versions du document 
+
+
+| Version 1.0 | Avril 2022 | Version initiale. 
+|===

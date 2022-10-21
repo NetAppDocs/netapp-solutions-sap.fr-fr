@@ -1,0 +1,20 @@
+---
+sidebar: sidebar 
+permalink: bp/saphana_fas_fc_time_synchronization.html 
+keywords: time, synchronization, storage, controllers, sap, hana, database, hosts 
+summary: 'Vous devez synchroniser l"heure entre les contrôleurs de stockage et les hôtes de base de données SAP HANA.' 
+---
+= Synchronisation de l'heure
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana_fas_fc_san_fabric_setup.html["Précédent : configuration de LA structure SAN."]
+
+Vous devez synchroniser l'heure entre les contrôleurs de stockage et les hôtes de base de données SAP HANA. Le même serveur de temps doit être défini pour tous les contrôleurs de stockage et tous les hôtes SAP HANA.
+
+link:saphana_fas_fc_storage_controller_setup.html["Next : configuration du contrôleur de stockage."]

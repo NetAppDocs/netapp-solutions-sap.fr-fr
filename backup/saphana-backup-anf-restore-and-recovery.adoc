@@ -1,0 +1,182 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-backup-anf-restore-and-recovery.html 
+keywords: restore, recovery, workflow, studio, cockpit 
+summary: 'Cette section décrit les workflows de restauration et de restauration d"un système HANA MDC à un seul hôte et un seul locataire. Les différences d"un système hôte multiple sont décrites.' 
+---
+= Restauration et reprise
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-backup-anf-file-based-backups-and-block-integrity-check.html["Précédent : sauvegardes basées sur des fichiers et vérification de l'intégrité des blocs."]
+
+La section suivante décrit les workflows de restauration et de restauration d'un système HANA MDC à un seul hôte et un seul locataire. Les différences d'un système hôte multiple sont décrites.
+
+Les exemples montrent SAP HANA Studio comme outil d'exécution manuelle de la restauration. Vous pouvez également utiliser des instructions SAP HANA Cockpit ou HANA SQL pour les opérations de reprise.
+
+Pour restaurer et restaurer un système à locataire unique SAP HANA MDC à l'aide de SAP HANA Studio et du service SnapCenter, effectuez les opérations suivantes :
+
+. Préparez le processus de restauration et de restauration avec SAP HANA Studio :
++
+.. Sélectionnez Recover System Database et confirmez l'arrêt du système SAP HANA.
+.. Sélectionnez le type de récupération et l'emplacement de sauvegarde du journal.
++
+La liste des sauvegardes de données s'affiche.
+
+.. Sélectionnez la sauvegarde appropriée pour afficher l'ID de sauvegarde externe.
+
+
+. Démonter les volumes de données HANA.
+. Effectuez le processus de restauration avec le service SnapCenter :
++
+.. Dans la vue sauvegarde, sélectionnez la sauvegarde qui correspond au champ ID de sauvegarde externe ou commentaire de SAP HANA Studio.
+.. Pour démarrer l'opération de restauration, sélectionnez Restaurer dans le menu contextuel.
+
+
+. Montez les volumes de données HANA.
+. Exécutez le processus de restauration de la base de données système avec SAP HANA Studio :
++
+.. Cliquez sur Actualiser dans la liste de sauvegarde et sélectionnez la sauvegarde disponible pour la restauration (indiquée par une icône verte).
+.. Démarrer l'opération de récupération.
++
+Une fois l'opération de récupération terminée, la base de données système démarre.
+
+
+
+. Exécutez le processus de restauration de la base de données des locataires avec SAP HANA Studio :
++
+.. Sélectionnez récupérer la base de données des locataires et sélectionnez le locataire à récupérer.
+.. Sélectionnez le type de récupération et l'emplacement de sauvegarde du journal.
++
+Une liste de sauvegardes de données s'affiche. Comme le volume de données a déjà été restauré, la sauvegarde du locataire indique la disponibilité (en vert).
+
+.. Sélectionnez la sauvegarde et démarrez le processus de restauration. Une fois le processus de restauration terminé, la base de données des locataires démarre automatiquement.
+
+
+
+
+Les étapes suivantes décrivent les opérations de restauration et de reprise du système HANA PR1 :
+
+. Pour démarrer la restauration de la base de données système, dans SAP HANA Studio, accédez à l'option sauvegarde et récupération de la base de données système.
++
+image:saphana-backup-anf-image59.png["Erreur : image graphique manquante"]
+
+. Sélectionnez le type de récupération et cliquez sur Suivant.
++
+image:saphana-backup-anf-image60.png["Erreur : image graphique manquante"]
+
+. Indiquez l'emplacement du catalogue de sauvegardes et cliquez sur Next (Suivant).
++
+image:saphana-backup-anf-image61.png["Erreur : image graphique manquante"]
+
+. La liste des sauvegardes disponibles s'affiche en fonction du contenu du catalogue de sauvegardes HANA. Choisissez la sauvegarde requise et notez l'ID de sauvegarde externe, par exemple, comme indiqué dans la capture d'écran suivante, la sauvegarde la plus récente.
++
+image:saphana-backup-anf-image62.png["Erreur : image graphique manquante"]
+
+. Démontez tous les volumes de données.
++
+....
+umount /hana/data/PR1/mnt00001
+....
++
+
+NOTE: Pour un système hôte SAP HANA multiple, il est nécessaire de démonter tous les volumes de données de chaque hôte.
+
+. Dans l'interface utilisateur du service SnapCenter, sélectionnez Afficher les sauvegardes dans le menu contextuel de la vue systèmes SAP HANA.
+. Pour démarrer l'opération de restauration, dans la vue sauvegarde, sélectionner la sauvegarde la plus récente, qui s'affiche également dans HANA Studio, et sélectionner Restaurer dans le menu contextuel.
++
+image:saphana-backup-anf-image63.png["Erreur : image graphique manquante"]
+
+. Pour confirmer l'opération de restauration, cliquez sur Oui, Restaurer.
++
+image:saphana-backup-anf-image64.png["Erreur : image graphique manquante"]
+
++
+Le journal des tâches de service SnapCenter affiche la progression de l'opération de restauration.
+
++
+image:saphana-backup-anf-image65.png["Erreur : image graphique manquante"]
+
+. Attendez la fin du processus de restauration. Montez tous les volumes de données sur chaque hôte de base de données. Dans l'exemple suivant, vous ne devez remonter qu'un seul volume sur l'hôte de la base de données :
++
+....
+mount /hana/data/SP1/mnt00001
+....
+. Pour mettre à jour la liste des sauvegardes disponibles, accédez à SAP HANA Studio et cliquez sur Actualiser. La sauvegarde restaurée avec le service SnapCenter est affichée avec une icône verte dans la liste des sauvegardes. Sélectionnez la sauvegarde et cliquez sur Suivant.
++
+image:saphana-backup-anf-image66.png["Erreur : image graphique manquante"]
+
+. Indiquez l'emplacement des sauvegardes des journaux. Cliquez sur Suivant.
++
+image:saphana-backup-anf-image67.png["Erreur : image graphique manquante"]
+
+. Sélectionnez les autres paramètres requis. Assurez-vous que l'option utiliser les sauvegardes Delta n'est pas sélectionnée. Cliquez sur Suivant.
++
+image:saphana-backup-anf-image68.png["Erreur : image graphique manquante"]
+
+. Vérifiez les paramètres de restauration et cliquez sur Terminer.
++
+image:saphana-backup-anf-image69.png["Erreur : image graphique manquante"]
+
++
+Le processus de restauration démarre. Attendez la fin de la restauration de la base de données système.
+
++
+image:saphana-backup-anf-image70.png["Erreur : image graphique manquante"]
+
+. Dans SAP HANA Studio, sélectionnez l'entrée de la base de données système et accédez à sauvegarde et restauration de la base de données des locataires.
++
+image:saphana-backup-anf-image71.png["Erreur : image graphique manquante"]
+
+. Sélectionnez le locataire à restaurer et cliquez sur Next (Suivant).
++
+image:saphana-backup-anf-image72.png["Erreur : image graphique manquante"]
+
+. Spécifiez le type de récupération et cliquez sur Suivant.
++
+image:saphana-backup-anf-image73.png["Erreur : image graphique manquante"]
+
+. Confirmez l'emplacement du catalogue de sauvegarde et cliquez sur Next (Suivant).
++
+image:saphana-backup-anf-image74.png["Erreur : image graphique manquante"]
+
+. Vérifiez que la base de données des locataires est hors ligne. Cliquez sur OK pour continuer.
++
+image:saphana-backup-anf-image75.png["Erreur : image graphique manquante"]
+
++
+Étant donné que la restauration du volume de données s'est produite avant la restauration de la base de données du système, la sauvegarde du locataire est immédiatement disponible.
+
+. Sélectionnez la sauvegarde en vert et cliquez sur Suivant.
++
+image:saphana-backup-anf-image76.png["Erreur : image graphique manquante"]
+
+. Confirmez l'emplacement de sauvegarde du journal et cliquez sur Suivant.
++
+image:saphana-backup-anf-image77.png["Erreur : image graphique manquante"]
+
+. Sélectionnez les autres paramètres requis. Assurez-vous que l'option utiliser les sauvegardes Delta n'est pas sélectionnée. Cliquez sur Suivant.
++
+image:saphana-backup-anf-image78.png["Erreur : image graphique manquante"]
+
+. Vérifiez les paramètres de restauration et démarrez le processus de restauration de la base de données des locataires en cliquant sur Terminer.
++
+image:saphana-backup-anf-image79.png["Erreur : image graphique manquante"]
+
+. Attendez que la récupération soit terminée et que la base de données des locataires démarre.
++
+image:saphana-backup-anf-image80.png["Erreur : image graphique manquante"]
+
++
+Le système SAP HANA est opérationnel.
+
+
+
+Pour un système MDC SAP HANA avec plusieurs locataires, vous devez répéter les étapes 15 à 24 pour chaque locataire.
+
+link:saphana-backup-anf-additional-information.html["Suivant : où trouver des informations supplémentaires ?"]

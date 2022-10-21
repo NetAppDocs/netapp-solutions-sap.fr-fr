@@ -1,0 +1,15 @@
+---
+sidebar: sidebar 
+permalink: amazon-fsx-backup-replication-with-snapvault.html 
+keywords:  
+summary:  
+---
+= Réplication des sauvegardes avec SnapVault
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+

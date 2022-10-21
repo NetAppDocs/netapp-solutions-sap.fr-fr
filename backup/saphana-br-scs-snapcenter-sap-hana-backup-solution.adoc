@@ -1,0 +1,125 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-br-scs-snapcenter-sap-hana-backup-solution.html 
+keywords: solution components, supported releases, configuration, enhancements 
+summary: Cette section répertorie les composants, les versions et configurations SAP HANA prises en charge et les améliorations de SnapCenter 4.6 utilisées dans cette solution. 
+---
+= Solution de sauvegarde SnapCenter SAP HANA
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-br-scs-snapcenter-architecture.html["Précédent : architecture SnapCenter."]
+
+
+
+== Composants de la solution
+
+La solution de sauvegarde SnapCenter pour SAP HANA couvre les domaines suivants :
+
+* Sauvegarde des données SAP HANA avec copies Snapshot basées sur le stockage :
++
+** Planification des sauvegardes
+** La gestion de la conservation
+** Gestion du catalogue des sauvegardes SAP HANA
+
+
+* Volume sans données (par exemple, `/hana/shared`) Sauvegarde avec copies Snapshot basées sur le stockage :
++
+** Planification des sauvegardes
+** La gestion de la conservation
+
+
+* Réplication vers un emplacement de sauvegarde ou de reprise après incident hors site :
++
+** Sauvegardes Snapshot de données SAP HANA
+** Sans volumes de données
+** Configuration de la gestion de la conservation sur des systèmes de stockage de sauvegarde hors site
+** Gestion du catalogue des sauvegardes SAP HANA
+
+
+* Contrôles de l'intégrité des blocs de base de données à l'aide d'une sauvegarde basée sur des fichiers :
++
+** Planification des sauvegardes
+** La gestion de la conservation
+** Gestion du catalogue des sauvegardes SAP HANA
+
+
+* Gestion de la conservation de la sauvegarde des journaux de base de données HANA :
++
+** La conservation des données en fonction de la conservation des sauvegardes
+** Gestion du catalogue des sauvegardes SAP HANA
+
+
+* Découverte automatique des bases de données HANA
+* Restauration et reprise automatisées
+* Opérations de restauration en locataire unique avec les systèmes MDC (conteneur de base de données mutualisée SAP HANA)
+
+
+SnapCenter exécute également des sauvegardes de fichiers de données de bases de données en association avec le plug-in pour SAP HANA. Le plug-in définit le point de sauvegarde de la base de données SAP HANA pour que les copies Snapshot, qui sont créées sur le système de stockage principal, soient basées sur une image cohérente de la base de données SAP HANA.
+
+SnapCenter permet la réplication d'images cohérentes de bases de données vers un emplacement de sauvegarde ou de reprise après incident hors site à l'aide de SnapVault ou de NetApp SnapMirror. fonction. Généralement, différentes règles de conservation sont définies selon l'emplacement des sauvegardes sur le stockage primaire et sur le stockage de sauvegarde hors site. SnapCenter gère la conservation au niveau du stockage primaire, et ONTAP gère la conservation au niveau du stockage de sauvegarde hors site.
+
+Pour permettre une sauvegarde complète de toutes les ressources SAP HANA, SnapCenter vous permet également de sauvegarder tous les volumes non-data à l'aide du plug-in SAP HANA avec des copies Snapshot basées sur le stockage. Il est possible de planifier des volumes non-data indépendamment de la sauvegarde des données de la base de données afin de mettre en place des règles de conservation et de protection individuelles.
+
+La base de données SAP HANA exécute automatiquement des sauvegardes des journaux. Selon les objectifs de point de restauration, plusieurs options existent pour l'emplacement de stockage des sauvegardes de journaux :
+
+* La sauvegarde des journaux est écrite sur un système de stockage qui assure la mise en miroir synchrone des données sur un second emplacement avec le logiciel de stockage NetApp MetroCluster haute disponibilité et de reprise après incident.
+* La destination de sauvegarde des journaux peut être configurée sur le même système de stockage primaire, puis répliquée de manière synchrone ou asynchrone vers un stockage secondaire avec SnapMirror.
+* La destination de sauvegarde des journaux peut être configurée sur le même stockage de sauvegarde hors site dans lequel les sauvegardes des bases de données sont répliquées avec SnapVault. Avec cette configuration, le stockage de sauvegarde hors site a des besoins en disponibilité tels que ceux du stockage primaire, de sorte que les sauvegardes des journaux puissent être écrites sur le stockage de sauvegarde hors site.
+
+
+SAP recommande de combiner des sauvegardes Snapshot basées sur le stockage et une sauvegarde hebdomadaire basée sur des fichiers pour exécuter une vérification de l'intégrité des blocs. La vérification de l'intégrité des blocs peut être exécutée depuis SnapCenter. En fonction de vos règles de conservation configurables, SnapCenter gère l'organisation des sauvegardes de fichiers de données dans le système de stockage primaire, les sauvegardes de fichiers journaux et le catalogue de sauvegardes SAP HANA.
+
+
+NOTE: SnapCenter gère la conservation au niveau du stockage primaire, tandis que ONTAP gère la conservation des sauvegardes secondaires.
+
+La figure suivante présente un aperçu de la configuration de sauvegarde des bases de données et des journaux, dans laquelle les sauvegardes des journaux sont écrites sur un montage NFS du stockage de sauvegarde hors site.
+
+image:saphana-br-scs-image7.png["Erreur : image graphique manquante"]
+
+Lors de l'exécution d'une sauvegarde Snapshot basée sur le stockage de volumes non-données, SnapCenter effectue les tâches suivantes :
+
+. Création d'une copie Snapshot de stockage du volume sans données.
+. L'exécution d'une mise à jour de SnapVault ou de SnapMirror pour le volume de données, si configurée.
+. Suppression des copies Snapshot de stockage au niveau du stockage primaire selon la règle de conservation définie.
+
+
+Lors de l'exécution d'une sauvegarde Snapshot basée sur le stockage de la base de données SAP HANA, SnapCenter effectue les tâches suivantes :
+
+. Création d'un point de sauvegarde SAP HANA pour créer une image cohérente sur la couche de persistance.
+. Création d'une copie Snapshot de stockage du volume de données.
+. Enregistrement du Snapshot de stockage dans le catalogue des sauvegardes SAP HANA.
+. Version du point de sauvegarde de SAP HANA.
+. L'exécution d'une mise à jour de SnapVault ou de SnapMirror pour le volume de données, si configurée.
+. Suppression des copies Snapshot de stockage au niveau du stockage primaire selon la règle de conservation définie.
+. Suppression des entrées du catalogue de sauvegardes SAP HANA si les sauvegardes n'existent plus sur le stockage de sauvegarde primaire ou hors site.
+. Lorsqu'une sauvegarde a été supprimée en fonction de la stratégie de conservation ou manuellement, SnapCenter supprime toutes les sauvegardes de journaux antérieures à la sauvegarde de données la plus ancienne. Les sauvegardes des journaux sont supprimées dans le système de fichiers et dans le catalogue de sauvegardes SAP HANA.
+
+
+
+
+== Versions et configurations SAP HANA prises en charge
+
+SnapCenter prend en charge les configurations SAP HANA à un ou plusieurs hôtes à l'aide de systèmes de stockage NetApp NFS ou FC (AFF et FAS), ainsi que les systèmes SAP HANA qui s'exécutent sur Cloud Volumes ONTAP dans AWS, Azure, Google Cloud Platform et AWS FSX ONTAP à l'aide de NFS.
+
+SnapCenter prend en charge plusieurs architectures et versions SAP HANA :
+
+* Conteneur unique SAP HANA : SAP HANA 1.0 SPS12
+* Conteneur de base de données mutualisée SAP HANA (MDC) pour un seul locataire : SAP HANA 2.0 SPS3 et version ultérieure
+* Conteneur de base de données mutualisée SAP HANA (MDC) pour plusieurs locataires : SAP HANA 2.0 SPS4 et ultérieure
+
+
+
+
+== Améliorations apportées à SnapCenter 4.6
+
+À partir de la version 4.6, SnapCenter prend en charge la découverte automatique des systèmes HANA configurés dans une relation de réplication système HANA. Chaque hôte est configuré à l'aide de son adresse IP physique (nom d'hôte) et de son volume de données individuel sur la couche de stockage. Les deux ressources SnapCenter sont combinées dans un groupe de ressources, SnapCenter identifie automatiquement l'hôte principal ou secondaire, puis exécute les opérations de sauvegarde requises en conséquence. La gestion des données de conservation pour les sauvegardes Snapshot et basées sur les fichiers créées avec SnapCenter s'effectue sur les deux hôtes pour s'assurer que les anciennes sauvegardes sont également supprimées sur l'hôte secondaire actuel. La figure suivante présente une vue d'ensemble générale. Vous trouverez une description détaillée de la configuration et du fonctionnement des systèmes HANA HANA compatibles avec la réplication dans le SnapCenter https://www.netapp.com/us/media/tr-4719.pdf["Tr-4719 réplication système SAP HANA, sauvegarde et restauration avec SnapCenter"^].
+
+image:saphana-br-scs-image8.png["Erreur : image graphique manquante"]
+
+link:saphana-br-scs-snapcenter-concepts-and-best-practices.html["Ensuite, concepts et bonnes pratiques SnapCenter."]

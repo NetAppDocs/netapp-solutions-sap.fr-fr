@@ -1,0 +1,44 @@
+---
+section: lifecycle
+title: Gestion du cycle de vie
+entries:
+- title: Automatisation des opérations de copie et de clonage du système SAP HANA
+    avec SnapCenter
+  type: solutions
+  entries:
+  - title: Introduction
+    url: "/lifecycle/sc-copy-clone-introduction.html"
+  - title: Scénarios de copie, d'actualisation et de clonage des systèmes SAP
+    url: "/lifecycle/sc-copy-clone-sap-system-copy,-refresh,-and-clone-scenarios.html"
+  - title: Cas d'utilisation pour la mise à jour et le clonage du système
+    url: "/lifecycle/sc-copy-clone-use-cases-for-system-refresh-and-cloning.html"
+  - title: Présentation du workflow d'actualisation du système SAP avec SnapCenter
+    url: "/lifecycle/sc-copy-clone-overview-of-sap-system-refresh-workflow-with-snapcenter.html"
+  - title: Présentation du workflow de copie de système SAP avec SnapCenter
+    url: "/lifecycle/sc-copy-clone-overview-of-sap-system-copy-workflow-with-snapcenter.html"
+  - title: Présentation du workflow de clonage de système SAP avec SnapCenter
+    url: "/lifecycle/sc-copy-clone-overview-of-sap-system-clone-workflow-with-snapcenter.html"
+  - title: Workflows d'opération de mise à jour du système SAP HANA à l'aide des sauvegardes
+      Snapshot de stockage
+    url: "/lifecycle/sc-copy-clone-sap-hana-system-refresh-operation-workflows-using-storage-snapshot-backups.html"
+  - title: Scripts d'exemple d'automatisation
+    url: "/lifecycle/sc-copy-clone-automation-example-scripts.html"
+  - title: Mise à jour du système SAP HANA avec SnapCenter
+    url: "/lifecycle/sc-copy-clone-sap-hana-system-refresh-with-snapcenter.html"
+  - title: Clone du système SAP avec SnapCenter
+    url: "/lifecycle/sc-copy-clone-sap-system-clone-with-snapcenter.html"
+  - title: Où trouver des informations supplémentaires et l'historique des versions
+    url: "/lifecycle/sc-copy-clone-where-to-find-additional-information.html"
+- title: Automatisation des opérations de copie de systèmes SAP avec libelle SystemCopy
+  type: solutions
+  entries:
+  - title: Présentation
+    url: "/lifecycle/libelle-sc-overview.html"
+  - title: Actualisation du système SAP HANA avec LSC et SnapCenter
+    url: "/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html"
+  - title: Mise à jour du système SAP HANA avec LSC, AzAcSnap et Azure NetApp Files
+    url: "/lifecycle/libelle-sc-sap-hana-system-refresh-with-lsc,-azacsnap,-and-azure-netapp-files.html"
+  - title: Où trouver des informations supplémentaires et l'historique des versions
+    url: "/lifecycle/libelle-sc-where-to-find-additional-information.html"
+- title: Intégration du stockage NetApp à SAP Landscape Management
+  url: https://www.netapp.com/us/media/tr-4018.pdf

@@ -1,0 +1,20 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-dr-sr_pdf_link.html 
+keywords: tr-4646, pdf, sap, hana, backup, storage, replication, dr, snapmirror, snapcenter 
+summary: 'Le rapport TR-4646 présente les options de protection de la reprise après incident pour SAP HANA. Vous y trouverez des informations détaillées sur la configuration et une description des cas d"utilisation d"une solution de reprise après incident sur trois sites basée sur la réplication du stockage NetApp SnapMirror synchrone et asynchrone. La solution décrite utilise NetApp SnapCenter avec le plug-in SAP HANA pour gérer la cohérence des bases de données.' 
+---
+= Tr-4646 : reprise après incident de SAP HANA avec réplication du stockage
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+Nils Bauer, NetApp
+
+Le rapport TR-4646 présente les options de protection de la reprise après incident pour SAP HANA. Vous y trouverez des informations détaillées sur la configuration et une description des cas d'utilisation d'une solution de reprise après incident sur trois sites basée sur la réplication du stockage NetApp SnapMirror synchrone et asynchrone. La solution décrite utilise NetApp SnapCenter avec le plug-in SAP HANA pour gérer la cohérence des bases de données.
+
+link:https://www.netapp.com/pdf.html?item=/media/8584-tr4646pdf.pdf["https://www.netapp.com/pdf.html?item=/media/8584-tr4646pdf.pdf"]

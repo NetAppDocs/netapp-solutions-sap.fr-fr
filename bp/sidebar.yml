@@ -1,0 +1,148 @@
+---
+section: bp
+title: Et des meilleures pratiques
+entries:
+- title: 'SAP HANA sur les systèmes AFF de NetApp avec FCP : Guide de configuration'
+  type: solutions
+  entries:
+  - title: Introduction
+    url: "/bp/saphana_aff_fc_introduction.html"
+  - title: Architecture
+    url: "/bp/saphana_aff_fc_architecture.html"
+  - title: Dimensionnement du stockage
+    url: "/bp/saphana_aff_fc_storage_sizing.html"
+  - title: Installation et configuration de l'infrastructure
+    entries:
+    - title: Présentation de la configuration et de l'installation de l'infrastructure
+      url: "/bp/saphana_aff_fc_infrastructure_setup_and_configuration_overview.html"
+    - title: Configuration de la structure SAN
+      url: "/bp/saphana_aff_fc_san_fabric_setup.html"
+    - title: Synchronisation de l'heure
+      url: "/bp/saphana_aff_fc_time_synchronization.html"
+    - title: Configuration du contrôleur de stockage
+      url: "/bp/saphana_aff_fc_storage_controller_setup.html"
+    - title: API du connecteur de stockage SAP HANA
+      url: "/bp/saphana_aff_fc_sap_hana_storage_connector_api.html"
+    - title: Configuration de l'hôte
+      url: "/bp/saphana_aff_fc_host_setup.html"
+    - title: Configuration de la pile d'E/S pour SAP HANA
+      url: "/bp/saphana_aff_fc_i_o_stack_configuration_for_sap_hana.html"
+    - title: Installation du logiciel SAP HANA
+      url: "/bp/saphana_aff_fc_sap_hana_software_installation.html"
+    - title: Ajout de partitions de volumes de données supplémentaires pour les systèmes
+        SAP HANA à un seul hôte
+      url: "/bp/saphana_aff_fc_adding_additional_data_volume_partitions_for_sap_hana_single-host_systems.html"
+  - title: Où trouver des informations complémentaires
+    url: "/bp/saphana_aff_fc_where_to_find_additional_information.html"
+  - title: Historique des mises à jour
+    url: "/bp/saphana_aff_fc_update_history.html"
+- title: 'SAP HANA sur les systèmes NetApp AFF avec NFS : Guide de configuration'
+  type: solutions
+  entries:
+  - title: Introduction
+    url: "/bp/saphana_aff_nfs_introduction.html"
+  - title: Architecture
+    url: "/bp/saphana_aff_nfs_architecture.html"
+  - title: Dimensionnement du stockage
+    url: "/bp/saphana_aff_nfs_storage_sizing.html"
+  - title: Installation et configuration de l'infrastructure
+    entries:
+    - title: Présentation de la configuration et de l'installation de l'infrastructure
+      url: "/bp/saphana_aff_nfs_infrastructure_setup_and_configuration_overview.html"
+    - title: Configuration du réseau
+      url: "/bp/saphana_aff_nfs_network_setup.html"
+    - title: Synchronisation de l'heure
+      url: "/bp/saphana_aff_nfs_time_synchronization.html"
+    - title: Configuration du contrôleur de stockage
+      url: "/bp/saphana_aff_nfs_storage_controller_setup.html"
+    - title: Configuration de l'hôte
+      url: "/bp/saphana_aff_nfs_host_setup.html"
+    - title: Préparation de l'installation de SAP HANA pour NFSv4
+      url: "/bp/saphana_aff_nfs_sap_hana_installation_preparations_for_nfsv4.html"
+    - title: Configuration de la pile d'E/S pour SAP HANA
+      url: "/bp/saphana_aff_nfs_i_o_stack_configuration_for_sap_hana.html"
+    - title: Taille du volume de données SAP HANA
+      url: "/bp/saphana_aff_nfs_sap_hana_data_volume_size.html"
+    - title: Installation du logiciel SAP HANA
+      url: "/bp/saphana_aff_nfs_sap_hana_software_installation.html"
+    - title: Ajout de partitions de volume de données supplémentaires
+      url: "/bp/saphana_aff_nfs_adding_additional_data_volume_partitions.html"
+  - title: Où trouver des informations complémentaires
+    url: "/bp/saphana_aff_nfs_where_to_find_additional_information.html"
+  - title: Historique des mises à jour
+    url: "/bp/saphana_aff_nfs_update_history.html"
+- title: 'SAP HANA sur les systèmes NetApp FAS avec NFS : Guide de configuration'
+  type: solutions
+  entries:
+  - title: Introduction
+    url: "/bp/saphana-fas-nfs_introduction.html"
+  - title: Architecture
+    url: "/bp/saphana-fas-nfs_architecture.html"
+  - title: Dimensionnement du stockage
+    url: "/bp/saphana-fas-nfs_storage_sizing.html"
+  - title: Installation et configuration de l'infrastructure
+    entries:
+    - title: Présentation de la configuration et de l'installation de l'infrastructure
+      url: "/bp/saphana-fas-nfs_infrastructure_setup_and_configuration_overview.html"
+    - title: Configuration du réseau
+      url: "/bp/saphana-fas-nfs_network_setup.html"
+    - title: Synchronisation de l'heure
+      url: "/bp/saphana-fas-nfs_time_synchronization.html"
+    - title: Configuration du contrôleur de stockage
+      url: "/bp/saphana-fas-nfs_storage_controller_setup.html"
+    - title: Configuration de l'hôte
+      url: "/bp/saphana-fas-nfs_host_setup.html"
+    - title: Préparation de l'installation de SAP HANA pour NFSv4
+      url: "/bp/saphana-fas-nfs_sap_hana_installation_preparations_for_nfsv4.html"
+    - title: Configuration de la pile d'E/S pour SAP HANA
+      url: "/bp/saphana-fas-nfs_i_o_stack_configuration_for_sap_hana.html"
+    - title: Taille du volume de données SAP HANA
+      url: "/bp/saphana-fas-nfs_sap_hana_data_volume_size.html"
+    - title: Installation du logiciel SAP HANA
+      url: "/bp/saphana-fas-nfs_sap_hana_software_installation.html"
+    - title: Ajout de partitions de volume de données supplémentaires
+      url: "/bp/saphana-fas-nfs_adding_additional_data_volume_partitions.html"
+  - title: Où trouver des informations complémentaires
+    url: "/bp/saphana-fas-nfs_where_to_find_additional_information.html"
+  - title: Historique des mises à jour
+    url: "/bp/saphana-fas-nfs_update_history.html"
+- title: 'SAP HANA sur les systèmes FAS avec FCP : Guide de configuration'
+  type: solutions
+  entries:
+  - title: Introduction
+    url: "/bp/saphana_fas_fc_introduction.html"
+  - title: Architecture
+    url: "/bp/saphana_fas_fc_architecture.html"
+  - title: Dimensionnement du stockage
+    url: "/bp/saphana_fas_fc_storage_sizing.html"
+  - title: Installation et configuration de l'infrastructure
+    entries:
+    - title: Présentation de la configuration et de l'installation de l'infrastructure
+      url: "/bp/saphana_fas_fc_infrastructure_setup_and_configuration_overview.html"
+    - title: Configuration de la structure SAN
+      url: "/bp/saphana_fas_fc_san_fabric_setup.html"
+    - title: Synchronisation de l'heure
+      url: "/bp/saphana_fas_fc_time_synchronization.html"
+    - title: Configuration du contrôleur de stockage
+      url: "/bp/saphana_fas_fc_storage_controller_setup.html"
+    - title: API du connecteur de stockage SAP HANA
+      url: "/bp/saphana_fas_fc_sap_hana_storage_connector_api.html"
+    - title: Configuration de l'hôte
+      url: "/bp/saphana_fas_fc_host_setup.html"
+    - title: Configuration de la pile d'E/S pour SAP HANA
+      url: "/bp/saphana_fas_fc_i_o_stack_configuration_for_sap_hana.html"
+    - title: Installation du logiciel SAP HANA
+      url: "/bp/saphana_fas_fc_sap_hana_software_installation.html"
+    - title: Ajout de partitions de volumes de données supplémentaires pour les systèmes
+        SAP HANA à un seul hôte
+      url: "/bp/saphana_fas_fc_adding_additional_data_volume_partitions_for_sap_hana_single-host_systems.html"
+  - title: Où trouver des informations complémentaires
+    url: "/bp/saphana_fas_fc_where_to_find_additional_information.html"
+  - title: Historique des mises à jour
+    url: "/bp/saphana_fas_fc_update_history.html"
+- title: SAP HANA sur IBM Power Systems et les systèmes AFF de NetApp avec NFS
+  url: "/bp/saphana-ibm-aff-nfs_pdf_link.html"
+- title: SAP avec Oracle sous UNIX et NFS avec NetApp ONTAP
+  url: "/bp/sap-oracle-snapman_pdf_link.html"
+- title: SAP avec Microsoft SQL Server sous Windows utilisant ONTAP
+  url: "/bp/sap-sqls-sc_pdf_link.html"

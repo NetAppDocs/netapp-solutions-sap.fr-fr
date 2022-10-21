@@ -1,0 +1,142 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-dr-anf_disaster_recovery_solution_comparison.html 
+keywords: sap, hana, system, replication, data, memory, disaster, recovery, solutions, azure 
+summary: Une solution complète de reprise sur incident doit permettre aux clients de récupérer après une panne complète du site primaire. 
+---
+= Comparaison des solutions de reprise d'activité
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-dr-anf_data_protection_overview_overview.html["Précédent : reprise après incident de SAP HANA avec Azure NetApp Files."]
+
+Une solution complète de reprise sur incident doit permettre aux clients de récupérer après une panne complète du site primaire. Par conséquent, les données doivent être transférées vers un site secondaire et une infrastructure complète est nécessaire pour exécuter les systèmes SAP HANA de production requis en cas de panne sur un site. Selon les exigences de disponibilité de l'application et le type d'incident à protéger, une solution de reprise sur incident sur deux ou trois sites doit être envisagée.
+
+La figure suivante montre une configuration standard dans laquelle les données sont répliquées de manière synchrone au sein de la même région Azure vers une seconde zone de disponibilité. La distance courte permet de répliquer les données de manière synchrone pour atteindre un RPO de zéro (généralement utilisé pour fournir la haute disponibilité).
+
+Les données sont également répliquées de manière asynchrone vers une région secondaire pour être protégée contre les incidents lorsque la région primaire est affectée. L'objectif RPO minimal possible dépend de la fréquence de réplication des données, qui est limitée par la bande passante disponible entre la région primaire et la région secondaire. Un RPO minimal type est généralement compris entre 20 minutes et plusieurs heures.
+
+Ce document présente différentes options d'implémentation d'une solution de reprise après incident de deux régions.
+
+image:saphana-dr-anf_image3.png["Erreur : image graphique manquante"]
+
+
+
+== Réplication système SAP HANA
+
+La réplication système SAP HANA fonctionne au niveau de la couche base de données. La solution repose sur un système SAP HANA supplémentaire sur le site de reprise d'activité, qui reçoit les modifications du système principal. Ce système secondaire doit être identique au système principal.
+
+La réplication système SAP HANA peut être exploitée selon l'un des deux modes suivants :
+
+* Avec des données préchargées dans la mémoire et un serveur dédié sur le site de reprise d'activité :
++
+** Le serveur est utilisé exclusivement en tant qu'hôte secondaire de réplication système SAP HANA.
+** Des valeurs RTO très faibles peuvent être obtenues car les données sont déjà chargées en mémoire et aucune base de données de démarrage n'est nécessaire en cas de basculement.
+
+
+* Sans données préchargées dans la mémoire et sans serveur partagé sur le site de reprise d'activité :
++
+** Le serveur est partagé en tant que système secondaire de réplication système SAP HANA et en tant que système de test et de développement.
+** Le RTO dépend principalement du temps nécessaire au démarrage de la base de données et à la charge des données dans la mémoire.
+
+
+
+
+Pour une description complète de toutes les options de configuration et de tous les scénarios de réplication, reportez-vous à la https://help.sap.com/saphelp_hanaplatform/helpdata/en/67/6844172c2442f0bf6c8b080db05ae7/content.htm?frameset=/en/52/08b5071e3f45d5aa3bcbb7fde10cec/frameset.htm&current_toc=/en/00/0ca1e3486640ef8b884cdf1a050fbb/plain.htm&node_id=527&show_children=f["Guide d'administration de SAP HANA"^].
+
+La figure suivante montre la configuration d'une solution de reprise après incident à deux régions avec la réplication système SAP HANA. La réplication synchrone avec données préchargées dans la mémoire est utilisée pour la haute disponibilité locale dans la même région Azure, mais dans des zones de disponibilité différentes. La réplication asynchrone sans données préchargées est configurée pour la région de reprise d'activité distante.
+
+La figure suivante représente la réplication système SAP HANA.
+
+image:saphana-dr-anf_image4.png["Erreur : image graphique manquante"]
+
+
+
+=== Réplication système SAP HANA avec données préchargées dans la mémoire
+
+De très faibles valeurs RTO avec SAP HANA ne peuvent être obtenues qu'avec la réplication système SAP HANA avec des données préchargées dans la mémoire. La réplication système SAP HANA avec un serveur secondaire dédié sur le site de reprise d'activité permet d'obtenir une valeur RTO d'environ 1 minute au maximum. Les données répliquées sont reçues et préchargées dans la mémoire du système secondaire. Du fait de ce faible temps de basculement, la réplication système SAP HANA est également souvent utilisée pour les opérations de maintenance sans interruption quasi-nul, telles que les mises à niveau du logiciel HANA.
+
+Généralement, la réplication système SAP HANA est configurée de façon synchrone pour effectuer une réplication synchrone lors de l'opération de préchargement des données. La distance maximale prise en charge pour la réplication synchrone se situe dans une plage de 100 km.
+
+
+
+=== Réplication système SAP sans données préchargées dans la mémoire
+
+Pour les exigences RTO moins strictes, vous pouvez utiliser la réplication système SAP HANA sans données préchargées. Dans ce mode opérationnel, les données de la région de reprise après sinistre ne sont pas chargées en mémoire. Le serveur de la région de reprise après incident est toujours utilisé pour traiter la réplication système SAP HANA exécutant tous les processus SAP HANA requis. Cependant, la majeure partie de la mémoire du serveur est disponible pour exécuter d'autres services, tels que les systèmes de développement/test SAP HANA.
+
+En cas d'incident, le système de développement/test doit être arrêté, le basculement doit être lancé et les données doivent être chargées dans la mémoire. L'objectif RTO de cette approche de veille à froid dépend de la taille de la base de données et du débit de lecture pendant la charge du magasin de lignes et de colonnes. L'hypothèse selon laquelle le débit de lecture des données est de 1 000 Mbit/s devrait prendre environ 18 minutes pour charger 1 To de données.
+
+
+
+== Reprise après incident SAP HANA avec la réplication inter-région ANF
+
+La réplication inter-régions ANF est intégrée à ANF comme une solution de reprise après incident grâce à la réplication asynchrone des données. La réplication inter-région ANF est configurée par le biais d'une relation de protection des données entre deux volumes ANF sur une région Azure primaire et secondaire. La réplication inter-région ANF permet de mettre à jour le volume secondaire grâce à des réplications différentielles de bloc efficaces. Des planifications de mise à jour peuvent être définies au cours de la configuration de la réplication.
+
+La figure suivante présente un exemple de solution de reprise après incident dans deux régions avec la réplication ANF Cross- Region. Dans cet exemple, le système HANA est protégé avec la réplication système HANA dans la région primaire, comme indiqué au chapitre précédent. La réplication vers une région secondaire s'effectue à l'aide de la réplication ANF inter-région. Le RPO est défini par la planification de réplication et les options de réplication.
+
+Le RTO dépend principalement du temps nécessaire pour démarrer la base de données HANA sur le site de reprise d'activité et pour charger les données dans la mémoire. En supposant que les données sont lues avec un débit de 1000 Mo/s, le chargement de 1 To de données prendra environ 18 minutes. En fonction de la configuration de la réplication, la restauration par transfert est également requise et ajoute à la valeur RTO totale.
+
+Le chapitre fournit plus de détails sur les différentes options de configuration link:ent-apps-db/saphana-dr-anf_anf_cross-region_replication_with_sap_hana_overview.html["Options de configuration pour la réplication inter-région avec SAP HANA"].
+
+Les serveurs des sites de reprise d'activité peuvent être utilisés en tant que systèmes de développement/test pendant le fonctionnement normal. En cas d'incident, les systèmes de dév/test doivent être arrêtés et démarrés est en tant que serveurs de production de reprise sur incident.
+
+La réplication inter-région d'ANF vous permet de tester le workflow de reprise après incident sans incidence sur les objectifs RPO et RTO. Pour ce faire, il est possible de créer des clones de volume et de les relier au serveur de test de la reprise après incident.
+
+image:saphana-dr-anf_image5.png["Erreur : image graphique manquante"]
+
+
+
+== Récapitulatif des solutions de reprise sur incident
+
+Le tableau suivant compare les solutions de reprise sur incident abordées dans cette section et met en évidence les indicateurs les plus importants.
+
+Les principales conclusions sont les suivantes :
+
+* Si un RTO très faible est nécessaire, la réplication système SAP HANA avec un préchargement en mémoire est la seule option.
++
+** Un serveur dédié est nécessaire sur le site de reprise après incident pour recevoir les données répliquées et charger les données dans la mémoire.
+
+
+* De plus, la réplication du stockage est nécessaire pour les données résidant en dehors de la base de données (par exemple, les fichiers partagés, les interfaces, etc.).
+* Si les exigences RTO/RPO sont moins strictes, la réplication ANF multi-région peut également être utilisée pour :
++
+** Combiner la réplication de données sans base de données et autres applications
+** Couvrez davantage d'utilisations, telles que les tests de reprise après incident et la mise à jour de développement/test.
+** Avec la réplication du stockage, le serveur du site de DR peut être utilisé comme système d'assurance qualité ou de test pendant le fonctionnement normal.
+
+
+* Une combinaison de la réplication système SAP HANA en tant que solution haute disponibilité avec RPO=0 et la réplication du stockage sur longue distance est judicieux pour répondre aux différentes exigences.
+
+
+Le tableau suivant compare les solutions de reprise d'activité.
+
+|===
+|  | Réplication du stockage 2+| Réplication du système SAP HANA 
+
+
+|  | *Réplication inter-région* | *Avec préchargement des données* | *Sans préchargement de données* 
+
+
+| LE RTO | Faible à moyen, selon le délai de démarrage de la base de données et la restauration avant | Très faible | Faible à moyen, selon le délai de démarrage de la base de données 
+
+
+| RPO | Réplication asynchrone > 20 min | Réplication asynchrone RPO > 20 min RPO=0 réplication synchrone | Réplication asynchrone RPO > 20 min RPO=0 réplication synchrone 
+
+
+| Les serveurs du site de reprise d'activité peuvent être utilisés pour les activités de développement/test | Oui. | Non | Oui. 
+
+
+| Réplication de données ne provenant pas d'une base de données | Oui. | Non | Non 
+
+
+| Les données de reprise d'activité peuvent être utilisées pour actualiser les systèmes de développement/tests | Oui. | Non | Non 
+
+
+| Tests de reprise d'activité sans incidence sur le RTO et le RPO | Oui. | Non | Non 
+|===
+link:saphana-dr-anf_anf_cross-region_replication_with_sap_hana_overview.html["Suivant : réplication ANF interrégion avec SAP HANA."]

@@ -1,0 +1,49 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-dr-anf_lab_setup.html 
+keywords: lab, setup, solution, validation, sap, hana, single, host, system, microsoft, azacsnap, snapshot 
+summary: 'La validation de la solution a été réalisée avec un système hôte unique SAP HANA. L"outil de sauvegarde Microsoft AzAcSnap Snapshot pour ANF a été utilisé pour configurer des sauvegardes Snapshot HANA cohérentes avec les applications.' 
+---
+= Configuration de laboratoire
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-dr-anf_requirements_and_best_practices.html["Précédent : conditions requises et bonnes pratiques."]
+
+La validation de la solution a été réalisée avec un système hôte unique SAP HANA. L'outil de sauvegarde Microsoft AzAcSnap Snapshot pour ANF a été utilisé pour configurer des sauvegardes Snapshot HANA cohérentes avec les applications. Les volumes de données quotidiens, les sauvegardes de journaux horaires et la réplication de volume partagé sont tous configurés. Le basculement et les tests de reprise après incident ont été validés avec un point de sauvegarde ainsi que pour les opérations de reprise après incident.
+
+Les versions logicielles suivantes ont été utilisées dans la configuration du laboratoire :
+
+* Un seul hôte système SAP HANA 2.0 SPS5 avec un seul locataire
+* SUSE SLES POUR SAP 15 SP1
+* AzAcSnap 5.0
+
+
+Un pool de capacité unique avec QoS manuelle a été configuré sur le site de reprise après incident.
+
+La figure suivante illustre la configuration du laboratoire.
+
+image:saphana-dr-anf_image7.png["Erreur : image graphique manquante"]
+
+
+
+== Configuration de sauvegarde Snapshot avec AzAcSnap
+
+Sur le site principal, AzAcSnap a été configuré pour créer des sauvegardes Snapshot cohérentes au niveau des applications du système HANA PR1. Ces sauvegardes Snapshot sont disponibles au niveau du volume de données ANF du système PR1 HANA et sont également enregistrées dans le catalogue des sauvegardes SAP HANA, comme illustré dans les deux figures suivantes. Des sauvegardes Snapshot ont été planifiées toutes les 4 heures.
+
+Avec la réplication du volume de données à l'aide de la réplication ANF Cross-Region, ces sauvegardes Snapshot sont répliquées sur le site de reprise d'activité et peuvent être utilisées pour restaurer la base de données HANA.
+
+La figure suivante présente les sauvegardes Snapshot du volume de données HANA.
+
+image:saphana-dr-anf_image8.png["Erreur : image graphique manquante"]
+
+La figure suivante présente le catalogue des sauvegardes SAP HANA.
+
+image:saphana-dr-anf_image9.png["Erreur : image graphique manquante"]
+
+link:saphana-dr-anf_configuration_steps_for_anf_cross-region_replication.html["Suivant : étapes de configuration de la réplication ANF multi-région."]

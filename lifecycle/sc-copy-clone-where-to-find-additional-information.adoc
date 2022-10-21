@@ -1,0 +1,61 @@
+---
+sidebar: sidebar 
+permalink: lifecycle/sc-copy-clone-where-to-find-additional-information.html 
+keywords:  
+summary:  
+---
+= Où trouver des informations complémentaires
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:sc-copy-clone-sap-system-clone-with-snapcenter.html["Précédent : clonage du système SAP avec SnapCenter."]
+
+Pour en savoir plus sur les informations fournies dans ce document, consultez ces documents et/ou sites web :
+
+* Tr-4614 : sauvegarde et restauration SAP HANA avec SnapCenter
++
+https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-overview.html["https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-overview.html"^]
+
+* https://www.netapp.com/us/media/tr-4018.pdf["Tr-4018 : intégration des systèmes NetApp ONTAP à la gestion du paysage SAP"^]
++
+https://www.netapp.com/us/media/tr-4018.pdf["https://www.netapp.com/us/media/tr-4018.pdf"^]
+
+* https://www.netapp.com/us/media/tr-4646.pdf["Tr-4646 : reprise après incident de SAP HANA avec réplication du stockage"^]
++
+https://www.netapp.com/us/media/tr-4646.pdf["https://www.netapp.com/us/media/tr-4646.pdf"^]
+
+* Tr-4436 : SAP HANA sur les systèmes FAS 100 % Flash de NetApp avec protocole Fiber Channel
++
+https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_aff_fc_introduction.html["https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_aff_fc_introduction.html"^]
+
+* Tr-4435 : SAP HANA sur les systèmes FAS 100 % Flash de NetApp avec NFS
++
+https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_aff_nfs_introduction.html["https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_aff_nfs_introduction.html"^]
+
+* Page produit sur les solutions logicielles NetApp pour SAP
++
+http://www.netapp.com/us/solutions/applications/sap/index.aspx["http://www.netapp.com/us/solutions/applications/sap/index.aspx"^]
+
+
+
+
+
+== Historique des versions
+
+|===
+| Version | Date | Historique des versions du document 
+
+
+| Version 1.0 | Février 2018 | Version initiale. 
+
+
+| Version 2.0 | Février 2021 | Réécriture complète couvrant SnapCenter 4.3 et amélioration des scripts d'automatisation. Nouvelle description de workflow pour les opérations de mise à jour du système et de clonage du système. 
+
+
+| Version 3.0 | À mai 2022 | Workflow mis à jour pour SnapCenter 4.6 P1. 
+|===

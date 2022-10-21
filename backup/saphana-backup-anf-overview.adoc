@@ -1,0 +1,33 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-backup-anf-overview.html 
+keywords: overview, introduction, tr-4905, 4905, tr4905, snapcenter service, anf, azure netapp files 
+summary: 'Dans ce rapport technique, nous abordons les bonnes pratiques de protection des données SAP HANA avec les services SnapCenter et Azure NetApp Files de NetApp. Il aborde les concepts de services SnapCenter, les recommandations de configuration et les workflows d"exploitation, y compris les opérations de sauvegarde, de restauration et de reprise.' 
+---
+= Tr-4905 : sauvegarde et restauration SAP HANA sur Azure NetApp Files avec service SnapCenter
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+Nils Bauer, NetApp
+
+Dans ce rapport technique, nous abordons les bonnes pratiques de protection des données SAP HANA avec les services SnapCenter et Azure NetApp Files de NetApp. Il aborde les concepts de services SnapCenter, les recommandations de configuration et les workflows d'exploitation, y compris les opérations de sauvegarde, de restauration et de reprise.
+
+Les entreprises ont besoin aujourd'hui d'une disponibilité continue et sans interruption pour leurs applications SAP. Elles espèrent obtenir des niveaux de performance prévisibles dans un contexte où les volumes de données ne cessent d'augmenter et nécessitent des tâches de maintenance de routine comme les sauvegardes système. Le processus de sauvegarde des bases de données SAP est une tâche critique qui peut affecter les performances du système SAP de production.
+
+Les fenêtres de sauvegarde diminuent, alors que le volume des données à sauvegarder augmente. Par conséquent, il est difficile de trouver une heure où les sauvegardes peuvent être effectuées avec un impact minimal sur les processus de l'entreprise. Le temps nécessaire à la restauration et à la restauration des systèmes SAP est un problème, car les temps d'indisponibilité des systèmes de production et hors production SAP doivent être réduits au minimum afin de limiter les pertes de données et les coûts pour l'entreprise.
+
+Les points suivants résument les défis liés à la sauvegarde et la restauration SAP :
+
+* *Effets sur les performances des systèmes SAP de production.* en général, les sauvegardes traditionnelles basées sur la copie créent une importante augmentation des performances des systèmes SAP de production en raison des lourdes charges placées sur le serveur de base de données, le système de stockage et le réseau de stockage.
+* *Fenêtres de sauvegarde réduites.* les sauvegardes conventionnelles ne peuvent être effectuées que lorsque peu d'activités de dialogue ou de lots sont en cours sur le système SAP. La planification des sauvegardes devient plus difficile lorsque les systèmes SAP sont utilisés 24 h/24.
+* *Croissance rapide des données.* la croissance rapide des données et la réduction des fenêtres de sauvegarde exigent des investissements continus en infrastructure de sauvegarde. En d'autres termes, vous devez vous procurer de l'espace disque de sauvegarde supplémentaire et des réseaux de sauvegarde plus rapides. Vous devez également couvrir les dépenses courantes liées au stockage et à la gestion de ces ressources de sauvegarde. Les sauvegardes incrémentielles ou différentielles peuvent résoudre ces problèmes, mais cette configuration entraîne une procédure de restauration très lente, fastidieuse et complexe qui est plus difficile à vérifier. Ces systèmes augmentent généralement le temps requis pour atteindre des objectifs de durée de restauration (RTO) et de point de récupération (RPO), de manière non acceptable pour l'activité.
+* * Augmentation du coût des temps d'arrêt.* les temps d'arrêt imprévus d'un système SAP affectent généralement les finances de l'entreprise. Les temps d'indisponibilité non planifiés sont, en grande partie, consommés par la restauration du système SAP. Par conséquent, le RTO souhaité dicte la conception de l'architecture de sauvegarde et de restauration.
+* *Temps de sauvegarde et de restauration pour les projets de mise à niveau SAP.* le plan de projet pour une mise à niveau SAP comprend au moins trois sauvegardes de la base de données SAP. Ces sauvegardes réduisent considérablement le temps disponible pour le processus de mise à niveau. La décision de procéder est généralement basée sur le temps nécessaire à la restauration et à la récupération de la base de données à partir de la sauvegarde précédemment créée. Plutôt que de restaurer un système à son état précédent, une restauration rapide offre plus de temps pour résoudre les problèmes susceptibles de se produire lors d'une mise à niveau.
+
+
+link:saphana-backup-anf-the-netapp-solution.html["Ensuite, la solution NetApp."]

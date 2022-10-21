@@ -1,0 +1,18 @@
+---
+layout: astra 
+sidebar: sidebar 
+permalink: index.html 
+summary: 'NetApp dispose d"un large éventail de rapports techniques, de designs validés, de vidéos, de blogs et de descriptions de solutions pour SAP et SAP HANA.' 
+lead: NetApp has an extensive collection of technical reports, validated designs, videos, blogs and solution briefs for SAP and SAP HANA. 
+keywords: netapp, solutions, SAP, HANA 
+---
+= Solutions d'application d'entreprise SAP et de base de données SAP HANA
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:table-stripes: odd
+:imagesdir: ./media/
+
+

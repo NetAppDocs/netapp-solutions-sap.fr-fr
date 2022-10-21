@@ -1,0 +1,61 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-backup-anf-backup-configuration-of-sap-hana-non-data-volumes.html 
+keywords: backup, configuration, non-data volumes, snapshot copies 
+summary: 'La sauvegarde de volumes non-données est une partie intégrée du service SnapCenter. La protection du volume des données de la base de données est suffisante pour restaurer et restaurer la base de données SAP HANA à un point donné dans le temps, à condition que les ressources d"installation de la base de données et les journaux requis soient toujours disponibles.' 
+---
+= Configuration de sauvegarde des volumes SAP HANA non-data
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-backup-anf-backup-configuration-of-sap-hana-database-backups.html["Précédent : configuration de sauvegarde des sauvegardes de bases de données SAP HANA."]
+
+La sauvegarde de volumes non-données est une partie intégrée du service SnapCenter. La protection du volume des données de la base de données est suffisante pour restaurer et restaurer la base de données SAP HANA à un point donné dans le temps, à condition que les ressources d'installation de la base de données et les journaux requis soient toujours disponibles.
+
+Pour restaurer des données à partir de situations où d'autres fichiers non data doivent être restaurés, NetApp recommande de développer une stratégie de sauvegarde supplémentaire pour ces volumes en vue de compléter la sauvegarde de la base de données SAP HANA. En fonction de vos besoins spécifiques, la sauvegarde de volumes sans données peut varier dans les paramètres de fréquence de planification et de conservation. Il est également important de tenir compte de la fréquence à laquelle les fichiers sont modifiés. Par exemple, le volume HANA `/hana/shared` Contient des exécutables mais aussi des fichiers de trace SAP HANA. Même si les exécutables ne changent que lorsque la base de données SAP HANA est mise à niveau, les fichiers de trace SAP HANA peuvent avoir besoin d'une fréquence de sauvegarde plus élevée pour prendre en charge l'analyse des problèmes avec SAP HANA.
+
+Une sauvegarde de volume non-données SnapCenter Service permet de créer en quelques secondes des copies Snapshot de tous les volumes concernés avec la même efficacité en termes d'espace que les sauvegardes de bases de données SAP HANA. La différence est qu'aucune communication SQL avec la base de données SAP HANA n'est requise.
+
+Les étapes suivantes montrent comment protéger le volume partagé HANA du PR1 de la base de données SAP HANA.
+
+. Dans la vue systèmes SAP HANA, sélectionnez Ajouter des volumes non-Data dans le menu contextuel à droite de l'écran.
++
+image:saphana-backup-anf-image31.png["Erreur : image graphique manquante"]
+
+. Cliquez sur Ajouter un stockage.
++
+image:saphana-backup-anf-image32.png["Erreur : image graphique manquante"]
+
+. Sélectionnez le volume partagé HANA et cliquez sur Add Storage.
++
+image:saphana-backup-anf-image33.png["Erreur : image graphique manquante"]
+
++
+image:saphana-backup-anf-image34.png["Erreur : image graphique manquante"]
+
+. Pour ajouter le volume sans données, cliquez sur Ajouter.
++
+image:saphana-backup-anf-image35.png["Erreur : image graphique manquante"]
+
++
+La présentation des systèmes SAP HANA affiche maintenant une seconde icône dans la colonne de protection, qui indique qu'un volume non-données a été ajouté au système HANA.
+
++
+image:saphana-backup-anf-image36.png["Erreur : image graphique manquante"]
+
+. Dans le menu contextuel situé à droite, sélectionnez protéger > volumes non-données.
++
+image:saphana-backup-anf-image37.png["Erreur : image graphique manquante"]
+
+. Attribuez une policy à un volume non-data. Dans l'exemple suivant, le `SnapshotEvery4h` La règle est attribuée au volume partagé HANA.
++
+image:saphana-backup-anf-image38.png["Erreur : image graphique manquante"]
+
+
+
+link:saphana-backup-anf-backup-configuration-of-global-non-data-volumes.html["Next : configuration de sauvegarde des volumes globaux sans données."]

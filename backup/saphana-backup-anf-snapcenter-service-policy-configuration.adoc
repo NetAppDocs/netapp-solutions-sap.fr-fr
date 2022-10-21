@@ -1,0 +1,81 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-backup-anf-snapcenter-service-policy-configuration.html 
+keywords: minimum configuration, policy, service 
+summary:  
+---
+= Configuration des règles de service SnapCenter
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-backup-anf-lab-setup-used-for-this-report.html["Précédent : configuration de laboratoire utilisée pour ce rapport."]
+
+Comme indiqué dans la section link:saphana-backup-anf-snapcenter-service-concepts-and-best-practices.html#data-protection-strategy["« Stratégie de protection des données »,"] Les règles sont généralement configurées indépendamment des ressources et peuvent être utilisées par plusieurs bases de données SAP HANA.
+
+Une configuration minimale typique comprend les règles suivantes :
+
+* Règle pour les sauvegardes Snapshot par heure.
++
+Par exemple : `SnapshotEvery4h`
+
+* Règles pour une vérification hebdomadaire de l'intégrité des blocs à l'aide d'une sauvegarde basée sur des fichiers.
++
+Par exemple : `BlockIntegrityCheckEverySunday`
+
+
+
+Les sections suivantes décrivent la configuration de ces deux règles.
+
+
+
+== Règle pour les sauvegardes Snapshot par heure
+
+Pour créer une règle pour les sauvegardes Snapshot horaires, effectuez la procédure suivante :
+
+. Accédez à stratégies et cliquez sur Ajouter une stratégie.
++
+image:saphana-backup-anf-image14.png["Erreur : image graphique manquante"]
+
+. Dans l'écran Créer une stratégie, indiquez le nom de la stratégie, le type de sauvegarde, la convention de dénomination des sauvegardes, ainsi que les détails de la planification et de la conservation.
++
+image:saphana-backup-anf-image10.png["Erreur : image graphique manquante"]
+
++
+Par exemple, dans la figure suivante, pour la sauvegarde Snapshot, un planning de toutes les 4 heures et une heure de début de 10 H est configuré. La conservation est configurée avec 18, qui est 3 jours.
+
++
+image:saphana-backup-anf-image15.png["Erreur : image graphique manquante"]
+
+. Dans la fenêtre Nom de la sauvegarde personnalisée, vous pouvez modifier la convention de dénomination de la sauvegarde et ajouter un préfixe personnalisé.
++
+image:saphana-backup-anf-image16.png["Erreur : image graphique manquante"]
+
+. Pour créer la nouvelle stratégie, cliquez sur Ajouter.
+
+
+
+
+== Règles pour la vérification hebdomadaire de l'intégrité des blocs
+
+Pour créer une règle pour une vérification hebdomadaire de l'intégrité des blocs, procédez comme suit :
+
+. Accédez à stratégies et cliquez sur Ajouter une stratégie.
+. Dans l'écran Créer une stratégie, indiquez le nom de la stratégie, le type de sauvegarde, la convention de dénomination des sauvegardes, ainsi que les détails de la planification et de la conservation.
++
+image:saphana-backup-anf-image17.png["Erreur : image graphique manquante"]
+
+. Pour créer la nouvelle stratégie, cliquez sur Ajouter.
++
+La figure suivante présente un récapitulatif des règles configurées.
+
++
+image:saphana-backup-anf-image18.png["Erreur : image graphique manquante"]
+
+
+
+link:saphana-backup-anf-snapcenter-service-snapshot-backup-configuration-overview.html["Ensuite, présentation de la configuration de sauvegarde Snapshot du service SnapCenter."]

@@ -1,0 +1,20 @@
+---
+sidebar: sidebar 
+permalink: bp/saphana-fas-nfs_time_synchronization.html 
+keywords: time, synchronization, sap, hana, nfs, fas 
+summary: 'Vous devez synchroniser l"heure entre les contrôleurs de stockage et les hôtes de base de données SAP HANA.' 
+---
+= Synchronisation de l'heure
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-fas-nfs_network_setup.html["Précédent : configuration du réseau."]
+
+Vous devez synchroniser l'heure entre les contrôleurs de stockage et les hôtes de base de données SAP HANA. Pour ce faire, définissez le même serveur de temps pour tous les contrôleurs de stockage et tous les hôtes SAP HANA.
+
+link:saphana-fas-nfs_storage_controller_setup.html["Next : configuration du contrôleur de stockage."]

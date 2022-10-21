@@ -1,0 +1,44 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-backup-anf-snapcenter-service-snapshot-backup-configuration-overview.html 
+keywords:  
+summary:  
+---
+= Présentation de la configuration des sauvegardes Snapshot du service SnapCenter
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:saphana-backup-anf-snapcenter-service-policy-configuration.html["Précédent : configuration de la stratégie de service SnapCenter."]
+
+Le service SnapCenter prend en charge deux types d'opérations de sauvegarde Snapshot différents :
+
+* Sauvegardes de données SAP HANA à l'aide des opérations Snapshot.
++
+Sauvegarde du volume de données de la base de données SAP HANA combinant des instructions SQL HANA pour la cohérence de la base de données et la gestion du catalogue de sauvegardes avec les opérations Snapshot de Azure NetApp Files.
+
+* Sauvegarde des volumes avec des données non structurées à l'aide des opérations de sauvegarde Snapshot.
++
+Sauvegarde des binaires, des fichiers de configuration, etc., qui n'exigent aucune interaction avec la base de données HANA. La sauvegarde est exécutée avec une opération de sauvegarde Snapshot Azure NetApp Files. Dans le service SnapCenter, deux sous-types permettent de définir si ces volumes appartiennent à un système HANA spécifique ou s'il s'agit d'un volume partagé global utilisé par plusieurs systèmes HANA.
+
++
+** Sauvegarde de volumes non-données d'une base de données SAP HANA
++
+Sauvegarde d'un volume associé à un système HANA spécifique, par exemple, le volume partagé HANA.
+
+** Sauvegarde de volumes globaux sans données
++
+Sauvegarde d'un volume qui n'est pas associé à un système HANA spécifique, par exemple le répertoire de transport SAP.
+
++
+Dans les sections suivantes, la configuration des trois types de sauvegarde est décrite.
+
+
+
+
+
+link:saphana-backup-anf-backup-configuration-of-sap-hana-database-backups.html["Next : configuration de sauvegarde des sauvegardes de bases de données SAP HANA."]

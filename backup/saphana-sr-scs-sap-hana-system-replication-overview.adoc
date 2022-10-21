@@ -1,0 +1,50 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-sr-scs-sap-hana-system-replication-overview.html 
+keywords: tr4719, 4719, introduction, system replication, dr, snapcenter, high availability, RPO, RTO 
+summary: 'La réplication système SAP HANA est souvent utilisée comme solution haute disponibilité ou de reprise après incident pour les bases de données SAP HANA. La réplication système SAP HANA propose différents modes de fonctionnement selon le cas d"utilisation ou les besoins de disponibilité.' 
+---
+= Tr-4719 : réplication système SAP HANA - sauvegarde et restauration avec SnapCenter
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+Nils Bauer, NetApp
+
+La réplication système SAP HANA est souvent utilisée comme solution haute disponibilité ou de reprise après incident pour les bases de données SAP HANA. La réplication système SAP HANA propose différents modes de fonctionnement selon le cas d'utilisation ou les besoins de disponibilité.
+
+Deux cas d'utilisation principaux peuvent être combinés :
+
+* Haute disponibilité avec un objectif de point de récupération nul et un objectif de délai de restauration minimal grâce à un hôte SAP HANA secondaire dédié.
+* Reprise après incident sur de grandes distances. L'hôte SAP HANA secondaire peut également être utilisé pour le développement ou les tests en fonctionnement normal.
+
+
+
+
+== Haute disponibilité avec un RPO nul et un RTO minimal
+
+La réplication système est configurée avec une réplication synchrone à l'aide de tableaux préchargés dans la mémoire sur l'hôte SAP HANA secondaire. Cette solution haute disponibilité peut être utilisée pour résoudre les défaillances matérielles ou logicielles et réduire les temps d'arrêt planifiés lors des mises à niveau du logiciel SAP HANA (temps d'indisponibilité quasi nul).
+
+Les opérations de basculement sont souvent automatisées par un logiciel de cluster tiers ou avec un workflow en un clic grâce au logiciel SAP Landscape Management.
+
+Du point de vue des exigences de sauvegarde, vous devez pouvoir créer des sauvegardes indépendamment de l'hôte SAP HANA principal ou secondaire. Une infrastructure de sauvegarde partagée est utilisée pour restaurer toute sauvegarde, quel que soit l'hôte sur lequel la sauvegarde a été créée.
+
+Le reste de ce document se concentre sur les opérations de sauvegarde avec la réplication système SAP configurée comme une solution haute disponibilité.
+
+image:saphana-sr-scs-image1.png["Erreur : image graphique manquante"]
+
+
+
+== Reprise après incident sur de grandes distances
+
+La réplication système peut être configurée avec une réplication asynchrone sans table préchargée dans la mémoire de l'hôte secondaire. Cette solution répond aux défaillances du data Center et les opérations de basculement sont généralement réalisées manuellement.
+
+Concernant les exigences de sauvegarde, vous devez être en mesure de créer des sauvegardes pendant le fonctionnement normal du data Center 1 et pendant la reprise sur incident dans le data Center 2. Une infrastructure de sauvegarde distincte est disponible dans les data centers 1 et 2, et les opérations de sauvegarde sont activées dans le cadre du basculement d'incident. L'infrastructure de sauvegarde n'est généralement pas partagée, et l'opération de restauration d'une sauvegarde créée sur l'autre data Center n'est pas possible.
+
+image:saphana-sr-scs-image2.png["Erreur : image graphique manquante"]
+
+link:saphana-sr-scs-storage-snapshot-backups-and-sap-system-replication.html["Ensuite, les sauvegardes Snapshot de stockage et la réplication système SAP."]

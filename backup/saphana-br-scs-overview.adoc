@@ -1,0 +1,110 @@
+---
+sidebar: sidebar 
+permalink: backup/saphana-br-scs-overview.html 
+keywords: tr4614, 4614, introduction, 
+summary: 'Les entreprises ont besoin aujourd"hui d"une disponibilité continue et sans interruption pour leurs applications SAP. Elles espèrent obtenir des niveaux de performance prévisibles dans un contexte où les volumes de données ne cessent d"augmenter et nécessitent des tâches de maintenance de routine comme les sauvegardes système. Le processus de sauvegarde des bases de données SAP est une tâche critique qui peut affecter les performances du système SAP de production.' 
+---
+= Tr-4614 : sauvegarde et restauration SAP HANA avec SnapCenter
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+Nils Bauer, NetApp
+
+Les entreprises ont besoin aujourd'hui d'une disponibilité continue et sans interruption pour leurs applications SAP. Elles espèrent obtenir des niveaux de performance prévisibles dans un contexte où les volumes de données ne cessent d'augmenter et nécessitent des tâches de maintenance de routine comme les sauvegardes système. Le processus de sauvegarde des bases de données SAP est une tâche critique qui peut affecter les performances du système SAP de production.
+
+Les fenêtres de sauvegarde diminuent, alors que le volume des données à sauvegarder augmente. Par conséquent, il est difficile de trouver une heure où les sauvegardes peuvent être effectuées avec un impact minimal sur les processus de l'entreprise. Le temps nécessaire à la restauration et à la restauration des systèmes SAP est un problème, car les temps d'indisponibilité des systèmes de production et hors production SAP doivent être réduits au minimum afin de limiter les pertes de données et les coûts pour l'entreprise.
+
+Les points suivants résument les défis liés à la sauvegarde et la restauration SAP :
+
+* *Effets sur les performances des systèmes SAP de production.* en général, les sauvegardes traditionnelles basées sur la copie créent une importante augmentation des performances des systèmes SAP de production en raison des lourdes charges placées sur le serveur de base de données, le système de stockage et le réseau de stockage.
+* *Fenêtres de sauvegarde réduites.* les sauvegardes conventionnelles ne peuvent être effectuées que lorsque peu d'activités de dialogue ou de lots sont en cours sur le système SAP. La planification des sauvegardes devient plus difficile lorsque les systèmes SAP sont utilisés 24 h/24.
+* *Croissance rapide des données.* la croissance rapide des données et la réduction des fenêtres de sauvegarde exigent des investissements continus en infrastructure de sauvegarde. En d'autres termes, vous devez vous procurer plus de lecteurs de bandes, plus d'espace disque de sauvegarde supplémentaire et des réseaux de sauvegarde plus rapides. Vous devez également couvrir les dépenses courantes liées au stockage et à la gestion de ces actifs de bandes. Les sauvegardes incrémentielles ou différentielles peuvent résoudre ces problèmes, mais cette configuration entraîne une procédure de restauration très lente, fastidieuse et complexe qui est plus difficile à vérifier. Ces systèmes augmentent généralement le temps requis pour atteindre des objectifs de durée de restauration (RTO) et de point de récupération (RPO), de manière non acceptable pour l'activité.
+* * Augmentation du coût des temps d'arrêt.* les temps d'arrêt imprévus d'un système SAP affectent généralement les finances de l'entreprise. Les temps d'indisponibilité non planifiés sont, en grande partie, consommés par la restauration du système SAP. Par conséquent, le RTO souhaité dicte la conception de l'architecture de sauvegarde et de restauration.
+* *Temps de sauvegarde et de restauration pour les projets de mise à niveau SAP.* le plan de projet pour une mise à niveau SAP comprend au moins trois sauvegardes de la base de données SAP. Ces sauvegardes réduisent considérablement le temps disponible pour le processus de mise à niveau. La décision de procéder est généralement basée sur le temps nécessaire à la restauration et à la récupération de la base de données à partir de la sauvegarde précédemment créée. Plutôt que de restaurer un système à son état précédent, une restauration rapide offre plus de temps pour résoudre les problèmes susceptibles de se produire lors d'une mise à niveau.
+
+
+
+
+== La solution NetApp
+
+La technologie Snapshot de NetApp peut être utilisée pour créer des sauvegardes de bases de données en quelques minutes. Le temps nécessaire à la création d'une copie Snapshot ne dépend pas de la taille de la base de données, car cette copie ne déplace aucun bloc de données sur la plateforme de stockage. De plus, l'utilisation de la technologie Snapshot de NetApp n'a pas d'impact sur la performance de votre système SAP en direct, car cette technologie n'effectue aucun déplacement ni aucune copie de blocs de données lors de la création de la copie Snapshot ou lors de la modification des données du système de fichier actif. Ainsi, la création de copies Snapshot peut être planifiée sans tenir compte des périodes de pointe de dialogue ou d'activité de lots. Les clients SAP et NetApp programraient généralement plusieurs sauvegardes Snapshot en ligne pendant la journée, par exemple, toutes les quatre heures sont courantes. Ces sauvegardes Snapshot sont généralement conservées pendant trois à cinq jours sur le système de stockage principal, avant d'être supprimées.
+
+Les copies Snapshot offrent également des avantages clés pour les opérations de restauration et de reprise. Le logiciel de restauration des données NetApp SnapRestore permet de restaurer l'intégralité d'une base de données ou, alternativement, une partie d'une base de données à un point dans le temps, en fonction des copies Snapshot disponibles. Ce processus ne dure que quelques minutes, quelle que soit la taille de la base de données. Comme plusieurs sauvegardes Snapshot en ligne sont créées pendant la journée, le temps nécessaire au processus de restauration est considérablement réduit par rapport à une approche de sauvegarde traditionnelle. Étant donné qu'une restauration peut être effectuée avec une copie Snapshot datant de quelques heures seulement (au lieu de 24 heures), moins de journaux de transaction doivent être appliqués. Par conséquent, le RTO est réduit à quelques minutes, au lieu de plusieurs heures requises pour les sauvegardes sur bande conventionnelles à un cycle unique.
+
+Les sauvegardes de copie Snapshot sont stockées sur le même système de disque que les données en ligne actives. Par conséquent, NetApp recommande d'utiliser les sauvegardes de copies Snapshot comme supplément plutôt que comme remplacement des sauvegardes sur un emplacement secondaire. La plupart des actions de restauration et de restauration sont gérées à l'aide d'SnapRestore sur le système de stockage primaire. Les restaurations depuis un emplacement secondaire sont uniquement nécessaires si le système de stockage primaire contenant les copies Snapshot est endommagé. L'emplacement secondaire peut également être utilisé si la restauration d'une sauvegarde qui n'est plus disponible à partir d'une copie Snapshot : sauvegarde de fin de mois, par exemple.
+
+Une sauvegarde vers un emplacement secondaire repose sur des copies Snapshot créées sur le système de stockage primaire. Par conséquent, les données sont lues directement depuis le système de stockage primaire sans générer de charge sur le serveur de base de données SAP. Le stockage primaire communique directement avec le stockage secondaire et envoie les données de sauvegarde vers le destination via une sauvegarde disque à disque SnapVault NetApp.
+
+SnapVault offre des avantages significatifs par rapport aux sauvegardes traditionnelles. Après le transfert initial des données, dans lequel toutes les données ont été transférées de la source vers la destination, toutes les sauvegardes ultérieures copient uniquement les blocs modifiés vers le stockage secondaire. Par conséquent, la charge sur le système de stockage primaire et le temps nécessaire à une sauvegarde complète sont considérablement réduits. Étant donné que SnapVault stocke uniquement les blocs modifiés au niveau de la destination, une sauvegarde complète de base de données nécessite moins d'espace disque.
+
+La solution peut également être étendue en toute transparence à un modèle d'exploitation de cloud hybride. La réplication des données à des fins de reprise après incident ou de sauvegarde hors site peut être effectuée depuis les systèmes NetApp ONTAP sur site vers les instances Cloud Volumes ONTAP exécutées dans le cloud. Vous pouvez utiliser SnapCenter comme outil central pour gérer la protection et la réplication des données, indépendamment si le système SAP HANA s'exécute sur site ou dans le cloud. La figure suivante présente une présentation de la solution de sauvegarde.
+
+image:saphana-br-scs-image1.png["Erreur : image graphique manquante"]
+
+
+
+== Exécution des sauvegardes Snapshot
+
+La capture d'écran suivante montre l'atelier HANA d'un client exécutant SAP HANA sur un système de stockage NetApp. Le client utilise des copies Snapshot pour sauvegarder la base de données HANA. L'image montre que la base de données HANA (environ 2,3 To de taille) est sauvegardée en 2 minutes et 11 secondes à l'aide de la technologie de sauvegarde Snapshot.
+
+
+NOTE: La majeure partie du temps d'exécution du workflow de sauvegarde est le temps nécessaire pour exécuter l'opération de point de sauvegarde HANA, et cette étape dépend de la charge exercée sur la base de données HANA. La sauvegarde Snapshot de stockage elle-même s'effectue toujours en quelques secondes.
+
+image:saphana-br-scs-image2.png["Erreur : image graphique manquante"]
+
+
+
+== Comparaison des objectifs de délai de restauration (RTO)
+
+Cette section présente une comparaison RTO des sauvegardes Snapshot basées sur les fichiers et le stockage. Le RTO est défini par la somme du temps nécessaire à la restauration de la base de données, ainsi que du temps nécessaire au démarrage et à la restauration de cette base de données.
+
+
+
+=== Temps nécessaire pour restaurer la base de données
+
+Avec une sauvegarde basée sur des fichiers, le temps de restauration dépend de la taille de l'infrastructure de base de données et de sauvegarde, qui définit la vitesse de restauration en mégaoctets par seconde. Par exemple, si l'infrastructure prend en charge une opération de restauration à une vitesse de 250 Mo, il faut environ 1 heure et 10 minutes pour restaurer une base de données de 1 To.
+
+Avec les sauvegardes de copie Snapshot du stockage, la durée de restauration ne dépend pas de la taille de la base de données et reste dans la plage de quelques secondes lorsque la restauration peut être effectuée à partir du stockage primaire. Une restauration à partir du stockage secondaire n'est nécessaire que dans le cas d'un incident lorsque le stockage primaire n'est plus disponible.
+
+
+
+=== Temps nécessaire au démarrage de la base de données
+
+L'heure de début de la base de données dépend de la taille du magasin de lignes et de colonnes. Pour le magasin de colonnes, l'heure de début dépend également de la quantité de données préchargées lors du démarrage de la base de données. Dans les exemples suivants, nous supposons que l'heure de début est de 30 minutes. L'heure de début est identique pour une restauration et une restauration basées sur des fichiers, ainsi qu'une restauration et une restauration basées sur des snapshots.
+
+
+
+=== Temps nécessaire pour restaurer la base de données
+
+La durée de restauration dépend du nombre de journaux qui doivent être appliqués après la restauration. Ce nombre est déterminé par la fréquence à laquelle les sauvegardes de données sont effectuées.
+
+Avec les sauvegardes de données basées sur des fichiers, la planification des sauvegardes est généralement une fois par jour. Étant donné que la sauvegarde dégrade les performances en termes de production, une fréquence de sauvegarde plus élevée est généralement impossible. Par conséquent, dans le pire des cas, tous les journaux qui ont été écrits pendant la journée doivent être appliqués lors de la récupération avant.
+
+Les sauvegardes de données de copie Snapshot du stockage sont généralement planifiées à une fréquence plus élevée, car elles n'influencent pas les performances de la base de données SAP HANA. Par exemple, si des sauvegardes Snapshot sont planifiées toutes les six heures, le temps de restauration est, dans le pire des cas, d'un quart de la durée de restauration d'une sauvegarde basée sur des fichiers (6 heures/24 heures = 1/4).
+
+La figure suivante représente un exemple de RTO pour une base de données de 1 To lorsque des sauvegardes de données basées sur des fichiers sont utilisées. Dans cet exemple, une sauvegarde est effectuée une fois par jour. L'objectif RTO diffère selon le moment où la restauration et la restauration ont été effectuées. Si la restauration et la restauration ont été effectuées immédiatement après la sauvegarde, le RTO se base principalement sur la durée de restauration, qui est de 1 heure et 10 minutes dans l'exemple. La durée de restauration a été augmentée à 2 heures et 50 minutes lorsque la restauration et la restauration ont été effectuées immédiatement avant la prochaine sauvegarde, et le RTO maximal était de 4 heures et 30 minutes.
+
+image:saphana-br-scs-image3.png["Erreur : image graphique manquante"]
+
+La figure suivante montre un exemple de RTO pour une base de données de 1 To lorsque des sauvegardes Snapshot sont utilisées. Avec les sauvegardes Snapshot basées sur le stockage, le RTO ne dépend que des temps de démarrage de la base de données et du délai de restauration suivant, car la restauration s'effectue en quelques secondes, quelle que soit la taille de la base de données. Le temps de restauration par progression augmente également en fonction de la durée de la restauration et de la restauration, mais étant donné la fréquence plus élevée des sauvegardes (toutes les six heures dans cet exemple), le temps de restauration par progression est de 43 minutes au maximum. Dans cet exemple, le RTO maximal est de 1 heure et 13 minutes.
+
+image:saphana-br-scs-image4.png["Erreur : image graphique manquante"]
+
+La figure ci-dessous présente une comparaison RTO des sauvegardes Snapshot basées sur les fichiers et le stockage pour différentes tailles de bases de données et fréquences de sauvegardes Snapshot. La barre verte indique la sauvegarde basée sur des fichiers. Les autres barres affichent les sauvegardes de copies Snapshot avec différentes fréquences de sauvegarde.
+
+Avec une seule sauvegarde de données à copie Snapshot par jour, le RTO est déjà réduit de 40 % par rapport à une sauvegarde de données basée sur des fichiers. La réduction augmente à 70 % lorsque quatre sauvegardes Snapshot sont effectuées par jour. La figure montre également qu'elle n'a pas de courbe, si la fréquence des sauvegardes Snapshot augmente, elle passe à plus de quatre à six sauvegardes Snapshot par jour. Par conséquent, nos clients configurent généralement entre quatre et six sauvegardes Snapshot par jour.
+
+image:saphana-br-scs-image5.png["Erreur : image graphique manquante"]
+
+
+NOTE: Le graphique indique la taille de la RAM du serveur HANA. La taille de la base de données en mémoire est calculée comme étant égale à la moitié de la taille de la mémoire vive du serveur.
+
+
+NOTE: La durée de restauration et de récupération est calculée en fonction des hypothèses suivantes. La base de données peut être restaurée à 250 Mbit/s. Le nombre de fichiers journaux par jour est de 50 % de la taille de la base de données. Par exemple, une base de données de 1 To crée 500 Mo de fichiers journaux par jour. Une restauration peut être effectuée à 100 Mbit/s.
+
+link:saphana-br-scs-snapcenter-architecture.html["Ensuite : architecture SnapCenter."]

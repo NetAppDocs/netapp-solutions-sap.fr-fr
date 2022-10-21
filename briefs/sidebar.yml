@@ -1,0 +1,10 @@
+---
+section: briefs
+title: Description de la solution
+entries:
+- title: Gestion du cycle de vie SAP HANA
+  url: "/briefs/saphana-lm-sb_pdf_link.html"
+- title: Sauvegarde et restauration de SAP HANA
+  url: https://www.netapp.com/us/media/sb-3965.pdf
+- title: Reprise après incident de SAP HANA
+  url: https://www.netapp.com/us/media/sb-3968.pdf

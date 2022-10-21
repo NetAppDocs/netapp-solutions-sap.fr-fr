@@ -1,0 +1,209 @@
+---
+sidebar: sidebar 
+permalink: backup/amazon-fsx-snapcenter-architecture.html 
+keywords: snapcenter, scope, data protection strategy, example lab setup 
+summary: SnapCenter est une plateforme unifiée et évolutive qui assure la cohérence de la protection des données au niveau des applications. SnapCenter offre un contrôle et une surveillance centralisés, tout en déléguant aux utilisateurs la possibilité de gérer les tâches de sauvegarde, de restauration et de clonage spécifiques aux applications. Avec SnapCenter, les administrateurs de bases de données et de stockage apprennent à utiliser un seul outil pour gérer les opérations de sauvegarde, de restauration et de clonage des différentes applications et bases de données. SnapCenter gère les données dans les différents terminaux de la Data Fabric optimisée par NetApp. 
+---
+= Architecture SnapCenter
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:amazon-fsx-backup-and-recovery-using-amazon-fsx-for-ontap.html["Précédent : sauvegarde et restauration via Amazon FSX pour ONTAP."]
+
+
+
+== Présentation de SnapCenter
+
+SnapCenter est une plateforme unifiée et évolutive qui assure la cohérence de la protection des données au niveau des applications. SnapCenter offre un contrôle et une surveillance centralisés, tout en déléguant aux utilisateurs la possibilité de gérer les tâches de sauvegarde, de restauration et de clonage spécifiques aux applications. Avec SnapCenter, les administrateurs de bases de données et de stockage apprennent à utiliser un seul outil pour gérer les opérations de sauvegarde, de restauration et de clonage des différentes applications et bases de données. SnapCenter gère les données dans les différents terminaux de la Data Fabric optimisée par NetApp. Vous pouvez l'utiliser SnapCenter pour répliquer des données entre les environnements sur site, entre les environnements sur site et le cloud, ou entre les clouds privés, hybrides et publics.
+
+
+
+== Composants de SnapCenter
+
+SnapCenter inclut le serveur SnapCenter, le module de plug-in SnapCenter pour Windows et le module de plug-in SnapCenter pour Linux. Chaque offre comprend des plug-ins à SnapCenter pour divers composants d'infrastructure et d'applications.
+
+image:amazon-fsx-image5.png["Erreur : image graphique manquante"]
+
+
+
+== Solution de sauvegarde SnapCenter SAP HANA
+
+La solution de sauvegarde SnapCenter pour SAP HANA couvre les domaines suivants :
+
+* Opérations de sauvegarde, planification et gestion de la conservation
++
+** Sauvegarde des données SAP HANA avec copies Snapshot basées sur le stockage
+** Sauvegarde de volumes sans données avec copies Snapshot basées sur le stockage (par exemple, `/hana/shared`)
+** Contrôle de l'intégrité des blocs de base de données à l'aide d'une sauvegarde basée sur des fichiers
+** La réplication vers un emplacement de sauvegarde hors site ou de reprise après incident
+
+
+* Gestion du catalogue des sauvegardes SAP HANA
++
+** Pour les sauvegardes de données HANA (basées sur des copies Snapshot et des fichiers)
+** Pour les sauvegardes de journaux HANA
+
+
+* Les opérations de restauration et de reprise
++
+** Restauration et reprise automatisées
+** Opérations de restauration d'un seul locataire pour les systèmes SAP HANA (MDC)
+
+
+
+
+SnapCenter exécute également des sauvegardes de fichiers de données de bases de données en association avec le plug-in pour SAP HANA. Le plug-in définit le point de sauvegarde de la base de données SAP HANA pour que les copies Snapshot, qui sont créées sur le système de stockage principal, soient basées sur une image cohérente de la base de données SAP HANA.
+
+SnapCenter permet la réplication d'images cohérentes de bases de données vers un emplacement de sauvegarde ou de reprise après incident hors site à l'aide de SnapVault ou de la fonctionnalité SnapMirror. Généralement, différentes règles de conservation sont définies selon l'emplacement des sauvegardes sur le stockage primaire et sur le stockage de sauvegarde hors site. SnapCenter gère la conservation au niveau du stockage primaire, et ONTAP gère la conservation au niveau du stockage de sauvegarde hors site.
+
+Pour permettre une sauvegarde complète de toutes les ressources SAP HANA, SnapCenter vous permet également de sauvegarder tous les volumes non-data à l'aide du plug-in SAP HANA avec des copies Snapshot basées sur le stockage. Vous pouvez planifier des volumes autres que des volumes de données indépendamment de la sauvegarde de la base de données afin de mettre en place des règles de conservation et de protection individuelles.
+
+SAP recommande de combiner des sauvegardes Snapshot basées sur le stockage et une sauvegarde hebdomadaire basée sur des fichiers pour exécuter une vérification de l'intégrité des blocs. Vous pouvez exécuter la vérification d'intégrité des blocs depuis SnapCenter. En fonction des règles de conservation que vous avez configurées, SnapCenter gère le nettoyage des sauvegardes de fichiers de données dans le système de stockage primaire, les sauvegardes de fichiers journaux et le catalogue de sauvegardes SAP HANA.
+
+SnapCenter gère la conservation au niveau du stockage primaire, tandis que FSX pour ONTAP gère la conservation des sauvegardes secondaires.
+
+La figure suivante présente une vue d'ensemble des opérations de gestion des sauvegardes et des conservation de SnapCenter.
+
+image:amazon-fsx-image6.png["Erreur : image graphique manquante"]
+
+Lors de l'exécution d'une sauvegarde Snapshot basée sur le stockage de la base de données SAP HANA, SnapCenter effectue les tâches suivantes :
+
+. Crée un point de sauvegarde SAP HANA pour créer une image cohérente sur la couche de persistance.
+. Crée une copie Snapshot du volume de données basée sur le stockage.
+. Enregistre la sauvegarde Snapshot basée sur le stockage dans le catalogue de sauvegardes SAP HANA.
+. Libère le point de sauvegarde de SAP HANA.
+. Exécute une mise à jour SnapVault ou SnapMirror pour le volume de données, s'il est configuré.
+. Supprime les copies Snapshot de stockage au niveau du stockage primaire selon les règles de conservation définies.
+. Supprime les entrées du catalogue de sauvegardes SAP HANA si les sauvegardes n'existent plus sur le stockage de sauvegarde primaire ou hors site.
+. Lorsqu'une sauvegarde a été supprimée en fonction de la stratégie de conservation ou manuellement, SnapCenter supprime également toutes les sauvegardes de journaux antérieures à la sauvegarde de données la plus ancienne. Les sauvegardes des journaux sont supprimées dans le système de fichiers et dans le catalogue de sauvegardes SAP HANA.
+
+
+
+
+== Portée de ce document
+
+Ce document décrit l'option de configuration SnapCenter la plus courante pour un système hôte unique MDC SAP HANA avec un seul locataire sur FSX pour ONTAP. D'autres options de configuration sont possibles et, dans certains cas, requises pour des systèmes SAP HANA spécifiques, par exemple, pour un système hôte multiple. Pour une description détaillée des autres options de configuration, voir https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-snapcenter-concepts-and-best-practices.html["Concepts et bonnes pratiques SnapCenter (netapp.com)"^].
+
+Dans ce document, nous utilisons la console Amazon Web Services (AWS) et l'interface de ligne de commande FSX pour ONTAP pour exécuter les étapes de configuration requises au niveau de la couche de stockage. Vous pouvez également utiliser NetApp Cloud Manager pour gérer FSX pour ONTAP, mais ce document n'est pas périmètre. Pour plus d'informations sur l'utilisation de NetApp Cloud Manager pour FSX pour ONTAP, consultez la page https://docs.netapp.com/us-en/occm/concept_fsx_aws.html["En savoir plus sur Amazon FSX pour ONTAP (netapp.com)"^].
+
+
+
+== Stratégie de protection des données
+
+La figure suivante montre une architecture de sauvegarde type pour SAP HANA sur FSX pour ONTAP. Le système HANA se trouve dans la zone de disponibilité AWS 1 et utilise un système de fichiers FSX pour ONTAP au sein de la même zone de disponibilité. Les opérations de sauvegarde Snapshot sont exécutées pour les données et le volume partagé de la base de données HANA. Outre les sauvegardes Snapshot locales, conservées pendant 3-5 jours, les sauvegardes sont également répliquées vers un stockage hors site pour une conservation à long terme. Le stockage de sauvegarde hors site est un second système de fichiers FSX pour ONTAP, situé dans une zone de disponibilité AWS différente. Les sauvegardes des données HANA et des volumes partagés sont répliquées avec SnapVault sur le deuxième système de fichiers FSX pour ONTAP, et conservées pendant 2-3 semaines.
+
+image:amazon-fsx-image7.png["Erreur : image graphique manquante"]
+
+Avant de configurer le SnapCenter, la stratégie de protection des données doit être définie en fonction des exigences RTO et RPO des divers systèmes SAP.
+
+Une approche commune consiste à définir des types de systèmes tels que la production, le développement, les tests ou les systèmes sandbox. Tous les systèmes SAP d'un même type de système ont généralement les mêmes paramètres de protection des données.
+
+Les paramètres suivants doivent être définis :
+
+* À quelle fréquence une sauvegarde Snapshot doit-elle être exécutée ?
+* Combien de temps les sauvegardes de copies Snapshot doivent-elles être conservées sur le système de stockage primaire ?
+* À quelle fréquence un contrôle d'intégrité des blocs doit-il être exécuté ?
+* Les sauvegardes primaires doivent-elles être répliquées sur un site de sauvegarde hors site ?
+* Combien de temps les sauvegardes doivent-elles être conservées sur le stockage de sauvegarde hors site ?
+
+
+Le tableau suivant présente un exemple de paramètres de protection des données pour les types de système : production, développement et test. Pour le système de production, une fréquence de sauvegarde élevée a été définie et les sauvegardes sont répliquées sur un site de sauvegarde hors site une fois par jour. Les systèmes de test présentent des exigences moindres, et aucune réplication des sauvegardes n'est possible.
+
+|===
+| Paramètres | Systèmes de production | Systèmes de développement | Systèmes de test 
+
+
+| Fréquence des sauvegardes | Toutes les 6 heures | Toutes les 6 heures | Toutes les 6 heures 
+
+
+| Conservation primaire | 3 jours | 3 jours | 3 jours 
+
+
+| Vérification de l'intégrité des blocs | Une fois par semaine | Une fois par semaine | Non 
+
+
+| La réplication vers un site de sauvegarde hors site | Une fois par jour | Une fois par jour | Non 
+
+
+| Conservation des sauvegardes hors site | 2 semaines | 2 semaines | Sans objet 
+|===
+Le tableau suivant présente les règles à configurer pour les paramètres de protection des données.
+
+|===
+| Paramètres | Policy LocalSnap | Via la gestion locale SnapAndSnapVault | Vérification de l'Integratédu bloc de règles 
+
+
+| Type de sauvegarde | Basé sur Snapshot | Basé sur Snapshot | Basée sur un fichier 
+
+
+| Fréquence de programmation | Horaire | Tous les jours | Hebdomadaire 
+
+
+| Conservation primaire | Nombre = 12 | Nombre = 3 | Nombre = 1 
+
+
+| Réplication SnapVault | Non | Oui. | Sans objet 
+|===
+La politique `LocalSnapshot` Utilisé dans les systèmes de production, de développement et de test pour couvrir les sauvegardes Snapshot locales avec une durée de conservation de deux jours.
+
+Dans la configuration de la protection des ressources, le planning est défini différemment pour les types de système :
+
+* Production : planifier toutes les 4 heures.
+* Développement : programmez toutes les 4 heures.
+* Test : programmez toutes les 4 heures.
+
+
+La politique `LocalSnapAndSnapVault` utilisé pour les systèmes de production et de développement afin de couvrir la réplication quotidienne vers le stockage de sauvegarde hors site.
+
+Dans la configuration de la protection des ressources, le planning est défini pour la production et le développement :
+
+* Production : planifier tous les jours.
+* Développement : planifiez tous les jours.la politique `BlockIntegrityCheck` utilisé par les systèmes de production et de développement pour couvrir le contrôle hebdomadaire de l'intégrité des blocs à l'aide d'une sauvegarde basée sur des fichiers.
+
+
+Dans la configuration de la protection des ressources, le planning est défini pour la production et le développement :
+
+* Production : horaire chaque semaine.
+* Développement : planifier chaque semaine.
+
+
+Pour chaque base de données SAP HANA individuelle qui utilise la règle de sauvegarde hors site, vous devez configurer une relation de protection sur la couche de stockage. La relation de protection définit quels volumes sont répliqués et la conservation de sauvegardes sur le stockage de sauvegarde hors site.
+
+Dans l'exemple suivant, pour chaque système de production et de développement, une durée de conservation de deux semaines est définie sur le stockage de sauvegarde hors site.
+
+Dans cet exemple, les règles de protection et la conservation des ressources de bases de données SAP HANA et de volumes autres que de données ne sont pas différentes.
+
+
+
+== Exemple de configuration de laboratoire
+
+La configuration de laboratoire suivante a été utilisée comme exemple de configuration pour le reste de ce document.
+
+Système HANA PFX :
+
+* Système MDC hôte unique avec un seul locataire
+* HANA 2.0 SPS 6 révision 60
+* SLES POUR SAP 15SP3
+
+
+SnapCenter :
+
+* Version 4.6
+* Le plug-in HANA et Linux est déployé sur un hôte de base de données HANA
+
+
+FSX pour systèmes de fichiers ONTAP :
+
+* Deux systèmes FSX pour systèmes de fichiers ONTAP avec une seule machine virtuelle de stockage (SVM)
+* Chaque système FSX pour ONTAP dans une zone de disponibilité AWS différente
+* Le volume de données HANA est répliqué sur le second FSX pour le système de fichiers ONTAP
+
+
+image:amazon-fsx-image8.png["Erreur : image graphique manquante"]
+
+link:amazon-fsx-snapcenter-configuration.html["Suivant : configuration SnapCenter."]

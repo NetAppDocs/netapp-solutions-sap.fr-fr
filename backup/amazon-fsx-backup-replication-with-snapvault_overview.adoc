@@ -1,0 +1,52 @@
+---
+sidebar: sidebar 
+permalink: backup/amazon-fsx-backup-replication-with-snapvault_overview.html 
+keywords: overview, configuration, 
+summary: Dans notre configuration de laboratoire, nous utilisons un deuxième système de fichiers FSX pour ONTAP dans une deuxième zone de disponibilité AWS pour présenter la réplication des sauvegardes pour le volume de données HANA. 
+---
+= Présentation - Sauvegarder la réplication avec SnapVault
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:amazon-fsx-backup-of-non-data-volumes.html["Précédent : sauvegarde de volumes non-données."]
+
+Dans notre configuration de laboratoire, nous utilisons un deuxième système de fichiers FSX pour ONTAP dans une deuxième zone de disponibilité AWS pour présenter la réplication des sauvegardes pour le volume de données HANA.
+
+Comme indiqué au chapitre link:amazon-fsx-snapcenter-architecture.html#data-protection-strategy["« Stratégie de protection des données »"], La cible de réplication doit être une deuxième FSX pour le système de fichiers ONTAP dans une autre zone de disponibilité pour être protégée contre une défaillance de la FSX principale pour le système de fichiers ONTAP. Par ailleurs, le volume partagé HANA doit être répliqué sur la FSX secondaire pour le système de fichiers ONTAP.
+
+image:amazon-fsx-image8.png["Erreur : image graphique manquante"]
+
+
+
+=== Présentation des étapes de configuration
+
+Il existe plusieurs étapes de configuration que vous devez exécuter sur la couche FSX pour ONTAP. Vous pouvez effectuer cette opération soit avec NetApp Cloud Manager, soit avec la ligne de commande FSX pour ONTAP.
+
+. Peer FSX pour les systèmes de fichiers ONTAP. FSX pour les systèmes de fichiers ONTAP doit être mis à niveau pour permettre la réplication entre eux.
+. SVM homologues. Les SVM doivent être associés de manière à permettre la réplication entre les deux.
+. Créer un volume cible. Création d'un volume au niveau du SVM cible avec un type de volume `DP`. Type `DP` est requis pour être utilisé comme volume cible de réplication.
+. Créer une règle SnapMirror Cette option permet de créer une règle pour la réplication avec type `vault`.
++
+.. Ajouter une règle à la stratégie. La règle contient l'étiquette SnapMirror et la conservation des sauvegardes sur le site secondaire. Vous devez configurer la même étiquette SnapMirror plus loin dans la règle SnapCenter de sorte que SnapCenter crée des sauvegardes Snapshot sur le volume source contenant cette étiquette.
+
+
+. Créer une relation SnapMirror Définit la relation de réplication entre les volumes source et cible et attache une stratégie.
+. Initialiser SnapMirror Cette opération démarre la réplication initiale dans laquelle toutes les données source sont transférées vers le volume cible.
+
+
+Une fois la configuration de réplication de volume terminée, vous devez configurer la réplication de sauvegarde dans SnapCenter comme suit :
+
+. Ajouter le SVM cible à SnapCenter
+. Créez une nouvelle règle SnapCenter pour la sauvegarde Snapshot et la réplication SnapVault.
+. Ajoutez la règle à la protection des ressources HANA.
+. Vous pouvez désormais exécuter des sauvegardes avec la nouvelle stratégie.
+
+
+Les chapitres suivants décrivent chaque étape plus en détail.
+
+link:amazon-fsx-configure-replication-relationships-on-fsx-for-ontap-file-systems.html["Ensuite : configurez les relations de réplication sur FSX pour les systèmes de fichiers ONTAP."]
