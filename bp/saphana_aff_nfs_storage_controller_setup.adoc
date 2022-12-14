@@ -60,14 +60,14 @@ FabricPool est une bonne option pour déplacer les sauvegardes des journaux vers
 
 La présentation suivante résume les étapes de configuration du stockage requises. Chaque étape est traitée en détail dans les sections suivantes. Dans cette section, nous supposons que le matériel de stockage est configuré et que le logiciel ONTAP est déjà installé. De même, les connexions entre les ports de stockage (10GbE ou plus rapides) et le réseau doivent déjà être en place.
 
-. Vérifiez la configuration correcte des tiroirs disques, comme décrit à la section « shelf connection."
-. Créez et configurez les agrégats requis, comme décrit dans la section « configuration."
-. Créer un serveur SVM (Storage Virtual machine) comme décrit dans la section « configuration."
-. Créer des LIF comme décrit dans « configuration."
-. Créez des volumes au sein des agrégats, comme décrit dans la section « configuration for SAP HANA single host systems« et » configuration for SAP HANA multiple host systems."
-. Définissez les options de volume requises comme indiqué dans la section « options."
-. Définissez les options requises pour NFSv3 comme décrit dans la section « configuration for NFSv3« Ou pour NFSv4, tel que décrit dans » configuration for NFSv4."
-. Monter les volumes dans l'espace de noms et définir les export policy comme décrit dans la section « volumes to namespace and set export policies."
+. Vérifiez la configuration correcte des tiroirs disques, comme décrit à la section «<<Connexion du tiroir disque>>."
+. Créez et configurez les agrégats requis, comme décrit dans la section «<<Configuration d'agrégat>>."
+. Créer un serveur SVM (Storage Virtual machine) comme décrit dans la section «<<Configuration d'un SVM>>."
+. Créer des LIF comme décrit dans «<<Configuration de LIF>>."
+. Créez des volumes au sein des agrégats, comme décrit dans la section «<<Volume configuration for SAP HANA single host systems>>« et »<<Volume configuration for SAP HANA multiple host systems>>."
+. Définissez les options de volume requises comme indiqué dans la section «<<Options de volume>>."
+. Définissez les options requises pour NFSv3 comme décrit dans la section «<<Configuration NFS pour NFSv3>>« Ou pour NFSv4, tel que décrit dans »<<Configuration NFS pour NFSv4>>."
+. Monter les volumes dans l'espace de noms et définir les export policy comme décrit dans la section «<<Montez les volumes sur l'espace de noms et définissez des règles d'exportation>>."
 
 
 

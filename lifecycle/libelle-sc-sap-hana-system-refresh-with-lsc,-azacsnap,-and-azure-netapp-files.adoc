@@ -76,7 +76,7 @@ Vous devez également configurer une liste de tâches standard appropriée pour 
 
 L'intégration d'AzAcSnap et de LSC décrite ici ne fonctionne que pour les bases de données SAP HANA à hôte unique. Il est également possible de prendre en charge des déploiements SAP HANA à plusieurs hôtes (ou scale-out), mais de tels déploiements nécessitent quelques ajustements ou améliorations des tâches personnalisées LSC pour la phase de copie et les scripts sous-estimer. Ces améliorations ne sont pas couvertes dans ce document.
 
-L'intégration des mises à jour des systèmes SAP utilise toujours la dernière copie Snapshot réussie du système source pour procéder à la mise à jour du système cible. Si vous souhaitez utiliser d'autres anciennes copies Snapshot, la logique correspondante dans le  la tâche personnalisée doit être ajustée. Ce processus n'est pas périmètre pour ce document.
+L'intégration des mises à jour des systèmes SAP utilise toujours la dernière copie Snapshot réussie du système source pour procéder à la mise à jour du système cible. Si vous souhaitez utiliser d'autres anciennes copies Snapshot, la logique correspondante dans le <<ZAZACSNAPRESTORE>> la tâche personnalisée doit être ajustée. Ce processus n'est pas périmètre pour ce document.
 
 
 

@@ -60,12 +60,12 @@ FabricPool est une bonne option pour déplacer les sauvegardes des journaux vers
 
 La présentation suivante résume les étapes de configuration du stockage requises. Chaque étape est traitée de manière plus détaillée dans les sections suivantes. Dans cette section, nous supposons que le matériel de stockage est configuré et que le logiciel ONTAP est déjà installé. De même, la connexion des ports FCP de stockage à la structure SAN doit déjà être en place.
 
-. Vérifiez la configuration correcte des tiroirs disques, comme décrit à la section « shelf connection."
-. Créez et configurez les agrégats requis, comme décrit dans la section « configuration."
-. Créer un serveur SVM (Storage Virtual machine), comme décrit dans la section « virtual machine configuration."
-. Création d'interfaces logiques (LIF), comme décrit dans la section « interface configuration."
-. Créez un ensemble de ports, comme décrit dans la section « port sets."
-. Créer des groupes initiateurs, des volumes et des LUN au sein de ces agrégats, comme décrit dans la section création de « and volumes and mapping LUNs to initiator groups."
+. Vérifiez la configuration correcte des tiroirs disques, comme décrit à la section «<<Connexion du tiroir disque>>."
+. Créez et configurez les agrégats requis, comme décrit dans la section «<<Configuration d'agrégat>>."
+. Créer un serveur SVM (Storage Virtual machine), comme décrit dans la section «<<Configuration des serveurs virtuels de stockage>>."
+. Création d'interfaces logiques (LIF), comme décrit dans la section «<<Configuration de l'interface logique>>."
+. Créez un ensemble de ports, comme décrit dans la section «<<Jeux de ports FCP>>."
+. Créer des groupes initiateurs, des volumes et des LUN au sein de ces agrégats, comme décrit dans la section création de «<<LUNs and volumes and mapping LUNs to initiator groups>>."
 
 
 

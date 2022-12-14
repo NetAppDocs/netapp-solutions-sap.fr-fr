@@ -84,7 +84,7 @@ La sauvegarde de la base de données source doit être correctement configurée 
 
 image:libelle-sc-image6.png["Erreur : image graphique manquante"]
 
-Le maître LSC et le travailleur LSC doivent être installés dans l'environnement SAP. Dans ce déploiement, nous avons également installé le maître LSC sur le serveur SnapCenter et le travailleur LSC sur le serveur de base de données SAP cible, qui doit être actualisé. Pour plus de détails, consultez la section « setup. »
+Le maître LSC et le travailleur LSC doivent être installés dans l'environnement SAP. Dans ce déploiement, nous avons également installé le maître LSC sur le serveur SnapCenter et le travailleur LSC sur le serveur de base de données SAP cible, qui doit être actualisé. Pour plus de détails, consultez la section «<<Configuration de laboratoire>>. »
 
 Ressources de documentation :
 

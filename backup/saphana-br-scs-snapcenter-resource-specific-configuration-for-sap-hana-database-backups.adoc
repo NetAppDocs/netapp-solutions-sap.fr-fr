@@ -169,7 +169,7 @@ image:saphana-br-scs-image54.png["Erreur : image graphique manquante"]
 La figure suivante illustre la règle de protection. La règle de protection utilisée pour la relation de protection définit l'étiquette SnapMirror, ainsi que la conservation des sauvegardes sur le stockage secondaire. Dans notre exemple, l'étiquette utilisée est `Daily`, et la rétention est définie sur 5.
 
 
-NOTE: L'étiquette SnapMirror de la règle en cours de création doit correspondre à l'étiquette définie dans la configuration de la règle SnapCenter. Pour plus de détails, reportez-vous à la section « for daily Snapshot backups with SnapVault replication. »
+NOTE: L'étiquette SnapMirror de la règle en cours de création doit correspondre à l'étiquette définie dans la configuration de la règle SnapCenter. Pour plus de détails, reportez-vous à la section «<<Règle applicable aux sauvegardes Snapshot quotidiennes avec réplication SnapVault>>. »
 
 
 NOTE: La conservation des sauvegardes sur le stockage de sauvegarde hors site est définie dans la règle et contrôlée par ONTAP.
@@ -235,7 +235,7 @@ L'écran récapitulatif de la configuration de la ressource s'affiche.
 +
 image:saphana-br-scs-image60.png["Erreur : image graphique manquante"]
 
-.. Une fois la configuration des ressources terminée, effectuez la configuration de la protection des ressources comme décrit dans la section « protection configuration. »
+.. Une fois la configuration des ressources terminée, effectuez la configuration de la protection des ressources comme décrit dans la section «<<Configuration de la protection des ressources>>. »
 
 
 

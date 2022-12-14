@@ -148,7 +148,7 @@ image:saphana-sr-scs-image25.png["Erreur : image graphique manquante"]
 
 SnapCenter 4.6 gère la conservation pour les sauvegardes Snapshot, les opérations de contrôle de l'intégrité des blocs, les entrées du catalogue de sauvegardes HANA et les sauvegardes de journaux (s'ils ne sont pas désactivés) entre les deux hôtes HANA, ce qui n'importe quel hôte est actuellement principal ou secondaire. Les sauvegardes (données et journaux) et les entrées du catalogue HANA sont supprimées en fonction de la conservation définie, que la suppression soit nécessaire sur l'hôte principal ou secondaire actuel. En d'autres termes, aucune interaction manuelle n'est requise si une opération de basculement est effectuée et/ou si la réplication est configurée dans l'autre direction.
 
-Si la réplication SnapVault fait partie de la stratégie de protection des données, une interaction manuelle est nécessaire pour des scénarios spécifiques, comme décrit dans la section  Replication.
+Si la réplication SnapVault fait partie de la stratégie de protection des données, une interaction manuelle est nécessaire pour des scénarios spécifiques, comme décrit dans la section <<SnapVault Replication>>.
 
 
 

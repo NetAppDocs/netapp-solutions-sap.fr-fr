@@ -228,7 +228,7 @@ hana-1:/mnt/sapcc-share/SAP-System-Refresh #
 
 == Clonage de services d'applications SAP supplémentaires
 
-Les autres services d'application SAP sont clonés de la même manière que le volume partagé SAP HANA, comme indiqué dans la section « the HANA shared volume. » Bien entendu, le ou les volumes de stockage requis des serveurs d'applications SAP doivent également être protégés avec SnapCenter.
+Les autres services d'application SAP sont clonés de la même manière que le volume partagé SAP HANA, comme indiqué dans la section «<<Clonage du volume partagé HANA>>. » Bien entendu, le ou les volumes de stockage requis des serveurs d'applications SAP doivent également être protégés avec SnapCenter.
 
 Vous devez ajouter les entrées de services requises à `/usr/sap/sapservices`, et les ports, les utilisateurs et les points de montage du système de fichiers (par exemple, `/usr/sap/SID`) doit être préparé.
 

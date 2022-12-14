@@ -239,7 +239,7 @@ S'il existe plusieurs emplacements de stockage secondaires pour la sauvegarde s�
 
 image:sc-copy-clone-image26.png["Erreur : image graphique manquante"]
 
-Toutes les étapes suivantes sont identiques au flux de travail pour le clonage à partir du stockage primaire, comme décrit dans la section « from primary storage with tenant name equal to SID. »
+Toutes les étapes suivantes sont identiques au flux de travail pour le clonage à partir du stockage primaire, comme décrit dans la section «<<Le clonage depuis le stockage primaire avec un nom de locataire égal à SID>>. »
 
 
 
@@ -249,7 +249,7 @@ Cette section décrit le workflow d'actualisation du système HANA dans lequel l
 
 image:sc-copy-clone-image27.png["Erreur : image graphique manquante"]
 
-Les étapes requises dans SnapCenter sont identiques à celles décrites dans la section « from primary storage with tenant name equal to SID. »] La différence réside dans l'opération de restauration du locataire au sein du script `sc-system-refresh.sh`.
+Les étapes requises dans SnapCenter sont identiques à celles décrites dans la section «<<Le clonage depuis le stockage primaire avec un nom de locataire égal à SID>>. »] La différence réside dans l'opération de restauration du locataire au sein du script `sc-system-refresh.sh`.
 
 Si le script détecte que le nom du locataire système source est différent du SID du système source, la récupération du locataire sur le système cible est exécutée avec le même nom de locataire que le locataire source. Si le nom du locataire cible doit avoir un autre nom, le tenant doit être renommé manuellement par la suite.
 
