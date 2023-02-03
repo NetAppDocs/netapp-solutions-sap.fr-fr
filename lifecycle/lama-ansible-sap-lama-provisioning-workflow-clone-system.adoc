@@ -1,0 +1,88 @@
+---
+sidebar: sidebar 
+permalink: lifecycle/lama-ansible-sap-lama-provisioning-workflow-clone-system.html 
+keywords: provisioning, workflow, clone system, 
+summary: 'Cette section décrit le workflow de clonage complet du système SAP Lama basé sur le système SAP HN9 source avec base de données HANA H09. L"image suivante donne une vue d"ensemble des étapes exécutées pendant le flux de travail.' 
+---
+= Workflow de provisionnement SAP Lama - système de clonage
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:lama-ansible-example-implementation.html["Précédent : exemple d'implémentation."]
+
+[role="lead"]
+La figure suivante met en évidence les principales étapes exécutées avec le workflow de clonage du système.
+
+image:lama-ansible-image17.png["Schéma de workflow contenant les étapes clonage du stockage, préparation du système, activation de l'isolation et démarrage du système."]
+
+Cette section décrit le workflow de clonage complet du système SAP Lama basé sur le système SAP HN9 source avec base de données HANA H09. L'image suivante donne une vue d'ensemble des étapes exécutées pendant le flux de travail.
+
+image:lama-ansible-image18.png["Cette image illustre les étapes exécutées au cours du flux de travail, notamment Créer une configuration système clonée, Créer un instantané de stockage et un clone, Créer une configuration de point de montage, définir des propriétés personnalisées et préparer et démarrer le système."]
+
+. Pour démarrer le workflow de clonage, ouvrez *Provisioning* dans l'arborescence de menus et sélectionnez le système source (dans notre exemple HN9). Démarrez ensuite l'assistant *Clone System*.
++
+image:lama-ansible-image19.png["Cette capture d'écran illustre la vue du système de provisionnement. Il contient deux systèmes."]
+
+. Saisissez les valeurs requises. L'écran 1 de l'assistant vous demande le nom de pool du système cloné. Cette étape indique les instances (virtuelles ou physiques) sur lesquelles le système cloné sera démarré. La valeur par défaut consiste à cloner le système dans le même pool que le système cible.
++
+image:lama-ansible-image20.png["Écran 1 de l'assistant de clonage du système pour fournir les données de base du système cible."]
+
+. L'écran 2 de l'assistant vous demande les hôtes cibles sur lesquels les nouvelles instances SAP sont lancées. Les hôtes cibles pour cette ou ces instances peuvent être sélectionnés en dehors du pool d'hôtes spécifié dans l'écran précédent. Chaque instance ou service peut être démarré sur un autre hôte. Dans notre exemple, les trois services sont exécutés sur le même hôte.
++
+image:lama-ansible-image21.png["L'écran 2 de l'assistant de clonage du système permet de sélectionner l'hôte du système cible."]
+
+. Fournissez les informations demandées à l'écran 3, qui demande des noms d'hôtes virtuels et des réseaux. En général, les noms d'hôte sont gérés dans le DNS, de sorte que les adresses IP sont préremplies en conséquence.
++
+image:lama-ansible-image22.png["L'écran de l'assistant de clonage de système 3 vous permet de fournir des noms d'hôtes virtuels et des réseaux."]
+
+. À l'écran 4, les opérations de clonage personnalisé sont répertoriées. Un clone et un nom *SnapPostfix* sont fournis, utilisés respectivement lors de l'opération de clonage de stockage pour le volume FlexClone et le nom du snapshot. Si vous laissez ces champs vides, la valeur par défaut configurée dans la section variable du script fournisseur `netapp_clone.sh` est utilisé.
++
+image:lama-ansible-image23.png["Dans l'écran Cloner l'assistant système 4, les options de clonage personnalisé sont répertoriées comme les paramètres d'opération."]
+
+. À l'écran 5, l'option de cohérence de la base de données est sélectionnée. Dans notre exemple, nous avons sélectionné *Online: Clone exécutant DB*.
++
+image:lama-ansible-image24.png["Dans l'écran Cloner l'assistant système 5, les options de cohérence de la base de données sont répertoriées avec en ligne : clone exécution de la base de données sélectionnée."]
+
+. À l'écran 6, l'entrée n'est requise que si vous effectuez un clone de locataire.
++
+image:lama-ansible-image25.png["Sur l'écran Cloner l'assistant système 6, vous pouvez fournir un nom d'utilisateur et un mot de passe si vous effectuez un clone de locataire."]
+
+. Dans l'écran 7, l'isolation du système peut être configurée.
++
+image:lama-ansible-image26.png["Dans l'écran Cloner l'assistant système 7, vous pouvez définir les connexions sortantes autorisées pour l'isolation du système."]
+
+. Dans l'écran 8, une page de résumé contient tous les paramètres de confirmation finale avant le démarrage du flux de travail. Cliquez sur *Exécuter* pour démarrer le flux de travail.
++
+image:lama-ansible-image27.png["L'écran cloner l'assistant système 8 fournit un récapitulatif des informations saisies."]
+
++
+SAP Lama effectue désormais toutes les actions indiquées dans la configuration. Ces actions incluent la création des clones et des exportations de volume de stockage, leur montage sur l'hôte cible, l'ajout de règles de pare-feu pour l'isolation et le démarrage de la base de données HANA et des services SAP.
+
+. Vous pouvez surveiller la progression du flux de travail clone dans le menu *Monitoring*.
++
+image:lama-ansible-image28.png["T« sa capture d'écran illustre l'écran de surveillance du processus de clonage du système. »"]
+
++
+Dans le journal détaillé, les opérations *Clone Volume* et *Modify Mountpoints et Add Custom Properties* sont exécutées sur le nœud Ansible, le `sap-jump` hôte. Ces étapes sont exécutées pour chaque service, la base de données HANA, les services centraux SAP et SAP EN TANT que service.
+
++
+image:lama-ansible-image29.png["Cette capture d'écran illustre l'écran clone du système affichant les différentes opérations décrites dans le journal détaillé."]
+
+. En sélectionnant la tâche *Clone volumes*, le journal détaillé de cette étape s'affiche et l'exécution de Ansible PlayBook s'affiche ici. Vous pouvez voir, le PlayBook Ansible `netapp_lama_CloneVolumes.yml` Est exécuté pour chaque volume de base de données HANA, données, journaux et partagés.
++
+image:lama-ansible-image30.png["Cet écran illustre les journaux détaillant le clone du volume."]
+
+. Dans la vue détaillée de l'étape *Modifier les points de montage et ajouter des propriétés personnalisées*, vous pouvez trouver des informations sur les points de montage et les propriétés personnalisées transmises par le script d'exécution.
++
+image:lama-ansible-image31.png["Plus d'informations de journal"]
+
+
+
+Une fois le workflow terminé, le système SAP cloné est prêt, démarré et prêt à être utilisé.
+
+link:lama-ansible-sap-lama-deprovisioning-workflow-system-destroy.html["Next : workflow de déprovisionnement de SAP Lama - destruction du système."]

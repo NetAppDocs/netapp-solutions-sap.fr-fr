@@ -1,0 +1,123 @@
+---
+sidebar: sidebar 
+permalink: lifecycle/lama-ansible-example-implementation.html 
+keywords: example, template, setup, configuration, scripts 
+summary: 'En raison du grand nombre d"options disponibles pour les configurations de système et de stockage, l"exemple d"implémentation doit être utilisé comme modèle de configuration et de configuration de votre système.' 
+---
+= Exemple d'implémentation
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:lama-ansible-netapp-sap-lama-integration-using-ansible.html["Précédente : intégration de NetApp SAP Lama avec Ansible."]
+
+En raison du grand nombre d'options disponibles pour les configurations de système et de stockage, l'exemple d'implémentation doit être utilisé comme modèle de configuration et de configuration de votre système.
+
+
+NOTE: Les scripts exemple sont fournis en l'état et ne sont pas pris en charge par NetApp. Vous pouvez demander la version actuelle des scripts par courrier électronique à mailto:ng-sapcc@netapp.com[ng-sapcc@netapp.com^].
+
+
+
+== Configurations et limitations validées
+
+Les principes suivants ont été appliqués à l'exemple de mise en œuvre et peuvent nécessiter un adaptation pour répondre aux besoins du client :
+
+* Les systèmes SAP gérés utilisaient NFS pour accéder aux volumes de stockage NetApp et ont été configurés selon le principe de conception adaptative.
+* Vous pouvez utiliser toutes les versions de ONTAP prises en charge par les modules NetApp Ansible (ZAPI et API REST).
+* Les identifiants d'un cluster NetApp et d'un SVM uniques ont été codés en dur comme variables dans le script fournisseur.
+* Le clonage du stockage a été effectué sur le même système de stockage que celui utilisé par le système SAP source.
+* Les volumes de stockage du système SAP cible portent les mêmes noms que la source et un annexe.
+* Aucun clonage au niveau du stockage secondaire (SV/SM) n'a été implémenté.
+* Le fractionnement FlexClone n'a pas été implémenté.
+* Les numéros d'instance étaient identiques pour les systèmes SAP source et cible.
+
+
+
+
+== Configuration de laboratoire
+
+La figure suivante illustre la configuration de laboratoire que nous avons utilisée. Le système SAP source HN9 utilisé pour l'opération de clonage du système se composait de la base de données H09, du SAP CS et du SAP EN TANT que services s'exécutant sur le même hôte (sap-lnx32) avec installé https://help.sap.com/doc/700f9a7e52c7497cad37f7c46023b7ff/3.0.11.0/en-US/737a99e86f8743bdb8d1f6cf4b862c79.html["conception adaptative"^] activé. Un nœud de contrôle Ansible a été préparé conformément à https://github.com/sap-linuxlab/demo.netapp_ontap/blob/main/netapp_ontap.md["Playbooks Ansible pour NetApp ONTAP"^] documentation :
+
+L'agent hôte SAP a également été installé sur cet hôte. Le script du fournisseur NetApp et les playbooks Ansible ont été configurés sur le nœud de contrôle Ansible, comme décrit dans la link:ama-ansible-appendix--provider-script-configuration-and-ansible-playbooks.html["“Annexe : Configuration des scripts du fournisseur.”"]
+
+L'hôte `sap-lnx49` Utilisé comme cible des opérations de clonage SAP Lama, la fonctionnalité d'isolation prête y a été configurée.
+
+Différents systèmes SAP (HNA en tant que source et HN2 en tant que cible) ont été utilisés pour les opérations de copie et d'actualisation du système, car l'automatisation post-copie (PCA) y a été activée.
+
+image:lama-ansible-image7.png["Cette image représente les différents agents hôtes SAP et leur interaction avec les systèmes de stockage NetApp via des montages NFS. L'instance SAP Lama est également représentée."]
+
+Les versions logicielles suivantes ont été utilisées dans la configuration du laboratoire :
+
+* SAP Lama Enterprise Edition 3.00 SP23_2
+* SAP HANA 2.00.052.00.1599235305
+* CORRECTIF SAP 7.77 27 (S/4 HANA 1909)
+* Correctif 7.22 de SAP Host Agent 56
+* Patch 69 SAPACEXT 7.22
+* Linux SLES 15 SP2
+* Ansible 2. 13.7
+* NetApp ONTAP 9.8P8
+
+
+
+
+== Configuration SAP Lama
+
+
+
+=== Définition du fournisseur SAP Lama
+
+La définition du fournisseur est réalisée dans Automation Studio de SAP Lama, comme illustré ci-dessous. L'exemple d'implémentation utilise une définition de fournisseur unique qui est utilisée pour différentes étapes de provisionnement personnalisées et les crochets d'opération comme expliqué précédemment.
+
+image:lama-ansible-image8.png["Capture d'écran des définitions de fournisseur SAP dans l'interface graphique de SAP Lama."]
+
+Le fournisseur `netapp_clone` est défini comme le script `netapp_clone.sh` Enregistré auprès de l'agent hôte SAP. L'agent hôte SAP s'exécute sur l'hôte central `sap-jump`, Qui agit également comme nœud de contrôle Ansible.
+
+image:lama-ansible-image9.png["Capture d'écran de la définition individuelle du fournisseur nommée netapp_clone sous l'onglet général. Affiche la section Résumé, la section utilisé pour et la section Options."]
+
+L'onglet *utilisé dans* indique les opérations personnalisées pour lesquelles le fournisseur est utilisé. La configuration du provisionnement personnalisé *NetAppClone* et les crochets personnalisés *Delete NetAppClone* et *Delete NetAppClone Refresh* sont indiqués dans les chapitres suivants.
+
+image:lama-ansible-image10.png["Capture d'écran de la section utilisée-in avec liste des opérations personnalisées qui utilisent la définition. Dans cet exemple, nous allons voir Suppression de NetAppClone, Suppression de NetAppClone par actualisation et NetAppClone."]
+
+Les paramètres *ClonePostFix* et *SnapPostFix* sont demandés lors de l'exécution du workflow de provisionnement et sont utilisés pour les noms de volumes Snapshot et FlexClone.
+
+image:lama-ansible-image11.png["Capture d'écran de la section Paramètres avec liste de deux paramètres : CLIonePostFix et SnapPostFix."]
+
+
+
+=== Provisionnement personnalisé SAP Lama
+
+Dans la configuration de provisionnement personnalisé SAP Lama, le fournisseur client décrit précédemment est utilisé pour remplacer les étapes de workflow de provisionnement *Clone volumes* et *PostClonevolumes*.
+
+image:lama-ansible-image12.png["Capture d'écran de l'écran de configuration du provisionnement personnalisé. Les processus Clonevolumes et FinalizeClonevolumes sont répertoriés."]
+
+
+
+=== Crochet personnalisé SAP Lama
+
+Si un système est supprimé avec le flux de travail de destruction du système, le crochet *Supprimer NetAppClone* est utilisé pour appeler la définition du fournisseur `netapp_clone`. Le hook *Delete NetApp Clone Refresh* est utilisé pendant le flux de travail de mise à jour du système car l'instance est conservée pendant l'exécution.
+
+image:lama-ansible-image13.png["Capture d'écran de crochets personnalisés contenant les crochets personnalisés Supprimer NetAppClone Actualiser et Supprimer NetAppClone."]
+
+Il est important de configurer *utiliser Mount Data XML* pour le crochet personnalisé, de sorte que SAP Lama fournit les informations de la configuration du point de montage au fournisseur.
+
+image:lama-ansible-image14.png["Capture d'écran général de Delete NetAppClone avec \"Use Mount Data XML yes\" en surbrillance."]
+
+Pour garantir que le crochet personnalisé est utilisé et exécuté uniquement lors de la création du système avec un flux de provisionnement personnalisé, la contrainte suivante y est ajoutée.
+
+image:lama-ansible-image15.png["Capture d'écran de la page Supprimer les contraintes de clonage NetApp. Contient une contrainte unique appelée Custom Clone Process name (statique)."]
+
+Vous trouverez plus d'informations sur l'utilisation de crochets personnalisés dans le https://help.sap.com/doc/700f9a7e52c7497cad37f7c46023b7ff/3.0.11.0/en-US/139eca2f925e48738a20dbf0b56674c5.html["Documentation SAP Lama"^].
+
+
+
+=== Activez le workflow de provisionnement personnalisé pour le système source SAP
+
+Pour activer le workflow de provisionnement personnalisé pour le système source, il doit être adapté dans la configuration. La case à cocher *utiliser le processus de provisionnement personnalisé* avec la définition de provisionnement personnalisée correspondante doit être sélectionnée.
+
+image:lama-ansible-image16.png["Capture d'écran de l'écran SAP Lama Configuration > Systems> System Details (Détails du système) La case à cocher utiliser le processus de provisionnement personnalisé est mise en surbrillance."]
+
+link:lama-ansible-sap-lama-provisioning-workflow-clone-system.html["Suivant : workflow de provisionnement SAP Lama - cloner le système."]

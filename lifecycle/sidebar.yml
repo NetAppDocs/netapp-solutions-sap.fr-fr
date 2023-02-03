@@ -2,6 +2,31 @@
 section: lifecycle
 title: Gestion du cycle de vie
 entries:
+- title: Intégration de NetApp dans la gestion de l'environnement SAP avec Ansible
+  type: solutions
+  entries:
+  - title: Introduction
+    url: "/lifecycle/lama-ansible-introduction.html"
+  - title: Scénarios de clonage, de copie et d'actualisation de systèmes SAP
+    url: "/lifecycle/lama-ansible-sap-system-clone,-copy,-and-refresh-scenarios.html"
+  - title: Cas d'utilisation pour la mise à jour, la copie et le clonage du système
+    url: "/lifecycle/lama-ansible-use-cases-for-system-refresh,-copy,-and-cloning.html"
+  - title: Intégration de NetApp SAP Lama avec Ansible
+    url: "/lifecycle/lama-ansible-netapp-sap-lama-integration-using-ansible.html"
+  - title: Exemple d'implémentation
+    url: "/lifecycle/lama-ansible-example-implementation.html"
+  - title: Workflow de provisionnement SAP Lama - système de clonage
+    url: "/lifecycle/lama-ansible-sap-lama-provisioning-workflow-clone-system.html"
+  - title: 'Workflow de déprovisionnement SAP Lama : destruction du système'
+    url: "/lifecycle/lama-ansible-sap-lama-deprovisioning-workflow-system-destroy.html"
+  - title: Workflow de provisionnement SAP Lama - système de copie
+    url: "/lifecycle/lama-ansible-sap-lama-provisioning-workflow-copy-system.html"
+  - title: 'Workflow de provisionnement SAP Lama : actualisation du système'
+    url: "/lifecycle/lama-ansible-sap-lama-provisioning-workflow-system-refresh.html"
+  - title: La configuration des scripts des fournisseurs et les playbooks Ansible
+    url: "/lifecycle/lama-ansible-appendix-provider-script-configuration-and-ansible-playbooks.html"
+  - title: Conclusion
+    url: "/lifecycle/lama-ansible-conclusion.html"
 - title: Automatisation des opérations de copie et de clonage du système SAP HANA
     avec SnapCenter
   type: solutions

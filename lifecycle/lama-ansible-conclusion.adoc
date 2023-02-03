@@ -1,0 +1,82 @@
+---
+sidebar: sidebar 
+permalink: lifecycle/lama-ansible-conclusion.html 
+keywords: conclusion, additional information, version history 
+summary: 'L"intégration d"un framework d"automatisation moderne tel qu"Ansible dans les workflows de provisionnement SAP Lama permet aux clients de bénéficier d"une solution flexible pour répondre aux exigences d"infrastructure standard ou plus complexes.' 
+---
+= Conclusion
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:lama-ansible-appendix-provider-script-configuration-and-ansible-playbooks.html["Précédent : configuration des scripts des fournisseurs et manuels de vente Ansible."]
+
+[role="lead"]
+L'intégration d'un framework d'automatisation moderne tel qu'Ansible dans les workflows de provisionnement SAP Lama permet aux clients de bénéficier d'une solution flexible pour répondre aux exigences d'infrastructure standard ou plus complexes.
+
+
+
+== Où trouver des informations complémentaires
+
+Pour en savoir plus sur les informations données dans ce livre blanc, consultez ces documents et/ou sites web :
+
+* Collections dans l'espace de noms NetApp
++
+https://docs.ansible.com/ansible/latest/collections/netapp/index.html["https://docs.ansible.com/ansible/latest/collections/netapp/index.html"^]
+
+* Documentation sur l'intégration Ansible et exemples de manuels de vente pour Ansible
++
+https://github.com/sap-linuxlab/demo.netapp_ontap["https://github.com/sap-linuxlab/demo.netapp_ontap"^]
+
+* Ansible général et l'intégration NetApp
++
+https://www.ansible.com/integrations/infrastructure/netapp["https://www.ansible.com/integrations/infrastructure/netapp"^]
+
+* Blog sur l'intégration de SAP Lama avec Ansible
++
+https://blogs.sap.com/2020/06/08/outgoing-api-calls-from-sap-landscape-management-lama-with-automation-studio/["https://blogs.sap.com/2020/06/08/outgoing-api-calls-from-sap-landscape-management-lama-with-automation-studio/"^]
+
+* SAP Landscape Management 3.0, Documentation Enterprise Edition
++
+https://help.sap.com/doc/700f9a7e52c7497cad37f7c46023b7ff/3.0.11.0/en-US/4df88a8f418c5059e10000000a42189c.html["https://help.sap.com/doc/700f9a7e52c7497cad37f7c46023b7ff/3.0.11.0/en-US/4df88a8f418c5059e10000000a42189c.html#loio4df88a8f418c5059e10000000a42189c"^]
+
+* Documentation SAP Lama : définitions des fournisseurs
++
+https://help.sap.com/doc/700f9a7e52c7497cad37f7c46023b7ff/3.0.11.0/en-US/bf6b3e43340a4cbcb0c0f3089715c068.html["https://help.sap.com/doc/700f9a7e52c7497cad37f7c46023b7ff/3.0.11.0/en-US/bf6b3e43340a4cbcb0c0f3089715c068.html"^]
+
+* Documentation SAP Lama - crochets personnalisés
++
+https://help.sap.com/doc/700f9a7e52c7497cad37f7c46023b7ff/3.0.11.0/en-US/139eca2f925e48738a20dbf0b56674c5.html["https://help.sap.com/doc/700f9a7e52c7497cad37f7c46023b7ff/3.0.11.0/en-US/139eca2f925e48738a20dbf0b56674c5.html"^]
+
+* Documentation SAP Lama - Configuration des scripts enregistrés SAP Host Agent
++
+https://help.sap.com/doc/700f9a7e52c7497cad37f7c46023b7ff/3.0.11.0/en-US/250dfc5eef4047a38bab466c295d3a49.html["https://help.sap.com/doc/700f9a7e52c7497cad37f7c46023b7ff/3.0.11.0/en-US/250dfc5eef4047a38bab466c295d3a49.html"^]
+
+* Documentation SAP Lama - Paramètres des opérations personnalisées et des crochets personnalisés
++
+https://help.sap.com/doc/700f9a7e52c7497cad37f7c46023b7ff/3.0.11.0/en-US/0148e495174943de8c1c3ee1b7c9cc65.html["https://help.sap.com/doc/700f9a7e52c7497cad37f7c46023b7ff/3.0.11.0/en-US/0148e495174943de8c1c3ee1b7c9cc65.html"^]
+
+* Documentation SAP Lama - Adaptive Design
++
+https://help.sap.com/doc/700f9a7e52c7497cad37f7c46023b7ff/3.0.11.0/en-US/737a99e86f8743bdb8d1f6cf4b862c79.html["https://help.sap.com/doc/700f9a7e52c7497cad37f7c46023b7ff/3.0.11.0/en-US/737a99e86f8743bdb8d1f6cf4b862c79.html"^]
+
+* Documentation produit NetApp
++
+https://www.netapp.com/support-and-training/documentation/["https://www.netapp.com/support-and-training/documentation/"^]
+
+
+
+
+
+== Historique des versions
+
+|===
+| Version | Date | Historique des versions du document 
+
+
+| Version 1.0 | Janvier 2023 | Version initiale 
+|===
