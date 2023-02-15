@@ -19,7 +19,7 @@ La famille de produits des systèmes NetApp AFF a été certifiée pour une util
 
 Cette certification est valable pour les modèles suivants :
 
-* AFF A220, AFF A250, AFF A300, AFF A320, AFF A400 AFF A700S, AFF A700, AFF A800, AFF A900
+* AFF A150, AFF A220, AFF A250, AFF A300, AFF A320, AFF A400, AFF A700s, AFF A700, AFF A800, AFF A900
 
 
 Vous trouverez la liste complète des solutions de stockage certifiées NetApp pour SAP HANA dans la page https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/#/solutions?filters=v:deCertified;ve:13["Répertoire matériel SAP HANA certifié et pris en charge"^].

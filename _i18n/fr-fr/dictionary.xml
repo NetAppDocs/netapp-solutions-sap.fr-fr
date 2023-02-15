@@ -281,7 +281,6 @@
   <block id="8290e539e87b39f4743f2a941a37d00d" category="doc">Tr-4435 : SAP HANA sur les systèmes NetApp AFF avec NFS - Guide de configuration</block>
   <block id="ccc35786789b66e9752e6f8cde933754" category="paragraph">Nils Bauer et Marco Schön, NetApp</block>
   <block id="af01ac16ca42b9b924b834a3199131e9" category="paragraph">Cette certification est valable pour les modèles suivants :</block>
-  <block id="c35a0cd0a7282bf70f4933947c018788" category="list-text">AFF A220, AFF A250, AFF A300, AFF A320, AFF A400 AFF A700S, AFF A700, AFF A800, AFF A900</block>
   <block id="130c9ce9d2909449cb229a98c66f9d29" category="inline-link">Répertoire matériel SAP HANA certifié et pris en charge</block>
   <block id="152277675a8ef46c12f1dc91f2f53ede" category="paragraph">Vous trouverez la liste complète des solutions de stockage certifiées NetApp pour SAP HANA dans la page<block ref="a3976abaebe3520fd66c465c4d7747d7" category="inline-link-rx"></block>.</block>
   <block id="18cab9085e2115741cf08f1964299a5a" category="paragraph">Ce document décrit les exigences de configuration de ONTAP pour le protocole NFS version 3 (NFS v3) ou la version 4 du protocole NFS (NFS v4.1).</block>
@@ -5288,4 +5287,5 @@
   <block id="041a3821794f47be7b2454c6e42e40e9" category="inline-link-macro">Ensuite, intégration de NetApp SAP Lama avec Ansible.</block>
   <block id="cbd461cf21aebe404144b08c1c869d9c" category="paragraph"><block ref="cbd461cf21aebe404144b08c1c869d9c" category="inline-link-macro-rx"></block></block>
   <block id="2e979feafadb9bbdb7932ab43f8d549c" category="sidebar">Intégration de NetApp dans la gestion de l'environnement SAP avec Ansible</block>
+  <block id="17f31b52b49dfe7dec5229f7caf638c6" category="list-text">AFF A150, AFF A220, AFF A250, AFF A300, AFF A320, AFF A400, AFF A700s, AFF A700, AFF A800, AFF A900</block>
 </blocks>

@@ -23,7 +23,7 @@ La gamme de produits NetApp AFF est certifiée pour une utilisation avec SAP HAN
 
 La certification est valide pour les modèles suivants :
 
-* AFF A220, AFF A250, AFF A300, AFF A320, AFF A400 AFF A700S, AFF A700, AFF A800, AFF A900
+* AFF A150, AFF A220, AFF A250, AFF A300, AFF A320, AFF A400, AFF A700s, AFF A700, AFF A800, AFF A900
 * ASA AFF A220, ASA AFF A250, ASA AFF A400, ASA AFF A700, ASA AFF A800, ASA AFF A900
 
 
