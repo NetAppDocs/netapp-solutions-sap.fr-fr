@@ -1,0 +1,319 @@
+---
+sidebar: sidebar 
+permalink: backup/anf-cba-cloud-backup-for-applications-architecture.html 
+keywords: applications, anf, strategy, data protection, backup 
+summary: 'Cloud Backup pour les applications est une solution SaaS qui offre des fonctionnalités de protection des données pour les applications s"exécutant sur le stockage cloud NetApp. Cloud Backup pour les applications activées dans NetApp BlueXP offre une protection efficace, cohérente au niveau des applications et basée sur des règles de SAP HANA sur Azure NetApp Files. Cloud Backup pour applications offre un contrôle et une surveillance centralisés, tout en déléguant aux utilisateurs la possibilité de gérer les opérations de sauvegarde et de restauration spécifiques aux applications.' 
+---
+= Architecture de Cloud Backup pour les applications
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:anf-cba-use-cases-and-value-of-accelerated-backup-and-cloning-operations_overview.html["Précédent : présentation de l'architecture de Cloud Backup pour les applications."]
+
+[role="lead"]
+Cloud Backup pour les applications est une solution SaaS qui offre des fonctionnalités de protection des données pour les applications s'exécutant sur le stockage cloud NetApp. Cloud Backup pour les applications activées dans NetApp BlueXP offre une protection efficace, cohérente au niveau des applications et basée sur des règles de SAP HANA sur Azure NetApp Files. Cloud Backup pour applications offre un contrôle et une surveillance centralisés, tout en déléguant aux utilisateurs la possibilité de gérer les opérations de sauvegarde et de restauration spécifiques aux applications.
+
+Cloud Backup pour les applications s'exécute comme SaaS dans NetApp BlueXP et exploite le framework et l'interface utilisateur. La structure de l'environnement de travail BlueXP est utilisée pour configurer et gérer les identifiants de Azure NetApp Files.
+
+Un connecteur BlueXP doit être déployé dans le vnet du client. La communication entre les composants SaaS de NetApp et l'environnement client s'effectue exclusivement via Connector. Le connecteur exécute les opérations de stockage ANF à l'aide des API de gestion ANF.
+
+Le plug-in HANA fournit la logique propre à la base de données HANA et doit être déployé sur chaque hôte HANA. Le plug-in HANA communique avec la base de données HANA à l'aide du client HANA hdbsql et d'une clé de magasin utilisateur. Toutes les opérations de la base de données sont déclenchées par le connecteur BlueXP.
+
+image:anf-cba-image5.png["Cette image illustre l'architecture de base de NetApp SaaS, associée au réseau du client et à un abonnement Azure."]
+
+
+
+== Cloud Backup pour applications pour SAP HANA sur ANF
+
+
+
+=== Présentation de la solution
+
+Cloud Backup pour application prend en charge les opérations de sauvegarde basées sur des snapshots pour les composants suivants :
+
+. *Volume(s) de données du système SAP HANA*.
+. *Volume(s) non-données* d'une base de données SAP HANA. Par exemple, le `/hana/shared` Données de volume et/ou de serveur d'applications SAP.
+. *Volume(s) non-données global(s)* qui n'appartiennent pas à un système HANA spécifique. Par exemple, le répertoire de transport SAP `/usr/sap/trans`.
+
+
+Les opérations de sauvegarde de ces composants sont les suivantes :
+
+* Sauvegardes planifiées ou à la demande
+* Pré- et post-scripts facultatifs
+* Gestion de la conservation basée sur des règles
++
+** Pour les copies Snapshot au niveau du volume ANF
+** Dans le catalogue des sauvegardes SAP HANA (pour les sauvegardes de volume de données HANA)
+
+
+
+
+Les sauvegardes basées sur des fichiers SAP HANA sont utilisées pour vérifier l'intégrité des blocs de base de données et peuvent également être exécutées à la demande ou comme des opérations de sauvegarde planifiées. La gestion de la conservation pilotée par les règles s'effectue au niveau du système de fichiers et dans le catalogue des sauvegardes HANA.
+
+La gestion de la conservation de la sauvegarde des journaux de la base de données HANA s'effectue en fonction de la conservation définie des sauvegardes de données de la base de données HANA (basées sur des copies Snapshot ou des fichiers).
+
+CBA prend en charge les opérations de restauration pour toutes les sauvegardes Snapshot. Les sauvegardes basées sur des fichiers peuvent uniquement être restaurées à l'aide d'outils HANA natifs.
+
+image:anf-cba-image6.png["Cette image illustre la sauvegarde et la restauration d'un conteneur de base de données mutualisé pour un système HANA et de volumes globaux non-données."]
+
+
+
+=== Opérations de la solution
+
+Les sauvegardes de données Snapshot sont exécutées avec Cloud Backup pour les applications en déclenchant le point de sauvegarde de la base de données SAP HANA. La copie Snapshot, qui est créée sur la couche de stockage, est basée sur une image cohérente de la base de données SAP HANA. Voir la https://help.sap.com/docs/SAP_HANA_PLATFORM/6b94445c94ae495c83a19646e7c3fd56/b41a2823576f4726be649bc98e61d62c.html?q=sap%20hana%20snapshot%20backup["Guide d'administration SAP"^] pour en savoir plus.
+
+Pour permettre une sauvegarde complète de toutes les ressources SAP HANA, Cloud Backup pour applications vous permet également de sauvegarder tous les volumes non liés aux données à l'aide de copies Snapshot basées sur le stockage. Vous pouvez planifier des volumes autres que des volumes de données indépendamment de la sauvegarde de la base de données afin de mettre en place des règles de conservation et de protection individuelles.
+
+SAP recommande de combiner des sauvegardes Snapshot basées sur le stockage et une sauvegarde hebdomadaire basée sur des fichiers pour exécuter une vérification de l'intégrité des blocs. Vous pouvez exécuter le contrôle d'intégrité des blocs à partir de CBA. Les sauvegardes de contrôle d'intégrité des blocs (basées sur des fichiers) sont également utilisées pour décharger les sauvegardes vers un second emplacement de stockage.
+
+Selon vos règles de conservation configurables, Cloud Backup pour applications gère le nettoyage des sauvegardes de données, des sauvegardes de journaux et du catalogue des sauvegardes SAP HANA.
+
+La figure suivante résume la solution de sauvegarde.
+
+image:anf-cba-image7.png["Cette figure récapitule la solution de sauvegarde."]
+
+Lors de l'exécution d'une sauvegarde Snapshot basée sur le stockage de volumes autres que des données, Cloud Backup pour les applications effectue les tâches suivantes :
+
+. Crée une copie Snapshot de stockage du volume sans données.
+. Supprime les copies Snapshot de stockage en fonction de la règle de conservation définie.
+
+
+Lors de l'exécution d'une sauvegarde Snapshot basée sur le stockage de la base de données SAP HANA, Cloud Backup pour applications effectue les tâches suivantes :
+
+. Crée un point de sauvegarde SAP HANA pour créer une image cohérente sur la couche de persistance.
+. Crée une copie Snapshot de stockage du ou des volumes de données.
+. Enregistre la sauvegarde Snapshot de stockage dans le catalogue des sauvegardes SAP HANA.
+. Libère le point de sauvegarde de SAP HANA.
+. Supprime les copies Snapshot de stockage en fonction de la règle de conservation définie.
+. Supprime les entrées du catalogue de sauvegardes SAP HANA en fonction de la règle de conservation définie.
+. Lorsqu'une sauvegarde de données a été supprimée manuellement ou conformément à une règle de conservation, Cloud Backup pour applications supprime toutes les sauvegardes de journaux antérieures à la sauvegarde de données la plus ancienne. Les sauvegardes des journaux sont supprimées dans le système de fichiers et dans le catalogue de sauvegardes SAP HANA.
+
+
+
+
+=== Versions et configurations SAP HANA prises en charge
+
+Cloud Backup pour applications prend en charge les systèmes MDC HANA avec un ou plusieurs locataires avec les options de configuration suivantes :
+
+* SAP HANA 2.0 SPS4 et versions ultérieures
+* Systèmes SAP HANA à un seul hôte
+* Systèmes à plusieurs hôtes SAP HANA décrits dans la section link:anf-cba-backup-operations-with-hana-system-replication.html#backup-operations-with-hana-multiple-host-systems["« Les opérations de sauvegarde avec les systèmes HANA à plusieurs hôtes »"]
+* Système SAP HANA configuré avec la réplication système HANA (HSR) comme décrit dans la section link:anf-cba-backup-operations-with-hana-system-replication.html["Opérations de sauvegarde avec la réplication système HANA"]
+
+
+
+
+== Concepts et bonnes pratiques de Cloud Backup pour les applications
+
+
+
+=== Stratégie de protection des données
+
+Avant de configurer Cloud Backup pour des applications, vous devez définir la stratégie de protection des données en fonction des exigences RTO et RPO des différents systèmes SAP.
+
+Une approche commune consiste à définir les types de systèmes, tels que les systèmes de production, de développement, de test ou de sandbox. Tous les systèmes SAP d'un même type de système ont généralement les mêmes paramètres de protection des données.
+
+Vous devez définir les paramètres suivants :
+
+* Fréquence d'exécution d'une sauvegarde Snapshot
+* Durée de conservation d'une sauvegarde Snapshot
+* Fréquence d'exécution d'une vérification d'intégrité des blocs (sauvegardes basées sur des fichiers
+* Durée de conservation d'une sauvegarde de vérification de l'intégrité des blocs (sauvegarde basée sur des fichiers)
+
+
+Le tableau suivant présente un exemple de paramètres de protection des données pour les types de système production, développement et test. Pour le système de production, une fréquence de sauvegarde élevée a été définie et des sauvegardes hebdomadaires basées sur des fichiers sont exécutées. Les exigences des systèmes de test et de développement sont inférieures, et les sauvegardes Snapshot sont moins fréquentes.
+
+|===
+| Paramètres | Systèmes de production | Systèmes de développement | Systèmes de test 
+
+
+| Fréquence des sauvegardes Snapshot | Toutes les 4 heures | Toutes les 6 heures | Toutes les 12 heures 
+
+
+| Conservation des sauvegardes Snapshot | 3 jours | 3 jours | 3 jours 
+
+
+| Fréquence de vérification de l'intégrité des blocs | Une fois par semaine | Une fois par semaine | Une fois par semaine 
+
+
+| Conservation des vérifications d'intégrité des blocs | 4 semaines | 2 semaines | 1 semaine 
+|===
+Le tableau suivant présente les règles à configurer pour les paramètres de protection des données des opérations de sauvegarde Snapshot.
+
+|===
+| Paramètres | Police SnapshotEvery4h | Policy SnapshotEvery6h | Police SnapshotEvery12h 
+
+
+| Type de sauvegarde | Basé sur Snapshot | Basé sur Snapshot | Basé sur Snapshot 
+
+
+| Type de programme | Horaire | Horaire | Horaire 
+
+
+| La conservation | Nombre = 18 | Nombre = 12 | Nombre = 3 
+
+
+| Programme de sauvegarde | Toutes les 4 heures | Toutes les 6 heures | Toutes les 12 heures 
+|===
+Le tableau suivant présente les règles à configurer pour les paramètres de protection des données des opérations de sauvegarde basées sur des fichiers.
+
+|===
+| Paramètres | Police FileBased4Week | Fichier de police Based2Weeks | Fichier de police basées1semaine 
+
+
+| Type de sauvegarde | Basée sur un fichier | Basée sur un fichier | Basée sur un fichier 
+
+
+| Type de programme | Hebdomadaire | Hebdomadaire | Hebdomadaire 
+
+
+| La conservation | Nombre = 4 | Nombre = 2 | Nombre = 1 
+
+
+| Programme de sauvegarde | Tous les dimanches | Tous les dimanches | Tous les dimanches 
+|===
+
+
+== Les opérations de sauvegarde
+
+SAP a introduit la prise en charge des sauvegardes Snapshot dans MDC pour plusieurs systèmes mutualisés avec HANA 2.0 SPS4. Dans un système MDC SAP HANA, la configuration des locataires n'est pas nécessairement statique. Vous pouvez ajouter ou supprimer des locataires. Cloud Backup pour les applications ne peut pas compter sur la configuration découverte lorsque la base de données HANA est ajoutée à Cloud Backup pour les applications. Cloud Backup pour les applications doit savoir quels locataires sont disponibles au moment de l'exécution de la sauvegarde.
+
+Par conséquent, à chaque opération de sauvegarde, la première étape du workflow consiste à obtenir les informations de locataire. L'étape suivante est l'opération de sauvegarde Snapshot elle-même. Cette étape inclut la commande SQL qui permet de déclencher le point de sauvegarde HANA, la sauvegarde Snapshot ANF et la commande SQL qui permet de fermer le point de sauvegarde HANA. En utilisant la commande close, la base de données HANA met à jour le catalogue de sauvegardes de la base de données système et de chaque locataire.
+
+
+NOTE: SAP HANA ne prend pas en charge les opérations de sauvegarde Snapshot pour les systèmes MDC lorsque un ou plusieurs locataires sont arrêtés.
+
+Pour la gestion de la conservation des sauvegardes de données et de la gestion du catalogue de sauvegardes HANA, Cloud Backup pour les applications doit exécuter les opérations de suppression de catalogue pour la base de données système et toutes les bases de données de locataires identifiées lors de la première étape. De la même manière pour les sauvegardes de journaux, le workflow de Cloud Backup pour les applications doit fonctionner sur chaque locataire qui faisait partie de l'opération de sauvegarde.
+
+La figure suivante présente une vue d'ensemble du workflow de sauvegarde.
+
+image:anf-cba-image8.png["Cette figure présente un aperçu du flux de travail de sauvegarde."]
+
+
+
+=== Workflow de sauvegarde pour les sauvegardes Snapshot de la base de données HANA
+
+Cloud Backup pour les applications sauvegarde la base de données SAP HANA dans l'ordre suivant :
+
+. Cloud Backup pour applications lit la liste des locataires à partir de la base de données HANA.
+. Les informations sur le locataire sont stockées dans les métadonnées Cloud Backup pour applications pour l'opération de sauvegarde.
+. Cloud Backup pour applications déclenche un point de sauvegarde synchrone global SAP HANA pour créer une image de base de données cohérente sur la couche de persistance.
++
+
+NOTE: Pour un système de colocation unique ou multiple MDC SAP HANA, un point de sauvegarde global synchronisé pour la base de données système et pour chaque base de données de locataires est créé en une seule opération.
+
+. Cloud Backup pour les applications crée des copies Snapshot ANF pour tous les volumes de données configurés pour le système HANA. Pour une base de données HANA à un seul hôte, il n'existe qu'un seul volume de données. Une base de données SAP HANA à plusieurs hôtes existe plusieurs volumes de données.
+. Cloud Backup pour applications enregistre la sauvegarde Snapshot dans le catalogue de sauvegardes SAP HANA.
+. Cloud Backup pour applications supprime le point de sauvegarde SAP HANA.
+. Cloud Backup pour applications supprime les copies Snapshot ANF, les entrées de sauvegarde dans sa base de données et dans le catalogue des sauvegardes SAP HANA en fonction de la règle de conservation définie pour les sauvegardes. Les opérations du catalogue de sauvegardes HANA sont effectuées pour la base de données système et tous les locataires.
+. Cloud Backup pour applications supprime toutes les sauvegardes de journaux sur le système de fichiers et dans le catalogue de sauvegardes SAP HANA qui sont plus anciennes que la sauvegarde de données la plus ancienne identifiée dans le catalogue de sauvegardes SAP HANA. Ces opérations sont effectuées pour la base de données du système et tous les locataires.
+
+
+
+
+=== Flux de production de sauvegarde pour les opérations de vérification de l'intégrité des blocs
+
+Cloud Backup pour applications exécute le contrôle d'intégrité des blocs dans l'ordre suivant :
+
+. Cloud Backup pour applications lit la liste des locataires à partir de la base de données HANA.
+. Cloud Backup pour applications déclenche une opération de sauvegarde basée sur des fichiers pour la base de données du système et chaque locataire.
+. Cloud Backup pour applications supprime les sauvegardes basées sur des fichiers dans sa base de données, sur le système de fichiers et dans le catalogue de sauvegardes SAP HANA en fonction de la règle de conservation définie pour les opérations de vérification de l'intégrité des blocs. La suppression des sauvegardes sur le système de fichiers et les opérations du catalogue de sauvegardes HANA s'effectuent pour la base de données du système et pour tous les locataires.
+. Cloud Backup pour applications supprime toutes les sauvegardes de journaux sur le système de fichiers et dans le catalogue de sauvegardes SAP HANA qui sont plus anciennes que la sauvegarde de données la plus ancienne identifiée dans le catalogue de sauvegardes SAP HANA. Ces opérations sont effectuées pour la base de données du système et tous les locataires.
+
+
+
+
+== Gestion de la conservation des sauvegardes et organisation des sauvegardes des données et des journaux
+
+La gestion de la conservation des sauvegardes de données et la gestion des sauvegardes de journaux peuvent être divisées en quatre domaines principaux, y compris la gestion de la conservation des éléments suivants :
+
+* Sauvegardes Snapshot
+* Sauvegardes basées sur des fichiers
+* Sauvegardes de données dans le catalogue de sauvegardes SAP HANA
+* Sauvegardes des journaux dans le catalogue de sauvegardes SAP HANA et dans le système de fichiers
+
+
+La figure suivante présente les différents flux de travail et les dépendances de chaque opération. Les sections suivantes décrivent en détail les différentes opérations.
+
+image:anf-cba-image9.png["Cette figure présente les différents flux de travail et les dépendances de chaque opération."]
+
+
+
+=== Gestion de la conservation des sauvegardes Snapshot
+
+Cloud Backup pour applications gère les sauvegardes de bases de données SAP HANA et les sauvegardes sans volume de données en supprimant les copies Snapshot sur le stockage et dans le référentiel Cloud Backup pour les applications conformément à la conservation définie dans la règle de sauvegarde Cloud Backup pour les applications.
+
+La logique de gestion de la conservation est exécutée avec chaque workflow de sauvegarde dans Cloud Backup pour les applications.
+
+Vous pouvez également supprimer manuellement les sauvegardes Snapshot dans Cloud Backup pour les applications.
+
+
+
+=== Gestion de la conservation des sauvegardes basées sur des fichiers
+
+Cloud Backup pour applications gère le nettoyage des sauvegardes basées sur des fichiers en supprimant les sauvegardes sur le système de fichiers conformément à la conservation définie dans la règle de sauvegarde Cloud Backup pour applications.
+
+La logique de gestion de la conservation est exécutée avec chaque workflow de sauvegarde dans Cloud Backup pour les applications.
+
+
+
+=== Gestion de la conservation des sauvegardes de données dans le catalogue des sauvegardes SAP HANA
+
+Lorsque Cloud Backup pour applications supprime toute sauvegarde (Snapshot ou basée sur des fichiers), cette sauvegarde est également supprimée du catalogue des sauvegardes SAP HANA.
+
+
+
+=== Gestion de la conservation des sauvegardes des journaux
+
+La base de données SAP HANA crée automatiquement des sauvegardes de journaux. Ces sauvegardes de journaux créent des fichiers de sauvegarde pour chaque service SAP HANA individuel dans un répertoire de sauvegarde configuré dans SAP HANA.
+
+Les sauvegardes de journaux antérieures à la sauvegarde de données la plus ancienne ne sont plus nécessaires pour la récupération de transfert et peuvent donc être supprimées.
+
+Cloud Backup pour applications gère les sauvegardes de fichiers journaux au niveau du système de fichiers ainsi que dans le catalogue de sauvegardes SAP HANA en effectuant les étapes suivantes :
+
+* Cloud Backup pour applications lit le catalogue de sauvegardes SAP HANA pour obtenir l'ID de sauvegarde de la sauvegarde Snapshot ou basée sur des fichiers la plus ancienne.
+* Cloud Backup pour applications supprime toutes les sauvegardes de journaux du catalogue SAP HANA et du système de fichiers antérieur à cet ID de sauvegarde.
+
+
+
+NOTE: Cloud Backup pour les applications gère uniquement les tâches de gestion des sauvegardes créées par Cloud Backup pour les applications. Si d'autres sauvegardes de données sont créées en dehors de Cloud Backup pour les applications, assurez-vous que les sauvegardes de données sont supprimées du catalogue des sauvegardes. Si une telle sauvegarde de données n'est pas supprimée manuellement du catalogue de sauvegarde, elle peut devenir la sauvegarde de données la plus ancienne et les anciennes sauvegardes de journaux ne sont pas supprimées tant que cette sauvegarde de données n'est pas supprimée.
+
+
+NOTE: La gestion des sauvegardes de journaux est activée par défaut, mais peut être désactivée au niveau de l'hôte du plug-in HANA. Modifiez le `hana.property` fichier `/opt/NetApp/snapcenter/scc/etc`. Y compris le paramètre `LOG_CLEANUP_DISABLE = Y` dans le `hana.property` le fichier de configuration désactive la gestion des sauvegardes du journal. Si le fichier n'existe pas, vous devez le créer.
+
+
+
+== Assurez des communications sécurisées vers la base de données HANA
+
+Si la base de données HANA est configurée avec une communication sécurisée, le système `hdbsql` La commande exécutée par CBA doit utiliser des options de ligne de commande supplémentaires. Ceci peut être réalisé en utilisant un script wrapper qui appelle `hdbsql` avec les options requises.
+
+
+NOTE: Il existe plusieurs options pour configurer la communication SSL. Dans les exemples suivants, la configuration client la plus simple est décrite à l'aide de l'option de ligne de commande, où aucune validation de certificat de serveur n'est effectuée. Si la validation du certificat côté serveur et/ou client est requise, différentes options de ligne de commande hdbsql sont nécessaires et vous devez configurer l'environnement PSE en conséquence, comme décrit dans le Guide de sécurité SAP HANA.
+
+Au lieu de configurer le `hdbsql` exécutable dans le `hana.properties` fichiers, vous ajoutez le script wrapper. Dans le fichier `/opt/NetApp/snapcenter/scc/etc/hana.properties`, vous devez ajouter le contenu suivant. Si le fichier n'existe pas, vous devez le créer.
+
+Cet exemple concerne un système HANA avec SID=SM1 et numéro d'instance=12.
+
+....
+HANA_HDBSQL_CMD = /usr/sap/SM1/HDB12/exe/hdbsqls
+....
+Le script wrapper `hdbsqls` appels `hdbsql` avec les options de ligne de commande requises.
+
+....
+#/bin/bash
+/usr/sap/SM1/HDB12/exe/hdbsql -e -ssltrustcert $*
+....
+
+
+== Besoins de stockage pour les sauvegardes Snapshot
+
+La vitesse de modification des blocs sur la couche de stockage est supérieure par rapport aux bases de données classiques. En raison du processus de fusion de table HANA du magasin de colonnes, la table complète est écrite sur le disque, et pas seulement les données modifiées dans la table.
+
+Les données de notre base clients indiquent un taux de modification quotidien compris entre 20 % et 50 % si plusieurs sauvegardes Snapshot sont effectuées au cours de la journée.
+
+link:anf-cba-overview-of-installation-and-configuration-steps.html["Suivant : présentation des étapes d'installation et de configuration."]

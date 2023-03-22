@@ -1,0 +1,110 @@
+---
+sidebar: sidebar 
+permalink: backup/anf-cba-backup-operations-with-hana-system-replication.html 
+keywords: system replication, cba, hsr, multiple host, standby host 
+summary: Cette section décrit comment effectuer des opérations de sauvegarde avec la réplication de système HANA. 
+---
+= Opérations de sauvegarde avec la réplication système HANA
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:anf-cba-restore-and-recovery-from-snapshot-backup.html["Précédent : restauration et restauration à partir d'une sauvegarde Snapshot."]
+
+
+
+== Sauvegardes Snapshot de stockage et réplication système HANA
+
+Les opérations de sauvegarde sont toujours effectuées sur l'hôte SAP HANA principal, car les commandes SQL requises pour l'opération de sauvegarde ne peuvent pas être exécutées sur l'hôte SAP HANA secondaire.
+
+Pour les opérations de sauvegarde SAP HANA, les hôtes SAP HANA principaux et secondaires sont une entité unique. Ils partagent le même catalogue de sauvegardes SAP HANA et utilisent des sauvegardes pour la restauration et la restauration, que la sauvegarde ait été créée sur un hôte SAP HANA principal ou secondaire.
+
+Pour utiliser n'importe quelle sauvegarde pour la restauration et effectuer une restauration avant via des sauvegardes de journaux depuis les deux hôtes, vous devez disposer d'un emplacement de sauvegarde de journal partagé accessible depuis les deux hôtes. NetApp recommande d'utiliser un volume de stockage partagé. Cependant, vous devez également séparer la destination de sauvegarde du journal en sous-répertoires dans le volume partagé.
+
+Chaque hôte SAP HANA dispose de son propre volume de stockage. Lorsque vous utilisez une copie Snapshot basée sur le stockage pour effectuer une sauvegarde, une copie Snapshot cohérente avec les bases de données est créée sur le volume de stockage de l'hôte SAP HANA principal.
+
+image:anf-cba-image102.png["Cette figure montre comment une copie Snapshot cohérente avec les bases de données est créée sur le volume de stockage de l'hôte SAP HANA principal."]
+
+Lorsqu'un basculement vers l'hôte 2 est effectué, l'hôte 2 devient l'hôte SAP HANA principal, les sauvegardes sont désormais exécutées sur l'hôte 2 et les sauvegardes Snapshot sont créées au niveau du volume de stockage de l'hôte 2.
+
+La sauvegarde créée au niveau de l'hôte 2 peut être restaurée directement au niveau de la couche de stockage. Si vous devez utiliser une sauvegarde créée sur l'hôte 1, la sauvegarde doit être copiée depuis le volume de stockage de l'hôte 1 vers le volume de stockage de l'hôte 2. La restauration par transfert utilise les sauvegardes des journaux des deux hôtes.
+
+image:anf-cba-image103.png["Cette figure montre comment la restauration par transfert utilise les sauvegardes de journaux des deux hôtes."]
+
+
+
+== Opérations de sauvegarde avec les systèmes HANA compatibles CBA et HSR
+
+Comme décrit brièvement dans la section précédente, vous devez prendre en compte quelques éléments pour les opérations de sauvegarde avec les systèmes HANA compatibles HSR.
+
+* Une opération de sauvegarde peut uniquement être exécutée sur l'hôte HANA principal. Par conséquent, CBA doit savoir quel hôte est actuellement le principal lors de l'exécution d'une opération de sauvegarde.
++
+** Les instructions SQL de sauvegarde doivent être exécutées sur l'hôte principal actuel.
+** Une sauvegarde Snapshot ne doit être effectuée que sur le volume de données de l'hôte principal, car le volume de données de l'hôte secondaire n'est pas dans un état cohérent et est donc inutile dans le cadre d'une opération de restauration et de restauration.
+
+
+* La gestion de la conservation des sauvegardes Snapshot doit être effectuée sur les deux hôtes. Par exemple, lorsqu'un basculement vers l'hôte secondaire a été exécuté, les sauvegardes de l'ancien hôte principal doivent également être supprimées en fonction de la conservation définie sur toutes les couches, dans CBA, sur le volume ANF et dans le catalogue de sauvegardes HANA. Sinon, la suppression des anciennes sauvegardes de journaux basées sur la gestion de la conservation des sauvegardes de journaux est bloquée en raison des anciennes sauvegardes de données.
+
+
+Dans CBA, les hôtes HANA, principal et secondaire, sont configurés comme les systèmes HANA normaux, comme illustré dans la figure ci-dessous. La seule différence lors de la configuration est une case à cocher qui est cochée pour indiquer à CBA que ce système HANA fait partie d'un ralationship HSR. CBA lit l'état HSR des hôtes et peut déterminer quels hôtes appartiennent ensemble et quel hôte est primaire ou secondaire. Pour CBA en interne, ces deux hôtes sont traités comme une entité unique, où une sauvegarde est exécutée uniquement sur l'hôte principal actuel et la gestion de la rétention est effectuée sur les deux hôtes.
+
+
+NOTE: CBA prend uniquement en charge HSR pour une configuration à deux hôtes.
+
+image:anf-cba-image104.png["Cette figure montre comment CBA ne prend en charge HSR que pour une configuration à deux hôtes."]
+
+
+
+== Présentation des étapes d'installation et de configuration
+
+Il existe quelques différences mineures dans les étapes de configuration requises pour un système HANA compatible HSR. Dans cette section, nous ne mettons en évidence que les différences par rapport aux étapes de configuration standard déjà décrites.
+
+. Créez un utilisateur de sauvegarde au niveau de la base de données du système HANA sur l'hôte HSR principal.
+. Ajoutez l'hôte principal et configurez le système HANA dans Cloud Backup pour applications.
++
+.. Sélectionnez *HANA System Replication* pendant la configuration.
++
+image:anf-cba-image105.png["Capture d'écran de l'étape en cours de réalisation."]
+
+.. Ajoutez l'empreinte de stockage de l'hôte principal.
++
+image:anf-cba-image106.png["Capture d'écran de l'étape en cours de réalisation."]
+
+
+
+. Le nouveau système HANA est désormais répertorié avec une icône HSR.
++
+image:anf-cba-image107.png["Capture d'écran de l'étape en cours de réalisation."]
+
+. Ajoutez un hôte secondaire et configurez le système HANA dans Cloud Backup pour applications.
++
+.. Sélectionnez *HANA System Replication* pendant la configuration.
++
+image:anf-cba-image108.png["Capture d'écran de l'étape en cours de réalisation."]
+
+.. Ajoutez l'empreinte de stockage de l'hôte secondaire.
++
+image:anf-cba-image109.png["Capture d'écran de l'étape en cours de réalisation."]
+
++
+Les deux systèmes sont maintenant répertoriés avec l'icône HSR.
+
++
+image:anf-cba-image110.png["Capture d'écran de l'étape en cours de réalisation."]
+
+
+
+. Ajoutez des règles de sauvegarde au système HANA principal et secondaire.
++
+
+NOTE: Vous devez ajouter les mêmes règles aux deux systèmes car la gestion de la conservation est effectuée sur les deux hôtes HANA.
+
+
+
+Les sauvegardes sont désormais exécutées en fonction des règles définies. CBA déclenche toujours l'opération de sauvegarde Snapshot sur l'hôte HANA principal.
+
+link:anf-cba-backup-operations-with-hana-multiple-host-systems.html["Ensuite, les opérations de sauvegarde avec des systèmes HANA à plusieurs hôtes."]

@@ -2,6 +2,43 @@
 section: backup
 title: Sauvegarde, restauration et reprise après incident
 entries:
+- title: 'SAP HANA sur ANF : sauvegarde et restauration avec sauvegarde dans le cloud
+    pour les applications'
+  type: solutions
+  entries:
+  - title: Présentation
+    url: "/backup/anf-cba-overview.html"
+  - title: Sauvegarde et restauration avec Azure NetApp Files
+    url: "/backup/anf-cba-backup-and-recovery-using-azure-netapp-files.html"
+  - title: Cas d'utilisation et avantages de l'accélération des sauvegardes et des
+      opérations de clonage
+    entries:
+    - title: Présentation
+      url: "/backup/anf-cba-use-cases-and-value-of-accelerated-backup-and-cloning-operations_overview.html"
+    - title: Architecture de Cloud Backup pour les applications
+      url: "/backup/anf-cba-cloud-backup-for-applications-architecture.html"
+  - title: Présentation des étapes d'installation et de configuration
+    url: "/backup/anf-cba-overview-of-installation-and-configuration-steps.html"
+  - title: Création de règles de sauvegarde
+    url: "/backup/anf-cba-create-backup-policies.html"
+  - title: Opérations de sauvegarde basées sur des snapshots de la base de données
+      HANA
+    url: "/backup/anf-cba-snapshot-based-backup-operations-of-the-hana-database.html"
+  - title: Opérations de sauvegarde basées sur des fichiers de la base de données
+      HANA
+    url: "/backup/anf-cba-file-based-backup-operations-of-the-hana-database.html"
+  - title: Opérations de sauvegarde basées sur des snapshots de volumes non-données
+    url: "/backup/anf-cba-snapshot-based-backup-operations-of-non-data-volumes.html"
+  - title: Opérations de sauvegarde basées sur des snapshots de volumes globaux non-données
+    url: "/backup/anf-cba-snapshot-based-backup-operations-of-global-non-data-volumes.html"
+  - title: Restaurez et restaurez à partir d'une sauvegarde Snapshot
+    url: "/backup/anf-cba-restore-and-recovery-from-snapshot-backup.html"
+  - title: Opérations de sauvegarde avec la réplication système HANA
+    url: "/backup/anf-cba-backup-operations-with-hana-system-replication.html"
+  - title: Opérations de sauvegarde avec des systèmes HANA à plusieurs hôtes
+    url: "/backup/anf-cba-backup-operations-with-hana-multiple-host-systems.html"
+  - title: Où trouver des informations supplémentaires et l'historique des versions
+    url: "/backup/anf-cba-where-to-find-additional-information-and-version-history.html"
 - title: SAP HANA sur Amazon FSX pour NetApp ONTAP - sauvegarde et restauration avec
     SnapCenter
   type: solutions

@@ -1,0 +1,73 @@
+---
+sidebar: sidebar 
+permalink: backup/anf-cba-backup-operations-with-hana-multiple-host-systems.html 
+keywords: system replication, cba, hsr, multiple host, standby host 
+summary: Cette section décrit comment effectuer des opérations de sauvegarde avec la réplication de système HANA. 
+---
+= Opérations de sauvegarde avec des systèmes HANA à plusieurs hôtes
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:anf-cba-backup-operations-with-hana-system-replication.html["Précédent : opérations de sauvegarde avec la réplication système HANA."]
+
+
+
+= Opérations de sauvegarde avec des systèmes HANA à plusieurs hôtes
+
+La base de données HANA exécute les sauvegardes Snapshot de la même manière que pour les systèmes à un seul hôte. Les commandes SQL de l'opération de sauvegarde doivent être déclenchées au niveau de la base de données système, et le point de sauvegarde HANA est créé pour tous les nœuds workers HANA afin que tous les volumes de données de chaque nœud soient cohérents. Ensuite, les opérations de Snapshot de stockage doivent être effectuées sur chaque volume de données.
+
+
+
+== Systèmes HANA à plusieurs hôtes sans hôte de secours
+
+Un système HANA à plusieurs hôtes sans hôte de secours est configuré dans CBA de manière similaire à un système HANA à hôte unique.
+
+. Le plug-in HANA doit être installé sur le nœud worker, où le serveur de noms HANA et la base de données système sont en cours d'exécution. Les nœuds workers exécutant les Indexservers ne nécessitent pas le plug-in HANA.
+. La clé de magasin utilisateur HDB est configurée pour la base de données système de la même manière que pour un système HANA à hôte unique.
+. Lors de la configuration de l'empreinte du stockage, tous les volumes de données du système HANA doivent être ajoutés.
++
+Dans l'exemple suivant, vous ajoutez des volumes Data1, Data2 et Data3.
+
++
+
+NOTE: Les volumes de données de chaque hôte HANA doivent être montés sur chaque hôte de la même manière que la configuration d'un hôte de secours. Cloud Backup pour applications crée une liste de fichiers inclus dans la sauvegarde et doit donc avoir accès à tous les volumes appartenant au système HANA. La liste de fichiers est requise pour les opérations de restauration de fichiers uniques lorsque la réplication entre les régions ANF ou la sauvegarde ANF est activée.
+
++
+image:anf-cba-image111.png["Cette figure montre comment un plug-in HANA doit être installé sur les nœuds workers où s'exécute Nameserver/systemDB."]
+
+
+
+
+
+== Systèmes HANA à plusieurs hôtes avec hôte de secours
+
+Avec la version actuelle de CBA, les systèmes à plusieurs hôtes HANA avec un hôte de secours sont pris en charge en supposant que, après un basculement du serveur de noms vers l'hôte de secours, l'hôte en panne est redémarré et qu'il est ensuite doté de la même configuration de système d'exploitation, des mêmes montages de système de fichiers et du même plug-in HANA.
+
+Un système HANA à plusieurs hôtes avec hôte de secours est configuré dans CBA avec les étapes suivantes.
+
+. Le plug-n HANA doit être installé sur le nœud worker, où la base de données du système/serveur de noms HANA est en cours d'exécution.
+. La clé de stockage utilisateur HDB est configurée avec deux hôtes : la base de données système (hôte du serveur de noms) et l'hôte de secours. Les chaînes Host:port de la configuration de clé CBA doivent être séparées par un point-virgule et la liste doit commencer et se terminer par des guillemets doubles. Le client hdbsql commence ensuite par la première entrée de la clé de stockage utilisateur et tente de se connecter à la base de données. Si l'entrée ne fonctionne pas, l'entrée suivante est utilisée. Il est donc important de configurer l'hôte de serveur de noms principal en tant que premier et l'hôte de secours en tant que deuxième entrée de la clé de stockage utilisateur.
++
+image:anf-cba-image112.png["Cette capture d'écran affiche l'écran Ajouter un magasin d'utilisateurs avec les informations appropriées renseignées."]
+
+. Tous les volumes de données du système HANA doivent être ajoutés à la configuration de l'empreinte du stockage.
++
+Dans l'exemple présenté dans la figure ci-dessous, vous devez ajouter des volumes Data1 et Data2.
+
++
+image:anf-cba-image113.png["Cette figure montre comment ajouter Data1 et Data2 aux serveurs de noms de travail et au mode Veille."]
+
+
+
+En cas de basculement du serveur de noms vers l'hôte de secours, il est supposé que l'hôte en panne est redémarré dans une courte période et qu'il a la même configuration qu'auparavant. Dans ce cas, le plug-in HANA et les composants du magasin d'utilisateurs hdbsql et hdb sont disponibles et peuvent continuer à être utilisés pour les opérations de sauvegarde.
+
+Avec la configuration du magasin d'utilisateurs décrite précédemment, le client hdbsql utilise maintenant la deuxième entrée d'hôte qui pointe vers l'hôte du serveur de noms actuel et exécute les opérations de sauvegarde.
+
+image:anf-cba-image114.png["Cette figure illustre le redémarrage de la machine virtuelle défaillante et fait office de nouvel hôte de secours après un basculement vers l'hôte de secours."]
+
+link:anf-cba-where-to-find-additional-information-and-version-history.html["Suivant : où trouver des informations supplémentaires et l'historique des versions ?"]

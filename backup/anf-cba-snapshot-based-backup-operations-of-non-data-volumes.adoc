@@ -1,0 +1,105 @@
+---
+sidebar: sidebar 
+permalink: backup/anf-cba-snapshot-based-backup-operations-of-non-data-volumes.html 
+keywords: configuration, assign policy, non-data volume, cba topology view, azure portal 
+summary: Cette section décrit comment effectuer des opérations de sauvegarde Snapshot de volumes non-données. 
+---
+= Opérations de sauvegarde basées sur des snapshots de volumes non-données
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:anf-cba-file-based-backup-operations-of-the-hana-database.html["Précédent : opérations de sauvegarde basées sur des fichiers de la base de données HANA."]
+
+[role="lead"]
+Comme nous l'avons vu précédemment, CBA prend en charge l'opération de sauvegarde de volumes autres que les volumes de données. Les volumes non-données sont des volumes appartenant à un système SAP HANA spécifique, par exemple `/hana/shared` Ou des volumes de serveur d'applications SAP, par exemple `/usr/sap/SID` ou `sapmnt/SID`.
+
+
+
+== Configuration
+
+. Dans la vue du tableau de bord CBA, sélectionnez gérer le système – Ajouter un volume non-données.
++
+image:anf-cba-image57.png["Capture d'écran de l'étape en cours de réalisation."]
+
+. Entrez les informations pour le ou les volumes autres que les données.
++
+Sélectionnez l'environnement de travail et le compte NetApp utilisé pour les volumes ANF du système HANA. Sélectionnez le(s) volume(s). Dans notre exemple : `PR1_shared`.
+
++
+image:anf-cba-image58.png["Capture d'écran de l'étape en cours de réalisation."]
+
+
+
+
+
+== Attribuer une stratégie
+
+Pour activer les sauvegardes planifiées, la stratégie de sauvegarde doit être attribuée.
+
+. Accédez à *Assign policy* > *non-Data Volume*.
++
+image:anf-cba-image59.png["Capture d'écran de l'étape en cours de réalisation."]
+
+. Cliquez sur *attribuer*.
++
+image:anf-cba-image60.png["Capture d'écran de l'étape en cours de réalisation."]
+
+
+
+
+
+== Créer une sauvegarde à la demande d'un volume autre que des données
+
+Pour créer une sauvegarde de base de données à la demande, procédez comme suit :
+
+. Dans la vue du tableau de bord CBA, sélectionnez sauvegarde à la demande – Volume de données dans le menu contextuel.
++
+image:anf-cba-image61.png["Capture d'écran de l'étape en cours de réalisation."]
+
+. Dans la boîte de dialogue On-Demand Backup, sélectionnez *Policy-based* ou *one time*.
++
+** Avec la fonction Policy-based, la sauvegarde à la demande est traitée de la même manière que les sauvegardes planifiées concernant la conservation et la configuration pré et post-script.
+** Vous pouvez définir une conservation spécifique, un nom de sauvegarde spécifique et des préscripts et post-scripts spécifiques.
++
+Dans notre exemple, nous avons sélectionné basé sur des règles et nous devons sélectionner la règle et la conservation comme étape suivante.
+
++
+image:anf-cba-image62.png["Capture d'écran de l'étape en cours de réalisation."]
+
++
+Dans la vue surveillance des travaux, vous pouvez voir les différentes étapes du flux de travail, l'exécution des étapes et l'exécution totale des opérations. Dans notre exemple, la sauvegarde a pris 47 secondes.
+
++
+image:anf-cba-image63.png["Capture d'écran de la vue surveillance des travaux."]
+
+
+
+
+
+
+
+== Passez en revue les informations de sauvegarde de l'instantané dans la vue topologique CBA
+
+Dans le menu contextuel de la vue du tableau de bord CBA, sélectionnez *Afficher la topologie* pour ouvrir la vue d'ensemble de la sauvegarde.
+
+L'aperçu de la sauvegarde affiche la liste des sauvegardes créées à l'aide de CBA.
+
+
+NOTE: Le nom de la sauvegarde utilise le format défini dans la stratégie de sauvegarde. la même nomenclature établie est également utilisée pour le nom du Snapshot sur le volume ANF.
+
+image:anf-cba-image64.png["Capture d'écran de l'étape en cours de réalisation."]
+
+
+
+== Consultez les informations sur la sauvegarde Snapshot dans le portail Azure
+
+Le nom utilisé comme nom de sauvegarde dans CBA est également utilisé comme nom de sauvegarde Snapshot sur le volume ANF. La figure suivante présente le portail Azure et les sauvegardes Snapshot pour le volume non-données `pr1-shared`.
+
+image:anf-cba-image65.png["Capture d'écran de l'étape en cours de réalisation."]
+
+link:anf-cba-snapshot-based-backup-operations-of-global-non-data-volumes.html["Ensuite : opérations de sauvegarde basées sur des snapshots de volumes globaux non-données."]

@@ -1,0 +1,112 @@
+---
+sidebar: sidebar 
+permalink: backup/anf-cba-file-based-backup-operations-of-the-hana-database.html 
+keywords: assign policy, file-based backup, cba topology, sap hana studio 
+summary: Cette section décrit les opérations de sauvegarde basée sur des fichiers de la base de données HANA. 
+---
+= Opérations de sauvegarde basées sur des fichiers de la base de données HANA
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:anf-cba-snapshot-based-backup-operations-of-the-hana-database.html["Précédent : opérations de sauvegarde basées sur des snapshots de la base de données HANA."]
+
+[role="lead"]
+SAP recommande de combiner des sauvegardes Snapshot basées sur le stockage et une sauvegarde hebdomadaire basée sur des fichiers pour exécuter une vérification de l'intégrité des blocs. Cloud Backup pour applications prend en charge l'exécution d'un contrôle d'intégrité des blocs à l'aide d'une règle dans laquelle la sauvegarde basée sur des fichiers est sélectionnée comme type de sauvegarde.
+
+Les sauvegardes basées sur des fichiers sont également utilisées pour disposer de copies de sauvegarde secondaires en plus des sauvegardes Snapshot sur le volume de données HANA. Vous pouvez utiliser ces sauvegardes basées sur des fichiers pour des opérations de restauration et de récupération en cas de perte totale du volume de données primaire.
+
+Lors de la planification des sauvegardes à l'aide de cette règle, Cloud Backup pour applications crée une sauvegarde de fichiers SAP HANA standard pour le système et toutes les bases de données de locataires.
+
+
+
+== Attribuez une règle au système HANA
+
+Pour activer les sauvegardes planifiées, la règle de sauvegarde doit être attribuée au système HANA.
+
+. Accédez à *affecter une stratégie* > *Volume de données*.
++
+image:anf-cba-image48.png["Capture d'écran de l'étape en cours de réalisation."]
+
+. Sélectionnez la stratégie pour les sauvegardes basées sur des fichiers et cliquez sur *affecter*.
++
+image:anf-cba-image49.png["Capture d'écran de l'étape en cours de réalisation."]
+
+. La règle est désormais attribuée au système HANA et les sauvegardes basées sur des fichiers seront exécutées en fonction de la définition de planification.
+
+
+
+
+== Création à la demande d'une sauvegarde basée sur des fichiers
+
+Pour créer une sauvegarde de base de données à la demande, procédez comme suit :
+
+. Dans la vue du tableau de bord CBA, sélectionnez sauvegarde à la demande – Volume de données dans le menu contextuel.
++
+image:anf-cba-image50.png["Capture d'écran de l'étape en cours de réalisation."]
+
+. Dans la boîte de dialogue On-Demand Backup, sélectionnez *Policy-based* ou *one time*.
++
+** Avec *Policy-based*, la sauvegarde à la demande est traitée de la même manière que les sauvegardes planifiées concernant la rétention et la configuration pré et post-script.
+** Avec *une fois*, vous pouvez définir une rétention spécifique, un nom de sauvegarde spécifique et des pré- et post-scripts spécifiques.
+
+
+. Dans notre exemple, nous avons sélectionné basé sur des règles et nous sélectionnerons la règle et la conservation comme étape suivante.
++
+image:anf-cba-image51.png["Capture d'écran de l'étape en cours de réalisation."]
+
+. Dans la vue surveillance des travaux, vous pouvez voir les différentes étapes du flux de travail, l'exécution des étapes et l'exécution totale des opérations.
++
+image:anf-cba-image52.png["Capture d'écran de l'étape en cours de réalisation."]
+
++
+image:anf-cba-image53.png["Capture d'écran de l'étape en cours de réalisation."]
+
+
+
+
+
+== Passez en revue les informations de sauvegarde basées sur des fichiers dans la vue topologique CBA
+
+Cloud Backup pour applications n'affiche pas les sauvegardes basées sur des fichiers de la même manière que les sauvegardes basées sur des copies Snapshot. Seule la dernière sauvegarde basée sur des fichiers est répertoriée. La réussite ou l'échec des sauvegardes basées sur les fichiers sont visibles dans la vue surveillance des tâches.
+
+image:anf-cba-image54.png["Capture d'écran de l'étape en cours de réalisation."]
+
+
+
+== Vérifiez les informations de sauvegarde basée sur les fichiers sur le système de fichiers
+
+Un contrôle réussi de l'intégrité des blocs crée des fichiers de sauvegarde standard des données SAP HANA. CBA utilise le chemin de sauvegarde configuré dans la base de données HANA pour les opérations de sauvegarde de données basées sur des fichiers. la convention de nommage suit la configuration de la règle de sauvegarde pour la sauvegarde basée sur les fichiers.
+
+....
+vm-pr1:/hanabackup/PR1/file # ls -al *
+DB_PR1:
+total 3355880
+drwxr-xr-- 2 pr1adm sapsys       4096 Jan  3 10:12 .
+drwxr-x--- 4 pr1adm sapsys       4096 Dec 19 13:53 ..
+-rw-r----- 1 pr1adm sapsys     155648 Jan  3 10:10 SnapCenter_SnapCenter_PR1_WeeklyBlockIntegrityCheck_Weekly_2023_01_03_10_10_19_databackup_0_1
+-rw-r----- 1 pr1adm sapsys   83894272 Jan  3 10:11 SnapCenter_SnapCenter_PR1_WeeklyBlockIntegrityCheck_Weekly_2023_01_03_10_10_19_databackup_2_1
+-rw-r----- 1 pr1adm sapsys 1627398144 Jan  3 10:12 SnapCenter_SnapCenter_PR1_WeeklyBlockIntegrityCheck_Weekly_2023_01_03_10_10_19_databackup_3_1
+SYSTEMDB:
+total 3092672
+drwxr-xr-- 2 pr1adm sapsys       4096 Jan  3 10:12 .
+drwxr-x--- 4 pr1adm sapsys       4096 Dec 19 13:53 ..
+-rw-r----- 1 pr1adm sapsys     159744 Jan  3 10:10 SnapCenter_SnapCenter_PR1_WeeklyBlockIntegrityCheck_Weekly_2023_01_03_10_10_19_databackup_0_1
+-rw-r----- 1 pr1adm sapsys 1577066496 Jan  3 10:12 SnapCenter_SnapCenter_PR1_WeeklyBlockIntegrityCheck_Weekly_2023_01_03_10_10_19_databackup_1_1
+vm-pr1:/hanabackup/PR1/file #
+....
+
+
+== Passez en revue les informations de sauvegarde basée sur les fichiers dans SAP HANA Studio
+
+Le catalogue de sauvegardes SAP HANA affiche les entrées des bases de données système et locataire. Les figures suivantes illustrent la sauvegarde CBA basée sur des fichiers dans le catalogue de sauvegarde de la base de données système et de la base de données des locataires.
+
+image:anf-cba-image55.png["Les figures suivantes illustrent la sauvegarde CBA basée sur des fichiers dans le catalogue de sauvegarde de la base de données système."]
+
+image:anf-cba-image56.png["Les figures suivantes illustrent la sauvegarde CBA basée sur des fichiers dans le catalogue de sauvegarde de la base de données des locataires."]
+
+link:anf-cba-snapshot-based-backup-operations-of-non-data-volumes.html["Ensuite : opérations de sauvegarde basées sur des snapshots de volumes non-données."]

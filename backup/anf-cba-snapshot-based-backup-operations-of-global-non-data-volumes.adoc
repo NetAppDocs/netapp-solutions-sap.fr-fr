@@ -1,0 +1,120 @@
+---
+sidebar: sidebar 
+permalink: backup/anf-cba-snapshot-based-backup-operations-of-global-non-data-volumes.html 
+keywords: global non-data, configuration, assign policy, azure portal 
+summary: Cette section décrit comment créer des opérations de sauvegarde Snapshot de volumes globaux non-données. 
+---
+= Opérations de sauvegarde basées sur des snapshots de volumes globaux non-données
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:anf-cba-snapshot-based-backup-operations-of-non-data-volumes.html["Précédent : opérations de sauvegarde basées sur des snapshots de volumes non-données."]
+
+[role="lead"]
+Dans CBA, les volumes globaux autres que les données sont des volumes qui ne sont pas affectés à un système HANA spécifique. Par exemple, le répertoire de transport SAP `/usr/sap/trans` ou un référentiel logiciel.
+
+
+
+== Configuration
+
+Pour configurer la protection des données pour un volume non-données, procédez comme suit.
+
+. Cliquez sur *Ajouter un système HANA* et sélectionnez *volumes globaux non-Data* comme *Type de système*.
++
+image:anf-cba-image66.png["Capture d'écran de l'étape en cours de réalisation."]
+
+. Fournir un nom et un SID ou une liste de SID à titre d'information. Vous devez également sélectionner un hôte de plug-in. Il peut s'agir de n'importe quel hôte de plug-in de votre environnement.
++
+image:anf-cba-image67.png["Capture d'écran de l'étape en cours de réalisation."]
+
+. Cliquez sur *Ajouter un stockage* pour configurer l'empreinte de stockage du volume global non-données.
++
+image:anf-cba-image68.png["Capture d'écran de l'étape en cours de réalisation."]
+
+. Entrez les informations relatives au(x) volume(s) non-données global(s).
++
+image:anf-cba-image69.png["Capture d'écran de l'étape en cours de réalisation."]
+
+. Les volumes globaux non liés aux données sont répertoriés de la même manière qu'un système HANA dans le tableau de bord de l'ABC.
++
+image:anf-cba-image70.png["Capture d'écran de l'étape en cours de réalisation."]
+
+
+
+
+
+== Attribuer une stratégie
+
+Pour activer les sauvegardes planifiées, la stratégie de sauvegarde doit être attribuée.
+
+. Accédez à *affecter une police*.
++
+image:anf-cba-image71.png["Capture d'écran de l'étape en cours de réalisation."]
+
+. Cliquez sur *attribuer*.
++
+image:anf-cba-image72.png["Capture d'écran de l'étape en cours de réalisation."]
+
+. La policy est désormais assignée au volume non-data.
++
+image:anf-cba-image73.png["Capture d'écran de l'étape en cours de réalisation."]
+
+
+
+
+
+== Création d'une sauvegarde à la demande du volume global sans données
+
+Pour créer une sauvegarde de base de données à la demande, procédez comme suit :
+
+. Dans la vue du tableau de bord CBA, sélectionnez *On-Demand Backup* dans le menu contextuel.
++
+image:anf-cba-image74.png["Capture d'écran de l'étape en cours de réalisation."]
+
+. Dans la boîte de dialogue *On-Demand Backup*, sélectionnez *Policy-based* ou *one time*.
++
+** Avec *Policy-based*, la sauvegarde à la demande est traitée de la même manière que les sauvegardes planifiées concernant la rétention et la configuration pré et post-script.
+** Avec *une fois*, vous pouvez définir une rétention spécifique, un nom de sauvegarde spécifique et des pré- et post-scripts spécifiques.
++
+Dans notre exemple, nous avons sélectionné basé sur une stratégie et devons donc sélectionner la règle et la conservation à l'étape suivante.
+
++
+image:anf-cba-image75.png["Capture d'écran de l'étape en cours de réalisation."]
+
++
+Dans la vue *Job Monitoring*, vous pouvez voir les différentes étapes du flux de travail, l'exécution des étapes et l'exécution totale de l'opération. Dans notre exemple, la sauvegarde a pris 41 secondes.
+
++
+image:anf-cba-image76.png["Capture d'écran de l'étape en cours de réalisation."]
+
+
+
+
+
+
+
+== Passez en revue les informations de sauvegarde de l'instantané dans la vue topologique CBA
+
+Dans le menu contextuel de la vue du tableau de bord CBA, sélectionnez *Afficher la topologie* pour ouvrir la vue d'ensemble de la sauvegarde.
+
+L'aperçu de la sauvegarde affiche la liste des sauvegardes créées à l'aide de CBA.
+
+
+NOTE: Le nom de la sauvegarde utilise le format défini dans la stratégie de sauvegarde. la même nomenclature établie est également utilisée pour le nom du Snapshot sur le volume ANF.
+
+image:anf-cba-image77.png["Capture d'écran de l'étape en cours de réalisation."]
+
+
+
+== Consultez les informations sur la sauvegarde Snapshot dans le portail Azure
+
+Le nom utilisé comme nom de sauvegarde dans CBA est également utilisé comme nom de sauvegarde Snapshot sur le volume ANF. La figure suivante présente le portail Azure et les sauvegardes Snapshot pour le volume global non-données `software`.
+
+image:anf-cba-image78.png["Capture d'écran de l'étape en cours de réalisation."]
+
+link:anf-cba-restore-and-recovery-from-snapshot-backup.html["Suivant : restauration et restauration à partir d'une sauvegarde Snapshot."]
