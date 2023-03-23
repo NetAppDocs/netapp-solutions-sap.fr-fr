@@ -15,10 +15,6 @@ summary: Cette section décrit comment effectuer des opérations de sauvegarde a
 
 link:anf-cba-backup-operations-with-hana-system-replication.html["Précédent : opérations de sauvegarde avec la réplication système HANA."]
 
-
-
-= Opérations de sauvegarde avec des systèmes HANA à plusieurs hôtes
-
 La base de données HANA exécute les sauvegardes Snapshot de la même manière que pour les systèmes à un seul hôte. Les commandes SQL de l'opération de sauvegarde doivent être déclenchées au niveau de la base de données système, et le point de sauvegarde HANA est créé pour tous les nœuds workers HANA afin que tous les volumes de données de chaque nœud soient cohérents. Ensuite, les opérations de Snapshot de stockage doivent être effectuées sur chaque volume de données.
 
 
