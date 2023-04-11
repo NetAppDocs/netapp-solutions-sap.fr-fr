@@ -13,7 +13,7 @@ summary: 'Cette section décrit l"installation et la configuration de tous les c
 :imagesdir: ./../media/
 
 
-link:anf-cba-cloud-backup-for-applications-architecture.html["Précédent : architecture de sauvegarde dans le cloud pour les applications"]
+link:anf-cba-cloud-backup-for-applications-concepts-and-best-practices.html["Précédent : concepts et bonnes pratiques de Cloud Backup pour les applications."]
 
 [role="lead"]
 Les étapes d'installation et de configuration requises peuvent être divisées en trois zones.

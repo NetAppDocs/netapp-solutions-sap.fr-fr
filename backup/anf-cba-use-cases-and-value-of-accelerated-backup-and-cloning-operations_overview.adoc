@@ -4,7 +4,7 @@ permalink: backup/anf-cba-use-cases-and-value-of-accelerated-backup-and-cloning-
 keywords: system upgrade, backups, restore 
 summary: 'L"exécution de sauvegardes est un élément essentiel de toute stratégie de protection des données. Les sauvegardes sont planifiées régulièrement pour s"assurer que vous pouvez effectuer des restaurations après une panne système. C"est le cas d"usage le plus évident, mais il existe également d"autres tâches de gestion du cycle de vie SAP qui jouent un rôle crucial dans l"accélération des opérations de sauvegarde et de restauration.' 
 ---
-= Présenter les cas d'utilisation et les avantages de l'accélération des sauvegardes et des opérations de clonage
+= Cas d'utilisation et avantages de l'accélération des sauvegardes et des opérations de clonage
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
