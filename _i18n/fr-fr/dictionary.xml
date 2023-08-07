@@ -5863,5 +5863,5 @@
   <block id="a548c9345f858c0926b5fa0db82b1d29" category="admonition">Notez que la désactivation des id numériques nécessite une gestion des utilisateurs, comme décrit dans la section <block ref="19618adae76246007b68ca646cc14e2b" category="inline-link-macro-rx"></block></block>
   <block id="fcb7778cf38a196128c87d1b6e20281e" category="paragraph">Les gammes NetApp AFF A-Series et AFF C-Series ont été certifiées pour une utilisation avec SAP HANA dans le cadre de projets TDI (Tailored Data Center Integration).</block>
   <block id="7c3d41bb91a832b194d140ed72b101e7" category="list-text">AFF C250, AFF C400, AFF C800</block>
-  <block id="04e2bd68f6165239df3d6c856c1c6128" category="admonition">NetApp AFF série C requiert NetApp OMTAP 9.13.1 ou version ultérieure</block>
+  <block id="326f77b6d7cda2b57e0f8e89a8f89959" category="admonition">NetApp AFF C-Series requiert NetApp ONTAP 9.13.1 ou version ultérieure</block>
 </blocks>
