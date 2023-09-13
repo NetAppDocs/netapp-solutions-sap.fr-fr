@@ -25,9 +25,9 @@ La déduplication à la volée, la déduplication entre les volumes, la compress
 
 
 
-== NetApp Volume Encryption
+== Chiffrement de volume et d'agrégat NetApp
 
-L'utilisation de NetApp Volume Encryption (NVE) est prise en charge par SAP HANA.
+SAP HANA prend en charge l'utilisation du chiffrement de volume NetApp (NVE) et du chiffrement d'agrégat NetApp (NAE).
 
 
 
