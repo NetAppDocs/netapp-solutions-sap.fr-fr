@@ -343,17 +343,8 @@ NOTE: L'ID de domaine NFSv4 doit être défini sur la même valeur sur tous les 
 
 NOTE: Si vous utilisez NFSV4.1, pNFS peut être activé et utilisé.
 
-Définissez l'heure de location NFSv4 sur le SVM (comme indiqué dans le tableau suivant) si SAP HANA est utilisé avec plusieurs systèmes hôtes.
-
-|===
-| Action | Commande 
-
-
-| Définir l'heure de location NFSv4 | mettre en place le protocole advanced nfs modify -vserver <vserver_name> -v4-lease-seconds 10 set admin 
-|===
-Depuis HANA 2.0 SPS4, HANA fournit des paramètres pour contrôler le comportement de basculement. Au lieu de définir l'heure du bail au niveau du SVM, NetApp recommande d'utiliser ces paramètres HANA.
-
-Les paramètres sont compris dans `nameserver.ini` comme indiqué dans le tableau suivant. Conservez l'intervalle de relance par défaut de 10 secondes dans ces sections.
+En cas d'utilisation de systèmes SAP HANA à plusieurs hôtes avec basculement automatique de l'hôte, les paramètres de basculement doivent être ajustés dans `nameserver.ini` comme indiqué dans le tableau suivant.
+Conservez l'intervalle de tentatives par défaut de 10 secondes dans ces sections.
 
 |===
 | Section nameserver.ini | Paramètre | Valeur 
