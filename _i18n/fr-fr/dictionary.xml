@@ -1291,7 +1291,6 @@
   <block id="3cdfc8a41029c02db2f75000bec7b96d" category="paragraph"><block ref="3cdfc8a41029c02db2f75000bec7b96d" category="inline-link-macro-rx"></block></block>
   <block id="0f41d05d80faf4e3a75a6b4e2292f1c0" category="summary">La gamme de produits NetApp AFF est certifiée pour une utilisation avec SAP HANA dans les projets TDI. La plateforme de stockage d'entreprise certifiée se caractérise par le logiciel NetApp ONTAP.</block>
   <block id="0db6b81db5bd35e1eef1e83e154c3cb5" category="doc">Tr-4436 : SAP HANA sur les systèmes AFF de NetApp avec le protocole Fibre Channel</block>
-  <block id="eb08d46fa92fc78a1fd6730ec46042b6" category="list-text">ASA AFF A220, ASA AFF A250, ASA AFF A400, ASA AFF A700, ASA AFF A800, ASA AFF A900</block>
   <block id="97bfb54320c9268725cfbb374a5168fb" category="paragraph">Pour obtenir la liste complète des solutions de stockage certifiées NetApp pour SAP HANA, consultez la<block ref="a3976abaebe3520fd66c465c4d7747d7" category="inline-link-rx"></block>.</block>
   <block id="171ad4663cdfb492651e0357292fbe82" category="paragraph">Ce document décrit les configurations AFF qui utilisent le protocole FCP (Fibre Channel Protocol).</block>
   <block id="9ba59bf1b64e9d129b41dbb49f3c385f" category="paragraph">Les guides de configuration pour les systèmes AFF qui utilisent NFS et NetApp FAS sont disponibles via les liens suivants :</block>
@@ -5285,4 +5284,8 @@
   <block id="2976619a79e897d24427ec6796aa4a70" category="paragraph">En cas d'utilisation de systèmes SAP HANA à plusieurs hôtes avec basculement automatique de l'hôte, les paramètres de basculement doivent être ajustés dans<block ref="46649585ec21482ae2e5fcac30c7dcae" prefix=" " category="inline-code"></block> comme indiqué dans le tableau suivant.
 Conservez l'intervalle de tentatives par défaut de 10 secondes dans ces sections.</block>
   <block id="73d4ace7e434b8709f5a930ad845d6d6" category="paragraph">En cas d'utilisation de systèmes SAP HANA à plusieurs hôtes avec basculement automatique de l'hôte, les paramètres de basculement doivent être ajustés dans<block ref="46649585ec21482ae2e5fcac30c7dcae" prefix=" " category="inline-code"></block> comme indiqué dans le tableau suivant. Conservez l'intervalle de relance par défaut de 10 secondes dans ces sections.</block>
+  <block id="724e5b34aefa3c5cafe7d5d30b9a4beb" category="list-text">AFF A150, AFF A250, AFF A400, AFF A800, AFF A900</block>
+  <block id="f24901db79bd7adbcfdc97deb6526be7" category="list-text">ASA A250, ASA A400, ASA A800, ASA A900</block>
+  <block id="7165d8e624155bf7a4889b98927f605c" category="list-text">ASA C250, ASA C400, ASA C800</block>
+  <block id="ba7dc8a883957fda819c429f468dc4d0" category="admonition">NetApp AFF et ASA C-Series requièrent NetApp ONTAP 9.13.1 ou version ultérieure</block>
 </blocks>
