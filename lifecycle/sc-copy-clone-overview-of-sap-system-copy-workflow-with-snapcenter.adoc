@@ -13,8 +13,7 @@ summary: 'Le workflow de copie SAP est similaire aux étapes initiales d"un work
 :imagesdir: ./../media/
 
 
-link:sc-copy-clone-overview-of-sap-system-refresh-workflow-with-snapcenter.html["Précédent : présentation du workflow d'actualisation du système SAP avec SnapCenter."]
-
+[role="lead"]
 Le workflow de copie SAP est similaire aux étapes initiales d'un workflow de mise à jour du système. Le workflow avec SnapCenter comprend cinq étapes principales, comme illustré dans la figure suivante.
 
 . Installation initiale et préparation du système cible.
@@ -25,5 +24,3 @@ Le workflow de copie SAP est similaire aux étapes initiales d'un workflow de mi
 
 
 image:sc-copy-clone-image9.png["Erreur : image graphique manquante"]
-
-link:sc-copy-clone-overview-of-sap-system-clone-workflow-with-snapcenter.html["Ensuite : présentation du workflow de clonage de système SAP avec SnapCenter."]

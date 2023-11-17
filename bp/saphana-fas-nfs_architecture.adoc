@@ -13,9 +13,10 @@ summary: Des hôtes SAP HANA sont connectés aux contrôleurs de stockage via un
 :imagesdir: ./../media/
 
 
-link:saphana-fas-nfs_introduction.html["Précédent : SAP HANA sur les systèmes FAS 100 % Flash de NetApp avec guide de configuration NFS."]
+[role="lead"]
+Des hôtes SAP HANA sont connectés aux contrôleurs de stockage via une infrastructure réseau redondante 10GbE ou plus rapide. La communication des données entre les hôtes SAP HANA et les contrôleurs de stockage repose sur le protocole NFS.
 
-Des hôtes SAP HANA sont connectés aux contrôleurs de stockage via une infrastructure réseau redondante 10GbE ou plus rapide. La communication des données entre les hôtes SAP HANA et les contrôleurs de stockage repose sur le protocole NFS. Une infrastructure de commutation redondante est recommandée pour assurer une connectivité hôte vers stockage SAP HANA tolérante aux pannes en cas de défaillance d'un commutateur ou d'une carte réseau. Les commutateurs peuvent agréger des performances de ports individuels avec des canaux de port pour s'afficher en tant qu'entité logique unique au niveau de l'hôte.
+Une infrastructure de commutation redondante est recommandée pour assurer une connectivité hôte vers stockage SAP HANA tolérante aux pannes en cas de défaillance d'un commutateur ou d'une carte réseau. Les commutateurs peuvent agréger des performances de ports individuels avec des canaux de port pour s'afficher en tant qu'entité logique unique au niveau de l'hôte.
 
 Différents modèles de la gamme de produits des systèmes FAS peuvent être combinés au niveau de la couche de stockage afin de permettre la croissance et les besoins de performances et de capacité variables. Le nombre maximal d'hôtes SAP HANA pouvant être connectés au système de stockage est défini par les exigences de performances SAP HANA et le modèle du contrôleur NetApp utilisé. Le nombre de tiroirs disques requis n'est déterminé que par les exigences de capacité et de performance des systèmes SAP HANA. La figure suivante montre un exemple de configuration avec huit hôtes SAP HANA reliés à une paire haute disponibilité du stockage.
 
@@ -98,5 +99,3 @@ La réplication synchrone offre le mode StrictSync. Si l'écriture sur le stocka
 La figure suivante présente une vue d'ensemble générale de la solution. Le cluster de stockage de chaque site assure une haute disponibilité locale et est utilisé pour la charge de travail de production. Les données de chaque site sont répliquées de manière synchrone sur l'autre emplacement et sont disponibles en cas de basculement.
 
 image:saphana-fas-nfs_image8.png["Erreur : image graphique manquante"]
-
-link:saphana-fas-nfs_storage_sizing.html["Suivant : dimensionnement du stockage."]

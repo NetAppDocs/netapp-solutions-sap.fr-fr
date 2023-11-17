@@ -13,7 +13,8 @@ summary: 'En commençant par SAP HANA 2.0 SPS4, vous pouvez configurer des parti
 :imagesdir: ./../media/
 
 
-link:saphana-fas-nfs_sap_hana_software_installation.html["Précédent : installation du logiciel SAP HANA."]En commençant par SAP HANA 2.0 SPS4, vous pouvez configurer des partitions de volume de données supplémentaires, ce qui vous permet de configurer deux volumes ou plus pour le volume de données d'une base de données locataire SAP HANA. Vous pouvez également évoluer au-delà de la taille et des limites de performances d'un seul volume.
+[role="lead"]
+En commençant par SAP HANA 2.0 SPS4, vous pouvez configurer des partitions de volume de données supplémentaires, ce qui vous permet de configurer deux volumes ou plus pour le volume de données d'une base de données locataire SAP HANA. Vous pouvez également évoluer au-delà de la taille et des limites de performances d'un seul volume.
 
 
 NOTE: L'utilisation d'au moins deux volumes individuels pour le volume de données est disponible pour les systèmes SAP HANA à un ou plusieurs hôtes. Vous pouvez ajouter des partitions de volume de données supplémentaires à tout moment, mais cela peut nécessiter un redémarrage de la base de données SAP HANA.
@@ -212,5 +213,3 @@ Exécutez l'instruction SQL suivante sur la base de données du locataire pour a
 ALTER SYSTEM ALTER DATAVOLUME ADD PARTITION PATH '/hana/data2/SID/';
 ....
 image:saphana-fas-nfs_image19.jpg["Erreur : image graphique manquante"]
-
-link:saphana-fas-nfs_where_to_find_additional_information.html["Suivant : où trouver des informations supplémentaires ?"]

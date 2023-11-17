@@ -13,8 +13,7 @@ summary: Le rapport technique utilisé pour la configuration de laboratoire incl
 :imagesdir: ./../media/
 
 
-link:saphana-br-scs-snapcenter-concepts-and-best-practices.html["Précédent : concepts et bonnes pratiques SnapCenter."]
-
+[role="lead"]
 Le rapport technique utilisé pour la configuration de laboratoire inclut cinq configurations SAP HANA différentes :
 
 * *MS1.*
@@ -61,5 +60,3 @@ Le serveur SnapCenter est utilisé en tant qu'hôte de plug-in HANA central pour
 La figure suivante illustre la configuration du laboratoire.
 
 image:saphana-br-scs-image21.png["Erreur : image graphique manquante"]
-
-link:saphana-br-scs-snapcenter-configuration.html["Suivant : configuration SnapCenter."]

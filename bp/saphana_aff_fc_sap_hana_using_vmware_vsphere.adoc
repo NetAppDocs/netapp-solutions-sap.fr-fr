@@ -13,8 +13,7 @@ summary:
 :imagesdir: ./media/
 
 
-link:saphana_aff_fc_introduction.html["Précédent : tr-4436 : SAP HANA sur les systèmes AFF de NetApp avec le protocole Fibre Channel."]
-
+[role="lead"]
 Il existe plusieurs options pour connecter le stockage à des machines virtuelles (VM). La première option consiste à connecter les volumes de stockage avec NFS directement hors du système d'exploitation invité. Cette option est décrite dans le link:http://www.netapp.com/us/media/tr-4435.pdf["SAP HANA sur les systèmes AFF de NetApp avec NFS"].
 
 Les mappages de périphériques bruts (RDM), les data stores FCP ou les data stores VVOL avec FCP sont également pris en charge. Pour les deux options de datastore, un seul volume de données ou de journaux SAP HANA doit être stocké dans le datastore pour des utilisations productives. De plus, les fonctionnalités de sauvegarde et de restauration basées sur les copies Snapshot, orchestrées par SnapCenter, et les solutions reposant sur cela, comme le clonage du système SAP, ne peuvent pas être mises en œuvre.
@@ -27,5 +26,3 @@ https://wiki.scn.sap.com/wiki/display/VIRTUALIZATION/SAP+HANA+on+VMware+vSphere[
 * http://www.vmware.com/files/pdf/sap-hana-scale-out-deployments-on-vsphere.pdf["Meilleures pratiques et recommandations pour les déploiements en mode scale-out de SAP HANA sur VMware vSphere"^]
 * https://launchpad.support.sap.com/["2161991 - instructions de configuration de VMware vSphere - SAP ONE support Launchpad (connexion requise)"^]
 
-
-link:saphana_aff_fc_architecture.html["Ensuite : l'architecture."]

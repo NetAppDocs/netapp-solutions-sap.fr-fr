@@ -13,8 +13,6 @@ summary: 'Pour désaffecter un système cloné, il doit être arrêté et prêt 
 :imagesdir: ./../media/
 
 
-link:lama-ansible-sap-lama-provisioning-workflow-clone-system.html["Précédent : workflow de provisionnement SAP Lama - cloner le système"]
-
 [role="lead"]
 La figure suivante met en évidence les principales étapes exécutées avec le workflow de destruction du système.
 
@@ -54,5 +52,3 @@ image:lama-ansible-image38.png["Cette capture d'écran montre la progression du 
 image:lama-ansible-image39.png["Cette capture d'écran affiche la page de journal du workflow de destruction du système."]
 
 
-
-link:lama-ansible-sap-lama-provisioning-workflow-copy-system.html["Suivant : workflow de provisionnement SAP Lama - système de copie."]

@@ -80,5 +80,3 @@ Si un RPO plus important est acceptable, la réplication asynchrone peut être u
 La durée de démarrage d'une base de données SAP HANA est bien plus longue que celle des bases de données classiques, car une quantité importante de données doit être chargée dans la mémoire avant que la base de données puisse fournir les performances attendues. Par conséquent, une partie importante du RTO est le temps nécessaire au démarrage de la base de données. Avec une réplication basée sur le stockage et la réplication système HANA sans précharger les données, la base de données SAP HANA doit être démarrée en cas de basculement vers le site de reprise d'activité.
 
 La réplication du système SAP HANA offre un mode de fonctionnement dans lequel les données sont préchargées et mises à jour en continu sur l'hôte secondaire. Ce mode assure des valeurs RTO très faibles, mais il requiert également un serveur dédié qui n'est utilisé que pour recevoir les données de réplication du système source.
-
-link:saphana-dr-anf_disaster_recovery_solution_comparison.html["Ensuite, comparaison de solutions de reprise après incident."]

@@ -13,9 +13,10 @@ summary: 'La technologie FlexClone permet un processus de provisionnement rapide
 :imagesdir: ./../media/
 
 
-link:sc-copy-clone-overview-of-sap-system-copy-workflow-with-snapcenter.html["Précédent : présentation du workflow de copie du système SAP avec SnapCenter."]
+[role="lead"]
+Comme indiqué dans la section précédente, SnapCenter peut gérer des clones de jeux de données à partir de n'importe quelle sauvegarde Snapshot existante et provisionner rapidement ces jeux de données sur n'importe quel système cible. Il est essentiel de provisionner les données de production rapidement sur un système de réparation en cas de corruption logique, car il est souvent nécessaire de réinitialiser le système de réparation et de choisir un autre jeu de données de production.
 
-Comme indiqué dans la section précédente, SnapCenter peut gérer des clones de jeux de données à partir de n'importe quelle sauvegarde Snapshot existante et provisionner rapidement ces jeux de données sur n'importe quel système cible. Il est essentiel de provisionner les données de production rapidement sur un système de réparation en cas de corruption logique, car il est souvent nécessaire de réinitialiser le système de réparation et de choisir un autre jeu de données de production. La technologie FlexClone permet un processus de provisionnement rapide et permet d'importantes économies de capacité, car le système de réparation est généralement utilisé pendant une courte période seulement.
+La technologie FlexClone permet un processus de provisionnement rapide et permet d'importantes économies de capacité, car le système de réparation est généralement utilisé pendant une courte période seulement.
 
 La figure suivante récapitule les étapes requises pour une opération de clonage de systèmes SAP avec SnapCenter.
 
@@ -39,5 +40,3 @@ Si le système n'est plus nécessaire, le processus de nettoyage est effectué a
 image:sc-copy-clone-image10.png["Erreur : image graphique manquante"]
 
 La section link:sc-copy-clone-sap-system-clone-with-snapcenter.html["« Clone du système SAP avec SnapCenter »"] fournit une description détaillée détaillée du flux de travail du clone du système.
-
-link:sc-copy-clone-sap-hana-system-refresh-operation-workflows-using-storage-snapshot-backups.html["Suivant : workflows d'opération de mise à jour du système SAP HANA avec sauvegardes Snapshot de stockage."]

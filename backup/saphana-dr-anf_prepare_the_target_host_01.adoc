@@ -13,8 +13,7 @@ summary: Cette section décrit les étapes de préparation requises au niveau du
 :imagesdir: ./../media/
 
 
-link:saphana-dr-anf_disaster_recovery_failover_overview.html["Précédent : basculement de reprise après incident."]
-
+[role="lead"]
 Cette section décrit les étapes de préparation requises au niveau du serveur utilisé pour le basculement de reprise après sinistre.
 
 En fonctionnement normal, l'hôte cible est généralement utilisé à d'autres fins, par exemple comme système d'assurance qualité ou de test HANA. Par conséquent, la plupart des étapes décrites doivent être effectuées lors de l'exécution du test de basculement. D'autre part, les fichiers de configuration appropriés, comme `/etc/fstab` et `/usr/sap/sapservices`, peut être préparé puis mis en production en copiant simplement le fichier de configuration. La procédure de basculement de reprise après sinistre garantit que les fichiers de configuration préparés appropriés sont correctement configurés.
@@ -111,4 +110,3 @@ vm-pr1:~ # cat /etc/fstab
 # HANA file and log backup destination
 10.0.2.4:/hanabackup-sm-dest    /hanabackup nfs   rw,vers=3,hard,timeo=600,rsize=262144,wsize=262144,nconnect=8,bg,noatime,nolock 0 0
 ....
-link:saphana-dr-anf_break_and_delete_replication_peering.html["Next : break et supprime le peering de réplication."]

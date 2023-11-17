@@ -13,8 +13,7 @@ summary: 'Par défaut, SAP HANA n"utilise qu"un seul volume de données par serv
 :imagesdir: ./../media/
 
 
-link:saphana-fas-nfs_i_o_stack_configuration_for_sap_hana.html["Précédent : configuration de la pile d'E/S pour SAP HANA."]
-
+[role="lead"]
 Par défaut, SAP HANA n'utilise qu'un seul volume de données par service SAP HANA. En raison de la taille maximale du fichier du système de fichiers, nous vous recommandons de limiter la taille maximale du volume de données.
 
 Pour ce faire automatiquement, définissez le paramètre suivant dans `global.ini` dans la section `[persistence]`:
@@ -24,5 +23,3 @@ datavolume_striping = true
 datavolume_striping_size_gb = 8000
 ....
 Cela crée un nouveau volume de données après que la limite de 8 000 Go soit atteinte. https://launchpad.support.sap.com/["SAP note 240005 question 15"^] fournit plus d'informations.
-
-link:saphana-fas-nfs_sap_hana_software_installation.html["Suivant : installation du logiciel SAP HANA."]

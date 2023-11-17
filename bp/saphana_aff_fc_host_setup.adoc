@@ -13,8 +13,7 @@ summary: 'Avant de configurer l"hôte, les utilitaires hôtes NetApp SAN doivent
 :imagesdir: ./../media/
 
 
-link:saphana_aff_fc_sap_hana_storage_connector_api.html["Précédent : API du connecteur de stockage SAP HANA."]
-
+[role="lead"]
 Avant de configurer l'hôte, les utilitaires d'hôte SAN de NetApp doivent être téléchargés depuis le http://mysupport.netapp.com/["Support NetApp"^] Et installé sur les serveurs HANA. La documentation de l'utilitaire hôte contient des informations sur les logiciels supplémentaires qui doivent être installés en fonction du HBA FCP utilisé.
 
 Cette documentation contient également des informations sur les configurations multipathing spécifiques à la version de Linux utilisée. Ce document décrit les étapes de configuration requises pour SLES 12 SP1 ou supérieur et RHEL 7. 2 ou ultérieure, comme décrit dans le https://library.netapp.com/ecm/ecm_download_file/ECMLP2547958["Guide d'installation et de configuration de Linux Host Utilities 7.1"^].
@@ -380,5 +379,3 @@ stlrx300s8-6:/ # cat /etc/fstab
 
 
 Pour monter les systèmes de fichiers, exécutez le `mount –a` commande sur chaque hôte.
-
-link:saphana_aff_fc_i_o_stack_configuration_for_sap_hana.html["Suivant : configuration de la pile d'E/S pour SAP HANA."]

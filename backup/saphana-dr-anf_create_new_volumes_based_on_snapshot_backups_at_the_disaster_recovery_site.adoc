@@ -13,9 +13,10 @@ summary: 'Selon la configuration de reprise après incident (avec ou sans répli
 :imagesdir: ./../media/
 
 
-link:saphana-dr-anf_prepare_the_target_host.html["Précédent : préparer l'hôte cible."]
+[role="lead"]
+Selon la configuration de reprise après incident (avec ou sans réplication de sauvegarde des journaux), il faut créer deux ou trois nouveaux volumes basés sur des sauvegardes Snapshot. Dans les deux cas, un nouveau volume de données et le volume partagé HANA doivent être créés.
 
-Selon la configuration de reprise après incident (avec ou sans réplication de sauvegarde des journaux), il faut créer deux ou trois nouveaux volumes basés sur des sauvegardes Snapshot. Dans les deux cas, un nouveau volume de données et le volume partagé HANA doivent être créés. Un nouveau volume du volume de sauvegarde des journaux doit être créé si les données de sauvegarde des journaux sont également répliquées. Dans notre exemple, le volume de sauvegarde des données et des journaux a été répliqué sur le site de reprise sur incident. Voici la procédure à suivre pour utiliser Azure Portal.
+Un nouveau volume du volume de sauvegarde des journaux doit être créé si les données de sauvegarde des journaux sont également répliquées. Dans notre exemple, le volume de sauvegarde des données et des journaux a été répliqué sur le site de reprise sur incident. Voici la procédure à suivre pour utiliser Azure Portal.
 
 . L'une des sauvegardes Snapshot cohérentes au niveau des applications est sélectionnée comme source pour le nouveau volume du volume de données HANA. L'option Restaurer vers un nouveau volume est sélectionnée pour créer un nouveau volume basé sur la sauvegarde snapshot.
 +
@@ -51,5 +52,3 @@ image:saphana-dr-anf_image25.png["Erreur : image graphique manquante"]
 NOTE: Lorsqu'un pool de capacité doté d'un niveau de performance faible a été utilisé, les volumes doivent à présent être déplacés vers un pool de capacité qui fournit les performances requises.
 
 Les trois nouveaux volumes sont désormais disponibles et peuvent être montés sur l'hôte cible.
-
-link:saphana-dr-anf_mount_the_new_volumes_at_the_target_host.html["Suivant : montez les nouveaux volumes sur l'hôte cible."]

@@ -23,5 +23,3 @@ NetApp propose un ensemble complet de modules Ansible qui permet à SAP Lama d'a
 L'intégration peut être utilisée par les clients qui exécutent des solutions de stockage NetApp sur site ou par les clients qui utilisent les services de stockage NetApp dans des fournisseurs de cloud public comme Amazon Web Services, Microsoft Azure ou Google Cloud Platform.
 
 Ce document décrit la configuration de SAP Lama avec des fonctionnalités de stockage NetApp pour les opérations de copie de systèmes SAP, de clonage et de mise à jour à l'aide de l'automatisation Ansible.
-
-link:lama-ansible-sap-system-clone,-copy,-and-refresh-scenarios.html["Ensuite : scénarios de clonage, de copie et de mise à jour du système SAP."]

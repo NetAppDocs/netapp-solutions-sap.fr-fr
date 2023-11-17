@@ -13,8 +13,7 @@ summary: Selon que la réplication de sauvegarde des journaux fait partie de la 
 :imagesdir: ./../media/
 
 
-link:saphana-dr-anf_hana_database_recovery.html["Précédent : restauration de base de données HANA."]
-
+[role="lead"]
 Selon que la réplication de sauvegarde des journaux fait partie de la configuration de reprise sur incident, les étapes de la reprise sur incident sont légèrement différentes. Cette section décrit le basculement de reprise après incident pour la réplication de données uniquement à des fins de sauvegarde, ainsi que pour la réplication de volume de données associée à la réplication de volume de sauvegarde des journaux.
 
 Pour exécuter le basculement de reprise après incident, procédez comme suit :
@@ -34,5 +33,3 @@ Pour exécuter le basculement de reprise après incident, procédez comme suit :
 Les sous-sections suivantes décrivent ces étapes de manière détaillée, ainsi que la figure suivante décrit les tests de basculement en cas de reprise après incident.
 
 image:saphana-dr-anf_image26.png["Erreur : image graphique manquante"]
-
-link:saphana-dr-anf_prepare_the_target_host_01.html["Suivant : préparer l'hôte cible."]

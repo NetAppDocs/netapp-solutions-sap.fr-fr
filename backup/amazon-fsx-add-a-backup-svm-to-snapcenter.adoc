@@ -13,8 +13,7 @@ summary: 'Cette section décrit l"ajout d"un SVM de sauvegarde à SnapCenter.'
 :imagesdir: ./../media/
 
 
-link:amazon-fsx-configure-replication-relationships-on-fsx-for-ontap-file-systems.html["Précédent : configuration des relations de réplication sur FSX pour les systèmes de fichiers ONTAP."]
-
+[role="lead"]
 Pour ajouter un SVM de sauvegarde à SnapCenter, effectuez la procédure suivante :
 
 . Configurer le SVM où le volume cible SnapVault est situé dans SnapCenter
@@ -30,5 +29,3 @@ image:amazon-fsx-image77.png["Erreur : image graphique manquante"]
 La SVM est désormais disponible dans SnapCenter.
 
 image:amazon-fsx-image78.png["Erreur : image graphique manquante"]
-
-link:amazon-fsx-create-a-new-snapcenter-policy-for-backup-replication.html["Next : créez une nouvelle règle SnapCenter pour la réplication de sauvegarde."]

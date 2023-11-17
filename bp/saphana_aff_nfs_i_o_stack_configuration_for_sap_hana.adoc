@@ -13,8 +13,7 @@ summary: 'À partir de SAP HANA 1.0 SPS10, SAP a introduit des paramètres perme
 :imagesdir: ./../media/
 
 
-link:saphana_aff_nfs_sap_hana_installation_preparations_for_nfsv4.html["Précédent : préparation de l'installation de SAP HANA pour NFSv4."]
-
+[role="lead"]
 À partir de SAP HANA 1.0 SPS10, SAP a introduit des paramètres permettant d'ajuster le comportement des E/S et d'optimiser la base de données pour les systèmes de fichiers et de stockage utilisés.
 
 Des tests de performances ont été menés par NetApp pour définir les valeurs qui conviennent le mieux. Le tableau suivant répertorie les valeurs optimales issues des tests de performances.
@@ -65,4 +64,3 @@ python setParameter.py -set=SYSTEM/global.ini/fileio/async_read_submit=on
 python setParameter.py -set=SYSTEM/global.ini/fileio/async_write_submit_active=on
 python setParameter.py -set=SYSTEM/global.ini/fileio/async_write_submit_blocks=all
 ....
-link:saphana_aff_nfs_sap_hana_data_volume_size.html["Ensuite : taille du volume de données SAP HANA."]

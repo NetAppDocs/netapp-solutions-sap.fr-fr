@@ -13,7 +13,8 @@ summary: 'Les conditions requises pour l"installation du logiciel SAP HANA sont 
 :imagesdir: ./../media/
 
 
-link:saphana_fas_fc_i_o_stack_configuration_for_sap_hana.html["Précédent : configuration de la pile d'E/S pour SAP HANA."]
+[role="lead"]
+Les conditions requises pour l'installation du logiciel SAP HANA sont décrites ci-dessous.
 
 
 
@@ -143,5 +144,3 @@ Enter Installation Path [/hana/shared]:
 Enter Local Host Name [sapcc-hana-tst-03]:
 ....
 Vérifiez que l'outil d'installation a installé tous les composants sélectionnés sur tous les hôtes de travail et de secours.
-
-link:saphana_fas_fc_adding_additional_data_volume_partitions_for_sap_hana_single-host_systems.html["Ensuite, ajout de partitions de volume de données supplémentaires pour les systèmes SAP HANA à un seul hôte."]

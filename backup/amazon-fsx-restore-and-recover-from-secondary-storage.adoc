@@ -13,8 +13,7 @@ summary: 'Cette section décrit comment restaurer et récupérer des données à
 :imagesdir: ./../media/
 
 
-link:amazon-fsx-create-a-backup-with-replication.html["Précédent : créez une sauvegarde avec la réplication."]
-
+[role="lead"]
 Pour restaurer et récupérer à partir d'un stockage secondaire, procédez comme suit :
 
 Pour récupérer la liste de toutes les sauvegardes du stockage secondaire, dans la vue topologie SnapCenter, cliquez sur copies du coffre-fort, sélectionnez une sauvegarde et cliquez sur Restaurer.
@@ -26,5 +25,3 @@ La boîte de dialogue de restauration affiche les emplacements secondaires.
 image:amazon-fsx-image93.png["Erreur : image graphique manquante"]
 
 Les autres étapes de restauration et de restauration sont identiques à celles précédemment décrites pour une sauvegarde Snapshot sur le stockage primaire.
-
-link:amazon-fsx-where-to-find-additional-information.html["Suivant : où trouver des informations supplémentaires et l'historique des versions ?"]

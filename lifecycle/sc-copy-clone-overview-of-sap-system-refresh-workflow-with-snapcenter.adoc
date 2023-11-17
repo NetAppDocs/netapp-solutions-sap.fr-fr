@@ -13,8 +13,7 @@ summary: 'SnapCenter fournit des workflows qui vous permettent de gérer des clo
 :imagesdir: ./../media/
 
 
-link:sc-copy-clone-use-cases-for-system-refresh-and-cloning.html["Précédent : cas d'utilisation pour la mise à jour et le clonage du système."]
-
+[role="lead"]
 SnapCenter fournit des workflows qui vous permettent de gérer des clones de jeux de données à partir de toute sauvegarde Snapshot existante. Ce jeu de données cloné, un volume FlexClone, peut être utilisé pour provisionner rapidement un volume de données HANA à partir d'un système source et le relier à un système cible. Elle est donc parfaitement adaptée à l'exécution des opérations de mise à jour des systèmes pour les systèmes de QA, de test, de sandbox et de formation.
 
 Les workflows de clonage SnapCenter gèrent toutes les opérations requises sur la couche de stockage et peuvent être étendus à l'aide de scripts pour exécuter des opérations spécifiques à l'hôte et à la base de données HANA. Dans ce document, nous utilisons un script pour exécuter des opérations de montage et de démontage sur l'hôte cible, ainsi que des opérations de restauration et d'arrêt de base de données HANA. Les workflows SnapCenter avec une automatisation supplémentaire à l'aide du script traitent toutes les opérations de base de données HANA requises, mais ne couvrent pas les étapes de post-traitement SAP requises. Le post-traitement SAP doit être effectué manuellement ou avec des outils tiers.
@@ -56,5 +55,3 @@ La figure suivante présente le workflow d'actualisation des systèmes SAP avec 
 image:sc-copy-clone-image8.png["Erreur : image graphique manquante"]
 
 La section link:sc-copy-clone-sap-hana-system-refresh-with-snapcenter.html["« Mise à jour du système SAP HANA avec SnapCenter »"] fournit une description détaillée détaillée détaillée des deux flux de travail de mise à jour du système.
-
-link:sc-copy-clone-overview-of-sap-system-copy-workflow-with-snapcenter.html["Ensuite : présentation du workflow de copie du système SAP avec SnapCenter."]

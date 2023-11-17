@@ -13,8 +13,7 @@ summary: 'Le terme copie système SAP est souvent utilisé comme synonyme de tro
 :imagesdir: ./../media/
 
 
-link:sc-copy-clone-introduction.html["Précédent : introduction."]
-
+[role="lead"]
 Le terme copie système SAP est souvent utilisé comme synonyme de trois processus différents : actualisation système SAP, copie système SAP ou opérations de clonage de système SAP. Il est important de distinguer les différentes opérations, car les flux de travail et les cas d'utilisation diffèrent d'une opération à l'autre.
 
 * *Actualisation du système SAP.* une actualisation du système SAP est une actualisation d'un système SAP cible existant avec les données d'un système SAP source. Le système cible fait généralement partie d'un environnement de transport SAP, par exemple un système d'assurance qualité, qui est actualisé avec les données du système de production. Le nom d'hôte, le numéro d'instance et le SID sont différents pour les systèmes source et cible.
@@ -29,5 +28,3 @@ Ces trois opérations peuvent être entièrement automatisées à l'aide de SAP 
 NetApp a également collaboré avec libelle https://www.libelle.com["www.libelle.com"^] Pour intégrer le clonage SnapCenter à libelle SystemCopy afin d'automatiser le pré et le post-traitement de SAP. Une description détaillée de la solution est disponible à l'adresse link:https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/libelle-sc-overview.html["Automatisation des opérations de copie de systèmes SAP avec libelle SystemCopy"^].
 
 image:sc-copy-clone-image2.png["Erreur : image graphique manquante"]
-
-link:sc-copy-clone-use-cases-for-system-refresh-and-cloning.html["Ensuite : cas d'utilisation pour la mise à jour et le clonage du système."]

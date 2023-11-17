@@ -13,8 +13,7 @@ summary:
 :imagesdir: ./../media/
 
 
-link:saphana-backup-anf-lab-setup-used-for-this-report.html["Précédent : configuration de laboratoire utilisée pour ce rapport."]
-
+[role="lead"]
 Comme indiqué dans la section link:saphana-backup-anf-snapcenter-service-concepts-and-best-practices.html#data-protection-strategy["« Stratégie de protection des données »,"] Les règles sont généralement configurées indépendamment des ressources et peuvent être utilisées par plusieurs bases de données SAP HANA.
 
 Une configuration minimale typique comprend les règles suivantes :
@@ -77,5 +76,3 @@ La figure suivante présente un récapitulatif des règles configurées.
 image:saphana-backup-anf-image18.png["Erreur : image graphique manquante"]
 
 
-
-link:saphana-backup-anf-snapcenter-service-snapshot-backup-configuration-overview.html["Ensuite, présentation de la configuration de sauvegarde Snapshot du service SnapCenter."]

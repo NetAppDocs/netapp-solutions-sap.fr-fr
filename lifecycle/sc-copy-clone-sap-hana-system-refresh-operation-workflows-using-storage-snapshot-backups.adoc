@@ -13,8 +13,7 @@ summary: Les étapes requises pour actualiser un système SAP HANA dépendent de
 :imagesdir: ./../media/
 
 
-link:sc-copy-clone-overview-of-sap-system-clone-workflow-with-snapcenter.html["Précédent : présentation du workflow de clonage du système SAP avec SnapCenter."]
-
+[role="lead"]
 Les étapes requises pour actualiser un système SAP HANA dépendent de la configuration des locataires du système source et du nom de locataire requis dans le système cible, comme illustré dans la figure suivante.
 
 Le nom du locataire étant configuré dans la base de données du système, le nom du locataire du système source est également disponible sur le système cible après la récupération de la base de données du système. Ainsi, le locataire du système cible ne peut être restauré qu'avec le même nom que le locataire source, comme illustré à l'option 1 dans la figure suivante. Si le nom du locataire sur le système cible doit être différent, le locataire doit d'abord être restauré avec le même nom que le locataire source, puis renommé avec le nom du locataire cible requis. Il s'agit de l'option 2 dans la figure suivante.
@@ -29,5 +28,3 @@ image:sc-copy-clone-image11.png["Erreur : image graphique manquante"]
 Cette figure montre l'indicateur de configuration pour l'installation initiale d'un seul tenant MDC.
 
 image:sc-copy-clone-image12.png["Erreur : image graphique manquante"]
-
-link:sc-copy-clone-automation-example-scripts.html["Suivant : exemples de scripts d'automatisation."]

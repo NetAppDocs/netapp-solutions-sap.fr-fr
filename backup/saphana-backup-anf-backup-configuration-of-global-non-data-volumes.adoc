@@ -13,8 +13,7 @@ summary: Cette section répertorie les étapes nécessaires pour procéder à la
 :imagesdir: ./../media/
 
 
-link:saphana-backup-anf-backup-configuration-of-sap-hana-non-data-volumes.html["Précédent : configuration de sauvegarde des volumes SAP HANA non-data."]
-
+[role="lead"]
 Pour définir la configuration de sauvegarde des volumes globaux non-données, procédez comme suit :
 
 . Accédez à SAP HANA Systems et cliquez sur Add (Ajouter).
@@ -47,5 +46,3 @@ image:saphana-backup-anf-image44.png["Erreur : image graphique manquante"]
 image:saphana-backup-anf-image45.png["Erreur : image graphique manquante"]
 
 
-
-link:saphana-backup-anf-sap-hana-database-snapshot-backups.html["Next : sauvegardes Snapshot de la base de données SAP HANA."]

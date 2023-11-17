@@ -29,5 +29,3 @@ Les points suivants résument les défis liés à la sauvegarde et la restaurati
 * * Augmentation du coût des temps d'arrêt.* les temps d'arrêt imprévus d'un système SAP affectent généralement les finances de l'entreprise. Les temps d'indisponibilité non planifiés sont, en grande partie, consommés par la restauration du système SAP. Par conséquent, le RTO souhaité dicte la conception de l'architecture de sauvegarde et de restauration.
 * *Temps de sauvegarde et de restauration pour les projets de mise à niveau SAP.* le plan de projet pour une mise à niveau SAP comprend au moins trois sauvegardes de la base de données SAP. Ces sauvegardes réduisent considérablement le temps disponible pour le processus de mise à niveau. La décision de procéder est généralement basée sur le temps nécessaire à la restauration et à la récupération de la base de données à partir de la sauvegarde précédemment créée. Plutôt que de restaurer un système à son état précédent, une restauration rapide offre plus de temps pour résoudre les problèmes susceptibles de se produire lors d'une mise à niveau.
 
-
-link:saphana-backup-anf-the-netapp-solution.html["Ensuite, la solution NetApp."]

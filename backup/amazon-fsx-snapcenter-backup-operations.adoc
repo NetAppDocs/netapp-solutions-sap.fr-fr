@@ -13,7 +13,8 @@ summary: 'Cette section décrit comment créer une sauvegarde Snapshot à la dem
 :imagesdir: ./../media/
 
 
-link:amazon-fsx-snapcenter-configuration.html["Précédent : configuration SnapCenter."]
+[role="lead"]
+Vous pouvez créer une sauvegarde Snapshot à la demande et effectuer un contrôle d'intégrité des blocs à la demande.
 
 
 
@@ -119,4 +120,3 @@ drwxr-xr-x 4 pfxadm sapsys       4096 Feb 21 15:02 ..
 -rw-r----- 1 pfxadm sapsys 3825213440 Feb 22 12:55 SnapCenter_SnapCenter_hana-1_BlockIntegrityCheck_Weekly_02-22-2022_12.55.18.7966_databackup_1_1
 hana-1:~ #
 ....
-link:amazon-fsx-backup-of-non-data-volumes.html["Next : sauvegarde de volumes non-data."]

@@ -13,8 +13,7 @@ summary:
 :imagesdir: ./../media/
 
 
-link:saphana_aff_fc_architecture.html["Précédent : architecture."]
-
+[role="lead"]
 La section suivante fournit une vue d'ensemble des facteurs de performance et de capacité nécessaires au dimensionnement d'un système de stockage pour SAP HANA.
 
 
@@ -217,5 +216,3 @@ La taille de la mémoire RAM, la taille des données nette sur le disque de chaq
 La figure suivante résume le processus de dimensionnement.
 
 image:saphana_aff_fc_image8.jpg["Erreur : image graphique manquante"]
-
-link:saphana_aff_fc_infrastructure_setup_and_configuration_overview.html["Next : installation et configuration de l'infrastructure."]

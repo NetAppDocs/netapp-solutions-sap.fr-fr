@@ -13,8 +13,6 @@ summary: 'L"approche d"intégration utilise le provisionnement personnalisé SAP
 :imagesdir: ./../media/
 
 
-link:lama-ansible-use-cases-for-system-refresh,-copy,-and-cloning.html["Précédent : cas d'utilisation pour les mises à jour, la copie et le clonage du système."]
-
 [role="lead"]
 L'approche d'intégration utilise le provisionnement personnalisé SAP Lama et les crochets d'exploitation combinés aux playbooks Ansible pour la gestion du stockage NetApp. La figure suivante présente un aperçu général de la configuration côté Lama ainsi que des composants correspondants de l'implémentation de l'exemple.
 
@@ -31,5 +29,3 @@ Pour plus d'informations sur les modules NetApp Ansible et sur les définitions 
 * https://www.ansible.com/integrations/infrastructure/netapp["Modules NetApp Ansible"^]
 * https://help.sap.com/doc/700f9a7e52c7497cad37f7c46023b7ff/3.0.11.0/en-US/bf6b3e43340a4cbcb0c0f3089715c068.html["Documentation SAP Lama : définitions des fournisseurs"^]
 
-
-link:lama-ansible-example-implementation.html["Suivant : exemple d'implémentation."]

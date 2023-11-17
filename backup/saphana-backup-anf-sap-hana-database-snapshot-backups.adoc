@@ -13,8 +13,7 @@ summary: 'Avec SnapCenter Service, les sauvegardes de bases de données sont gé
 :imagesdir: ./../media/
 
 
-link:saphana-backup-anf-backup-configuration-of-global-non-data-volumes.html["Précédent : configuration de sauvegarde des volumes globaux sans données."]
-
+[role="lead"]
 Avec SnapCenter Service, les sauvegardes de bases de données sont généralement exécutées à l'aide des planifications définies au sein des règles. Vous pouvez également effectuer des sauvegardes de bases de données à la demande à l'aide de l'interface utilisateur du service SnapCenter ou des API REST.
 
 
@@ -101,5 +100,3 @@ Le moniteur de tâches affiche les différentes étapes du flux de travail, l'ex
 image:saphana-backup-anf-image57.png["Erreur : image graphique manquante"]
 
 
-
-link:saphana-backup-anf-file-based-backups-and-block-integrity-check.html["Next : sauvegardes basées sur des fichiers et vérification de l'intégrité des blocs."]

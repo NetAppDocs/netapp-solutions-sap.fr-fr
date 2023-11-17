@@ -13,8 +13,7 @@ summary: Suivez les instructions suivantes lors de la configuration du réseau.
 :imagesdir: ./../media/
 
 
-link:saphana-fas-nfs_infrastructure_setup_and_configuration_overview.html["Précédent : installation et configuration de l'infrastructure."]
-
+[role="lead"]
 Lors de la configuration du réseau, suivez les instructions suivantes :
 
 * Un réseau de stockage dédié doit être utilisé pour connecter les hôtes SAP HANA aux contrôleurs de stockage avec un réseau 10 GbE ou plus rapide.
@@ -55,5 +54,3 @@ Chaque nœud SAP HANA utilise un port group dédié sur le switch distribué VMw
 NOTE: L'option LRO (large Receive Offload) doit être désactivée pour les interfaces utilisées pour le trafic NFS. Pour toutes les autres instructions relatives à la configuration du réseau, consultez les guides des meilleures pratiques de VMware respectifs pour SAP HANA.
 
 image:saphana-fas-nfs_image12.png["Erreur : image graphique manquante"]
-
-link:saphana-fas-nfs_time_synchronization.html["Suivant : synchronisation de l'heure."]

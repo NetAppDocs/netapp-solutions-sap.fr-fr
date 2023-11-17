@@ -13,8 +13,7 @@ summary: 'SAP recommande de combiner des sauvegardes Snapshot basées sur le sto
 :imagesdir: ./../media/
 
 
-link:saphana-backup-anf-sap-hana-database-snapshot-backups.html["Précédent : sauvegardes Snapshot de la base de données SAP HANA."]
-
+[role="lead"]
 SAP recommande de combiner des sauvegardes Snapshot basées sur le stockage et une sauvegarde hebdomadaire basée sur les fichiers pour exécuter une vérification de l'intégrité des blocs. Le service SnapCenter prend en charge l'exécution d'une vérification de l'intégrité des blocs en utilisant une règle dans laquelle la sauvegarde basée sur des fichiers est sélectionnée comme type de sauvegarde.
 
 Les sauvegardes basées sur des fichiers sont également utilisées pour conserver des copies de sauvegarde secondaires en plus des sauvegardes Snapshot sur le volume de données HANA. Vous pouvez utiliser ces sauvegardes basées sur des fichiers pour des opérations de restauration et de récupération en cas de perte totale du volume de données primaire.
@@ -52,5 +51,3 @@ drwxr-x--- 4 pr1adm sapsys       4096 Jan 31 18:59 ..
 == Restaurez et restaurez vos données à l'aide de sauvegardes basées sur des fichiers
 
 Vous devez effectuer une opération de restauration et de restauration d'une sauvegarde basée sur des fichiers en dehors de SnapCenter en utilisant les opérations de restauration HANA standard avec HANA Studio ou HANA Cockpit.
-
-link:saphana-backup-anf-restore-and-recovery.html["Suivant : restauration et récupération."]

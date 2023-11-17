@@ -13,8 +13,7 @@ summary: 'Cette section décrit les workflows de restauration et de restauration
 :imagesdir: ./../media/
 
 
-link:saphana-backup-anf-file-based-backups-and-block-integrity-check.html["Précédent : sauvegardes basées sur des fichiers et vérification de l'intégrité des blocs."]
-
+[role="lead"]
 La section suivante décrit les workflows de restauration et de restauration d'un système HANA MDC à un seul hôte et un seul locataire. Les différences d'un système hôte multiple sont décrites.
 
 Les exemples montrent SAP HANA Studio comme outil d'exécution manuelle de la restauration. Vous pouvez également utiliser des instructions SAP HANA Cockpit ou HANA SQL pour les opérations de reprise.
@@ -178,5 +177,3 @@ Le système SAP HANA est opérationnel.
 
 
 Pour un système MDC SAP HANA avec plusieurs locataires, vous devez répéter les étapes 15 à 24 pour chaque locataire.
-
-link:saphana-backup-anf-additional-information.html["Suivant : où trouver des informations supplémentaires ?"]

@@ -13,8 +13,7 @@ summary: Le service SnapCenter est une plateforme unifiée et évolutive de prot
 :imagesdir: ./../media/
 
 
-link:saphana-backup-anf-the-netapp-solution.html["Précédent : la solution NetApp."]
-
+[role="lead"]
 Le service SnapCenter est une plateforme unifiée et évolutive de protection des données cohérente avec les applications. Le service SnapCenter offre un contrôle et une surveillance centralisés, tout en déléguant aux utilisateurs la possibilité de gérer les opérations de sauvegarde et de restauration spécifiques aux applications.
 
 Le service SnapCenter utilise le logiciel NetApp Cloud Manager comme interface et permet de gérer les identifiants pour Azure NetApp Files. Les services SnapCenter sont exécutés dans un cluster Kubernetes et communiquent avec NetApp Cloud Manager via Cloud Manager Connector. SnapCenter Service déclenche les opérations de la base de données HANA en utilisant le client HANA hdbsql et l'opération de stockage Azure NetApp Files via les API de gestion Azure NetApp Files.
@@ -28,5 +27,3 @@ image:saphana-backup-anf-image7.jpg["Erreur : image graphique manquante"]
 L'installation de SnapCenter Service requiert au moins deux machines virtuelles, une VM pour le connecteur Cloud Manager et une autre machine virtuelle exécutant le cluster Kubernetes dans une configuration non HA. Deux machines virtuelles supplémentaires sont requises lorsque le service SnapCenter est configuré en configuration haute disponibilité.
 
 image:saphana-backup-anf-image8.jpg["Erreur : image graphique manquante"]
-
-link:saphana-backup-anf-snapcenter-service-sap-hana-backup-solution.html["Ensuite : solution de sauvegarde SnapCenter Service SAP HANA."]

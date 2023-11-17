@@ -13,8 +13,6 @@ summary: 'Dans ce chapitre, nous examinons brièvement les différences entre le
 :imagesdir: ./../media/
 
 
-link:lama-ansible-sap-lama-deprovisioning-workflow-system-destroy.html["Précédent : workflow de déprovisionnement de SAP Lama : destruction du système."]
-
 [role="lead"]
 La figure suivante illustre les principales étapes exécutées avec le flux de travail de copie du système.
 
@@ -57,5 +55,3 @@ image:lama-ansible-image47.png["Cette capture d'écran présente l'écran Lama S
 Il doit être adopté manuellement pour exécuter l'étape de pré-crochet pendant le processus de destruction du système car une contrainte est définie et empêche l'exécution.
 
 image:lama-ansible-image48.png["Cette capture d'écran montre l'écran Lama Systems ainsi que les détails du système, et la case à cocher utiliser le processus de traitement personnalisé est activée."]
-
-link:lama-ansible-sap-lama-provisioning-workflow-system-refresh.html["Workflow de provisionnement SAP Lama : mise à jour du système"]

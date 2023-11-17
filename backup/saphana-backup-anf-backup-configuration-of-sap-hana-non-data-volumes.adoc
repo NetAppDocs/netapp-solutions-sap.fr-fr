@@ -13,8 +13,7 @@ summary: 'La sauvegarde de volumes non-données est une partie intégrée du ser
 :imagesdir: ./../media/
 
 
-link:saphana-backup-anf-backup-configuration-of-sap-hana-database-backups.html["Précédent : configuration de sauvegarde des sauvegardes de bases de données SAP HANA."]
-
+[role="lead"]
 La sauvegarde de volumes non-données est une partie intégrée du service SnapCenter. La protection du volume des données de la base de données est suffisante pour restaurer et restaurer la base de données SAP HANA à un point donné dans le temps, à condition que les ressources d'installation de la base de données et les journaux requis soient toujours disponibles.
 
 Pour restaurer des données à partir de situations où d'autres fichiers non data doivent être restaurés, NetApp recommande de développer une stratégie de sauvegarde supplémentaire pour ces volumes en vue de compléter la sauvegarde de la base de données SAP HANA. En fonction de vos besoins spécifiques, la sauvegarde de volumes sans données peut varier dans les paramètres de fréquence de planification et de conservation. Il est également important de tenir compte de la fréquence à laquelle les fichiers sont modifiés. Par exemple, le volume HANA `/hana/shared` Contient des exécutables mais aussi des fichiers de trace SAP HANA. Même si les exécutables ne changent que lorsque la base de données SAP HANA est mise à niveau, les fichiers de trace SAP HANA peuvent avoir besoin d'une fréquence de sauvegarde plus élevée pour prendre en charge l'analyse des problèmes avec SAP HANA.
@@ -57,5 +56,3 @@ image:saphana-backup-anf-image37.png["Erreur : image graphique manquante"]
 image:saphana-backup-anf-image38.png["Erreur : image graphique manquante"]
 
 
-
-link:saphana-backup-anf-backup-configuration-of-global-non-data-volumes.html["Next : configuration de sauvegarde des volumes globaux sans données."]

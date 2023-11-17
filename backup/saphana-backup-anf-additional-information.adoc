@@ -13,11 +13,8 @@ summary:
 :imagesdir: ./../media/
 
 
-link:saphana-backup-anf-restore-and-recovery.html["Précédent : restauration et récupération."]
-
+[role="lead"]
 Pour en savoir plus sur les informations données dans ce livre blanc, consultez ces documents et/ou sites web :
 
 * link:https://review.docs.netapp.com/us-en/netapp-solutions-sap_main/backup/saphana-dr-anf_data_protection_overview_overview.html["Tr-4891 : reprise après incident de SAP HANA avec Azure NetApp Files."]
 
-
-link:saphana-backup-anf-version-history.html["Suivant : historique des versions."]

@@ -13,8 +13,7 @@ summary: 'Une opération de restauration à partir d"une sauvegarde créée sur 
 :imagesdir: ./../media/
 
 
-link:saphana-sr-scs-snapcenter-configuration-with-a-single-resource.html["Précédent : configuration SnapCenter avec une seule ressource."]
-
+[role="lead"]
 Une opération de restauration à partir d'une sauvegarde créée sur l'autre hôte SAP HANA est un scénario valide pour les deux options de configuration SnapCenter.
 
 La figure suivante présente un aperçu du scénario de restauration et de récupération décrit dans cette section.
@@ -80,5 +79,3 @@ stlrx300s8-5:/mnt/tmp # cp -Rp hdb00002.00003/ /hana/data/SSR/mnt00001/
 stlrx300s8-5:/mnt/tmp # cp -Rp hdb00003.00003/ /hana/data/SSR/mnt00001/
 ....
 La restauration avec SAP HANA Studio est effectuée comme décrit dans la section link:saphana-sr-scs-snapcenter-configuration-with-a-single-resource.html#snapcenter-restore-of-the-valid-backup-only["Restauration SnapCenter de la sauvegarde valide uniquement"].
-
-link:saphana-sr-scs-where-to-find-additional-information_overview.html["Suivant : où trouver des informations supplémentaires ?"]

@@ -13,8 +13,7 @@ summary: Pour mettre en œuvre une stratégie de reprise après incident efficac
 :imagesdir: ./../media/
 
 
-link:saphana-dr-anf_monitoring_anf_cross-region_replication.html["Précédent : surveillance de la réplication ANF interrégion."]
-
+[role="lead"]
 Pour mettre en œuvre une stratégie de reprise après incident efficace, vous devez tester le workflow requis. Les tests montrent si la stratégie fonctionne et si la documentation interne est suffisante, et ils permettent également aux administrateurs de suivre les procédures requises.
 
 La réplication interrégion d'ANF permet de tester la reprise après incident sans mettre en péril le RTO et le RPO. Des tests de reprise après incident sont possibles sans interrompre la réplication des données.
@@ -39,5 +38,3 @@ Pour tester la reprise après incident, procédez comme suit :
 Les sous-sections suivantes décrivent ces étapes en détail.
 
 image:saphana-dr-anf_image18.png["Erreur : image graphique manquante"]
-
-link:saphana-dr-anf_prepare_the_target_host.html["Suivant : préparer l'hôte cible."]

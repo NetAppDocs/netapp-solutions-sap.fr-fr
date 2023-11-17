@@ -106,5 +106,3 @@ NOTE: Le graphique indique la taille de la RAM du serveur HANA. La taille de la 
 
 
 NOTE: La durée de restauration et de récupération est calculée en fonction des hypothèses suivantes. La base de données peut être restaurée à 250 Mbit/s. Le nombre de fichiers journaux par jour est de 50 % de la taille de la base de données. Par exemple, une base de données de 1 To crée 500 Mo de fichiers journaux par jour. Une restauration peut être effectuée à 100 Mbit/s.
-
-link:saphana-br-scs-snapcenter-architecture.html["Ensuite : architecture SnapCenter."]

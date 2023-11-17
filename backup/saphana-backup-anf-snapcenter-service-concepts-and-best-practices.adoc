@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: backup/saphana-backup-anf-snapcenter-service-concepts-and-best-practices.html 
 keywords:  
-summary:  
+summary: Vous devez connaître les concepts et les meilleures pratiques du service SnapCenter. Par exemple, plusieurs règles doivent être configurées pour les opérations de sauvegarde. 
 ---
 = Concepts et bonnes pratiques des services SnapCenter
 :hardbreaks:
@@ -13,7 +13,8 @@ summary:
 :imagesdir: ./../media/
 
 
-link:saphana-backup-anf-snapcenter-service-sap-hana-backup-solution.html["Précédent : solution de sauvegarde SnapCenter Service SAP HANA."]
+[role="lead"]
+Vous devez connaître les concepts et les meilleures pratiques du service SnapCenter. Par exemple, plusieurs règles doivent être configurées pour les opérations de sauvegarde.
 
 
 
@@ -220,5 +221,3 @@ NOTE: Vous ne pouvez pas désactiver la gestion de la conservation des sauvegard
 == Besoins de stockage pour les sauvegardes Snapshot
 
 La vitesse de modification des blocs sur la couche de stockage est supérieure par rapport aux bases de données classiques. Du fait du processus de fusion de table HANA du magasin de colonnes, le tableau complet est écrit sur le disque, et pas uniquement les blocs modifiés. Les données de notre base client montrent un taux de modification quotidien compris entre 20 et 50 % si plusieurs sauvegardes Snapshot sont effectuées pendant la journée.
-
-link:saphana-backup-anf-lab-setup-used-for-this-report.html["Suivant : configuration de laboratoire utilisée pour ce rapport."]

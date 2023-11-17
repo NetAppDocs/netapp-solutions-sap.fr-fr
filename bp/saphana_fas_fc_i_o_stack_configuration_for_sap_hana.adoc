@@ -13,8 +13,7 @@ summary: 'À partir de SAP HANA 1.0 SPS10, SAP a introduit des paramètres perme
 :imagesdir: ./../media/
 
 
-link:saphana_fas_fc_host_setup.html["Précédent : configuration de l'hôte."]
-
+[role="lead"]
 À partir de SAP HANA 1.0 SPS10, SAP a introduit des paramètres permettant d'ajuster le comportement des E/S et d'optimiser la base de données pour le système de fichiers et de stockage utilisé.
 
 Des tests de performances ont été menés par NetApp pour définir les valeurs qui conviennent le mieux. Le tableau suivant répertorie les valeurs optimales résultant des tests de performances.
@@ -65,4 +64,3 @@ python setParameter.py -set=SYSTEM/global.ini/fileio/async_read_submit=on
 python setParameter.py -set=SYSTEM/global.ini/fileio/async_write_submit_active=on
 python setParameter.py -set=SYSTEM/global.ini/fileio/async_write_submit_blocks=all
 ....
-link:saphana_fas_fc_sap_hana_software_installation.html["Suivant : installation du logiciel SAP HANA."]

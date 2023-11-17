@@ -13,8 +13,6 @@ summary: 'Dans cette documentation, le fichier de configuration, le script d"ex�
 :imagesdir: ./../media/
 
 
-link:lama-ansible-sap-lama-provisioning-workflow-system-refresh.html["Précédent : flux de travail de provisionnement AP Lama : actualisation du système."]
-
 [role="lead"]
 Dans cette documentation, le fichier de configuration, le script d'exécution et les playbooks Ansible sont utilisés lors du déploiement et de l'exécution des workflows.
 
@@ -518,4 +516,3 @@ ontapservers:
    snapshotpostfix: " _snap_20221115"
    clonepostfix: "_clone_20221115"
 ....
-link:lama-ansible-conclusion.html["Suivant: Conclusion."]

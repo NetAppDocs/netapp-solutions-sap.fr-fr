@@ -13,8 +13,7 @@ summary: Cette section explique comment ajouter une stratégie à la protection 
 :imagesdir: ./../media/
 
 
-link:amazon-fsx-create-a-new-snapcenter-policy-for-backup-replication.html["Précédent : créez une nouvelle règle SnapCenter pour la réplication de sauvegarde."]
-
+[role="lead"]
 Vous devez ajouter la nouvelle règle à la configuration de protection des ressources HANA, comme illustré dans la figure suivante.
 
 image:amazon-fsx-image86.png["Erreur : image graphique manquante"]
@@ -22,5 +21,3 @@ image:amazon-fsx-image86.png["Erreur : image graphique manquante"]
 Un horaire quotidien est défini dans notre configuration.
 
 image:amazon-fsx-image87.png["Erreur : image graphique manquante"]
-
-link:amazon-fsx-create-a-backup-with-replication.html["Suivant : créez une sauvegarde avec la réplication."]

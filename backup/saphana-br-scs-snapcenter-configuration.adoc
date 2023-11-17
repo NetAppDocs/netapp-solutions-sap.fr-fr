@@ -13,8 +13,7 @@ summary: 'La configuration SnapCenter peut être séparée en deux zones princip
 :imagesdir: ./../media/
 
 
-link:saphana-br-scs-lab-setup-used-for-this-report.html["Précédent : configuration de laboratoire utilisée pour ce rapport."]
-
+[role="lead"]
 La configuration SnapCenter peut être séparée en deux zones principales :
 
 * *Configuration initiale.* couvre les configurations génériques, indépendamment d'une base de données SAP HANA individuelle. Configurations telles que les systèmes de stockage, les hôtes du plug-in HANA central et les règles, sélectionnées lors de l'exécution des configurations spécifiques aux ressources.
@@ -74,5 +73,3 @@ La configuration spécifique aux ressources doit être effectuée pour chaque ba
 
 
 
-
-link:saphana-br-scs-snapcenter-initial-configuration.html["Ensuite, configuration initiale du système SnapCenter."]

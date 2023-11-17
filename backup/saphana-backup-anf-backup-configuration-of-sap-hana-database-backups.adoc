@@ -13,8 +13,7 @@ summary: 'Cette section décrit les étapes de configuration d"un système PR1 �
 :imagesdir: ./../media/
 
 
-link:saphana-backup-anf-snapcenter-service-snapshot-backup-configuration-overview.html["Précédent : présentation de la configuration de sauvegarde Snapshot du service SnapCenter."]
-
+[role="lead"]
 Cette section décrit les étapes de configuration d'un système PR1 à un seul hôte SAP HANA MDC. Les étapes sont identiques pour un système MDC avec plusieurs locataires. Les différences entre un système à un ou plusieurs conteneurs sont reflétées dans les étapes de configuration correspondantes.
 
 
@@ -102,5 +101,3 @@ L'écran de présentation des systèmes HANA affiche le système HANA et les rè
 image:saphana-backup-anf-image30.png["Erreur : image graphique manquante"]
 
 
-
-link:saphana-backup-anf-backup-configuration-of-sap-hana-non-data-volumes.html["Next : configuration de sauvegarde des volumes SAP HANA non-data."]

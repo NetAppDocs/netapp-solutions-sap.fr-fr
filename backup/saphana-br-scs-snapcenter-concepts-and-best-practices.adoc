@@ -13,7 +13,8 @@ summary: Cette section décrit les concepts et les bonnes pratiques SnapCenter c
 :imagesdir: ./../media/
 
 
-link:saphana-br-scs-snapcenter-sap-hana-backup-solution.html["Précédent : solution de sauvegarde SnapCenter SAP HANA."]
+[role="lead"]
+Cette section décrit les concepts et les bonnes pratiques SnapCenter concernant la configuration et le déploiement de ressources SAP HANA.
 
 
 
@@ -615,4 +616,3 @@ Le tableau suivant résume les opérations de restauration et de reprise selon l
 
 | Manuel | Manuel | Manuel 
 |===
-link:saphana-br-scs-lab-setup-used-for-this-report.html["Suivant : configuration de laboratoire utilisée pour ce rapport."]

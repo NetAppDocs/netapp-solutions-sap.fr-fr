@@ -13,8 +13,7 @@ summary: 'Les opérations de sauvegarde sont toujours effectuées sur l"hôte SA
 :imagesdir: ./../media/
 
 
-link:saphana-sr-scs-sap-hana-system-replication-overview.html["Précédent : présentation de la réplication système SAP HANA."]
-
+[role="lead"]
 Les opérations de sauvegarde sont toujours effectuées sur l'hôte SAP HANA principal. Les commandes SQL requises pour l'opération de sauvegarde ne peuvent pas être exécutées sur l'hôte SAP HANA secondaire.
 
 Pour les opérations de sauvegarde SAP HANA, les hôtes SAP HANA principaux et secondaires sont une entité unique. Ils partagent le même catalogue de sauvegardes SAP HANA et utilisent les sauvegardes pour la restauration et la restauration, que la sauvegarde ait été créée sur l'hôte SAP HANA principal ou secondaire.
@@ -30,5 +29,3 @@ Lorsqu'un basculement vers l'hôte 2 est effectué, l'hôte 2 devient l'hôte pr
 La sauvegarde créée au niveau de l'hôte 2 peut être restaurée directement au niveau de la couche de stockage. Si vous devez utiliser une sauvegarde créée sur l'hôte 1, la sauvegarde doit être copiée depuis le volume de stockage de l'hôte 1 vers le volume de stockage de l'hôte 2. La restauration par transfert utilise les sauvegardes des journaux des deux hôtes.
 
 image:saphana-sr-scs-image4.png["Erreur : image graphique manquante"]
-
-link:saphana-sr-scs-snapcenter-configuration-options-for-sap-system-replication.html["Next : options de configuration de SnapCenter pour la réplication système SAP."]

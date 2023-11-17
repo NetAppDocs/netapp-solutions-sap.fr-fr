@@ -13,12 +13,7 @@ summary: 'Les trois captures d"écran suivantes indiquent l"état de la réplica
 :imagesdir: ./../media/
 
 
-link:saphana-dr-anf_configuration_steps_for_anf_cross-region_replication.html["Précédent : étapes de configuration de la réplication ANF multi-région."]
-
-
-
-== État de la réplication
-
+[role="lead"]
 Les trois captures d'écran suivantes indiquent l'état de la réplication pour les données, la sauvegarde du journal et les volumes partagés.
 
 Le délai de réplication du volume est une valeur utile pour comprendre les attentes en matière de RPO. Par exemple, la réplication du volume de sauvegarde des journaux affiche un temps de décalage maximal de 58 minutes, ce qui signifie que l'RPO maximal a la même valeur.
@@ -47,5 +42,3 @@ image:saphana-dr-anf_image16.png["Erreur : image graphique manquante"]
 NOTE: Au sein du volume source et du volume cible, des copies Snapshot SnapMirror sont également créées pour les opérations de resynchronisation et de mise à jour de réplication. Ces copies Snapshot ne sont pas cohérentes au niveau de l'application du point de vue de la base de données HANA ; seuls les snapshots cohérents au niveau des applications créés via AzaCSNAP peuvent être utilisés pour les opérations de restauration HANA.
 
 image:saphana-dr-anf_image17.png["Erreur : image graphique manquante"]
-
-link:saphana-dr-anf_disaster_recovery_testing_overview.html["Suivant : test de reprise après incident."]

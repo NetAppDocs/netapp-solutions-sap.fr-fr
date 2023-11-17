@@ -13,7 +13,8 @@ summary: 'Cette section décrit la préparation nécessaire à l"installation de
 :imagesdir: ./../media/
 
 
-link:saphana_aff_nfs_i_o_stack_configuration_for_sap_hana.html["Précédent : configuration de la pile d'E/S pour SAP HANA."]
+[role="lead"]
+Cette section décrit la préparation nécessaire à l'installation de SAP HANA sur des systèmes à un ou plusieurs hôtes.
 
 
 
@@ -146,5 +147,3 @@ Enter Local Host Name [sapcc-hana-tst-03]:
 ....
 . Vérifiez que l'outil d'installation a installé tous les composants sélectionnés sur tous les hôtes de travail et de secours.
 
-
-link:saphana_aff_fc_adding_additional_data_volume_partitions_for_sap_hana_single-host_systems.html["Ensuite, ajout de partitions de volume de données supplémentaires pour les systèmes SAP HANA à un seul hôte."]

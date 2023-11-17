@@ -13,9 +13,10 @@ summary: 'Vous pouvez utiliser la technologie NetApp Snapshot de Azure NetApp Fi
 :imagesdir: ./../media/
 
 
-link:saphana-backup-anf-overview.html["Précédent : présentation."]
+[role="lead"]
+Vous pouvez utiliser la technologie NetApp Snapshot de Azure NetApp Files pour créer des sauvegardes de bases de données en quelques secondes. Le temps nécessaire à la création d'une copie Snapshot ne dépend pas de la taille de la base de données, car cette copie ne déplace aucun bloc de données sur la plateforme de stockage.
 
-Vous pouvez utiliser la technologie NetApp Snapshot de Azure NetApp Files pour créer des sauvegardes de bases de données en quelques secondes. Le temps nécessaire à la création d'une copie Snapshot ne dépend pas de la taille de la base de données, car cette copie ne déplace aucun bloc de données sur la plateforme de stockage. De plus, cette technologie n'a aucune incidence sur les performances du système SAP en direct. Par conséquent, vous pouvez planifier la création de copies Snapshot sans tenir compte des périodes de pointe de dialogue ou d'activité de lots. Les clients SAP sur Azure NetApp Files programmons généralement plusieurs sauvegardes Snapshot en ligne pendant la journée, par exemple, toutes les quatre heures sont courantes. Ces sauvegardes Snapshot sont généralement conservées pendant trois à cinq jours sur le système de stockage principal, avant d'être supprimées.
+De plus, cette technologie n'a aucune incidence sur les performances du système SAP en direct. Par conséquent, vous pouvez planifier la création de copies Snapshot sans tenir compte des périodes de pointe de dialogue ou d'activité de lots. Les clients SAP sur Azure NetApp Files programmons généralement plusieurs sauvegardes Snapshot en ligne pendant la journée, par exemple, toutes les quatre heures sont courantes. Ces sauvegardes Snapshot sont généralement conservées pendant trois à cinq jours sur le système de stockage principal, avant d'être supprimées.
 
 Les copies Snapshot offrent également des avantages clés pour les opérations de restauration et de reprise. Grâce à une opération de restauration de volume, la restauration de l'intégralité d'une base de données est effectuée à n'importe quel point dans le temps, en fonction des copies Snapshot disponibles. Ce processus ne dure que quelques secondes, quelle que soit la taille de la base de données. Comme plusieurs sauvegardes Snapshot en ligne sont créées pendant la journée, le temps nécessaire au processus de restauration est considérablement réduit par rapport à une approche de sauvegarde traditionnelle. Étant donné qu'une opération de restauration peut être effectuée avec une copie Snapshot antérieure (au lieu de 24 heures), il faut appliquer moins de journaux de transaction. Par conséquent, le RTO est réduit à plusieurs minutes, au lieu de plusieurs heures requises pour les sauvegardes conventionnelles à un cycle unique.
 
@@ -88,5 +89,3 @@ image:saphana-backup-anf-image5.jpg["Erreur : image graphique manquante"]
 Ce graphique indique la taille de la RAM du serveur HANA. La taille de la base de données en mémoire est calculée comme étant égale à la moitié de la taille de la mémoire vive du serveur.
 
 Le délai de restauration et de récupération est calculé sur la base des hypothèses suivantes : la base de données peut être restaurée à 250 Mbit/s ; le nombre de fichiers journaux par jour est de 50 % de la taille de la base de données (par exemple, une base de données de 1 To crée 500 Mo de fichiers journaux par jour) ; Par contre, une restauration peut être effectuée à 100 Mbit/s.
-
-link:saphana-backup-anf-snapcenter-service-architecture.html["Next : architecture des services SnapCenter."]

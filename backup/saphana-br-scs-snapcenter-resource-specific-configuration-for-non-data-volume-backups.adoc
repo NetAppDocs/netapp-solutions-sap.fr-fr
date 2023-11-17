@@ -13,8 +13,7 @@ summary: 'La sauvegarde de volumes non-données fait partie intégrante du plug-
 :imagesdir: ./../media/
 
 
-link:saphana-br-scs-snapcenter-resource-specific-configuration-for-sap-hana-database-backups.html["Précédent : configuration spécifique aux ressources SnapCenter pour les sauvegardes de bases de données SAP HANA."]
-
+[role="lead"]
 La sauvegarde de volumes non-données fait partie intégrante du plug-in SAP HANA. La protection du volume des données de la base de données est suffisante pour restaurer et restaurer la base de données SAP HANA à un point donné dans le temps, à condition que les ressources d'installation de la base de données et les journaux requis soient toujours disponibles.
 
 Pour restaurer des données à partir de situations où d'autres fichiers non data doivent être restaurés, NetApp recommande de développer une stratégie de sauvegarde supplémentaire pour les volumes sans data afin de compléter la sauvegarde de la base de données SAP HANA. En fonction de vos besoins spécifiques, la sauvegarde de volumes non-données peut varier dans les paramètres de fréquence de planification et de conservation. Il est également important de tenir compte de la fréquence à laquelle les fichiers ne sont pas des données sont modifiés. Par exemple, le volume HANA `/hana/shared` Contient des exécutables mais aussi des fichiers de trace SAP HANA. Alors que les exécutables ne changent que lorsque la base de données SAP HANA est mise à niveau, les fichiers de trace SAP HANA peuvent avoir besoin d'une fréquence de sauvegarde plus élevée pour prendre en charge l'analyse des problèmes avec SAP HANA.
@@ -87,5 +86,3 @@ NetApp SSC et SAP Lama peuvent créer des copies Snapshot à la demande directem
 NOTE: Dans les opérations de sauvegarde normales, NetApp ne recommande pas d'inclure le volume du journal. Si vous restaurez le volume du journal à partir d'une sauvegarde, il écrase les derniers journaux de reprise actifs et empêche la restauration de la base de données vers le dernier état récent.
 
 Les groupes de ressources SnapCenter répondent à toutes ces exigences. Trois ressources sont configurées dans SnapCenter : une ressource pour le volume de données, le volume du journal et le volume partagé. Les ressources sont placées dans un groupe de ressources et la protection est ensuite définie au niveau du groupe de ressources. Dans la protection du groupe de ressources, le nom d'instantané personnalisé doit être défini avec VCM au début.
-
-link:saphana-br-scs-database-backups.html["Suivant : sauvegardes de bases de données."]

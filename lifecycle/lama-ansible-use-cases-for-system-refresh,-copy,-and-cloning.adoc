@@ -13,13 +13,10 @@ summary: 'Il existe plusieurs scénarios dans lesquels les données d"un systèm
 :imagesdir: ./../media/
 
 
-link:lama-ansible-sap-system-clone,-copy,-and-refresh-scenarios.html["Précédent : scénarios de clonage, de copie et de mise à jour des systèmes SAP."]
+[role="lead"]
+Il existe plusieurs scénarios dans lesquels les données d'un système source doivent être mises à la disposition d'un système cible à des fins de test ou de formation. Ces systèmes de test et de formation doivent être mis à jour régulièrement avec les données du système source pour s'assurer que les tests et les formations sont effectués avec le dataset actuel.
 
-
-
-== Actualisation des données des systèmes d'assurance qualité, de test, de sandbox ou de formation
-
-Il existe plusieurs scénarios dans lesquels les données d'un système source doivent être mises à la disposition d'un système cible à des fins de test ou de formation. Ces systèmes de test et de formation doivent être mis à jour régulièrement avec les données du système source pour s'assurer que les tests et les formations sont effectués avec le dataset actuel. Ces opérations d'actualisation de système se composent de plusieurs tâches au niveau des couches infrastructure, base de données et application. Plusieurs jours peuvent être nécessaires, selon le niveau d'automatisation.
+Ces opérations d'actualisation de système se composent de plusieurs tâches au niveau des couches infrastructure, base de données et application. Plusieurs jours peuvent être nécessaires, selon le niveau d'automatisation.
 
 image:lama-ansible-image2.png["Cette image illustre le flux de travail environnemental, du domaine de développement principal au fractionnement temporaire des projets, aux systèmes de réparation, aux systèmes de formation et aux systèmes sanbox. Elle indique l'emplacement d'actualisation du système, de copie du système et de clonage de système à ces fins."]
 
@@ -52,5 +49,3 @@ La réplication du stockage avec SnapMirror permet d'exécuter les tests de repr
 SAP Lama peut être utilisé pour orchestrer l'ensemble de la procédure de test, et prend également en charge l'escrime réseau, la maintenance de l'hôte cible, etc.
 
 image:lama-ansible-image5.png["Cette image représente la relation entre les systèmes de stockage NetApp dans le data Center principal, le data Center de reprise après incident local et le data Center de reprise après incident distant. Ils sont connectés à la fois par des relations SnapMirror synchrones et asynchrones."]
-
-link:lama-ansible-netapp-sap-lama-integration-using-ansible.html["Ensuite, intégration de NetApp SAP Lama avec Ansible."]

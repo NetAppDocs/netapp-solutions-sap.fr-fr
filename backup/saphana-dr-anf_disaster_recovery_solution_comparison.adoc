@@ -13,8 +13,7 @@ summary: Une solution complète de reprise sur incident doit permettre aux clien
 :imagesdir: ./../media/
 
 
-link:saphana-dr-anf_data_protection_overview_overview.html["Précédent : reprise après incident de SAP HANA avec Azure NetApp Files."]
-
+[role="lead"]
 Une solution complète de reprise sur incident doit permettre aux clients de récupérer après une panne complète du site primaire. Par conséquent, les données doivent être transférées vers un site secondaire et une infrastructure complète est nécessaire pour exécuter les systèmes SAP HANA de production requis en cas de panne sur un site. Selon les exigences de disponibilité de l'application et le type d'incident à protéger, une solution de reprise sur incident sur deux ou trois sites doit être envisagée.
 
 La figure suivante montre une configuration standard dans laquelle les données sont répliquées de manière synchrone au sein de la même région Azure vers une seconde zone de disponibilité. La distance courte permet de répliquer les données de manière synchrone pour atteindre un RPO de zéro (généralement utilisé pour fournir la haute disponibilité).
@@ -139,4 +138,3 @@ Le tableau suivant compare les solutions de reprise d'activité.
 
 | Tests de reprise d'activité sans incidence sur le RTO et le RPO | Oui. | Non | Non 
 |===
-link:saphana-dr-anf_anf_cross-region_replication_with_sap_hana_overview.html["Suivant : réplication ANF interrégion avec SAP HANA."]

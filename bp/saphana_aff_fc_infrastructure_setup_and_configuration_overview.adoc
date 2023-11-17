@@ -13,8 +13,7 @@ summary:
 :imagesdir: ./../media/
 
 
-link:saphana_aff_fc_storage_sizing.html["Précédent : dimensionnement du stockage."]
-
+[role="lead"]
 Les sections suivantes fournissent des instructions d'installation et de configuration de l'infrastructure SAP HANA et décrivent toutes les étapes nécessaires à la configuration d'un système SAP HANA. Les exemples de configurations suivants sont utilisés dans ces sections :
 
 * Système HANA avec SID=SS3 et ONTAP 9.7 ou version antérieure
@@ -29,5 +28,3 @@ Les sections suivantes fournissent des instructions d'installation et de configu
 
 
 
-
-link:saphana_aff_fc_san_fabric_setup.html["Configuration de LA structure SAN."]

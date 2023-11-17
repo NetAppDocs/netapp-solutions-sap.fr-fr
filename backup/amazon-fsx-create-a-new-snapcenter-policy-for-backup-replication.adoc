@@ -13,8 +13,7 @@ summary: Cette section décrit comment configurer une stratégie de réplication
 :imagesdir: ./../media/
 
 
-link:amazon-fsx-add-a-backup-svm-to-snapcenter.html["Précédent : ajout d'un SVM de sauvegarde à SnapCenter."]
-
+[role="lead"]
 Vous devez configurer une stratégie pour la réplication de sauvegarde comme suit :
 
 . Indiquez un nom pour la règle.
@@ -50,5 +49,3 @@ image:amazon-fsx-image84.png["Erreur : image graphique manquante"]
 La nouvelle règle SnapCenter est maintenant configurée.
 
 image:amazon-fsx-image85.png["Erreur : image graphique manquante"]
-
-link:amazon-fsx-add-a-policy-to-resource-protection.html["Suivant : ajouter une règle à la protection des ressources."]

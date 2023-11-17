@@ -13,8 +13,5 @@ summary: 'Vous devez synchroniser l"heure entre les contrôleurs de stockage et 
 :imagesdir: ./../media/
 
 
-link:saphana_aff_nfs_network_setup.html["Précédent : configuration du réseau."]
-
+[role="lead"]
 Vous devez synchroniser l'heure entre les contrôleurs de stockage et les hôtes de base de données SAP HANA. Pour ce faire, définissez le même serveur de temps pour tous les contrôleurs de stockage et tous les hôtes SAP HANA.
-
-link:saphana_aff_nfs_storage_controller_setup.html["Next : configuration du contrôleur de stockage."]

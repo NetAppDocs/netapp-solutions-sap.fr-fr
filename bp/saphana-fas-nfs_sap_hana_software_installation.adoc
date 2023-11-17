@@ -13,7 +13,8 @@ summary: 'La configuration requise pour l"installation du logiciel SAP HANA est 
 :imagesdir: ./../media/
 
 
-link:saphana-fas-nfs_sap_hana_data_volume_size.html["Précédent : taille du volume de données SAP HANA."]
+[role="lead"]
+La configuration requise pour l'installation du logiciel SAP HANA est la suivante :
 
 
 
@@ -83,5 +84,3 @@ Enter Installation Path [/hana/shared]:
 ....
 . Vérifiez que l'outil d'installation a installé tous les composants sélectionnés sur tous les hôtes de travail et de secours.
 
-
-link:saphana-fas-nfs_adding_additional_data_volume_partitions.html["Ensuite, ajout de partitions de volume de données supplémentaires."]

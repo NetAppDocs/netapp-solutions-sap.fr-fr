@@ -13,8 +13,7 @@ summary: Dans ce document, deux scripts sont utilisés pour automatiser davantag
 :imagesdir: ./../media/
 
 
-link:sc-copy-clone-sap-hana-system-refresh-operation-workflows-using-storage-snapshot-backups.html["Précédent : workflows d'opération de mise à jour du système SAP HANA avec sauvegardes Snapshot de stockage."]
-
+[role="lead"]
 Dans ce document, deux scripts sont utilisés pour automatiser davantage les opérations de création de clones et de suppression des clones SnapCenter.
 
 * Le script `sc-system-refresh.sh` Est utilisé pour la mise à jour du système et le workflow du clone du système pour exécuter les opérations de montage et de démontage du volume de données HANA ainsi que pour les opérations de restauration et d'arrêt de la base de données HANA.
@@ -173,4 +172,3 @@ Par exemple :
 ....
 CLONED_VOLUMES_MOUNT_PATH=192.168.175.117:/SS1_data_mnt00001_Clone_05112206115489411
 ....
-link:sc-copy-clone-sap-hana-system-refresh-with-snapcenter.html["Suivant : mise à jour du système SAP HANA avec SnapCenter."]

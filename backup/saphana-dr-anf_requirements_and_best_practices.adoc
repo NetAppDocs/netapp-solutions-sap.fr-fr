@@ -13,8 +13,7 @@ summary: 'Microsoft Azure ne garantit pas la disponibilité d"un type de machine
 :imagesdir: ./../media/
 
 
-link:saphana-dr-anf_configuration_options_for_cross-region_replication_with_sap_hana.html["Précédent : options de configuration pour la réplication inter-région avec SAP HANA."]
-
+[role="lead"]
 Microsoft Azure ne garantit pas la disponibilité d'un type de machine virtuelle spécifique lors de sa création ou lors du lancement d'une machine virtuelle désallocation. Plus précisément, en cas de défaillance d'une région, de nombreux clients peuvent avoir besoin de serveurs virtuels supplémentaires dans la région de reprise sur incident. Il est donc recommandé d'utiliser activement une machine virtuelle avec la taille requise pour le basculement après incident en tant que système de test ou d'assurance qualité dans la région de reprise après incident pour allouer le type de machine virtuelle requis.
 
 Pour optimiser les coûts, il est logique d'utiliser un pool de capacité ANF avec un Tier de performance inférieur pendant le fonctionnement normal. La réplication des données ne nécessite pas de hautes performances et peut donc utiliser un pool de capacité avec un niveau de performances standard. Pour les tests de reprise d'activité ou, si un basculement est nécessaire, les volumes doivent être déplacés vers un pool de capacité disposant d'un niveau hautes performances.
@@ -22,5 +21,3 @@ Pour optimiser les coûts, il est logique d'utiliser un pool de capacité ANF av
 Lorsqu'un second pool de capacité n'est pas une option, les volumes cibles de réplication doivent être configurés en fonction des besoins en capacité et non pas des exigences de performances pendant les opérations normales. Le quota ou le débit (pour QoS manuelle) peut ensuite être adapté pour tester la reprise après incident dans le cas d'un basculement de incident.
 
 Vous trouverez des renseignements supplémentaires à l'adresse https://docs.microsoft.com/en-us/azure/azure-netapp-files/cross-region-replication-requirements-considerations["Conditions requises et considérations relatives à l'utilisation de la réplication multi-région du volume Azure NetApp Files | Microsoft Docs"^].
-
-link:saphana-dr-anf_lab_setup.html["Suivant : configuration de laboratoire."]

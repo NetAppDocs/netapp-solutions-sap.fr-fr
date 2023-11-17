@@ -13,8 +13,7 @@ summary: 'Cette section décrit la configuration du système de stockage NetApp.
 :imagesdir: ./../media/
 
 
-link:saphana_aff_nfs_time_synchronization.html["Précédent : synchronisation de l'heure."]
-
+[role="lead"]
 Cette section décrit la configuration du système de stockage NetApp. Vous devez effectuer l'installation et la configuration principales conformément aux guides d'installation et de configuration de ONTAP correspondants.
 
 
@@ -363,5 +362,3 @@ Conservez l'intervalle de tentatives par défaut de 10 secondes dans ces section
 == Montez les volumes sur l'espace de noms et définissez des règles d'exportation
 
 Lors de la création d'un volume, celui-ci doit être monté sur le namespace. Dans ce document, nous supposons que le nom du chemin de jonction est identique au nom du volume. Par défaut, le volume est exporté avec la règle par défaut. La export-policy peut être adaptée si nécessaire.
-
-link:saphana_aff_nfs_host_setup.html["Suivant : configuration de l'hôte."]

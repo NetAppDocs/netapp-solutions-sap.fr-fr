@@ -13,8 +13,5 @@ summary: 'Les informations relatives à la réplication inter-région peuvent ê
 :imagesdir: ./../media/
 
 
-link:saphana-dr-anf_disaster_recovery_solution_comparison.html["Précédent : comparaison des solutions de reprise après incident."]
-
+[role="lead"]
 Des informations indépendantes des applications sur la réplication inter-région sont disponibles à l'adresse https://docs.microsoft.com/en-us/azure/azure-netapp-files/["Documentation Azure NetApp Files | Microsoft Docs"^] dans les sections concepts et mode d'emploi.
-
-link:saphana-dr-anf_configuration_options_for_cross-region_replication_with_sap_hana.html["Next : options de configuration pour la réplication inter-région avec SAP HANA."]

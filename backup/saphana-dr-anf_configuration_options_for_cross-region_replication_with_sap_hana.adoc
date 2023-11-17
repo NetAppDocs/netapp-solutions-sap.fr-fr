@@ -13,8 +13,7 @@ summary: La figure suivante montre les relations de réplication de volume pour 
 :imagesdir: ./../media/
 
 
-link:saphana-dr-anf_anf_cross-region_replication_with_sap_hana_overview.html["Précédente : réplication ANF interrégion avec SAP HANA."]
-
+[role="lead"]
 La figure suivante montre les relations de réplication de volume pour un système SAP HANA utilisant la réplication inter-région ANF. Avec la réplication inter-région ANF, les données HANA et le volume partagé HANA doivent être répliqués. Si seul le volume de données HANA est répliqué, les valeurs RPO typiques sont comprises dans la plage d'une journée. Si des valeurs RPO plus faibles sont requises, les sauvegardes du journal HANA doivent également être répliquées pour une restauration par progression.
 
 
@@ -51,4 +50,3 @@ Avec la version actuelle de la réplication inter-région, seules les planificat
 
 | Vers l'avant la reprise | NA | +journaux des dernières 24 heures + calendrier Snapshot (par ex. 6 heures)+ | +journaux des dernières 24 heures + calendrier Snapshot (par ex. 6 heures)+ 
 |===
-link:saphana-dr-anf_requirements_and_best_practices.html["Ensuite, les conditions et les meilleures pratiques."]

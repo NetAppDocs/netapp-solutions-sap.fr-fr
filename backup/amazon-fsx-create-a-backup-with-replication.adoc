@@ -13,8 +13,7 @@ summary: Cette section décrit comment créer une sauvegarde avec réplication.
 :imagesdir: ./../media/
 
 
-link:amazon-fsx-add-a-policy-to-resource-protection.html["Précédent : ajouter une règle à la protection des ressources."]
-
+[role="lead"]
 La création d'une sauvegarde est effectuée de la même manière que pour une copie Snapshot locale.
 
 Pour créer une sauvegarde avec réplication, sélectionnez la stratégie qui inclut la réplication de sauvegarde et cliquez sur Sauvegarder.
@@ -58,5 +57,3 @@ image:amazon-fsx-image90.png["Erreur : image graphique manquante"]
 Dans SnapCenter, vous pouvez lister les sauvegardes répliquées en cliquant sur les copies du coffre-fort dans la vue topologique.
 
 image:amazon-fsx-image91.png["Erreur : image graphique manquante"]
-
-link:amazon-fsx-restore-and-recover-from-secondary-storage.html["Suivant : restauration et restauration à partir du stockage secondaire."]

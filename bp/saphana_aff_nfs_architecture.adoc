@@ -13,8 +13,7 @@ summary: 'Des hôtes SAP HANA sont connectés aux contrôleurs de stockage via u
 :imagesdir: ./../media/
 
 
-link:saphana_aff_nfs_introduction.html["Précédent : SAP HANA sur les systèmes FAS 100 % Flash de NetApp avec guide de configuration NFS."]
-
+[role="lead"]
 Des hôtes SAP HANA sont connectés aux contrôleurs de stockage via une infrastructure réseau redondante 10GbE ou plus rapide. La communication des données entre les hôtes SAP HANA et les contrôleurs de stockage repose sur le protocole NFS. Une infrastructure de commutation redondante est nécessaire pour assurer une connectivité hôte vers stockage SAP HANA tolérante aux pannes en cas de défaillance d'un switch ou d'une carte réseau.
 
 Les commutateurs peuvent agréger des performances de ports individuels avec des canaux de port pour s'afficher en tant qu'entité logique unique au niveau de l'hôte.
@@ -103,5 +102,3 @@ La réplication synchrone offre le mode StrictSync. Si l'écriture sur le stocka
 La figure suivante présente une vue d'ensemble générale de la solution. Le cluster de stockage de chaque site assure une haute disponibilité locale et est utilisé pour la charge de travail de production. Les données de chaque site sont répliquées de manière synchrone sur l'autre emplacement et sont disponibles en cas de basculement.
 
 image:saphana_aff_nfs_image8.png["Erreur : image graphique manquante"]
-
-link:saphana_aff_nfs_storage_sizing.html["Suivant : dimensionnement du stockage."]

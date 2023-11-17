@@ -13,8 +13,7 @@ summary:
 :imagesdir: ./../media/
 
 
-link:libelle-sc-sap-hana-system-refresh-with-lsc,-azacsnap,-and-azure-netapp-files.html]["Précédente : mise à jour du système SAP HANA avec LSC, AzAcSnap et Azure NetApp Files."]
-
+[role="lead"]
 Pour en savoir plus sur les informations données dans ce livre blanc, consultez ces documents et/ou sites web :
 
 * Documentation produit NetApp
@@ -22,14 +21,3 @@ Pour en savoir plus sur les informations données dans ce livre blanc, consultez
 https://docs.netapp.com["https://docs.netapp.com"^]
 
 
-
-
-
-=== Historique des versions
-
-|===
-| Version | Date | Historique des versions du document 
-
-
-| Version 1.0 | Avril 2022 | Version initiale. 
-|===

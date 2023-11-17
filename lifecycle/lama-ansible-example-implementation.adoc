@@ -13,8 +13,6 @@ summary: 'En raison du grand nombre d"options disponibles pour les configuration
 :imagesdir: ./../media/
 
 
-link:lama-ansible-netapp-sap-lama-integration-using-ansible.html["Précédente : intégration de NetApp SAP Lama avec Ansible."]
-
 En raison du grand nombre d'options disponibles pour les configurations de système et de stockage, l'exemple d'implémentation doit être utilisé comme modèle de configuration et de configuration de votre système.
 
 
@@ -119,5 +117,3 @@ Vous trouverez plus d'informations sur l'utilisation de crochets personnalisés 
 Pour activer le workflow de provisionnement personnalisé pour le système source, il doit être adapté dans la configuration. La case à cocher *utiliser le processus de provisionnement personnalisé* avec la définition de provisionnement personnalisée correspondante doit être sélectionnée.
 
 image:lama-ansible-image16.png["Capture d'écran de l'écran SAP Lama Configuration > Systems> System Details (Détails du système) La case à cocher utiliser le processus de provisionnement personnalisé est mise en surbrillance."]
-
-link:lama-ansible-sap-lama-provisioning-workflow-clone-system.html["Suivant : workflow de provisionnement SAP Lama - cloner le système."]

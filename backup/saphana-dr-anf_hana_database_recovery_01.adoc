@@ -13,7 +13,8 @@ summary: Les étapes suivantes sont décrites pour la restauration de bases de d
 :imagesdir: ./../media/
 
 
-link:saphana-dr-anf_mount_the_volumes_at_the_target_host.html["Précédent : montez les volumes sur l'hôte cible."]
+[role="lead"]
+Les étapes suivantes sont décrites pour la restauration de bases de données HANA.
 
 Démarrez les services SAP requis.
 
@@ -122,5 +123,3 @@ Backup '/mnt/log-backup/SYSTEMDB/log_backup_0_0_0_0.1589289811148' successfully 
 La vérification doit être exécutée pour les fichiers de sauvegarde des journaux les plus récents du système et de la base de données des locataires.
 
 Si le `hdbbackupcheck` l'outil signale une erreur pour les dernières sauvegardes de journaux, le dernier ensemble de sauvegardes de journaux doit être supprimé ou supprimé.
-
-link:saphana-dr-anf_update_history.html["Suivant : historique des mises à jour."]

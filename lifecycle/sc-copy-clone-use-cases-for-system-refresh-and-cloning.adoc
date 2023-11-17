@@ -13,13 +13,10 @@ summary: 'Il existe plusieurs scénarios dans lesquels les données d"un systèm
 :imagesdir: ./../media/
 
 
-link:sc-copy-clone-sap-system-copy,-refresh,-and-clone-scenarios.html["Précédent : scénarios de copie, d'actualisation et de clonage du système SAP."]
+[role="lead"]
+Il existe plusieurs scénarios dans lesquels les données d'un système source doivent être mises à la disposition d'un système cible à des fins de test ou de formation. Ces systèmes de test et de formation doivent être mis à jour régulièrement avec les données du système source pour s'assurer que les tests et les formations sont effectués avec le dataset actuel.
 
-
-
-== Actualisation des données des systèmes d'assurance qualité, de test, de sandbox ou de formation
-
-Il existe plusieurs scénarios dans lesquels les données d'un système source doivent être mises à la disposition d'un système cible à des fins de test ou de formation. Ces systèmes de test et de formation doivent être mis à jour régulièrement avec les données du système source pour s'assurer que les tests et les formations sont effectués avec le dataset actuel. Ces opérations d'actualisation de système se composent de plusieurs tâches au niveau des couches infrastructure, base de données et application. Plusieurs jours peuvent être nécessaires, selon le niveau d'automatisation.
+Ces opérations d'actualisation de système se composent de plusieurs tâches au niveau des couches infrastructure, base de données et application. Plusieurs jours peuvent être nécessaires, selon le niveau d'automatisation.
 
 La figure suivante décrit les opérations de mise à jour, de copie et de clonage des systèmes SAP.
 
@@ -64,5 +61,3 @@ La figure suivante décrit les tests de reprise après incident.
 image:sc-copy-clone-image6.png["Erreur : image graphique manquante"]
 
 Vous trouverez une description détaillée étape par étape dans le rapport technique http://www.netapp.com/us/media/tr-4646.pdf["Reprise après incident de SAP HANA avec la réplication du stockage"^].
-
-link:sc-copy-clone-overview-of-sap-system-refresh-workflow-with-snapcenter.html["Suivant : présentation du workflow d'actualisation du système SAP avec SnapCenter."]

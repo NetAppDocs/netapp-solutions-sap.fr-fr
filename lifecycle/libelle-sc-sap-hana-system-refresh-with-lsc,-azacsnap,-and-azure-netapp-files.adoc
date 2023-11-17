@@ -13,8 +13,7 @@ summary: Avec Azure NetApp Files pour SAP HANA, Oracle et DB2 sur Azure, les cli
 :imagesdir: ./../media/
 
 
-link:libelle-sc-sap-hana-system-refresh-with-lsc-and-snapcenter.html["Précédent : mise à jour du système SAP HANA avec LSC et SnapCenter."]
-
+[role="lead"]
 À l'aide de https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-solution-architectures["Azure NetApp Files pour SAP HANA"^], Oracle et DB2 sur Azure fournissent aux clients les fonctionnalités avancées de gestion et de protection des données de NetApp ONTAP avec le service Microsoft Azure NetApp Files natif. https://docs.microsoft.com/en-us/azure/azure-netapp-files/azacsnap-introduction["AzAcSnap"^] Constitue le socle des opérations de mise à jour du système SAP très rapides pour créer des copies NetApp Snapshot cohérentes au niveau des applications pour les systèmes SAP HANA et Oracle (DB2 n'est pas pris en charge par AzAcSnap).
 
 Les sauvegardes de copies Snapshot, créées à la demande ou régulièrement dans le cadre de la stratégie de sauvegarde, peuvent ensuite être clonées efficacement sur de nouveaux volumes et utilisées pour actualiser rapidement les systèmes cibles. AzAcSnap fournit les flux de travail nécessaires pour créer des sauvegardes et les cloner sur de nouveaux volumes, tandis que Libelle SystemCopy effectue les étapes de pré et post-traitement nécessaires à une actualisation complète du système de bout en bout.
@@ -241,5 +240,3 @@ image:libelle-sc-image38.jpg["Erreur : image graphique manquante"]
 Après la phase de copie, LSC continue avec toutes les étapes définies de la phase post. Lorsque le processus d'actualisation du système est terminé, le système cible est de nouveau opérationnel et entièrement utilisable. Avec ce système de laboratoire, la durée d'exécution totale de la mise à jour du système SAP était d'environ 25 minutes, dont la phase de copie occupait tout juste moins de 5 minutes.
 
 image:libelle-sc-image39.jpg["Erreur : image graphique manquante"]
-
-link:libelle-sc-where-to-find-additional-information.html["Suivant : où trouver des informations supplémentaires et l'historique des versions ?"]

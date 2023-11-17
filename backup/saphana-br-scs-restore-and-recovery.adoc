@@ -13,8 +13,7 @@ summary: Les sections qui suivent décrivent les flux de travail de restauration
 :imagesdir: ./../media/
 
 
-link:saphana-br-scs-block-integrity-check.html["Précédent : vérification de l'intégrité des blocs."]
-
+[role="lead"]
 Les sections qui suivent décrivent les flux de travail de restauration et de restauration de trois scénarios et exemples de configuration.
 
 * Restauration et récupération automatisées :
@@ -534,5 +533,3 @@ Le système SAP HANA est opérationnel.
 NOTE: Pour un système MDC SAP HANA avec plusieurs locataires, vous devez répéter les étapes 20 à 29 pour chaque locataire.
 
 
-
-link:saphana-br-scs-advanced-configuration-and-tuning.html["Suivant : configuration avancée et réglage."]

@@ -13,8 +13,7 @@ summary: 'La section suivante fournit un aperçu des considérations de performa
 :imagesdir: ./../media/
 
 
-link:saphana_aff_nfs_architecture.html["Précédent : architecture."]
-
+[role="lead"]
 La section suivante fournit un aperçu des considérations de performance et de capacité requises pour le dimensionnement d'un système de stockage pour SAP HANA.
 
 
@@ -215,5 +214,3 @@ La taille de la mémoire RAM, la taille des données nette sur le disque de chaq
 La figure suivante résume le processus de dimensionnement.
 
 image:saphana_aff_nfs_image9.jpg["Erreur : image graphique manquante"]
-
-link:saphana_aff_nfs_infrastructure_setup_and_configuration_overview.html["Next : installation et configuration de l'infrastructure."]

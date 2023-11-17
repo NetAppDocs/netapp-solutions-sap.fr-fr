@@ -13,8 +13,6 @@ summary: 'Durant le workflow d"actualisation, le clone de stockage doit être su
 :imagesdir: ./../media/
 
 
-link:lama-ansible-sap-lama-provisioning-workflow-copy-system.html["Précédent : workflow de provisionnement SAP Lama : système de copie."]
-
 [role="lead"]
 La figure suivante met en évidence les principales étapes exécutées avec le flux de travail d'actualisation du système.
 
@@ -31,5 +29,3 @@ image:lama-ansible-image51.png["Cette capture d'écran montre la vue du système
 Là encore, rien ne diffère des écrans d'entrée de la norme et l'exécution du workflow peut être démarrée à partir de l'écran de résumé.
 
 image:lama-ansible-image52.png["Cette capture d'écran affiche l'écran Actualiser le système, y compris les données de base du système à actualiser et la sélection de l'hôte du système cible."]
-
-link:lama-ansible-appendix-provider-script-configuration-and-ansible-playbooks.html["Ensuite, configuration des scripts des fournisseurs et manuels de vente Ansible."]

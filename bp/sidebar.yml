@@ -34,8 +34,6 @@ entries:
       url: "/bp/saphana_aff_fc_adding_additional_data_volume_partitions_for_sap_hana_single-host_systems.html"
   - title: Où trouver des informations complémentaires
     url: "/bp/saphana_aff_fc_where_to_find_additional_information.html"
-  - title: Historique des mises à jour
-    url: "/bp/saphana_aff_fc_update_history.html"
 - title: 'SAP HANA sur les systèmes NetApp AFF avec NFS : Guide de configuration'
   type: solutions
   entries:
@@ -69,8 +67,6 @@ entries:
       url: "/bp/saphana_aff_nfs_adding_additional_data_volume_partitions.html"
   - title: Où trouver des informations complémentaires
     url: "/bp/saphana_aff_nfs_where_to_find_additional_information.html"
-  - title: Historique des mises à jour
-    url: "/bp/saphana_aff_nfs_update_history.html"
 - title: 'SAP HANA sur les systèmes NetApp FAS avec NFS : Guide de configuration'
   type: solutions
   entries:
@@ -104,8 +100,6 @@ entries:
       url: "/bp/saphana-fas-nfs_adding_additional_data_volume_partitions.html"
   - title: Où trouver des informations complémentaires
     url: "/bp/saphana-fas-nfs_where_to_find_additional_information.html"
-  - title: Historique des mises à jour
-    url: "/bp/saphana-fas-nfs_update_history.html"
 - title: 'SAP HANA sur les systèmes FAS avec FCP : Guide de configuration'
   type: solutions
   entries:
@@ -138,8 +132,6 @@ entries:
       url: "/bp/saphana_fas_fc_adding_additional_data_volume_partitions_for_sap_hana_single-host_systems.html"
   - title: Où trouver des informations complémentaires
     url: "/bp/saphana_fas_fc_where_to_find_additional_information.html"
-  - title: Historique des mises à jour
-    url: "/bp/saphana_fas_fc_update_history.html"
 - title: SAP HANA sur IBM Power Systems et les systèmes AFF de NetApp avec NFS
   url: "/bp/saphana-ibm-aff-nfs_pdf_link.html"
 - title: SAP avec Oracle sous UNIX et NFS avec NetApp ONTAP

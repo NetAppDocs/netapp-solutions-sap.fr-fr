@@ -13,8 +13,7 @@ summary: 'La validation de la solution a été réalisée avec un système hôte
 :imagesdir: ./../media/
 
 
-link:saphana-dr-anf_requirements_and_best_practices.html["Précédent : conditions requises et bonnes pratiques."]
-
+[role="lead"]
 La validation de la solution a été réalisée avec un système hôte unique SAP HANA. L'outil de sauvegarde Microsoft AzAcSnap Snapshot pour ANF a été utilisé pour configurer des sauvegardes Snapshot HANA cohérentes avec les applications. Les volumes de données quotidiens, les sauvegardes de journaux horaires et la réplication de volume partagé sont tous configurés. Le basculement et les tests de reprise après incident ont été validés avec un point de sauvegarde ainsi que pour les opérations de reprise après incident.
 
 Les versions logicielles suivantes ont été utilisées dans la configuration du laboratoire :
@@ -45,5 +44,3 @@ image:saphana-dr-anf_image8.png["Erreur : image graphique manquante"]
 La figure suivante présente le catalogue des sauvegardes SAP HANA.
 
 image:saphana-dr-anf_image9.png["Erreur : image graphique manquante"]
-
-link:saphana-dr-anf_configuration_steps_for_anf_cross-region_replication.html["Suivant : étapes de configuration de la réplication ANF multi-région."]

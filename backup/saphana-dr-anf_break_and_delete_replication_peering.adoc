@@ -13,8 +13,7 @@ summary: 'En cas de basculement après incident, les volumes cibles doivent êtr
 :imagesdir: ./../media/
 
 
-link:saphana-dr-anf_prepare_the_target_host_01.html["Précédent : préparer l'hôte cible."]
-
+[role="lead"]
 En cas de basculement après incident, les volumes cibles doivent être désactivés afin que l'hôte cible puisse monter les volumes pour les opérations de lecture et d'écriture.
 
 
@@ -36,5 +35,3 @@ Une fois le volume revert, le volume de données repose sur la sauvegarde Snapsh
 
 
 NOTE: Lorsqu'un pool de capacité doté d'un niveau de performance faible a été utilisé, les volumes doivent à présent être déplacés vers un pool de capacité capable d'assurer les performances requises.
-
-link:saphana-dr-anf_mount_the_volumes_at_the_target_host.html["Suivant : montez les volumes sur l'hôte cible."]

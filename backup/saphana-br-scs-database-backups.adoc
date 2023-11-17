@@ -13,8 +13,7 @@ summary: 'Dans SnapCenter, les sauvegardes de bases de données sont généralem
 :imagesdir: ./../media/
 
 
-link:saphana-br-scs-snapcenter-resource-specific-configuration-for-non-data-volume-backups.html["Précédent : configuration spécifique aux ressources de SnapCenter pour les sauvegardes de volumes sans données."]
-
+[role="lead"]
 Dans SnapCenter, les sauvegardes de bases de données sont généralement exécutées à l'aide des planifications définies dans la configuration de protection des ressources de chaque base de données HANA.
 
 Il est possible d'effectuer une sauvegarde de base de données à la demande via l'interface graphique SnapCenter, une ligne de commande PowerShell ou des API REST.
@@ -115,5 +114,3 @@ image:saphana-br-scs-image93.png["Erreur : image graphique manquante"]
 
 . Dans SAP HANA Studio, la nouvelle sauvegarde est visible dans le catalogue des sauvegardes. Le même nom de sauvegarde dans SnapCenter est également utilisé dans le commentaire et dans le champ EBID du catalogue de sauvegarde.
 
-
-link:saphana-br-scs-block-integrity-check.html["Suivant : vérification de l'intégrité du bloc."]

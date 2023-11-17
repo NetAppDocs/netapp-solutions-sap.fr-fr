@@ -13,7 +13,8 @@ summary: Cette section décrit les domaines couverts par la solution de sauvegar
 :imagesdir: ./../media/
 
 
-link:saphana-backup-anf-snapcenter-service-architecture.html["Précédent : architecture de service SnapCenter."]
+[role="lead"]
+Cette section décrit les domaines couverts par la solution de sauvegarde SnapCenter Service.
 
 
 
@@ -108,5 +109,3 @@ Le service SnapCenter prend en charge les architectures et versions SAP HANA sui
 NOTE: La prise en charge de la sauvegarde Snapshot pour les systèmes MDC a été introduite par SAP avec HANA 2.0 SP1 pour les systèmes à locataire unique et avec HANA 2.0 SPS4 pour les systèmes colocataires multiples.
 
 L'association des sauvegardes de données Snapshot avec le service SnapCenter et des sauvegardes de journaux avec une solution de sauvegarde interne n'est pas prise en charge. Les sauvegardes des journaux doivent être configurées pour être écrites dans un système de fichiers.
-
-link:saphana-backup-anf-snapcenter-service-concepts-and-best-practices.html["Ensuite : concepts et bonnes pratiques des services SnapCenter."]

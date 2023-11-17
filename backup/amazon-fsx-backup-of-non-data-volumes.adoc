@@ -13,9 +13,10 @@ summary: 'La sauvegarde de volumes non-data fait partie intégrante de SnapCente
 :imagesdir: ./../media/
 
 
-link:amazon-fsx-snapcenter-backup-operations.html["Précédent : opérations de sauvegarde SnapCenter."]
+[role="lead"]
+La sauvegarde de volumes non-data fait partie intégrante de SnapCenter et du plug-in SAP HANA.
 
-La sauvegarde de volumes non-data fait partie intégrante de SnapCenter et du plug-in SAP HANA. La protection du volume des données de la base de données est suffisante pour restaurer et restaurer la base de données SAP HANA à un point donné dans le temps, à condition que les ressources d'installation de la base de données et les journaux requis soient toujours disponibles.
+La protection du volume des données de la base de données est suffisante pour restaurer et restaurer la base de données SAP HANA à un point donné dans le temps, à condition que les ressources d'installation de la base de données et les journaux requis soient toujours disponibles.
 
 Pour restaurer des données à partir de situations où d'autres fichiers non data doivent être restaurés, NetApp recommande de développer une stratégie de sauvegarde supplémentaire pour les volumes sans data afin de compléter la sauvegarde de la base de données SAP HANA. En fonction de vos besoins spécifiques, la sauvegarde de volumes non-données peut varier dans les paramètres de fréquence de planification et de conservation. Il est également important de tenir compte de la fréquence à laquelle les fichiers ne sont pas des données sont modifiés. Par exemple, le volume HANA `/hana/shared` Contient des exécutables mais aussi des fichiers de trace SAP HANA. Alors que les exécutables ne changent que lorsque la base de données SAP HANA est mise à niveau, les fichiers de trace SAP HANA peuvent avoir besoin d'une fréquence de sauvegarde plus élevée pour prendre en charge l'analyse des problèmes avec SAP HANA.
 
@@ -153,5 +154,3 @@ SnapCenter exécute l'opération de restauration et de restauration. Cet exemple
 image:amazon-fsx-image75.png["Erreur : image graphique manquante"]
 
 
-
-link:amazon-fsx-backup-replication-with-snapvault_overview.html["Next : présentation - sauvegarde de la réplication avec SnapVault."]

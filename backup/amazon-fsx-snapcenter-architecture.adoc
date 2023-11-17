@@ -13,13 +13,10 @@ summary: SnapCenter est une plateforme unifiée et évolutive qui assure la coh�
 :imagesdir: ./../media/
 
 
-link:amazon-fsx-backup-and-recovery-using-amazon-fsx-for-ontap.html["Précédent : sauvegarde et restauration via Amazon FSX pour ONTAP."]
+[role="lead"]
+SnapCenter est une plateforme unifiée et évolutive qui assure la cohérence de la protection des données au niveau des applications. SnapCenter offre un contrôle et une surveillance centralisés, tout en déléguant aux utilisateurs la possibilité de gérer les tâches de sauvegarde, de restauration et de clonage spécifiques aux applications. Avec SnapCenter, les administrateurs de bases de données et de stockage apprennent à utiliser un seul outil pour gérer les opérations de sauvegarde, de restauration et de clonage des différentes applications et bases de données.
 
-
-
-== Présentation de SnapCenter
-
-SnapCenter est une plateforme unifiée et évolutive qui assure la cohérence de la protection des données au niveau des applications. SnapCenter offre un contrôle et une surveillance centralisés, tout en déléguant aux utilisateurs la possibilité de gérer les tâches de sauvegarde, de restauration et de clonage spécifiques aux applications. Avec SnapCenter, les administrateurs de bases de données et de stockage apprennent à utiliser un seul outil pour gérer les opérations de sauvegarde, de restauration et de clonage des différentes applications et bases de données. SnapCenter gère les données dans les différents terminaux de la Data Fabric optimisée par NetApp. Vous pouvez l'utiliser SnapCenter pour répliquer des données entre les environnements sur site, entre les environnements sur site et le cloud, ou entre les clouds privés, hybrides et publics.
+SnapCenter gère les données dans les différents terminaux de la Data Fabric optimisée par NetApp. Vous pouvez utiliser SnapCenter pour répliquer des données entre les environnements sur site, entre les environnements sur site et le cloud, et entre les clouds privés, hybrides et publics.
 
 
 
@@ -205,5 +202,3 @@ FSX pour systèmes de fichiers ONTAP :
 
 
 image:amazon-fsx-image8.png["Erreur : image graphique manquante"]
-
-link:amazon-fsx-snapcenter-configuration.html["Suivant : configuration SnapCenter."]
