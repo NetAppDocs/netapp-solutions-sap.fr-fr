@@ -345,6 +345,12 @@ Pour certaines commandes, vous devez passer au mode de privilège avancé au sei
 
 
 | Désactiver les id numériques de NFSv4 | nfs modify -vserver <vserver_name> -v4-numeric-ids désactivé 
+
+
+| Modifier le nombre de slots de session NFSv4.x
+  facultatif | définir comme avancé
+nfs modify -vserver hana -v4.x-session-num-slots <value>
+définissez admin 
 |===
 
 NOTE: Veuillez noter que la désactivation des id de numérotation nécessite une gestion des utilisateurs, comme décrit dans la section link:saphana-fas-nfs_sap_hana_installation_preparations_for_nfsv4.html["Préparation de l'installation de SAP HANA pour NFSv4."]
