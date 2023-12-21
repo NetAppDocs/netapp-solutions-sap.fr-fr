@@ -13,8 +13,6 @@ summary:
 :imagesdir: ./../media/
 
 
-link:saphana-dr-anf_hana_database_recovery_01.html["Précédent : restauration de base de données HANA."]
-
 Les modifications techniques suivantes ont été apportées à cette solution depuis sa publication initiale.
 
 [cols="25,25,50"]

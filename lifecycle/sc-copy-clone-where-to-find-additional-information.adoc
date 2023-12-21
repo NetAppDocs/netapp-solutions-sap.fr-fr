@@ -4,7 +4,7 @@ permalink: lifecycle/sc-copy-clone-where-to-find-additional-information.html
 keywords:  
 summary:  
 ---
-= Où trouver des informations complémentaires
+= Où trouver des informations supplémentaires et l'historique des versions
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -41,3 +41,21 @@ https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_aff_nfs_introducti
 http://www.netapp.com/us/solutions/applications/sap/index.aspx["http://www.netapp.com/us/solutions/applications/sap/index.aspx"^]
 
 
+
+
+
+== Historique des versions
+
+|===
+| Version | Date | Historique des versions du document 
+
+
+| Version 1.0 | Février 2018 | Version initiale. 
+
+
+| Version 2.0 | Février 2021 | Réécriture complète couvrant SnapCenter 4.3 et amélioration des scripts d'automatisation.
+Nouvelle description de workflow pour les opérations de mise à jour du système et de clonage du système. 
+
+
+| Version 3.0 | Mai 2022 | Workflow mis à jour pour SnapCenter 4.6 P1. 
+|===
