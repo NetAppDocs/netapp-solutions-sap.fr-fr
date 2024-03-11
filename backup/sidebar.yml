@@ -70,6 +70,18 @@ entries:
     url: "/backup/saphana-br-scs-advanced-configuration-and-tuning.html"
   - title: Où trouver des informations supplémentaires et l'historique des versions
     url: "/backup/saphana-br-scs-where-to-find-additional-information.html"
+- title: 'Sauvegarde et restauration BlueXP pour SAP HANA : stockage objet dans le
+    cloud comme destination de sauvegarde'
+  type: solutions
+  entries:
+  - title: 'Sauvegarde et restauration BlueXP pour SAP HANA : présentation'
+    url: "/backup/hana-hycl-backup-overview.html"
+  - title: Configuration de la sauvegarde et de la restauration BlueXP pour SAP HANA
+    url: "/backup/hana-hycl-backup-conf.html"
+  - title: Restauration de sauvegardes SAP HANA BlueXP
+    url: "/backup/hana-hycl-backup-restore.html"
+  - title: Informations supplémentaires et historique des versions
+    url: "/backup/hana-hycl-backup-info-version.html"
 - title: 'Réplication système SAP HANA : sauvegarde et restauration avec SnapCenter'
   type: solutions
   entries:

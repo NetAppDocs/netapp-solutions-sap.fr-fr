@@ -4041,14 +4041,7 @@
   <block id="b45ecd3afcfa865514a59b475de3e93e" category="sidebar">Solutions FlexPod pour SAP</block>
   <block id="fcf140abed196b8eba71c45f21312bce" category="sidebar">Les solutions NetApp</block>
   <block id="d648f2a68a54fd1b3329efc3cf24d29c" category="sidebar">Mentions légales</block>
-  <block id="0500aa4516d90775e7cd20e0b45fa4ad" category="sidebar">Meilleures pratiques pour la configuration</block>
-  <block id="bb5dc731b06d417365e41cb2d0230213" category="sidebar">Vidéos de démonstration</block>
-  <block id="d6b9ea32b921a9f56de32062ba4b94f3" category="sidebar">Blogs</block>
-  <block id="8625e1de7be14c39b1d14dc03d822497" category="sidebar">Outils</block>
-  <block id="1f934c6200615c74e6839ca55ae1e6cf" category="sidebar">Sauvegarde, restauration et reprise après incident</block>
   <block id="fa532045e834ec2fac1200964a189516" category="sidebar">Gestion du cycle de vie</block>
-  <block id="d57e0763c47c99218375572fbdd307a1" category="sidebar">Toutes les solutions SAP</block>
-  <block id="91770f038cd944a1d3b9b347edeb2b10" category="sidebar">Nouveautés</block>
   <block id="cd47dd01745339787e4c7300389401f2" category="sidebar">Et des meilleures pratiques</block>
   <block id="88aa48beec8729be73be99084cd76b79" category="sidebar">SAP HANA sur les systèmes AFF de NetApp avec FCP : Guide de configuration</block>
   <block id="87aea504b228b108e5161db60e63e422" category="sidebar">Présentation de la configuration et de l'installation de l'infrastructure</block>
@@ -4489,4 +4482,196 @@ Déploiement centralisé de plug-in pour Linux sur IBM Power</block>
 Nouvelle description de workflow pour les opérations de mise à jour du système et de clonage du système.</block>
   <block id="23bb02d00145cbbee811d75260628934" category="cell">Workflow mis à jour pour SnapCenter 4.6 P1.</block>
   <block id="8e070ffcf4d959eabcd3559b9bb17ec6" category="sidebar">Où trouver des informations supplémentaires et l'historique des versions</block>
+  <block id="2c7a6a1ad3b3855b3dd5766cc2c1b15c" category="summary">Cette section décrit comment restaurer une sauvegarde SAP HANA avec BlueXP.</block>
+  <block id="8513aa8ec75c0057744a444420581eac" category="doc">Restauration de la sauvegarde SAP HANA BlueXP</block>
+  <block id="630146410475bf00902dbc3588f48b64" category="paragraph">Une restauration à partir de la sauvegarde peut uniquement être effectuée sur un système de stockage NetApp ONTAP sur site ou NetApp CVO dans le cloud. Vous pouvez effectuer une restauration en procédant comme suit :</block>
+  <block id="ae9c703fb18f8c682d52518823ea9112" category="list-text">Dans l'interface utilisateur BlueXP, cliquez sur *protection* &gt; *sauvegarde et restauration* &gt; *applications* et choisissez hybride.</block>
+  <block id="16365f9a8d0b7866f7271510a28d1db2" category="list-text">Dans le  champ *Filtrer par*, sélectionnez le filtre *Type* et dans la liste déroulante, sélectionnez *HANA*.</block>
+  <block id="7bff1872092b4daae129c007c84cd996" category="inline-image-macro">hana-hycl-back-image38,largeur=624,hauteur=305</block>
+  <block id="14a2a4f505cd6a440ad11540cab0ac21" category="list-text">Cliquez sur *Afficher les détails* correspondant à la base de données que vous souhaitez restaurer. +
+<block ref="6f8d75fb488649758851cccdb2cccf08" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="5f61ef6ad90ff324226ee7a59e0654e9" category="inline-image-macro">Ein Bild, das Text, Screenshot, Software, Computersymbol enthält. Automatic generierte Beschreibung,width=624,height=308</block>
+  <block id="a8da112ff7dee33cb98f2529795ab713" category="list-text">Sélectionnez la sauvegarde souhaitée et choisissez exportation du stockage. +
+<block ref="9aaddfa4a9aab7d77d4d5c4b41b52fa5" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="25ea55983026f4468585a3cae84e6791" category="list-text">Fournissez les options souhaitées : +
+<block ref="e7942ad51c3862961e4d988dd1f7ab9f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="47abe672471325a3aa63fcd85f6e3367" category="list-text">Pour l'environnement NAS, spécifiez le nom de domaine complet ou l'adresse IP de l'hôte vers lequel les volumes restaurés à partir du magasin d'objets doivent être exportés.</block>
+  <block id="831b20d8b0ff4f1e50aecadcdcdc885d" category="list-text">Pour l'environnement SAN, spécifiez les initiateurs de l'hôte sur lesquels les LUN des volumes restaurés à partir du magasin d'objets doivent être mappées.</block>
+  <block id="eee7cd91c87d431eb526192fb8d8f8fa" category="list-text">Si le snapshot est en stockage d'archives, sélectionnez la priorité de restauration de vos données à partir du stockage d'archives.</block>
+  <block id="c309fef296cf37f3a835cb24529d8905" category="list-text">S'il n'y a pas assez d'espace sur le stockage source ou si le stockage source est en panne, sélectionnez *Modifier l'emplacement de stockage*.</block>
+  <block id="7d7bd9e2f6791a41e19d3f4c2cfbd112" category="list-text">Si vous sélectionnez *Modifier l'emplacement de stockage*, vous pouvez ajouter un suffixe au volume de destination. Si vous n'avez pas coché la case, *_restore* est ajouté par défaut au volume de destination. Cliquez sur *Suivant*.</block>
+  <block id="09fbcde15932165bde251a10dbf240e4" category="list-text">Si vous avez sélectionné Modifier l'emplacement de stockage, spécifiez les détails de l'emplacement de stockage secondaire où les données restaurées à partir du magasin d'objets seront stockées dans la page mappage de stockage et cliquez sur *Suivant*.</block>
+  <block id="c2dc9045e50399390c48484b265865e6" category="inline-image-macro">hana-hycl-back-image41,largeur=624,hauteur=309</block>
+  <block id="4be067965fe33fc45487470a504acc33" category="list-text">Vérifiez les détails et cliquez sur *Restaurer*. +
+<block ref="3d53ce2d67869523c0b4d4e2b8793ead" category="inline-image-macro-rx" type="image"></block> +
+ +
+Cette opération n'effectue que l'exportation du stockage de la sauvegarde restaurée pour l'hôte donné. Vous devez monter manuellement le système de fichiers sur l'hôte et ouvrir la base de données. Après avoir utilisé le volume, l'administrateur du stockage peut le supprimer du cluster ONTAP.</block>
+  <block id="e5c7ac753b7a6121d9687b3fc4c66f25" category="summary">Cette section explique comment configurer l'environnement de travail, comment configurer SnapCenter et comment configurer et activer la sauvegarde SAP HANA dans BlueXP.</block>
+  <block id="bba044fc5fd2c6b6b93f83b61a607e30" category="doc">Configuration de la sauvegarde et de la restauration BlueXP pour SAP HANA</block>
+  <block id="84e76e0953f8a5f72d754729d1eaf1ae" category="section-title">Création d'un environnement de travail pour BlueXP</block>
+  <block id="851847077e55a1429d11ef6bceeb9643" category="paragraph">Ajoutez le système de stockage sur site à votre environnement de travail.</block>
+  <block id="210e8952dc88c73e56d56a168cfe0616" category="list-text">Dans le menu de gauche, choisissez *Storage* -&gt; *Canvas* -&gt; *My Working* Environment.</block>
+  <block id="6e0b32969c38b1fb3a586b9c8bca6d29" category="inline-image-macro">hana-hycl-back-image2,largeur=624,hauteur=316</block>
+  <block id="32ae0c18f23bf987a305e455c9bf4aa0" category="list-text">Appuyez sur *+ Ajouter un environnement de travail*. +
+<block ref="261aee93707d679c8ff49bd45c5fdb36" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="04c6fea5cff3e4aa7643ec678d204fdc" category="inline-image-macro">Ein Bild, das Text enthält. Automatic generierte Beschreibung,width=624,height=316</block>
+  <block id="39f551b5282050e99060de22a436c58a" category="list-text">Choisissez *sur place*. +
+<block ref="979960cde457e31c17b357bad0bff424" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f533acbef1172572a61dbd78994f609f" category="list-text">Choisissez *découvrir ONTAP* sur place. +
+<block ref="fcff6ce23c328c34a47627af2e770b21" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="e67b31693fccd64a3bacc0e55452cae2" category="inline-image-macro">hana-hycl-back-image5,largeur=624,hauteur=316</block>
+  <block id="c7be70f13b9e16d991fdbdcbd9c13aa3" category="list-text">Ajoutez l'adresse IP du cluster ONTAP et le mot de passe, puis appuyez sur *découvrir*. +
+<block ref="d3f7db40d516cd6e5bc8ac0f9f7c0499" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="bea671570e246847e20efc713c53c69e" category="inline-image-macro">Ein Bild, das Diagram enthält. Automatic generierte Beschreibung,width=624,height=316</block>
+  <block id="6f11afbe1eadae3cfe974f3dac60ace1" category="list-text">Le cluster ONTAP est désormais disponible. +
+<block ref="3fa4376934b792a48a60395e9737c899" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="6689e50f5e4a08328fa676a7ebb07f17" category="section-title">Création d'une relation entre le système de stockage sur site et un compartiment de stockage objet</block>
+  <block id="eab79ca7fb49f80130fae7b1656f7ebc" category="inline-link">Terminaux de passerelle pour Amazon S3 : cloud privé virtuel Amazon</block>
+  <block id="53ab440b7f0ec4307a7446fefeb714d9" category="paragraph">La relation entre le stockage sur site et le compartiment S3 s'effectue par la création d'une sauvegarde d'un volume ou par l'activation de la sauvegarde d'une application. Si un VPN de site à site doit être utilisé pour transférer les données d'un environnement sur site vers S3, une sauvegarde de volume doit être utilisée pour créer la relation entre le stockage sur site et le compartiment S3, car les terminaux VPC doivent être utilisés. +
+Au moment de la création de ce document, le workflow de sauvegarde de l'application ne propose pas de terminaux VPC pour l'accès aux compartiments S3. +
+Reportez-vous à la section<block ref="7f3b31b88f0e42104578f538777bc3e6" category="inline-link-rx"></block> Comment configurer les terminaux VPC pour S3 dans votre VPC.</block>
+  <block id="4513d4d932152177142c02ca2a383afc" category="paragraph">Pour créer une première sauvegarde de volume, effectuez les opérations suivantes :</block>
+  <block id="dd78ee4baa00b09244d3a2f25c867ae5" category="inline-image-macro">hana-hycl-back-image7,largeur=624,hauteur=308</block>
+  <block id="e8467bba6a91bfb07a8de17e1fb2cd69" category="list-text">Naviguez via *protection* jusqu'à *sauvegarde et récupération* et choisissez *volumes*. +
+<block ref="11225c971b652ee3b6db7fe087c3aa5c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="271dec539afcefba0b81c99e084b109c" category="inline-image-macro">hana-hycl-back-image8,largeur=624,hauteur=309</block>
+  <block id="2789767e88a7ffe9c50b702781a0ea67" category="list-text">Appuyez sur le bouton *Activer la sauvegarde*. +
+<block ref="21f0cf6e7ffcc8ef5c72c49515645074" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b0ea90440a1c4c0ce85aa8e6a6798323" category="inline-image-macro">hana-hycl-back-image9,largeur=624,hauteur=304</block>
+  <block id="1d5ec2816de19fe1e154731ece2a18c2" category="list-text">Choisissez le système de stockage sur site de votre choix et cliquez sur *Activer la sauvegarde*. +
+<block ref="ca1f10e2c0934df1cc8bd3f38035f292" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="16c981d74d1a7a65432b0b676f94b05d" category="inline-image-macro">hana-hycl-back-image10,largeur=624,hauteur=307</block>
+  <block id="f11118f4d924111b34e3aa24dcf3a6c7" category="list-text">Choisissez *Backup*. +
+<block ref="304f4799d1ba6c0574d1c6d6e8bac1d9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3fe7bd8162333cf5226079e598f88f63" category="inline-image-macro">hana-hycl-back-image12,largeur=624,hauteur=305</block>
+  <block id="9853cba2a4b299bcb8180627181cd39d" category="list-text">Choisissez un volume qui est stocké sur le même SVM que vos fichiers de données SAP HANA et appuyez sur *Suivant*. Dans cet exemple, le volume pour /hana/shared a été choisi. +
+<block ref="a2dec4d3c1cfb1e66bf38e166a0ccbbc" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="8de11028ada12771254470b000810e23" category="inline-image-macro">hana-hycl-back-image11,largeur=624,hauteur=304</block>
+  <block id="d99dcd56dcb9bfa5a2be73d532bb75b9" category="list-text">*Continuer*, s'il existe une politique existante. +
+<block ref="a6f49816c4334d116e033f526097271b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="eb54efc82bc89a6f6a8a311be7a01d24" category="inline-image-macro">Ein Bild, das Text, Software, Computersymbol, Webseite enthält. Automatic generierte Beschreibung,width=624,height=306</block>
+  <block id="386e8a09b1074de806be0b2f336aad28" category="list-text">Cochez *option de sauvegarde* et choisissez le fournisseur de sauvegarde de votre choix. Dans cet exemple, AWS. +
+Gardez l'option cochée pour les stratégies existantes. +
+Décochez les options que vous ne souhaitez pas utiliser. +
+<block ref="e7bd64d80c923ffe89ab853777796206" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="75e71600dc8b519173f07bb53132cfea" category="inline-image-macro">hana-hycl-back-image14,largeur=624,hauteur=306</block>
+  <block id="d32f8e0d0c2a754313935c326e667d2a" category="list-text">Créez un nouveau compartiment ou choisissez un compartiment existant. Indiquez les paramètres de votre compte AWS, la régio, votre clé d'accès et la clé secrète. Appuyez sur *Suivant*. +
+<block ref="7ab51ec82c986777ece3aa7e7dd51a3b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="844815fed3e149f6fc8998b67459b8a9" category="inline-image-macro">hana-hycl-back-image15,largeur=624,hauteur=304</block>
+  <block id="e7e7cef436617079061e00d3adade148" category="list-text">Choisissez l'IPspace approprié de votre système de stockage sur site, sélectionnez *Configuration du terminal privé* et choisissez le terminal VPC pour S3. Appuyez sur *Suivant*. +
+<block ref="d4748032644bb23292416ca8e3798ab6" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a8520b5a7e60b78ae1f8faf41e825735" category="inline-image-macro">hana-hycl-back-image16,largeur=624,hauteur=304</block>
+  <block id="53f0db32002266ed051793d338134242" category="list-text">Vérifiez votre configuration et appuyez sur *Activer la sauvegarde*. +
+<block ref="c6e8f010da631bcf99f948b0ec287f89" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="46694ff89d2e1049db53b085f808204b" category="inline-image-macro">hana-hycl-back-image17,largeur=624,hauteur=304</block>
+  <block id="b17076bafc8f7c7433ee7a9ba697bdef" category="list-text">La sauvegarde a été lancée avec succès. +
+<block ref="b8c64b043d8234c9a1901ca3cab2d202" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="690e7cac4bb20bc16d03d9e8c2976d36" category="section-title">Configurez la ressource système SAP HANA sur SnapCenter</block>
+  <block id="6b1682473b222d2b053e1f829a4dfa26" category="inline-image-macro">Interface utilisateur graphique, application Description générée automatiquement,largeur=604,hauteur=156</block>
+  <block id="ec949205c32b4dcbf3d33ae3d2653d23" category="list-text">Vérifiez si le SVM (hana dans cet exemple) sur lequel votre système SAP HANA est stocké a été ajouté via le cluster. Si seul le SVM a été ajouté, ajouter le cluster. +
+<block ref="a21a8efefc66cab38c485ab2857055c4" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="fa2838d19a717f2eaaa40e2f1f725b14" category="inline-image-macro">Interface utilisateur graphique, application Description générée automatiquement,largeur=604,hauteur=140</block>
+  <block id="015b0ff295262d8372bb8eaf0e7007fa" category="inline-image-macro">hana-hycl-back-image20,largeur=167,hauteur=167</block>
+  <block id="25317da79c7424177b6fe7b2dd75dbe4" category="list-text">Définissez une règle d'horaires avec un type d'horaire quotidien, hebdomadaire ou mensuel. +
+<block ref="4053c2b580ac63fbd3aca168d4d20e18" category="inline-image-macro-rx" type="image"></block>
+<block ref="4bafb2763ffed71cdbba1adf60ba7416" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="fc770d11db32177599ce06cc7a281439" category="inline-image-macro">Interface utilisateur graphique, application Description générée automatiquement,largeur=604,hauteur=215</block>
+  <block id="84c8d37516c033f0c33377c3d5233ad4" category="list-text">Ajoutez la nouvelle règle à votre système SAP HANA et attribuez un planning quotidien. +
+<block ref="7adbf922feb3d32be59867cb2db85d53" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f306bf0a63220090651328d0787ebdef" category="inline-image-macro">Interface utilisateur graphique, application, équipes Description générée automatiquement, largeur=604, hauteur=193</block>
+  <block id="8b7d9c683eee25ba85d1f605aa5bfc73" category="list-text">Une fois les nouvelles sauvegardes configurées avec cette stratégie seront disponibles une fois la règle exécutée conformément au calendrier défini.
+<block ref="4cdd66955f0a12d8fd4b6c1593da46ce" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="522c073cfbc968ed21bb5b8292358b24" category="section-title">Ajout de SnapCenter à l'environnement de travail BlueXP</block>
+  <block id="63cebe46588c644def8c8d7ad33d7579" category="list-text">Dans le menu de gauche, choisissez *protection* -&gt; *sauvegarde et récupération* -&gt; *applications*.</block>
+  <block id="9a74817b35b4d995ea09e91b80d35939" category="inline-image-macro">hana-hycl-back-image23,largeur=624,hauteur=316</block>
+  <block id="6264d10e208ef10b481b09a42fe5a86f" category="list-text">Choisissez *Hybrid* dans le menu déroulant.  +
+<block ref="fcf6021fe8ae5bbeb957a47b5d9b9c56" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="8bb77bc23ab3ed07edf78138920094ec" category="list-text">Choisissez *serveurs SnapCenter* dans le menu Paramètres. +
+<block ref="8902dcae1fb3265083b9eb7674b0b6be" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="ae22ae0a7f45fd03327c250b60b315e5" category="list-text">Enregistrez le serveur SnapCenter. +
+<block ref="30a1a24e8f5b2901c8651c4be47ed542" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f1fa07b4f7836783fffe714d5a32befc" category="inline-image-macro">hana-hycl-back-image26,largeur=624,hauteur=315</block>
+  <block id="b99ce945467ef31e44140a5ce69f55c8" category="list-text">Ajoutez les informations d'identification du serveur SnapCenter. +
+<block ref="fabd6e441ab3d52fb0678f20864f7565" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4d57087fb6eb4ef48dd81d74b0599e61" category="inline-image-macro">hana-hycl-back-image27,largeur=624,hauteur=316</block>
+  <block id="176b8df3a4f7e0f5f93da577ced34744" category="list-text">Les serveurs SnapCenter ont été ajoutés et les données seront découvertes. +
+<block ref="e01a765e34911c9cc45ebf375691f3ad" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f7080c828def0f5f421c804a6a9411cc" category="list-text">Une fois la tâche de découverte terminée, le système SAP HANA est disponible. +
+<block ref="fc9d404e0e78b01038565097a3352a8e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="5a367c49e14aa13d1f3d9dbbc659e2ae" category="section-title">Création d'une règle de sauvegarde pour la sauvegarde des applications</block>
+  <block id="649a9b7aadbc8a5543b6a50f4b67635f" category="inline-image-macro">hana-hycl-back-image29,largeur=624,hauteur=316</block>
+  <block id="ee896cd41eabe060c8688c8c3c1ee36c" category="list-text">Choisissez *stratégies* dans le menu des paramètres. +
+<block ref="185326f0812872280f0adf0e04773ab1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="349ab45b449e8c58be43aa51b5414b97" category="inline-image-macro">hana-hycl-back-image30,largeur=624,hauteur=316</block>
+  <block id="ade97387220d3076bec4d7eac0ac1e25" category="list-text">Créez une nouvelle stratégie, si vous le souhaitez, en cliquant sur *Créer une stratégie*. +
+<block ref="8975d915951e905f053bb8fc4a552e7e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="62a3ac1a1f8d319fbc334f7bb626e92f" category="inline-image-macro">hana-hycl-back-image31,largeur=624,hauteur=315</block>
+  <block id="8558fcfb15dbf7f72676ae9e31d472a0" category="list-text">Indiquez le nom de la règle, le libellé SnapMirror souhaité, choisissez les options souhaitées, puis appuyez sur *Create*. +
+<block ref="c347360112b9c6b6f7e94dade1749c17" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="56a584207272fdc3949d5cfbeddc6890" category="inline-image-macro">hana-hycl-back-image32,largeur=624,hauteur=315</block>
+  <block id="4f5cb79b576ac4420d5ab8df8d9b073f" category="list-text">La nouvelle politique est disponible. +
+<block ref="2171b65bf9649c04f971325f1509e436" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="01f80398f488785a735c649b98cb461b" category="section-title">Protection de la base de données SAP HANA avec Cloud Backup pour les applications</block>
+  <block id="76e2dedbbcb80bd757e7f109e362eddf" category="inline-image-macro">largeur=624,hauteur=316</block>
+  <block id="5e0cc03833db7c0576f7d24096566189" category="list-text">Choisissez *Activer la sauvegarde* pour le système SAP HANA. +
+<block ref="2c48b27f819c1f6dce464959272cc8fe" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="7f25f783d0e4d4d1fddc6c9c315fd2b5" category="list-text">Choisissez la stratégie précédemment créée et cliquez sur *Suivant*. +
+<block ref="c0254b63c0fb085b036886dfba6ccb39" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="301e715cc01e45bb423cb6a66ee55bd7" category="list-text">Comme le système de stockage et le connecteur ont configuré en amont, la sauvegarde est activée. +
+<block ref="ad1fce9dd6ef995031c85dd49fe04071" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="659017308b6b80ebac0dc21912936c14" category="inline-image-macro">largeur=624,hauteur=337</block>
+  <block id="d9835ac927f5890b5c4fa24f03635dbf" category="list-text">Une fois la tâche terminée, le système s'affiche. +
+<block ref="681e1ec310d70e08717a083b855d482a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a852f184953f796252263a558df2db56" category="inline-image-macro">hana-hycl-back-image37,largeur=624,hauteur=316</block>
+  <block id="f8573bf4cb07bcf6ef97ab079e1bb247" category="list-text">Après un certain temps, les sauvegardes seront répertoriées dans la vue détaillée du système SAP HANA. +
+Une sauvegarde quotidienne sera affichée le jour suivant. +
+<block ref="dbaf7b11b6fc3181ec1d45bd0df20947" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a0e8aadf9440319ad134e14b8cd7944e" category="paragraph">Dans certains environnements, il peut être nécessaire de supprimer les paramètres de planification existants de la source snapmirror. Pour ce faire, exécutez la commande suivante sur le système ONTAP source : _snapmirror modify -destination-path &lt;hana-cloud-svm&gt;:&lt;SID_data_mnt00001&gt;_copy -schedule ""_ .</block>
+  <block id="3b6e263c9f3e6b5ae82e2961e7499aa8" category="summary">Dans ce rapport technique, nous vous proposons les bonnes pratiques de protection des données SAP HANA à l'aide de la solution NetApp BlueXP Backup nad Recovery pour application. Ce document aborde les concepts, les recommandations relatives à la configuration et les flux de travail opérationnels, notamment les opérations de configuration et de sauvegarde, et les opérations de restauration.</block>
+  <block id="b9a6a76ee21e4b2e63f002e8171e92cb" category="doc">Sauvegarde et restauration BlueXP pour SAP HANA : stockage objet dans le cloud comme destination de sauvegarde</block>
+  <block id="b5810ff76e2c858c26eb34fd554d4cd5" category="paragraph">Ce document décrit l'installation et la configuration de SAP HANA pour la protection des données depuis les magasins d'objets sur site vers les magasins d'objets dans le cloud avec NetApp BlueXP. Il couvre la partie sauvegarde et restauration BlueXP de la solution. Cette solution est une amélioration de la solution de sauvegarde SAP HANA sur site utilisant NetApp Snap Center. Elle offre une méthode économique pour l'archivage à long terme des sauvegardes SAP HANA dans un stockage objet basé sur le cloud. Elle offre également un Tiering facultatif du stockage objet vers un stockage d'archivage tel qu'AWS Glacier/Deep Glacier, Microsoft Azure Blob Archive et le stockage d'archives GCP.</block>
+  <block id="efabc7b5ad8cc75eaf149a7744db8028" category="inline-link">Tr-4614 : sauvegarde et restauration SAP HANA avec SnapCenter (netapp.com)</block>
+  <block id="c321598c956cf1b8a4189a4449a0377e" category="paragraph">La configuration de la solution de sauvegarde et de restauration SAP HANA sur site est décrite dans le<block ref="15efad3574df413724673ccbc14e9c64" category="inline-link-rx"></block>.</block>
+  <block id="a9b7843d32f728ea5c5677b7fc14faa1" category="paragraph">Ce rapport technique décrit uniquement comment améliorer la solution de sauvegarde et de restauration SnapCenter sur site avec la sauvegarde et la restauration BlueXP pour SAP HANA à l'aide du stockage objet AWS S3. L'installation et la configuration utilisant le stockage objet Microsoft Azure et GCP à la place d'AWS S3 sont similaires, mais ne sont pas décrites dans ce document.</block>
+  <block id="c81a8bcb625915f9445bc27152702a6c" category="section-title">Architecture de sauvegarde et de restauration BlueXP</block>
+  <block id="51fb7f5abc70e4c20e599e9abea2bc67" category="paragraph">BlueXP Backup and Recovery est une solution SaaS qui offre des fonctionnalités de protection des données pour les applications s'exécutant dans le stockage NetApp sur site vers le cloud. Il offre une protection SAP HANA basée sur des règles, efficace et cohérente avec les applications grâce au stockage NetApp. En outre, la sauvegarde et la restauration BlueXP assurent un contrôle et une surveillance centralisés, tout en déléguant aux utilisateurs la gestion des opérations de sauvegarde et de restauration spécifiques aux applications.</block>
+  <block id="71e720aa42f761a270169d7e4f05cb68" category="paragraph">La sauvegarde et la restauration BlueXP s'exécutent SaaS dans NetApp BlueXP et tirent parti du framework et de l'interface utilisateur. La structure de l'environnement de travail BlueXP est utilisée pour configurer et gérer les identifiants du stockage NetApp ONTAP basé sur site et du serveur NetApp SnapCenter.</block>
+  <block id="cc9fcc0e20ed73ea1c801ee52f57a449" category="paragraph">Un connecteur BlueXP doit être déployé au sein du réseau virtuel du client. Une connexion entre l'environnement sur site et l'environnement cloud est requise, par exemple une connexion VPN de site à site. La communication entre les composants SaaS NetApp et l'environnement client s'effectue exclusivement via le connecteur. Le connecteur exécute les opérations de stockage à l'aide des API de gestion ONTAP et SnapCenter.</block>
+  <block id="7335a187a88dba26e1d6b3eb60d0c796" category="paragraph">Le transfert des données entre le stockage sur site et le compartiment cloud est protégé de bout en bout avec le chiffrement AES 256 bits au repos, le chiffrement TLS/HTTPS à la volée et la prise en charge des clés gérées par le client (CMK). +
+Les données sauvegardées sont stockées dans un état WORM immuable et indélébile. La seule façon d'accéder aux données à partir du stockage objet est de les restaurer dans un stockage basé sur NetApp ONTAP, y compris NetApp CVO.</block>
+  <block id="41bb765509308cdc44c413e512e52e34" category="inline-image-macro">Ein Bild, das Text, Screenshot, Diagram, Kreis enthält. Automatic generierte Beschreibung,width=624,height=450</block>
+  <block id="796b2f89ad255115d9dff26e3177a467" category="paragraph"><block ref="796b2f89ad255115d9dff26e3177a467" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b2bf2bbf7e6b4629b50b4af1483af0ba" category="section-title">Présentation des étapes d'installation et de configuration</block>
+  <block id="f3cf1278a15cf0b578a48d8ef6a60523" category="inline-link">Configuration SnapCenter (netapp.com)</block>
+  <block id="ca4b776daf9a467ea504999e0a127287" category="paragraph">Les étapes d'installation et de configuration requises peuvent être divisées en trois zones. +
+Le prérequis est que la configuration de sauvegarde SAP HANA ait été configurée dans NetApp Snap Center. Pour configurer Snap Center pour SAP HANA, repassez d'abord à<block ref="bc1347d79ab670cf5ad861e4a7cc0e9b" category="inline-link-rx"></block>.</block>
+  <block id="a63540c81089e8aba203a4ec3fca1e34" category="list-text">Installation et configuration des composants NetApp BlueXP.</block>
+  <block id="60cb8be07c4c55cabf60de71b7a9b4b2" category="paragraph">Doit être effectué une fois lors de la configuration initiale de la solution de protection des données.</block>
+  <block id="d695b2f7d2eff56585ac33b59ae50cde" category="list-text">Étapes de préparation à NetApp SnapCenter.</block>
+  <block id="6d95f48ab62edee63c2cc9fda6615760" category="paragraph">Doit être fait pour chaque base de données SAP HANA, qui doit être protégée.</block>
+  <block id="c24f27d2fb45abb4ddc4c6dac6b3f9b9" category="list-text">Étapes de configuration de la sauvegarde et de la restauration BlueXP.</block>
+  <block id="0e7839906008338e5f608eca614e1cc7" category="section-title">Installation et configuration de la sauvegarde d'application hybride NetApp BlueXP</block>
+  <block id="9293673edeb2321146de2dbe903787cc" category="inline-link">Protection des données applicatives sur site | Documentation NetApp</block>
+  <block id="1b21781469d6b56757c78d09d90f83be" category="paragraph">L'installation et la configuration des composants NetApp BlueXP sont décrites dans le<block ref="36b413e5ecd6dd30fe4575aa917373d9" category="inline-link-rx"></block>.</block>
+  <block id="c3c6e6b1d05fc3c3c73b5ab9af3ea3ee" category="list-text">Inscrivez-vous à BlueXP et configurez un compte NetApp à l'adresse<block ref="7dd2072632295c5a9abd61523c46bd40" category="inline-link-rx"></block>.</block>
+  <block id="44de63d2b4a3805e8a143a8425e912c6" category="inline-link">En savoir plus sur les connecteurs | Documentation NetApp</block>
+  <block id="bc9a4ad171b5071191568c8006c63dc6" category="list-text">Déployez le connecteur BlueXP dans votre environnement. La description est disponible à l'adresse<block ref="a6131392110983029d1dff188cde678b" category="inline-link-rx"></block>.</block>
+  <block id="6691a23f272bb7c1d702c8963a326dc0" category="list-text">Ajoutez/achetez une licence Cloud Backup sur BlueXP :<block ref="57c4a53c7a746551566c6506aa924ffc" category="inline-link-rx"></block>.</block>
+  <block id="9d76c9e4e9696688d77e71e00214424d" category="list-text">Créez un environnement de travail pour l'environnement NetApp sur site et votre destination cloud dans BlueXP en ajoutant votre stockage sur site.</block>
+  <block id="55c74f25e19f21b0e03e4642d0363930" category="list-text">Créez une relation de magasin d'objets pour le stockage sur site dans un compartiment AWS S3.</block>
+  <block id="d497834786aa54c08eaf2f867588d576" category="list-text">Configurez la ressource système SAP HANA sur SnapCenter.</block>
+  <block id="465f4a123cd3df663bb4b5d781e3755f" category="list-text">Ajoutez Snap Center à votre environnement de travail.</block>
+  <block id="87a323c396d1f0b11c5c63017a081d0a" category="list-text">Création d'une stratégie pour votre environnement</block>
+  <block id="a33d9e49823debc4eac9a3f6fed5ed4f" category="list-text">Protégez votre système SAP HANA.</block>
+  <block id="2a4e61491419807845d0ce0d6f0b7d25" category="summary">Cette section répertorie où trouver des informations supplémentaires et p présente l'historique des versions.</block>
+  <block id="b1708148488f2ff73841c4df62f35be1" category="doc">Informations supplémentaires et historique des versions</block>
+  <block id="5d2dace1bbb099eb2c0c668ec3e8c3b6" category="list-text">Documentation du produit de sauvegarde et de restauration NetApp BlueXP +
+<block ref="2337d886e4f2f876275339e16f80eafd" category="inline-link-rx"></block></block>
+  <block id="b0e216a090ed7d12ab06af852f5fd176" category="list-text">Sauvegarde et restauration SAP HANA avec SnapCenter +
+<block ref="94fe6fb839269f177c2cb625768421d4" category="inline-link-rx"></block></block>
+  <block id="d7a15f16d93378f9428254d47703abd2" category="cell">Mars 2024</block>
+  <block id="c9dd6bad4c7d561872f2e2d498a990bf" category="inline-link">Matrice d'interopérabilité (IMT)</block>
+  <block id="c5358f17fd6fd13a64169fc38a03495f" category="paragraph">Reportez-vous à la<block ref="2a186a9053db553d8a98e2d5f86d7002" category="inline-link-rx"></block> Le site de support NetApp vous assure que les versions de produits et de fonctionnalités mentionnées dans le présent document sont prises en charge par votre environnement. NetApp IMT définit les composants et versions de produits qu'il est possible d'utiliser pour créer des configurations prises en charge par NetApp. Les résultats spécifiques dépendent de l'installation de chaque client conformément aux spécifications publiées.</block>
+  <block id="ca996b238b1f32bd7d6b941eb3464b17" category="sidebar">Sauvegarde et restauration BlueXP pour SAP HANA : présentation</block>
+  <block id="deac54b4ceeb072a80124bd022d78294" category="sidebar">Restauration de sauvegardes SAP HANA BlueXP</block>
 </blocks>
