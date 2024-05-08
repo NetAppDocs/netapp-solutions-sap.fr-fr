@@ -36,7 +36,7 @@ image:hana-hycl-back-image6.jpeg["Ein Bild, das Diagram enthält. Automatic gene
 
 == Création d'une relation entre le système de stockage sur site et un compartiment de stockage objet
 
-La relation entre le stockage sur site et le compartiment S3 s'effectue par la création d'une sauvegarde d'un volume ou par l'activation de la sauvegarde d'une application. Si un VPN de site à site doit être utilisé pour transférer les données d'un environnement sur site vers S3, une sauvegarde de volume doit être utilisée pour créer la relation entre le stockage sur site et le compartiment S3, car les terminaux VPC doivent être utilisés. +
+La relation entre le stockage sur site et le compartiment S3 s'effectue par la création d'une sauvegarde de volume ou par l'activation de la sauvegarde d'une application. Si un VPN de site à site doit être utilisé pour transférer les données d'un environnement sur site vers S3, une sauvegarde de volume doit être utilisée pour créer la relation entre le stockage sur site et le compartiment S3 lorsque les terminaux VPC doivent être utilisés. +
 Au moment de la création de ce document, le workflow de sauvegarde de l'application ne propose pas de terminaux VPC pour l'accès aux compartiments S3. +
 Reportez-vous à la section https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html["Terminaux de passerelle pour Amazon S3 : cloud privé virtuel Amazon"] Comment configurer les terminaux VPC pour S3 dans votre VPC.
 
@@ -55,7 +55,7 @@ image:hana-hycl-back-image12.jpeg["hana-hycl-back-image12,largeur=624,hauteur=30
 . *Continuer*, s'il existe une politique existante. +
 image:hana-hycl-back-image11.jpeg["hana-hycl-back-image11,largeur=624,hauteur=304"]
 . Cochez *option de sauvegarde* et choisissez le fournisseur de sauvegarde de votre choix. Dans cet exemple, AWS. +
-Gardez l'option cochée pour les stratégies existantes. +
+Conservez l'option cochée pour les stratégies existantes. +
 Décochez les options que vous ne souhaitez pas utiliser. +
 image:hana-hycl-back-image13.jpeg["Ein Bild, das Text, Software, Computersymbol, Webseite enthält. Automatic generierte Beschreibung,width=624,height=306"]
 . Créez un nouveau compartiment ou choisissez un compartiment existant. Indiquez les paramètres de votre compte AWS, la régio, votre clé d'accès et la clé secrète. Appuyez sur *Suivant*. +

@@ -27,14 +27,14 @@ Ce rapport technique décrit uniquement comment améliorer la solution de sauveg
 
 == Architecture de sauvegarde et de restauration BlueXP
 
-BlueXP Backup and Recovery est une solution SaaS qui offre des fonctionnalités de protection des données pour les applications s'exécutant dans le stockage NetApp sur site vers le cloud. Il offre une protection SAP HANA basée sur des règles, efficace et cohérente avec les applications grâce au stockage NetApp. En outre, la sauvegarde et la restauration BlueXP assurent un contrôle et une surveillance centralisés, tout en déléguant aux utilisateurs la gestion des opérations de sauvegarde et de restauration spécifiques aux applications.
+BlueXP Backup and Recovery est une solution SaaS qui offre des fonctionnalités de protection des données pour les applications qui s'exécutent sur le stockage NetApp sur site vers le cloud. Il offre une protection SAP HANA basée sur des règles, efficace et cohérente avec les applications grâce au stockage NetApp. En outre, la sauvegarde et la restauration BlueXP assurent un contrôle et une surveillance centralisés, tout en déléguant aux utilisateurs la gestion des opérations de sauvegarde et de restauration spécifiques aux applications.
 
 La sauvegarde et la restauration BlueXP s'exécutent SaaS dans NetApp BlueXP et tirent parti du framework et de l'interface utilisateur. La structure de l'environnement de travail BlueXP est utilisée pour configurer et gérer les identifiants du stockage NetApp ONTAP basé sur site et du serveur NetApp SnapCenter.
 
 Un connecteur BlueXP doit être déployé au sein du réseau virtuel du client. Une connexion entre l'environnement sur site et l'environnement cloud est requise, par exemple une connexion VPN de site à site. La communication entre les composants SaaS NetApp et l'environnement client s'effectue exclusivement via le connecteur. Le connecteur exécute les opérations de stockage à l'aide des API de gestion ONTAP et SnapCenter.
 
 Le transfert des données entre le stockage sur site et le compartiment cloud est protégé de bout en bout avec le chiffrement AES 256 bits au repos, le chiffrement TLS/HTTPS à la volée et la prise en charge des clés gérées par le client (CMK). +
-Les données sauvegardées sont stockées dans un état WORM immuable et indélébile. La seule façon d'accéder aux données à partir du stockage objet est de les restaurer dans un stockage basé sur NetApp ONTAP, y compris NetApp CVO.
+Les données sauvegardées peuvent être stockées dans un état WORM immuable et indélébile. La seule façon d'accéder aux données à partir du stockage objet est de les restaurer dans un stockage basé sur NetApp ONTAP, y compris NetApp CVO.
 
 image:hana-hycl-back-image1.png["Ein Bild, das Text, Screenshot, Diagram, Kreis enthält. Automatic generierte Beschreibung,width=624,height=450"]
 
@@ -43,7 +43,7 @@ image:hana-hycl-back-image1.png["Ein Bild, das Text, Screenshot, Diagram, Kreis 
 == Présentation des étapes d'installation et de configuration
 
 Les étapes d'installation et de configuration requises peuvent être divisées en trois zones. +
-Le prérequis est que la configuration de sauvegarde SAP HANA ait été configurée dans NetApp Snap Center. Pour configurer Snap Center pour SAP HANA, repassez d'abord à https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-snapcenter-configuration.html["Configuration SnapCenter (netapp.com)"].
+Le prérequis est que la configuration de sauvegarde SAP HANA ait été configurée dans NetApp Snap Center. Pour configurer Snap Center pour SAP HANA en premier lieu, reportez-vous à la section https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-snapcenter-configuration.html["Configuration SnapCenter (netapp.com)"].
 
 . Installation et configuration des composants NetApp BlueXP.
 +
@@ -68,8 +68,8 @@ L'installation et la configuration des composants NetApp BlueXP sont décrites d
 . Inscrivez-vous à BlueXP et configurez un compte NetApp à l'adresse https://bluexp.netapp.com/[].
 . Déployez le connecteur BlueXP dans votre environnement. La description est disponible à l'adresse https://docs.netapp.com/us-en/cloud-manager-setup-admin/concept-connectors.html["En savoir plus sur les connecteurs | Documentation NetApp"].
 . Ajoutez/achetez une licence Cloud Backup sur BlueXP : https://docs.netapp.com/us-en/cloud-manager-backup-restore/task-licensing-cloud-backup.html[].
-. Créez un environnement de travail pour l'environnement NetApp sur site et votre destination cloud dans BlueXP en ajoutant votre stockage sur site.
-. Créez une relation de magasin d'objets pour le stockage sur site dans un compartiment AWS S3.
+. Créez un environnement de travail pour l'environnement sur site NetApp et votre destination cloud dans BlueXP en ajoutant votre stockage sur site.
+. Créez une nouvelle relation de magasin d'objets pour le stockage sur site dans un compartiment AWS S3.
 . Configurez la ressource système SAP HANA sur SnapCenter.
 . Ajoutez Snap Center à votre environnement de travail.
 . Création d'une stratégie pour votre environnement

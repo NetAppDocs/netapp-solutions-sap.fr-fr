@@ -21,9 +21,9 @@ Une restauration à partir de la sauvegarde peut uniquement être effectuée sur
 . Cliquez sur *Afficher les détails* correspondant à la base de données que vous souhaitez restaurer. +
 image:hana-hycl-back-image38.jpeg["hana-hycl-back-image38,largeur=624,hauteur=305"]
 . Sélectionnez la sauvegarde souhaitée et choisissez exportation du stockage. +
-image:hana-hycl-back-image39.jpeg["Ein Bild, das Text, Screenshot, Software, Computersymbol enthält. Automatic generierte Beschreibung,width=624,height=308"]
+image:hana-hycl-back-image39.jpeg["largeur=624,hauteur=308"]
 . Fournissez les options souhaitées : +
-image:hana-hycl-back-image40.jpeg["Ein Bild, das Text, Screenshot, Software, Computersymbol enthält. Automatic generierte Beschreibung,width=624,height=308"]
+image:hana-hycl-back-image40.jpeg["largeur=624,hauteur=308"]
 +
 .. Pour l'environnement NAS, spécifiez le nom de domaine complet ou l'adresse IP de l'hôte vers lequel les volumes restaurés à partir du magasin d'objets doivent être exportés.
 .. Pour l'environnement SAN, spécifiez les initiateurs de l'hôte sur lesquels les LUN des volumes restaurés à partir du magasin d'objets doivent être mappées.
