@@ -64,7 +64,9 @@ NOTE: Ce calcul est indépendant du contrôleur de stockage utilisé. L'ajout de
 
 === Tiroir NVMe NS224
 
-Le nombre minimal de 12 SSD NVMe pour le premier tiroir prend en charge jusqu'à 18 hôtes SAP HANA. Un tiroir entièrement rempli prend en charge jusqu'à 48 hôtes SAP HANA.
+Un disque SSD NVMe (données) prend en charge jusqu'à 5 hôtes SAP HANA.
+Les disques SSD et les hôtes SAP HANA doivent être répartis de manière égale entre les deux contrôleurs de stockage.
+Il en va de même pour les disques NVMe internes des systèmes AFF A800, AFF A70 et AFF A90.
 
 
 NOTE: L'ajout de tiroirs disques supplémentaires n'augmente pas le nombre maximal d'hôtes SAP HANA qu'un contrôleur de stockage peut prendre en charge.

@@ -4,7 +4,7 @@ permalink: bp/saphana-fas-nfs_introduction.html
 keywords: sap, hana, fas, systems, nfs, configuration, guide 
 summary: 'La gamme de produits NetApp FAS a été certifiée pour une utilisation avec SAP HANA dans le cadre de projets Tailored Data Center Integration (TDI). Le système de stockage d"entreprise certifié se caractérise par le logiciel NetApp ONTAP.' 
 ---
-= Tr-4290 : SAP HANA sur les systèmes NetApp FAS avec guide de configuration NFS
+= SAP HANA sur les systèmes NetApp FAS avec le guide de configuration NFS
 :allow-uri-read: 
 
 
@@ -14,7 +14,7 @@ La gamme de produits NetApp FAS a été certifiée pour une utilisation avec SAP
 
 Cette certification n'est actuellement valable que pour les modèles suivants :
 
-* FAS2720, FAS2750, FAS8300, FAS8700, FAS9000, Et FAS9500. Vous trouverez la liste complète des solutions de stockage certifiées NetApp pour SAP HANA dans la page https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/#/solutions?filters=v:deCertified;ve:13["Répertoire matériel SAP HANA certifié et pris en charge"^].
+* FAS2750, FAS2820, FAS8300, FAS8700 ET FAS9500. Vous trouverez la liste complète des solutions de stockage certifiées NetApp pour SAP HANA dans la page https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/#/solutions?filters=v:deCertified;ve:13["Répertoire matériel SAP HANA certifié et pris en charge"^].
 
 
 Ce document décrit les exigences de configuration de ONTAP pour le protocole NFS version 3 (NFS v3) ou le protocole NFS version 4 (NFS v4.1).

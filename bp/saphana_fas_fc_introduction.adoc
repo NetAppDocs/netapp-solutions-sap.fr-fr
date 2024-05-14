@@ -4,17 +4,17 @@ permalink: bp/saphana_fas_fc_introduction.html
 keywords: sap, hana, fas, systems, fibre, channel, protocol, configuration, data, vmware, vsphere 
 summary: 'La gamme de produits NetApp FAS a été certifiée pour une utilisation avec SAP HANA dans les projets TDI. La plateforme de stockage d"entreprise certifiée est caractérisée par le système d"exploitation NetApp ONTAP.' 
 ---
-= Tr-4384 : SAP HANA sur les systèmes NetApp FAS avec le protocole Fiber Channel
+= Guide de configuration de SAP HANA sur les systèmes NetApp FAS avec le protocole Fibre Channel
 :allow-uri-read: 
 
 
-Nils Bauer et Marco Schoen, NetApp
+Marco Schoen, NetApp
 
 La gamme de produits NetApp FAS a été certifiée pour une utilisation avec SAP HANA dans les projets TDI. La plateforme de stockage d'entreprise certifiée est caractérisée par le système d'exploitation NetApp ONTAP.
 
 La certification est valide pour les modèles suivants :
 
-* FAS2720, FAS2750, FAS8200, FAS8300, FAS8700 FAS9000, FAS9500
+* FAS2750, FAS2820, FAS8300, FAS8700 ET FAS9500
 
 
 Pour obtenir la liste complète des solutions de stockage certifiées NetApp pour SAP HANA, consultez le https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/#/solutions?filters=v:deCertified;ve:13["Répertoire matériel SAP HANA certifié et pris en charge"^].
