@@ -24,6 +24,12 @@ La déduplication à la volée, la déduplication entre les volumes, la compress
 
 
 
+== NetApp FlexGroup volumes
+
+L'utilisation de NetApp FlexGroup volumes n'est pas prise en charge pour SAP HANA. L'architecture de SAP HANA rend l'utilisation de FlexGroup volumes moins avantageuse et peut entraîner des problèmes de performances.
+
+
+
 == Chiffrement de volume et d'agrégat NetApp
 
 SAP HANA prend en charge l'utilisation du chiffrement de volume NetApp (NVE) et du chiffrement d'agrégat NetApp (NAE).
@@ -42,7 +48,7 @@ Les E/S d'écriture importantes ont le plus grand impact sur les performances du
 
 
 
-=== NetApp FabricPool
+== NetApp FabricPool
 
 La technologie NetApp FabricPool ne doit pas être utilisée pour des systèmes de fichiers primaires actifs dans des systèmes SAP HANA. Cela inclut les systèmes de fichiers pour la zone des données et du journal ainsi que pour le `/hana/shared` système de fichiers. Ce qui entraîne des performances imprévisibles, en particulier lors du démarrage d'un système SAP HANA.
 

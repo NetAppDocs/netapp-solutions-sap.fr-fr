@@ -26,6 +26,12 @@ L'activation des fonctions d'efficacité du stockage dans une configuration bas�
 
 
 
+== NetApp FlexGroup volumes
+
+L'utilisation de NetApp FlexGroup volumes n'est pas prise en charge pour SAP HANA. L'architecture de SAP HANA rend l'utilisation de FlexGroup volumes moins avantageuse et peut entraîner des problèmes de performances.
+
+
+
 == Chiffrement de volume et d'agrégat NetApp
 
 SAP HANA prend en charge l'utilisation du chiffrement de volume NetApp (NVE) et du chiffrement d'agrégat NetApp (NAE).
