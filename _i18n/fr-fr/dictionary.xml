@@ -4682,4 +4682,11 @@ Il en va de même pour les disques NVMe internes des systèmes AFF A800, AFF A70
   <block id="47e4a9a1322865b7fd49caaf0207408a" category="list-text">AFF A150, AFF A250, AFF A400, AFF A70, AFF A800, AFF A900, AFF A90, AFF A1K</block>
   <block id="a004afbb2c9ff596c570f05cacd1d651" category="section-title">NetApp FlexGroup volumes</block>
   <block id="cfb6b0dd52bfc75b4646448807e41154" category="paragraph">L'utilisation de NetApp FlexGroup volumes n'est pas prise en charge pour SAP HANA. L'architecture de SAP HANA rend l'utilisation de FlexGroup volumes moins avantageuse et peut entraîner des problèmes de performances.</block>
+  <block id="0500aa4516d90775e7cd20e0b45fa4ad" category="sidebar">Meilleures pratiques pour la configuration</block>
+  <block id="bb5dc731b06d417365e41cb2d0230213" category="sidebar">Vidéos et démos</block>
+  <block id="d6b9ea32b921a9f56de32062ba4b94f3" category="sidebar">Blogs</block>
+  <block id="8625e1de7be14c39b1d14dc03d822497" category="sidebar">Outils</block>
+  <block id="1f934c6200615c74e6839ca55ae1e6cf" category="sidebar">Sauvegarde, restauration et reprise après incident</block>
+  <block id="d57e0763c47c99218375572fbdd307a1" category="sidebar">Toutes les solutions SAP</block>
+  <block id="91770f038cd944a1d3b9b347edeb2b10" category="sidebar">Nouveautés</block>
 </blocks>
