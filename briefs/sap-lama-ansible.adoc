@@ -1,0 +1,129 @@
+---
+sidebar: sidebar 
+permalink: briefs/sap-lama-ansible.html 
+keywords: sb-4292, pdf, sap, hana, provisioning, lifecycle, management, automation, LaMa, landscape 
+summary: 'Ce document est axé sur l"intégration des systèmes de stockage NetApp®, qu"ils soient exploités sur site, dans un environnement d"infrastructure à la demande (IaaS) de cloud public ou dans le cloud hybride, dans SAP Landscape Management (Lama) à l"aide des playbooks Ansible et des scripts personnalisés.' 
+---
+= SB-4292 : automatisation SAP avec Ansible
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+Ce document est axé sur l'intégration des systèmes de stockage NetApp®, qu'ils soient exploités sur site, dans un environnement d'infrastructure à la demande (IaaS) de cloud public ou dans le cloud hybride, dans SAP Landscape Management (Lama) à l'aide des playbooks Ansible et des scripts personnalisés.
+
+
+
+== Présentation de la solution
+
+Les systèmes SAP sont très complexes. Cependant, pour les entreprises qui utilisent SAP, ces systèmes sont essentiels à leurs processus métier. En automatisant les tâches opérationnelles quotidiennes récurrentes, les administrateurs système SAP peuvent gérer davantage de systèmes avec moins d'efforts, produire des résultats reproductibles et réduire les erreurs humaines.
+
+Ce document est axé sur l'intégration des systèmes de stockage NetApp®, qu'ils soient exploités sur site, dans un environnement d'infrastructure à la demande (IaaS) de cloud public ou dans le cloud hybride, dans SAP Landscape Management (Lama) à l'aide des playbooks Ansible et des scripts personnalisés. Cette intégration permet aux administrateurs SAP d'accélérer les tâches d'actualisation du système SAP à l'aide des technologies NetApp Snapshot™ et NetApp FlexClone®.
+
+
+
+=== Public visé
+
+Ce document s'adresse aux administrateurs système SAP qui n'ont pas eu beaucoup (ou pas) d'expérience dans le domaine de l'automatisation Ansible. Il doit vous aider à utiliser Ansible, à exécuter vos premiers playbooks et à configurer et exécuter votre première opération d'actualisation du système basée sur SAP Lama.
+
+
+
+=== Scénarios de clonage, de copie et d'actualisation de systèmes SAP
+
+Le terme copie système SAP est souvent utilisé comme synonyme de trois processus différents : clone du système SAP, copie du système SAP et actualisation du système SAP. Il est important de faire la distinction entre les différentes opérations, car les flux de travail et les cas d'utilisation diffèrent.
+
+* *Clone système SAP*. Un clone du système SAP est un clone identique d'un système SAP source. Les clones des systèmes SAP sont généralement utilisés pour gérer les corruptions logiques ou tester les scénarios de reprise d'activité. Lors d'une opération de clonage du système, le nom d'hôte, le numéro d'instance et l'identifiant sécurisé (SID) restent les mêmes. Il est donc important d'établir une barrière de réseau appropriée pour le système cible afin de s'assurer qu'il n'y a pas de communication avec l'environnement de production.
+* *Copie du système SAP*. Une copie du système SAP permet de configurer un nouveau système SAP cible avec les données d'un système SAP source. Par exemple, le nouveau système cible peut être un système de test supplémentaire avec des données du système de production. Le nom d'hôte, le numéro d'instance et le SID sont différents pour les systèmes source et cible.
+* *Actualisation du système SAP*. Une actualisation du système SAP est une actualisation d'un système SAP cible existant avec les données d'un système SAP source. Le système cible fait généralement partie d'un paysage de transport SAP, par exemple un système d'assurance qualité, qui est actualisé avec les données du système de production. Le nom d'hôte, le numéro d'instance et le SID sont différents pour les systèmes source et cible.
+
+
+L'image suivante montre les étapes du workflow Lama de clonage, de copie et d'actualisation du système SAP liées au stockage NetApp.
+
+image:sap-lama-image1.png["Image présentant les étapes du workflow Lama de clonage, de copie et d'actualisation du système SAP liées à NetApp Storage"]
+
+
+
+=== Technologie de la solution
+
+La solution globale comprend les principaux composants suivants :
+
+* Système SAP Lama
+* Système de stockage NetApp
+* Nœud de contrôle Ansible avec l'agent hôte SAP installé. Nous recommandons l'utilisation de Red Hat Ansible Automation Platform, car elle offre des avantages supplémentaires tels que :
++
+** Utiliser l'IA pour générer des recommandations de code pour les tâches d'automatisation
+** Réduction des tâches manuelles grâce à l'automatisation pilotée par les événements
+** Être défini, cohérent et portable
+** Évolutivité automatisée dans l'ensemble des environnements
+** Accélération de l'automatisation avec du contenu clé en main
+** Suivez et gérez l'automatisation grâce à des fonctionnalités avancées de reporting et de metrics d'observabilité
+** Création de tâches, de modules et de playbooks
+
+
+
+
+L'image suivante montre comment les systèmes de stockage SAP Lama et NetApp s'intègrent via des playbooks Ansible sur un hôte Ansible dédié, déclenché par des scripts shell exécutés à partir de l'agent hôte SAP.
+
+image:sap-lama-image2.png["Image montrant comment les systèmes de stockage SAP Lama et NetApp s'intègrent via des playbooks Ansible sur un hôte Ansible dédié, déclenché par des scripts shell exécutés à partir de l'agent hôte SAP"]
+
+
+
+=== Récapitulatif du cas d'utilisation
+
+Il existe plusieurs scénarios dans lesquels les données d'un système source doivent être mises à la disposition d'un système cible à des fins de test ou de formation. Ces systèmes de test et de formation doivent être régulièrement mis à jour avec les données du système source pour s'assurer que les tests et l'entraînement sont réalisés avec le dataset actuel. Ces opérations d'actualisation du système consistent en plusieurs tâches au niveau de l'infrastructure, de la base de données et des applications. Elles peuvent prendre plusieurs jours, selon le niveau d'automatisation.
+
+Pour accélérer et automatiser les tâches requises au niveau des couches d'infrastructure et de base de données, vous pouvez utiliser les workflows de clonage SAP Lama et NetApp. Au lieu de restaurer une sauvegarde du système source vers le système cible, SAP Lama utilise NetApp Snapshot et FlexClone pour exécuter les tâches requises pour démarrer une base de données en quelques minutes au lieu de plusieurs heures, comme illustré dans la figure ci-dessous. Le temps nécessaire au processus de clonage ne dépend pas de la taille de la base de données ; par conséquent, même des systèmes très volumineux peuvent être créés en quelques minutes. Vous pouvez encore réduire le temps d'exécution en automatisant les tâches au niveau du système d'exploitation et de la couche base de données, ainsi qu'au niveau du post-traitement SAP.
+
+L'image suivante montre les améliorations possibles en termes d'efficacité opérationnelle lorsque vous utilisez l'automatisation.
+
+image:sap-lama-image3.png["Image illustrant les éventuelles améliorations en termes d'efficacité opérationnelle lorsque vous utilisez l'automatisation"]
+
+
+
+=== L'intégration des différents composants technologiques
+
+Pour intégrer SAP Lama avec les systèmes de stockage NetApp à l'aide d'Ansible, vous devez disposer d'un nœud sur lequel vous pouvez exécuter les playbooks Ansible. Nous vous recommandons d'utiliser Ansible Automation Platform. Pour exécuter des scripts shell et des playbooks Ansible sur cet hôte, provenant de SAP Lama, vous devez exécuter SAP Host Agent sur ce serveur. SAP Host Agent prend le contrôle de la communication bidirectionnelle avec SAP Lama et exécute des scripts shell qui déclencheront les playbooks réels.
+
+Cette architecture à couplage lâche vous donne la liberté de démarrer des workflows à partir de SAP Lama et aussi en dehors de SAP Lama. Les playbooks et la logique correspondante ne doivent être configurés qu'une seule fois et peuvent être utilisés pour différents scénarios et cas d'utilisation.
+
+
+
+== Conclusion
+
+L'association de NetApp, SAP Lama et Ansible Automation Platform offre une solution puissante qui réduit considérablement le temps et les efforts nécessaires aux tâches les plus complexes et les plus chronophages liés à l'administration du système SAP. Cette combinaison peut également aider à éviter la dérive de configuration que l'erreur humaine peut causer entre les systèmes.
+
+Les mises à jour du système, les copies, les clones et les tests de reprise d'activité sont des procédures très sensibles lors de l'implémentation d'une telle solution peut libérer un temps précieux sur l'administration. Il renforce également la confiance que le reste de l'entreprise aura au sein des administrateurs système SAP : ils voient combien il est facile de copier des systèmes à des fins de test ou autres, et combien de temps de dépannage peut être économisé.
+
+
+
+== Où trouver des informations complémentaires
+
+Pour en savoir plus sur les informations données dans ce livre blanc, consultez ces documents et sites web :
+
+* link:https://github.com/sap-linuxlab/demo.netapp_ontap/blob/main/netapp_ontap.md["Automatisation des opérations quotidiennes 1 et 2 à l'aide des playbooks Ansible pour NetApp ONTAP®"]
+* link:https://netapp.io/2018/10/08/getting-started-with-netapp-and-ansible-install-ansible/["Documentation Ansible propre à NetApp"]
+* link:https://docs.ansible.com/ansible/latest/collections/netapp/ontap/index.html["Modules NetApp ONTAP Ansible et documentation complète"]
+* link:https://www.redhat.com/en/technologies/management/ansible/features["Red Hat Ansible Automation Platform"]
+
+
+
+
+== Historique des versions
+
+[cols="25,25,50"]
+|===
+| Version | Date | Mettre à jour le résumé 
+
+
+| Version 0.1 | 03.2023 | 1er projet. 
+
+
+| Version 0.2 | 01.2024 | Révision et quelques corrections mineures 
+
+
+| Version 0.3 | 06.2024 | Converti au format html 
+|===

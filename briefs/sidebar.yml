@@ -8,3 +8,9 @@ entries:
   url: https://www.netapp.com/us/media/sb-3965.pdf
 - title: Reprise après incident de SAP HANA
   url: https://www.netapp.com/us/media/sb-3968.pdf
+- title: L'automatisation SAP avec Ansible et NetApp SnapCenter
+  url: "/briefs/sap-lama-ansible.html"
+- title: Automatisation SAP avec ALPAGA et NetApp SnapCenter
+  url: "/briefs/sap-alpaca-automation.html"
+- title: Automatisation SAP avec Avantra et NetApp SnapCenter
+  url: "/briefs/sap-avantra-automation.html"
