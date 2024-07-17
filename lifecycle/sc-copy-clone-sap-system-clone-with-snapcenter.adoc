@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: lifecycle/sc-copy-clone-sap-system-clone-with-snapcenter.html 
-keywords: prerequisites, lab setup, target host, users, ports, sap services, file system mounts, 
-summary: 'Cette section fournit une description détaillée de l"opération de clonage du système SAP, qui peut être utilisée pour configurer un système de réparation afin de résoudre la corruption logique.' 
+keywords: tr4667, 4667, SAP HANA, cloning, system refresh 
+summary: 'Les solutions NetApp pour l"optimisation de la gestion du cycle de vie SAP sont intégrées aux outils de gestion du cycle de vie et de la base de données SAP HANA. Elles combinent une protection des données intégrée aux applications efficace avec le provisionnement flexible des systèmes de test SAP.' 
 ---
 = Clone du système SAP avec SnapCenter
 :hardbreaks:
@@ -13,42 +13,58 @@ summary: 'Cette section fournit une description détaillée de l"opération de c
 :imagesdir: ./../media/
 
 
-[role="lead"]
 Cette section fournit une description détaillée de l'opération de clonage du système SAP, qui peut être utilisée pour configurer un système de réparation afin de résoudre la corruption logique.
 
+La figure ci-dessous récapitule les étapes requises pour une opération de clonage de système SAP avec SnapCenter.
 
-NOTE: La configuration et la validation du laboratoire ne comprennent pas les services d'application SAP. Toutefois, les étapes requises pour les services d'application SAP sont mises en évidence dans la documentation.
+. Préparez l'hôte cible.
+. Workflow de création de clone SnapCenter pour le volume partagé SAP HANA.
+. Démarrage des services SAP HANA
+. Le clone de SnapCenter crée un workflow pour le volume de données SAP HANA, y compris pour la restauration de la base de données.
+. Le système SAP HANA peut désormais être utilisé comme système de réparation.
++
 
-image:sc-copy-clone-image10.png["Erreur : image graphique manquante"]
+NOTE: Si vous devez réinitialiser le système sur une autre sauvegarde Snapshot, les étapes 6 et 4 sont suffisantes. Le volume partagé SAP HANA peut continuer à être monté.
+
++
+Si le système n'est plus nécessaire, le processus de nettoyage est effectué avec les étapes suivantes.
+
+. Workflow de suppression de clone SnapCenter pour le volume de données SAP HANA, y compris l'arrêt de la base de données.
+. Arrêt des services SAP HANA
+. Workflow de suppression des clones SnapCenter pour le volume partagé SAP HANA.
+
+
+image:sc-copy-clone-image9.png[""]
 
 
 
 == Conditions préalables et limites
 
-Les workflows décrits dans les sections suivantes présentent quelques conditions préalables et limites relatives à l'architecture du système HANA et à la configuration SnapCenter.
+Les workflows décrits dans les sections suivantes présentent des prérequis et des limites pour l'architecture du système SAP HANA et la configuration SnapCenter.
 
-* Le flux de travail décrit est valide pour les systèmes MDC SAP HANA à hôte unique avec un seul locataire.
-* Le plug-in SnapCenter HANA doit être déployé sur l'hôte cible pour permettre l'exécution de scripts d'automatisation. Il n'est pas nécessaire d'installer le plug-in HANA sur l'hôte du système source HANA.
-* Le workflow a été validé pour NFS. Le script d'automatisation `sc-mount-volume.sh`, Qui est utilisé pour monter le volume partagé HANA, ne prend pas en charge FCP. Cette étape doit être effectuée manuellement ou en étendant le script.
-* Le workflow décrit n'est valide que pour la version SnapCenter 4.6 P1 ou ultérieure. Les versions plus anciennes ont des flux de travail légèrement différents.
+* Le workflow décrit est valide pour les systèmes MDC SAP HANA à un hôte. Plusieurs systèmes hôtes ne sont pas pris en charge.
+* Le plug-in SnapCenter SAP HANA doit être déployé sur l'hôte cible pour permettre l'exécution des scripts d'automatisation.
+* Le workflow a été validé pour NFS. L'automatisation `script sc-mount-volume.sh`, utilisée pour monter le volume partagé SAP HANA, ne prend pas en charge FCP. Cette étape doit être effectuée manuellement ou en étendant le script.
+* Le flux de travail décrit n'est valide que pour la version SnapCenter 5.0 ou supérieure.
 
 
 
 
 == Configuration de laboratoire
 
-La figure suivante présente la configuration de laboratoire utilisée pour une opération de clonage du système.
+La figure ci-dessous présente la configuration de l'atelier utilisée pour les opérations de clonage du système.
 
 Les versions logicielles suivantes ont été utilisées :
 
-* SnapCenter 4. 6 P1
-* Systèmes HANA : HANA 2.0 SPS6 rév.61
-* VMware 6.7.0
-* SLES 15 SP2
-* ONTAP 9.7P7All les systèmes HANA ont été configurés en fonction du guide de configuration https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_aff_nfs_introduction.html["SAP HANA sur les systèmes AFF de NetApp avec NFS"^]. Les ressources SnapCenter et HANA ont été configurées conformément au guide des meilleures pratiques https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-overview.html["SAP HANA : sauvegarde et restauration avec SnapCenter"^].
+* SnapCenter 5.0
+* Systèmes SAP HANA : HANA 2.0 SPS6 rév.61
+* SLES 15
+* ONTAP 9.7P7
 
 
-image:sc-copy-clone-image42.png["Erreur : image graphique manquante"]
+Tous les systèmes SAP HANA doivent être configurés conformément au guide de configuration https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_aff_nfs_introduction.html["SAP HANA sur les systèmes AFF de NetApp avec NFS"]. Les ressources SnapCenter et SAP HANA ont été configurées sur la base du guide des bonnes pratiques https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-overview.html["SAP HANA : sauvegarde et restauration avec SnapCenter"].
+
+image:sc-copy-clone-image41.png[""]
 
 
 
@@ -56,13 +72,13 @@ image:sc-copy-clone-image42.png["Erreur : image graphique manquante"]
 
 Cette section décrit les étapes de préparation requises sur un serveur utilisé comme cible de clone du système.
 
-En fonctionnement normal, l'hôte cible peut être utilisé à d'autres fins, par exemple comme système d'assurance qualité ou de test HANA. Par conséquent, la plupart des étapes décrites doivent être exécutées lorsque l'opération de clonage du système est demandée. D'autre part, les fichiers de configuration appropriés, comme `/etc/fstab` et `/usr/sap/sapservices`, peut être préparé puis mis en production simplement en copiant le fichier de configuration.
+Pendant le fonctionnement normal, l'hôte cible peut être utilisé à d'autres fins, par exemple en tant que système d'assurance qualité ou de test SAP HANA. Par conséquent, la plupart des étapes décrites doivent être exécutées lorsque l'opération de clonage du système est demandée. D'autre part, les fichiers de configuration appropriés, comme `/etc/fstab` et `/usr/sap/sapservices`, peuvent être préparés et ensuite mis en production simplement en copiant le fichier de configuration.
 
-La préparation de l'hôte cible inclut également l'arrêt du système d'assurance qualité ou de test HANA.
+La préparation de l'hôte cible inclut également l'arrêt du système de contrôle qualité ou de test SAP HANA.
 
 
 
-=== Nom d'hôte et adresse IP du serveur cible
+=== *Nom d'hôte et adresse IP du serveur cible*
 
 Le nom d'hôte du serveur cible doit être identique au nom d'hôte du système source. L'adresse IP peut être différente.
 
@@ -74,17 +90,17 @@ NOTE: Dans notre configuration de laboratoire, nous avons modifié le nom d'hôt
 
 
 
-=== Installez le logiciel requis
+=== *Installer le logiciel requis*
 
-Le logiciel de l'agent hôte SAP doit être installé sur le serveur cible. Pour plus d'informations, reportez-vous à la section https://help.sap.com/viewer/9f03f1852ce94582af41bb49e0a667a7/103/en-US["Agent hôte SAP"^] Sur le portail d'aide SAP.
+Le logiciel de l'agent hôte SAP doit être installé sur le serveur cible. Pour obtenir des informations complètes, consultez le https://help.sap.com/doc/saphelp_nw73ehp1/7.31.19/en-US/8b/92b1cf6d5f4a7eac40700295ea687f/content.htm?no_cache=true["Agent hôte SAP"] sur le portail d'aide SAP.
 
-Le plug-in SnapCenter HANA doit être déployé sur l'hôte cible à l'aide de l'opération d'ajout d'hôte dans SnapCenter.
+Le plug-in SnapCenter SAP HANA doit être déployé sur l'hôte cible à l'aide de l'opération d'ajout d'hôte dans SnapCenter.
 
 
 
-=== Configuration des utilisateurs, des ports et des services SAP
+=== *Configurer les utilisateurs, les ports et les services SAP*
 
-Les utilisateurs et groupes requis pour la base de données SAP HANA doivent être disponibles sur le serveur cible. En général, la gestion centralisée des utilisateurs est utilisée ; aucune étape de configuration n'est donc nécessaire sur le serveur cible. Les ports requis pour la base de données HANA doivent être configurés sur les hôtes cibles. La configuration peut être copiée à partir du système source en copiant `/etc/services` vers le serveur cible.
+Les utilisateurs et groupes requis pour la base de données SAP HANA doivent être disponibles sur le serveur cible. En général, la gestion centralisée des utilisateurs est utilisée ; aucune étape de configuration n'est donc nécessaire sur le serveur cible. Les ports requis pour la base de données SAP HANA doivent être configurés sur les hôtes cibles. La configuration peut être copiée à partir du système source en copiant le fichier /etc/services sur le serveur cible.
 
 Les entrées de services SAP requises doivent être disponibles sur l'hôte cible. La configuration peut être copiée à partir du système source en copiant `/usr/sap/sapservices` vers le serveur cible. Le résultat suivant montre les entrées requises pour la base de données SAP HANA utilisée dans la configuration de laboratoire.
 
@@ -102,174 +118,175 @@ Comme il n'est pas nécessaire de cloner le volume de journal à partir du syst�
 Comme le système source a été configuré avec un volume de sauvegarde de journaux distinct, un volume de sauvegarde de journaux vide doit être préparé et monté sur le même point de montage que sur le système source.
 
 ....
-hana- 1:/# cat /etc/fstab
+hana-1:/# cat /etc/fstab
 192.168.175.117:/SS1_repair_log_mnt00001 /hana/log/SS1/mnt00001 nfs rw,vers=3,hard,timeo=600,rsize=1048576,wsize=1048576,intr,noatime,nolock 0 0
 192.168.175.117:/SS1_repair_log_backup /mnt/log-backup nfs rw,vers=3,hard,timeo=600,rsize=1048576,wsize=1048576,intr,noatime,nolock 0 0
 ....
 Dans le volume de journal hdb*, vous devez créer des sous-répertoires de la même manière que dans le système source.
 
 ....
-hana- 1:/ # ls -al /hana/log/SS1/mnt00001/
+hana-1:/ # ls -al /hana/log/SS1/mnt00001/
 total 16
-drwxrwxrwx 5 root   root   4096 Dec  1 06:15 .
-drwxrwxrwx 1 root   root     16 Nov 30 08:56 ..
-drwxr-xr-- 2 ss1adm sapsys 4096 Dec  1 06:14 hdb00001
-drwxr-xr-- 2 ss1adm sapsys 4096 Dec  1 06:15 hdb00002.00003
-drwxr-xr-- 2 ss1adm sapsys 4096 Dec  1 06:15 hdb00003.00003
+drwxrwxrwx 5 root root 4096 Dec 1 06:15 .
+drwxrwxrwx 1 root root 16 Nov 30 08:56 ..
+drwxr-xr-- 2 ss1adm sapsys 4096 Dec 1 06:14 hdb00001
+drwxr-xr-- 2 ss1adm sapsys 4096 Dec 1 06:15 hdb00002.00003
+drwxr-xr-- 2 ss1adm sapsys 4096 Dec 1 06:15 hdb00003.00003
 ....
 Dans le volume de sauvegarde de journaux, vous devez créer des sous-répertoires pour le système et la base de données de tenant.
 
 ....
-hana- 1:/ # ls -al /mnt/log-backup/
+hana-1:/ # ls -al /mnt/log-backup/
 total 12
-drwxr-xr-x 4 root root 4096 Dec  1 04:48 .
-drwxr-xr-x 1 root root   48 Dec  1 03:42 ..
-drwxrwxrwx 2 root root 4096 Dec  1 06:15 DB_SS1
-drwxrwxrwx 2 root root 4096 Dec  1 06:14 SYSTEMDB
+drwxr-xr-- 2 ss1adm sapsys 4096 Dec 1 04:48 .
+drwxr-xr-- 2 ss1adm sapsys 4896 Dec 1 03:42 ..
+drwxr-xr-- 2 ss1adm sapsys 4096 Dec 1 06:15 DB_SS1
+drwxr-xr-- 2 ss1adm sapsys 4096 Dec 1 06:14 SYSTEMDB
 ....
 
 
-=== Préparer les montages du système de fichiers
+=== *Préparer les montages du système de fichiers*
 
 Vous devez préparer des points de montage pour les données et le volume partagé.
 
-Dans notre exemple, les répertoires `/hana/data/SS1/mnt00001`, /`hana/shared` et `usr/sap/SS1` doit être créé.
+Avec notre exemple, les répertoires `/hana/data/SS1/mnt00001`, `/hana/shared` et `usr/sap/SS1` doivent être créés.
 
 
 
-=== Préparer le fichier de configuration spécifique au SID pour le script SnapCenter
+=== *Préparer l'exécution du script*
 
-Vous devez créer le fichier de configuration pour le script d'automatisation SnapCenter `sc-system-refresh.sh`.
+Vous devez ajouter les scripts, qui doivent être exécutés sur le système cible dans le fichier de configuration des commandes autorisées SnapCenter.
 
 ....
-hana- 1:/mnt/sapcc-share/SAP-System-Refresh # cat sc-system-refresh-SS1.cfg
-# ---------------------------------------------
-# Target database specific parameters
-# ---------------------------------------------
-# hdbuserstore key, which should be used to connect to the target database
-KEY="SS1KEY"
-# Used storage protocol, NFS or FCP
-PROTOCOL
+hana-7:/opt/NetApp/snapcenter/scc/etc # cat /opt/NetApp/snapcenter/scc/etc/allowed_commands.config
+command: mount
+command: umount
+command: /mnt/sapcc-share/SAP-System-Refresh/sc-system-refresh.sh
+command: /mnt/sapcc-share/SAP-System-Refresh/sc-mount-volume.sh
+hana-7:/opt/NetApp/snapcenter/scc/etc #
 ....
 
 
 == Clonage du volume partagé HANA
 
-. Sélectionnez une sauvegarde Snapshot à partir du volume partagé SS1 du système source et cliquez sur Cloner à partir de la sauvegarde.
-+
-image:sc-copy-clone-image43.png["Erreur : image graphique manquante"]
+. Sélectionnez une sauvegarde Snapshot dans le volume partagé SS1 du système source, puis cliquez sur Cloner.
 
-. Sélectionnez l'hôte sur lequel le système de réparation cible a été préparé. L'adresse IP d'exportation NFS doit être l'interface réseau de stockage de l'hôte cible. Comme la DSRI cible garde le même SID que le système source ; dans notre exemple, il s'agit de SS1.
-+
-image:sc-copy-clone-image44.png["Erreur : image graphique manquante"]
+
+image:sc-copy-clone-image42.png[""]
+
+. Sélectionnez l'hôte sur lequel le système de réparation cible a été préparé. L'adresse IP d'exportation NFS doit être l'interface réseau de stockage de l'hôte cible. En tant que SID cible, conserver le même SID que le système source. Dans notre exemple SS1.
+
+
+image:sc-copy-clone-image43.png[""]
 
 . Entrez le script de montage avec les options de ligne de commande requises.
 +
 
-NOTE: Le système HANA utilise un seul volume pour `/hana/shared `as well as for `/usr/sap/SS1`, séparé dans les sous-répertoires comme recommandé dans le guide de configuration https://www.netapp.com/media/17238-tr4435.pdf["SAP HANA sur les systèmes AFF de NetApp avec NFS"^]. Le script `sc-mount-volume.sh` prend en charge cette configuration à l'aide d'une option de ligne de commande spéciale pour le chemin de montage. Si l'option de ligne de commande chemin de montage est égale à `usr-sap-and-shared`, le script monte les sous-répertoires `shared` et `usr-sap` dans le volume en conséquence.
+NOTE: Le système SAP HANA utilise un volume unique pour `/hana/shared` et pour `/usr/sap/SS1`, séparés en sous-répertoires, comme recommandé dans le guide de configuration https://www.netapp.com/media/17238-tr4435.pdf["SAP HANA sur les systèmes AFF de NetApp avec NFS"]. Le script `sc-mount-volume.sh` prend en charge cette configuration à l'aide d'une option de ligne de commande spéciale pour le chemin de montage. Si l'option de ligne de commande mount path est égale à usr-sap-and-shared, le script monte les sous-répertoires partagés et usr-sap dans le volume en conséquence.
 
-+
-image:sc-copy-clone-image45.png["Erreur : image graphique manquante"]
 
-. L'écran des détails du travail dans SnapCenter indique la progression de l'opération.
-+
-image:sc-copy-clone-image46.png["Erreur : image graphique manquante"]
 
-. Le fichier journal du `sc- mount-volume.sh` le script montre les différentes étapes exécutées pour l'opération de montage.
-+
+image:sc-copy-clone-image44.png[""]
+
+. L'écran Détails du travail dans SnapCenter indique la progression de l'opération.
+
+
+image:sc-copy-clone-image45.png[""]
+
+. Le fichier journal du script sc-mount-volume.sh affiche les différentes étapes exécutées pour l'opération de montage.
+
+
 ....
 20201201041441###hana-1###sc-mount-volume.sh: Adding entry in /etc/fstab.
 20201201041441###hana-1###sc-mount-volume.sh: 192.168.175.117://SS1_shared_Clone_05132205140448713/usr-sap /usr/sap/SS1 nfs rw,vers=3,hard,timeo=600,rsize=1048576,wsize=1048576,intr,noatime,nolock 0 0
 20201201041441###hana-1###sc-mount-volume.sh: Mounting volume: mount /usr/sap/SS1.
-20201201041441###hana-1###sc-mount-volume.sh: 192.168.175.117: /SS1_shared_Clone_05132205140448713/shared /hana/shared nfs rw,vers=3,hard,timeo=600,rsize=1048576,wsize=1048576,intr,noatime,nolock 0 0
+20201201041441###hana-1###sc-mount-volume.sh: 192.168.175.117:/SS1_shared_Clone_05132205140448713/shared /hana/shared nfs rw,vers=3,hard,timeo=600,rsize=1048576,wsize=1048576,intr,noatime,nolock 0 0
 20201201041441###hana-1###sc-mount-volume.sh: Mounting volume: mount /hana/shared.
 20201201041441###hana-1###sc-mount-volume.sh: usr-sap-and-shared mounted successfully.
 20201201041441###hana-1###sc-mount-volume.sh: Change ownership to ss1adm.
 ....
-. Lorsque le workflow SnapCenter est terminé, le `usr/sap/SS1` et le `/hana/shared` les systèmes de fichiers sont montés sur l'hôte cible.
-+
+. Lorsque le flux de travail SnapCenter est terminé, les systèmes de fichiers /usr/sap/SS1 et /hana/shared sont montés sur l'hôte cible.
+
+
 ....
 hana-1:~ # df
-Filesystem                                                       1K-blocks     Used Available Use% Mounted on
-192.168.175.117:/SS1_repair_log_mnt00001                         262144000      320 262143680   1% /hana/log/SS1/mnt00001
-192.168.175.100:/sapcc_share                                    1020055552 53485568 966569984   6% /mnt/sapcc-share
-192.168.175.117:/SS1_repair_log_backup                           104857600      256 104857344   1% /mnt/log-backup
-192.168.175.117: /SS1_shared_Clone_05132205140448713/usr-sap  262144064 10084608 252059456   4% /usr/sap/SS1
-192.168.175.117: /SS1_shared_Clone_05132205140448713/shared   262144064 10084608 252059456   4% /hana/shared
+Filesystem 1K-blocks Used Available Use% Mounted on
+192.168.175.117:/SS1_repair_log_mnt00001 262144000 320 262143680 1% /hana/log/SS1/mnt00001
+192.168.175.100:/sapcc_share 1020055552 53485568 966569984 6% /mnt/sapcc-share
+192.168.175.117:/SS1_repair_log_backup 104857600 256 104857344 1% /mnt/log-backup
+192.168.175.117:/SS1_shared_Clone_05132205140448713/usr-sap 262144064 10084608 252059456 4% /usr/sap/SS1
+192.168.175.117:/SS1_shared_Clone_05132205140448713/shared 262144064 10084608 252059456 4% /hana/shared
 ....
 . Dans SnapCenter, une nouvelle ressource pour le volume cloné est visible.
-+
-image:sc-copy-clone-image47.png["Erreur : image graphique manquante"]
 
-. Maintenant que le `/hana/shared` Le volume est disponible, les services SAP HANA peuvent être démarrés.
-+
+
+image:sc-copy-clone-image46.png[""]
+
+. Maintenant que le volume /hana/shared est disponible, les services SAP HANA peuvent être démarrés.
+
+
 ....
 hana-1:/mnt/sapcc-share/SAP-System-Refresh # systemctl start sapinit
 ....
-. Les processus SAP Host Agent et sapstartsrv sont à présent démarrés.
-+
+. SAP Host Agent et les processus sapstartsrv sont maintenant démarrés.
+
+
 ....
 hana-1:/mnt/sapcc-share/SAP-System-Refresh # ps -ef |grep sap
-root     12377     1  0 04:34 ?        00:00:00 /usr/sap/hostctrl/exe/saphostexec pf=/usr/sap/hostctrl/exe/host_profile
-sapadm   12403     1  0 04:34 ?        00:00:00 /usr/lib/systemd/systemd --user
-sapadm   12404 12403  0 04:34 ?        00:00:00 (sd-pam)
-sapadm   12434     1  1 04:34 ?        00:00:00 /usr/sap/hostctrl/exe/sapstartsrv pf=/usr/sap/hostctrl/exe/host_profile -D
-root     12485 12377  0 04:34 ?        00:00:00 /usr/sap/hostctrl/exe/saphostexec pf=/usr/sap/hostctrl/exe/host_profile
-root     12486 12485  0 04:34 ?        00:00:00 /usr/sap/hostctrl/exe/saposcol -l -w60 pf=/usr/sap/hostctrl/exe/host_profile
-ss1adm   12504     1  0 04:34 ?        00:00:00 /usr/sap/SS1/HDB00/exe/sapstartsrv pf=/usr/sap/SS1/SYS/profile/SS1_HDB00_hana-1 -D -u ss1adm
-root     12582 12486  0 04:34 ?        00:00:00 /usr/sap/hostctrl/exe/saposcol -l -w60 pf=/usr/sap/hostctrl/exe/host_profile
-root     12585  7613  0 04:34 pts/0    00:00:00 grep --color=auto sap
+root 12377 1 0 04:34 ? 00:00:00 /usr/sap/hostctrl/exe/saphostexec pf=/usr/sap/hostctrl/exe/host_profile
+sapadm 12403 1 0 04:34 ? 00:00:00 /usr/lib/systemd/systemd --user
+sapadm 12404 12403 0 04:34 ? 00:00:00 (sd-pam)
+sapadm 12434 1 1 04:34 ? 00:00:00 /usr/sap/hostctrl/exe/sapstartsrv pf=/usr/sap/hostctrl/exe/host_profile -D
+root 12485 12377 0 04:34 ? 00:00:00 /usr/sap/hostctrl/exe/saphostexec pf=/usr/sap/hostctrl/exe/host_profile
+root 12486 12485 0 04:34 ? 00:00:00 /usr/sap/hostctrl/exe/saposcol -l -w60 pf=/usr/sap/hostctrl/exe/host_profile
+ss1adm 12504 1 0 04:34 ? 00:00:00 /usr/sap/SS1/HDB00/exe/sapstartsrv pf=/usr/sap/SS1/SYS/profile/SS1_HDB00_hana-1 -D -u ss1adm
+root 12582 12486 0 04:34 ? 00:00:00 /usr/sap/hostctrl/exe/saposcol -l -w60 pf=/usr/sap/hostctrl/exe/host_profile
+root 12585 7613 0 04:34 pts/0 00:00:00 grep --color=auto sap
 hana-1:/mnt/sapcc-share/SAP-System-Refresh #
 ....
 
 
-
-
 == Clonage de services d'applications SAP supplémentaires
 
-Les autres services d'application SAP sont clonés de la même manière que le volume partagé SAP HANA, comme indiqué dans la section «<<Clonage du volume partagé HANA>>. » Bien entendu, le ou les volumes de stockage requis des serveurs d'applications SAP doivent également être protégés avec SnapCenter.
+D'autres services d'applications SAP sont clonés de la même manière que pour le volume partagé SAP HANA, comme indiqué dans la section « clonage du volume partagé SAP HANA ». Bien sûr, les volumes de stockage requis des serveurs d'applications SAP doivent également être protégés avec SnapCenter.
 
-Vous devez ajouter les entrées de services requises à `/usr/sap/sapservices`, et les ports, les utilisateurs et les points de montage du système de fichiers (par exemple, `/usr/sap/SID`) doit être préparé.
+Vous devez ajouter les entrées de services requises dans /usr/sap/sapservices, et les ports, les utilisateurs et les points de montage du système de fichiers (par exemple, /usr/sap/SID) doivent être préparés.
 
 
 
 == Clonage du volume de données et restauration de la base de données HANA
 
-. Sélectionnez une sauvegarde Snapshot HANA dans le système source SS1.
+. Sélectionnez une sauvegarde Snapshot SAP HANA dans le système source SS1.
+
+
+image:sc-copy-clone-image47.png[""]
+
+. Sélectionnez l'hôte sur lequel le système de réparation cible a été préparé. L'adresse IP d'exportation NFS doit être l'interface réseau de stockage de l'hôte cible. En tant que SID cible, conserver le même SID que le système source. Dans notre exemple SS1
+
+
+image:sc-copy-clone-image48.png[""]
+
+. Entrez les scripts post-clonage avec les options de ligne de commande requises.
 +
-image:sc-copy-clone-image48.png["Erreur : image graphique manquante"]
 
-. Sélectionnez l'hôte sur lequel le système de réparation cible a été préparé. L'adresse IP d'exportation NFS doit être l'interface réseau de stockage de l'hôte cible. Un SID cible garde le même SID que le système source ; dans notre exemple, c'est SS1.
-+
-image:sc-copy-clone-image49.png["Erreur : image graphique manquante"]
-
-. Entrez les scripts de montage et post-clonage avec les options de ligne de commande requises.
-+
-
-NOTE: Le script de l'opération de restauration restaure la base de données HANA au point dans le temps de l'opération Snapshot et n'exécute aucune restauration vers le avant. Si une récupération de transfert vers un point dans le temps spécifique est nécessaire, la récupération doit être effectuée manuellement. Une restauration manuelle par transfert nécessite également que les sauvegardes de journaux du système source soient disponibles sur l'hôte cible.
-
-+
-image:sc-copy-clone-image50.png["Erreur : image graphique manquante"]
+NOTE: Le script de l'opération de restauration restaure la base de données SAP HANA au point dans le temps de l'opération Snapshot et n'exécute aucune restauration par transfert. Si une récupération de transfert vers un point dans le temps spécifique est nécessaire, la récupération doit être effectuée manuellement. Une restauration manuelle par transfert nécessite également que les sauvegardes de journaux du système source soient disponibles sur l'hôte cible.
 
 
+
+image:sc-copy-clone-image23.png[""]
 
 L'écran des détails du travail dans SnapCenter indique la progression de l'opération.
 
-image:sc-copy-clone-image51.png["Erreur : image graphique manquante"]
+image:sc-copy-clone-image49.png[""]
 
-Le fichier journal du `sc-system-refresh.sh` script affiche les différentes étapes exécutées pour le montage et l'opération de restauration.
+Le fichier journal du `sc-system-refresh` script indique les différentes étapes qui sont exécutées pour le montage et l'opération de récupération.
 
 ....
-20201201052114###hana-1###sc-system-refresh.sh: Adding entry in /etc/fstab.
-20201201052114###hana-1###sc-system-refresh.sh: 192.168.175.117:/SS1_data_mnt00001_Clone_0421220520054605 /hana/data/SS1/mnt00001 nfs rw,vers=3,hard,timeo=600,rsize=1048576,wsize=1048576,intr,noatime,nolock 0 0
-20201201052114###hana-1###sc-system-refresh.sh: Mounting data volume: mount /hana/data/SS1/mnt00001.
-20201201052114###hana-1###sc-system-refresh.sh: Data volume mounted successfully.
-20201201052114###hana-1###sc-system-refresh.sh: Change ownership to ss1adm.
 20201201052124###hana-1###sc-system-refresh.sh: Recover system database.
 20201201052124###hana-1###sc-system-refresh.sh: /usr/sap/SS1/HDB00/exe/Python/bin/python /usr/sap/SS1/HDB00/exe/python_support/recoverSys.py --command "RECOVER DATA USING SNAPSHOT CLEAR LOG"
 20201201052156###hana-1###sc-system-refresh.sh: Wait until SAP HANA database is started ....
-20201201052156###hana-1###sc-system-refresh.sh: Status:  GRAY
-20201201052206###hana-1###sc-system-refresh.sh: Status:  GREEN
+20201201052156###hana-1###sc-system-refresh.sh: Status: GRAY
+20201201052206###hana-1###sc-system-refresh.sh: Status: GREEN
 20201201052206###hana-1###sc-system-refresh.sh: SAP HANA database is started.
 20201201052206###hana-1###sc-system-refresh.sh: Source system has a single tenant and tenant name is identical to source SID: SS1
 20201201052206###hana-1###sc-system-refresh.sh: Target tenant will have the same name as target SID: SS1.
@@ -279,17 +296,14 @@ Le fichier journal du `sc-system-refresh.sh` script affiche les différentes ét
 20201201052241###hana-1###sc-system-refresh.sh: Checking availability of Indexserver for tenant SS1.
 20201201052241###hana-1###sc-system-refresh.sh: Recovery of tenant database SS1 succesfully finished.
 20201201052241###hana-1###sc-system-refresh.sh: Status: GREEN
-....
-Après l'opération de montage et de restauration, le volume de données HANA est monté sur l'hôte cible.
-
-....
+After the recovery operation, the HANA database is running and the data volume is mounted at the target host.
 hana-1:/mnt/log-backup # df
-Filesystem                                                       1K-blocks     Used Available Use% Mounted on
-192.168.175.117:/SS1_repair_log_mnt00001                         262144000   760320 261383680   1% /hana/log/SS1/mnt00001
-192.168.175.100:/sapcc_share                                    1020055552 53486592 966568960   6% /mnt/sapcc-share
-192.168.175.117:/SS1_repair_log_backup                           104857600      512 104857088   1% /mnt/log-backup
-192.168.175.117: /SS1_shared_Clone_05132205140448713/usr-sap  262144064 10090496 252053568   4% /usr/sap/SS1
-192.168.175.117: /SS1_shared_Clone_05132205140448713/shared   262144064 10090496 252053568   4% /hana/shared
-192.168.175.117:/SS1_data_mnt00001_Clone_0421220520054605           262144064  3732864 258411200   2% /hana/data/SS1/mnt00001
+Filesystem 1K-blocks Used Available Use% Mounted on
+192.168.175.117:/SS1_repair_log_mnt00001 262144000 760320 261383680 1% /hana/log/SS1/mnt00001
+192.168.175.100:/sapcc_share 1020055552 53486592 966568960 6% /mnt/sapcc-share
+192.168.175.117:/SS1_repair_log_backup 104857600 512 104857088 1% /mnt/log-backup
+192.168.175.117:/SS1_shared_Clone_05132205140448713/usr-sap 262144064 10090496 252053568 4% /usr/sap/SS1
+192.168.175.117:/SS1_shared_Clone_05132205140448713/shared 262144064 10090496 252053568 4% /hana/shared
+192.168.175.117:/SS1_data_mnt00001_Clone_0421220520054605 262144064 3732864 258411200 2% /hana/data/SS1/mnt00001
 ....
-Le système HANA est désormais disponible et peut être utilisé, par exemple, comme système de réparation.
+Le système SAP HANA est désormais disponible et peut être utilisé, par exemple, en tant que système de réparation.

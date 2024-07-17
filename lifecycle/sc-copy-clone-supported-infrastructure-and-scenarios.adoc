@@ -1,0 +1,41 @@
+---
+sidebar: sidebar 
+permalink: lifecycle/sc-copy-clone-supported-infrastructure-and-scenarios.html 
+keywords: tr4667, 4667, SAP HANA, cloning, system refresh 
+summary: 'Les solutions NetApp pour l"optimisation de la gestion du cycle de vie SAP sont intégrées aux outils de gestion du cycle de vie et de la base de données SAP HANA. Elles combinent une protection des données intégrée aux applications efficace avec le provisionnement flexible des systèmes de test SAP.' 
+---
+= Infrastructure et scénarios pris en charge
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+Ce document présente les scénarios d'actualisation et de clonage des systèmes SAP HANA s'exécutant sur des systèmes NetApp sur site, sur des systèmes Amazon FSX pour NetApp ONTAP et sur Azure NetApp Files. Toutefois, certaines fonctionnalités et certains scénarios ne sont pas disponibles sur chaque plateforme de stockage. Le tableau ci-dessous récapitule les configurations prises en charge.
+
+Ce document utilise un paysage SAP HANA s'exécutant sur des systèmes NetApp sur site avec le protocole de stockage NFS. La plupart des étapes de workflow sont identiques sur les différentes plates-formes et, en cas de différences, elles sont mises en évidence dans ce document.
+
+[cols="25%,25%,25%,25%"]
+|===
+|  | *Systèmes NetApp sur site* | *AWS FSX pour NetApp ONTAP* | *Azure NetApp Files* 
+
+
+| Protocole de stockage | NFS et Fibre Channel | NFS | NFS 
+
+
+| Clone dynamique (FlexClone) | Oui. | Oui. | Non. Avec la version actuelle d'ANF, le volume cloné est toujours divisé 
+
+
+| Opération de séparation des clones | Oui. | Oui. | S/O 
+
+
+| Clonage depuis le stockage primaire | Oui. | Oui. | Oui. 
+
+
+| Clonage à partir d'une sauvegarde hors site | Oui. | Oui. | Non 
+
+
+| Clonage sur le site de reprise après incident | Oui. | Oui. | Oui, mais pas intégré dans SnapCenter 
+|===

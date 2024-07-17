@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: lifecycle/sc-copy-clone-overview-of-sap-system-clone-workflow-with-snapcenter.html 
-keywords: system clone, target host, clone create 
-summary: 'La technologie FlexClone permet un processus de provisionnement rapide et permet d"importantes économies de capacité, car le système de réparation est généralement utilisé pendant une courte période seulement.' 
+keywords: tr4667, 4667, SAP HANA, cloning, system refresh 
+summary: 'Les solutions NetApp pour l"optimisation de la gestion du cycle de vie SAP sont intégrées aux outils de gestion du cycle de vie et de la base de données SAP HANA. Elles combinent une protection des données intégrée aux applications efficace avec le provisionnement flexible des systèmes de test SAP.' 
 ---
 = Présentation du workflow de clonage de système SAP avec SnapCenter
 :hardbreaks:
@@ -13,30 +13,27 @@ summary: 'La technologie FlexClone permet un processus de provisionnement rapide
 :imagesdir: ./../media/
 
 
-[role="lead"]
-Comme indiqué dans la section précédente, SnapCenter peut gérer des clones de jeux de données à partir de n'importe quelle sauvegarde Snapshot existante et provisionner rapidement ces jeux de données sur n'importe quel système cible. Il est essentiel de provisionner les données de production rapidement sur un système de réparation en cas de corruption logique, car il est souvent nécessaire de réinitialiser le système de réparation et de choisir un autre jeu de données de production.
+Comme indiqué dans la section précédente, SnapCenter peut gérer des clones de jeux de données à partir de n'importe quelle sauvegarde Snapshot existante et provisionner rapidement ces jeux de données sur n'importe quel système cible. Le provisionnement souple et agile des données de production sur un système de réparation pour gérer la corruption logique est essentiel, car il est souvent nécessaire de réinitialiser le système de réparation et de choisir un autre jeu de données de production. La technologie FlexClone permet un processus de provisionnement rapide et permet d'importantes économies de capacité, car le système de réparation est généralement utilisé pendant une courte période seulement.
 
-La technologie FlexClone permet un processus de provisionnement rapide et permet d'importantes économies de capacité, car le système de réparation est généralement utilisé pendant une courte période seulement.
-
-La figure suivante récapitule les étapes requises pour une opération de clonage de systèmes SAP avec SnapCenter.
+La figure ci-dessous récapitule les étapes requises pour une opération de clonage de système SAP avec SnapCenter.
 
 . Préparez l'hôte cible.
-. Workflow de création de clones SnapCenter pour le volume partagé HANA.
+. Workflow de création de clone SnapCenter pour le volume partagé SAP HANA.
 . Démarrage des services SAP HANA
-. Le clone SnapCenter crée un workflow pour le volume de données HANA, y compris pour la restauration de la base de données.
-. Le système HANA peut désormais être utilisé comme système de réparation.
+. Le clone de SnapCenter crée un workflow pour le volume de données SAP HANA, y compris pour la restauration de la base de données.
+. Le système SAP HANA peut désormais être utilisé comme système de réparation.
 
-
-
-NOTE: Si vous devez réinitialiser le système sur une autre sauvegarde Snapshot, les étapes 6 et 4 sont suffisantes. Le volume partagé HANA peut continuer à être monté.
 
 Si le système n'est plus nécessaire, le processus de nettoyage est effectué avec les étapes suivantes.
 
-. Workflow de suppression du clone SnapCenter pour le volume de données HANA, y compris l'arrêt de la base de données.
+. Workflow de suppression de clone SnapCenter pour le volume de données SAP HANA, y compris l'arrêt de la base de données (lors de l'utilisation du script d'automatisation).
 . Arrêt des services SAP HANA
-. Workflow de suppression du clone SnapCenter pour le volume partagé HANA.
+. Workflow de suppression des clones SnapCenter pour le volume partagé SAP HANA.
 
 
-image:sc-copy-clone-image10.png["Erreur : image graphique manquante"]
+
+NOTE: Si vous devez réinitialiser le système sur une autre sauvegarde Snapshot, les étapes 6 et 4 sont suffisantes. Aucune actualisation du volume partagé SAP HANA n'est requise.
+
+image:sc-copy-clone-image9.png[""]
 
 La section link:sc-copy-clone-sap-system-clone-with-snapcenter.html["« Clone du système SAP avec SnapCenter »"] fournit une description détaillée détaillée du flux de travail du clone du système.

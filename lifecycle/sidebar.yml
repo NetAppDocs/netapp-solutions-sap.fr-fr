@@ -34,18 +34,18 @@ entries:
   - title: Introduction
     url: "/lifecycle/sc-copy-clone-introduction.html"
   - title: Scénarios de copie, d'actualisation et de clonage des systèmes SAP
-    url: "/lifecycle/sc-copy-clone-sap-system-copy,-refresh,-and-clone-scenarios.html"
+    url: "/lifecycle/sc-copy-clone-sap-system-copy-refresh-and-clone-scenarios.html"
   - title: Cas d'utilisation pour la mise à jour et le clonage du système
     url: "/lifecycle/sc-copy-clone-use-cases-for-system-refresh-and-cloning.html"
+  - title: Infrastructure et scénarios pris en charge
+    url: "/lifecycle/sc-copy-clone-supported-infrastructure-and-scenarios.html"
   - title: Présentation du workflow d'actualisation du système SAP avec SnapCenter
     url: "/lifecycle/sc-copy-clone-overview-of-sap-system-refresh-workflow-with-snapcenter.html"
-  - title: Présentation du workflow de copie de système SAP avec SnapCenter
-    url: "/lifecycle/sc-copy-clone-overview-of-sap-system-copy-workflow-with-snapcenter.html"
   - title: Présentation du workflow de clonage de système SAP avec SnapCenter
     url: "/lifecycle/sc-copy-clone-overview-of-sap-system-clone-workflow-with-snapcenter.html"
-  - title: Workflows d'opération de mise à jour du système SAP HANA à l'aide des sauvegardes
-      Snapshot de stockage
-    url: "/lifecycle/sc-copy-clone-sap-hana-system-refresh-operation-workflows-using-storage-snapshot-backups.html"
+  - title: Considérations relatives aux opérations d'actualisation des systèmes SAP
+      HANA avec les sauvegardes Snapshot de stockage
+    url: "/lifecycle/sc-copy-clone-considerations-for-sap-hana-system-refresh-operations-using-snapshot-backups.html"
   - title: Scripts d'exemple d'automatisation
     url: "/lifecycle/sc-copy-clone-automation-example-scripts.html"
   - title: Mise à jour du système SAP HANA avec SnapCenter
