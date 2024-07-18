@@ -16,39 +16,39 @@ summary: 'Pour désaffecter un système cloné, il doit être arrêté et prêt 
 [role="lead"]
 La figure suivante met en évidence les principales étapes exécutées avec le workflow de destruction du système.
 
-image:lama-ansible-image32.png["Cette image présente un aperçu du flux de travail de destruction du système. Il contient les étapes Arrêter le système, Annuler la préparation du système, Supprimer le clone de stockage et Supprimer la configuration du système."]
+image::lama-ansible-image32.png[Cette image présente un aperçu du flux de travail de destruction du système. Il contient les étapes Arrêter le système, Annuler la préparation du système, Supprimer le clone de stockage et Supprimer la configuration du système.]
 
 . Pour désaffecter un système cloné, il doit être arrêté et prêt à l'avance. Le processus de destruction du système peut ensuite être démarré.
 +
-image:lama-ansible-image33.png["Ce graphique contient un diagramme architectural combiné à l'emplacement où les étapes de workflow mentionnées précédemment se produisent avec le système."]
+image::lama-ansible-image33.png[Ce graphique contient un diagramme architectural combiné à l'emplacement où les étapes de workflow mentionnées précédemment se produisent avec le système.]
 
 . Dans cet exemple, nous exécutons le workflow de destruction du système pour le système créé précédemment. Nous sélectionnons le système dans l'écran *System View* et commençons le workflow de destruction du système sous *détruire les processus*.
 +
-image:lama-ansible-image34.png["Cette capture d'écran présente l'interface graphique SAP Lama ouverte sur System  ; Provisioning Systems View, qui vous permet d'ouvrir la liste déroulante détruire les systèmes."]
+image::lama-ansible-image34.png[Cette capture d'écran présente l'interface graphique SAP Lama ouverte sur System &gt ; Provisioning Systems View, qui vous permet d'ouvrir la liste déroulante détruire les systèmes.]
 
 . Tous les points de montage conservés pendant la phase de provisionnement sont affichés ici et supprimés lors du processus de workflow de destruction du système.
 +
-image:lama-ansible-image35.png["Cette capture d'écran affiche l'écran détruire le système sous l'onglet détruire les volumes de stockage avec tous les points de montage répertoriés."]
+image::lama-ansible-image35.png[Cette capture d'écran affiche l'écran détruire le système sous l'onglet détruire les volumes de stockage avec tous les points de montage répertoriés.]
 
 +
 Aucun nom d'hôte virtuel n'est supprimé car ils sont gérés via DNS et ont été attribués automatiquement.
 
 +
-image:lama-ansible-image36.png["Cette capture d'écran montre l'écran détruire le système sous l'onglet Supprimer les noms d'hôtes. Aucun nom d'hôte n'est indiqué."]
+image::lama-ansible-image36.png[Cette capture d'écran montre l'écran détruire le système sous l'onglet Supprimer les noms d'hôtes. Aucun nom d'hôte n'est indiqué.]
 
 . L'opération est lancée en cliquant sur le bouton Exécuter.
 +
-image:lama-ansible-image37.png["Cette capture d'écran affiche la page de récapitulatif détruire les volumes de stockage."]
+image::lama-ansible-image37.png[Cette capture d'écran affiche la page de récapitulatif détruire les volumes de stockage.]
 
 +
 SAP Lama effectue désormais la suppression des clones de volumes et supprime la configuration du système cloné.
 
 . Vous pouvez surveiller la progression du flux de travail clone dans le menu *Monitoring*.
 +
-image:lama-ansible-image38.png["Cette capture d'écran montre la progression du flux de travail de destruction du système en temps réel."]
+image::lama-ansible-image38.png[Cette capture d'écran montre la progression du flux de travail de destruction du système en temps réel.]
 
 . En sélectionnant la tâche *Supprimer NetAppClone*, le journal détaillé de cette étape s'affiche. L'exécution du manuel de vente Ansible est illustrée ici. Comme vous pouvez le voir, le PlayBook Ansible `netapp_lama_ServiceConfigRemoval.yml` Est exécuté pour chaque volume de base de données HANA, données, journaux et partagés.
 +
-image:lama-ansible-image39.png["Cette capture d'écran affiche la page de journal du workflow de destruction du système."]
+image::lama-ansible-image39.png[Cette capture d'écran affiche la page de journal du workflow de destruction du système.]
 
 

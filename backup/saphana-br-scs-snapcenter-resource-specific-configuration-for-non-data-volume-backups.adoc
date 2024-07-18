@@ -28,15 +28,15 @@ Dans cet exemple, nous voulons protéger les volumes non-données de la base de 
 
 . Dans l'onglet ressource, sélectionnez non-Volume de données et cliquez sur Ajouter base de données SAP HANA.
 +
-image:saphana-br-scs-image78.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image78.png[Erreur : image graphique manquante]
 
 . À l'étape une de la boîte de dialogue Ajouter une base de données SAP HANA, dans la liste Type de ressource, sélectionnez volumes non data. Spécifiez un nom pour la ressource, le SID associé et l'hôte du plug-in SAP HANA que vous souhaitez utiliser pour la ressource, puis cliquez sur Next (Suivant).
 +
-image:saphana-br-scs-image79.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image79.png[Erreur : image graphique manquante]
 
 . Ajoutez le SVM et le volume de stockage comme empreinte du stockage, puis cliquez sur « Next » (Suivant).
 +
-image:saphana-br-scs-image80.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image80.png[Erreur : image graphique manquante]
 
 . Dans l'étape de résumé, cliquez sur Terminer pour enregistrer les paramètres.
 . Répétez ces étapes pour tous les volumes autres que de données requis.
@@ -49,7 +49,7 @@ NOTE: La protection des données pour des ressources sans volume de données est
 La figure suivante présente la liste des ressources de volumes non-données configurées.
 
 +
-image:saphana-br-scs-image81.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image81.png[Erreur : image graphique manquante]
 
 
 

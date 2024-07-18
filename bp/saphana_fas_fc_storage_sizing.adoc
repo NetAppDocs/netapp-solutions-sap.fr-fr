@@ -215,4 +215,4 @@ La taille de la mémoire RAM, la taille des données réseau sur le disque de ch
 
 La figure suivante résume le processus de dimensionnement.
 
-image:saphana_fas_fc_image8.jpg["Erreur : image graphique manquante"]
+image::saphana_fas_fc_image8.jpg[Erreur : image graphique manquante]

@@ -214,4 +214,4 @@ La taille de la mémoire RAM, la taille des données nette sur le disque de chaq
 
 La figure suivante résume le processus de dimensionnement.
 
-image:saphana_aff_nfs_image9.jpg["Erreur : image graphique manquante"]
+image::saphana_aff_nfs_image9.jpg[Erreur : image graphique manquante]

@@ -119,7 +119,7 @@ Une seconde option pour configurer ces paramètres consiste à utiliser une comm
 . Avec la commande `Set- SmConfigSettings -Plugin - HostName <pluginhostname> - PluginCode hana - configSettings @{"LOG_CLEANUP_DISABLE" = "Y"}`, Les modifications sont configurées pour l'hôte du plug-in SAP HANA `<pluginhostname>` Spécifié par l'adresse IP ou le nom d'hôte (voir la figure suivante).
 
 
-image:saphana-br-scs-image154.jpeg["Erreur : image graphique manquante"]
+image::saphana-br-scs-image154.jpeg[Erreur : image graphique manquante]
 
 
 
@@ -127,7 +127,7 @@ image:saphana-br-scs-image154.jpeg["Erreur : image graphique manquante"]
 
 SnapCenter détecte si le plug-in SAP HANA est installé dans un environnement virtualisé. Il peut s'agir d'un environnement VMware ou d'une installation de SnapCenter chez un fournisseur de cloud public. Dans ce cas, SnapCenter affiche un avertissement pour configurer l'hyperviseur, comme illustré dans la figure suivante.
 
-image:saphana-br-scs-image34.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image34.png[Erreur : image graphique manquante]
 
 Il est possible de supprimer cet avertissement globalement. Dans ce cas, SnapCenter ne connaît pas les environnements virtualisés et ne montre donc pas ces avertissements.
 
@@ -137,7 +137,7 @@ Pour configurer SnapCenter pour supprimer cet avertissement, la configuration su
 . Pour les paramètres de l'hyperviseur, sélectionnez les machines virtuelles disposent de disques iSCSI à connexion directe ou de NFS pour tous les hôtes et mettez à jour les paramètres.
 
 
-image:saphana-br-scs-image155.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image155.png[Erreur : image graphique manquante]
 
 
 
@@ -162,7 +162,7 @@ Les sections suivantes décrivent deux façons d'éviter cette divergence tempor
 
 Dans la vue topologique d'une ressource, SnapCenter affiche les sauvegardes du stockage de sauvegarde hors site lors de la sélection des sauvegardes secondaires, comme l'illustre la capture d'écran suivante. SnapCenter exécute une opération de nettoyage avec l'icône Actualiser pour synchroniser les sauvegardes de cette ressource.
 
-image:saphana-br-scs-image156.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image156.png[Erreur : image graphique manquante]
 
 
 
@@ -173,7 +173,7 @@ SnapCenter exécute la tâche de nettoyage `SnapCenter_RemoveSecondaryBackup` Pa
 . Démarrez une fenêtre de commande PowerShell sur le serveur SnapCenter.
 . Ouvrez la connexion au serveur SnapCenter et entrez les informations d'identification de l'administrateur SnapCenter dans la fenêtre de connexion.
 +
-image:saphana-br-scs-image157.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image157.png[Erreur : image graphique manquante]
 
 . Pour passer d'une planification hebdomadaire à une base quotidienne, utilisez l'applet de commande `Set- SmSchedule`.
 +
@@ -213,6 +213,6 @@ PS C:\Users\scadmin> Check the configuration using the Windows Task Scheduler.
 ....
 . Vous pouvez vérifier les propriétés du travail dans le Planificateur de tâches Windows.
 +
-image:saphana-br-scs-image158.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image158.png[Erreur : image graphique manquante]
 
 

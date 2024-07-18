@@ -31,7 +31,7 @@ En matière de provisionnement de ces systèmes, les approches classiques de ges
 
 Les solutions NetApp pour optimiser la gestion du cycle de vie SAP sont intégrées aux bases de données SAP HANA et aux outils de gestion du cycle de vie. Elles combinent la protection efficace des données intégrée aux applications et le provisionnement flexible des systèmes de test SAP, comme illustré ci-dessous. Ces solutions sont disponibles pour SAP HANA s'exécutant sur site ou dans le cloud sur Azure NetApp Files (ANF) ou Amazon FSX pour NetApp ONTAP (FSX pour ONTAP).
 
-image:sc-copy-clone-image1.png[""]
+image::sc-copy-clone-image1.png[image clone copie sc 1]
 
 
 

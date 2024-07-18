@@ -79,7 +79,7 @@ NOTE: Reportez-vous aux notes SAP correspondantes pour les instructions de confi
 
 Les contrôleurs de stockage AFF NetApp sont certifiés dans le programme SAP HANA TDI en utilisant les protocoles NFS (NAS) et FC (SAN). Ils peuvent être déployés dans tous les scénarios SAP HANA actuels, tels que SAP Business Suite sur HANA, S/4HANA, BW/HANA ou SAP Business Warehouse sur HANA, soit sur un ou plusieurs hôtes. Tous les serveurs certifiés pour une utilisation avec SAP HANA peuvent être associés à des solutions de stockage certifiées NetApp. Pour une présentation de l'architecture de SAP HANA TDI, reportez-vous à la figure suivante.
 
-image:saphana_aff_nfs_image1.png["Erreur : image graphique manquante"]
+image::saphana_aff_nfs_image1.png[Erreur : image graphique manquante]
 
 Pour plus d'informations sur les prérequis et les recommandations pour les systèmes producti SAP HANA, consultez la ressource suivante :
 

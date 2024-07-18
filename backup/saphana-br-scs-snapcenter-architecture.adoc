@@ -28,4 +28,4 @@ Les plug-ins personnalisés SnapCenter vous permettent de créer vos propres plu
 
 La figure suivante décrit les composants SnapCenter.
 
-image:saphana-br-scs-image6.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image6.png[Erreur : image graphique manquante]

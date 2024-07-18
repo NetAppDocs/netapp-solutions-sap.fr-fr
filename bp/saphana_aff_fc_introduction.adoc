@@ -55,7 +55,7 @@ Dans un environnement SAP HANA à plusieurs hôtes, le connecteur de stockage st
 
 Les systèmes de stockage AFF de NetApp sont certifiés dans le programme SAP HANA TDI en utilisant les protocoles NFS (NAS) et FC (SAN). Ils peuvent être déployés dans tous les scénarios SAP HANA actuels, tels que SAP Business Suite sur HANA, S/4HANA, BW/HANA ou SAP Business Warehouse sur HANA, soit sur un ou plusieurs hôtes. Tous les serveurs certifiés pour une utilisation avec SAP HANA peuvent être associés à des solutions de stockage certifiées NetApp. La figure suivante montre une vue d'ensemble de l'architecture.
 
-image:saphana_aff_fc_image1.png["Erreur : image graphique manquante"]
+image::saphana_aff_fc_image1.png[Erreur : image graphique manquante]
 
 Pour plus d'informations sur les prérequis et les recommandations de systèmes SAP HANA productifs, consultez la ressource suivante :
 

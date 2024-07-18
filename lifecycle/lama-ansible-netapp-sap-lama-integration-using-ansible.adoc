@@ -16,7 +16,7 @@ summary: 'L"approche d"intégration utilise le provisionnement personnalisé SAP
 [role="lead"]
 L'approche d'intégration utilise le provisionnement personnalisé SAP Lama et les crochets d'exploitation combinés aux playbooks Ansible pour la gestion du stockage NetApp. La figure suivante présente un aperçu général de la configuration côté Lama ainsi que des composants correspondants de l'implémentation de l'exemple.
 
-image:lama-ansible-image6.png["Cette image est assez complexe avec trois boîtes intitulées SAP Lama, nœud de contrôle Ansible et stockage NetApp. Chaque boîte contient les étapes de processus qui ont lieu à chaque niveau."]
+image::lama-ansible-image6.png[Cette image est assez complexe avec trois boîtes intitulées SAP Lama, nœud de contrôle Ansible et stockage NetApp. Chaque boîte contient les étapes de processus qui ont lieu à chaque niveau.]
 
 Un hôte central agissant comme nœud de contrôle Ansible est utilisé pour exécuter les requêtes de SAP Lama et déclencher les opérations de stockage NetApp avec des playbooks Ansible. Les composants de l'agent hôte SAP doivent être installés sur cet hôte pour que l'hôte puisse être utilisé comme passerelle de communication vers SAP Lama.
 

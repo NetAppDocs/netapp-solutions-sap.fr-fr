@@ -18,11 +18,11 @@ Il existe plusieurs scénarios dans lesquels les données d'un système source d
 
 Ces opérations d'actualisation de système se composent de plusieurs tâches au niveau des couches infrastructure, base de données et application. Plusieurs jours peuvent être nécessaires, selon le niveau d'automatisation.
 
-image:lama-ansible-image2.png["Cette image illustre le flux de travail environnemental, du domaine de développement principal au fractionnement temporaire des projets, aux systèmes de réparation, aux systèmes de formation et aux systèmes sanbox. Elle indique l'emplacement d'actualisation du système, de copie du système et de clonage de système à ces fins."]
+image::lama-ansible-image2.png[Cette image illustre le flux de travail environnemental, du domaine de développement principal au fractionnement temporaire des projets, aux systèmes de réparation, aux systèmes de formation et aux systèmes sanbox. Elle indique l'emplacement d'actualisation du système, de copie du système et de clonage de système à ces fins.]
 
 SAP Lama et NetApp peuvent être utilisés pour accélérer et automatiser les tâches nécessaires au niveau des couches de l'infrastructure et de la base de données. Au lieu de restaurer une sauvegarde à partir du système source vers le système cible, SAP Lama utilise la copie NetApp Snapshot et la technologie NetApp FlexClone pour permettre l'exécution des tâches nécessaires vers une base de données HANA démarrée en quelques minutes au lieu de plusieurs heures, comme illustré dans la figure ci-dessous. Le temps nécessaire au processus de clonage est indépendant de la taille de la base de données. Par conséquent, même des systèmes très volumineux peuvent être créés en quelques minutes. La réduction de l'exécution est encore possible en automatisant les tâches du système d'exploitation et de la couche base de données ainsi que du post-traitement SAP.
 
-image:lama-ansible-image3.png["Cette image montre une comparaison entre le processus de clonage avec et sans les copies NetApp Snapshot et la technologie NetApp FlexClone, qui accélère considérablement le processus."]
+image::lama-ansible-image3.png[Cette image montre une comparaison entre le processus de clonage avec et sans les copies NetApp Snapshot et la technologie NetApp FlexClone, qui accélère considérablement le processus.]
 
 
 
@@ -36,7 +36,7 @@ Au lieu de restaurer le système SAP, la meilleure approche consiste à tenter d
 
 Lors de la configuration du système de réparation, la flexibilité et la vitesse sont essentielles. Avec les sauvegardes Snapshot basées sur le stockage NetApp, la technologie NetApp FlexClone permet de créer un clone du système de production à partir de plusieurs images cohérentes de bases de données. Les volumes FlexClone peuvent être créés en quelques secondes au lieu de plusieurs heures si une restauration redirigée depuis une sauvegarde basée sur des fichiers est utilisée pour configurer le système de réparation.
 
-image:lama-ansible-image4.png["Cette image illustre le processus détaillé de création d'un système de réparation à partir du système de clonage utilisant la technologie FlexClone."]
+image::lama-ansible-image4.png[Cette image illustre le processus détaillé de création d'un système de réparation à partir du système de clonage utilisant la technologie FlexClone.]
 
 
 
@@ -48,4 +48,4 @@ La réplication du stockage avec SnapMirror permet d'exécuter les tests de repr
 
 SAP Lama peut être utilisé pour orchestrer l'ensemble de la procédure de test, et prend également en charge l'escrime réseau, la maintenance de l'hôte cible, etc.
 
-image:lama-ansible-image5.png["Cette image représente la relation entre les systèmes de stockage NetApp dans le data Center principal, le data Center de reprise après incident local et le data Center de reprise après incident distant. Ils sont connectés à la fois par des relations SnapMirror synchrones et asynchrones."]
+image::lama-ansible-image5.png[Cette image représente la relation entre les systèmes de stockage NetApp dans le data Center principal, le data Center de reprise après incident local et le data Center de reprise après incident distant. Ils sont connectés à la fois par des relations SnapMirror synchrones et asynchrones.]

@@ -35,7 +35,7 @@ Du point de vue des exigences de sauvegarde, vous devez pouvoir créer des sauve
 
 Le reste de ce document se concentre sur les opérations de sauvegarde avec la réplication système SAP configurée comme une solution haute disponibilité.
 
-image:saphana-sr-scs-image1.png["Erreur : image graphique manquante"]
+image::saphana-sr-scs-image1.png[Erreur : image graphique manquante]
 
 
 
@@ -45,4 +45,4 @@ La réplication système peut être configurée avec une réplication asynchrone
 
 Concernant les exigences de sauvegarde, vous devez être en mesure de créer des sauvegardes pendant le fonctionnement normal du data Center 1 et pendant la reprise sur incident dans le data Center 2. Une infrastructure de sauvegarde distincte est disponible dans les data centers 1 et 2, et les opérations de sauvegarde sont activées dans le cadre du basculement d'incident. L'infrastructure de sauvegarde n'est généralement pas partagée, et l'opération de restauration d'une sauvegarde créée sur l'autre data Center n'est pas possible.
 
-image:saphana-sr-scs-image2.png["Erreur : image graphique manquante"]
+image::saphana-sr-scs-image2.png[Erreur : image graphique manquante]

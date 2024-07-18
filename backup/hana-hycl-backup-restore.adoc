@@ -18,12 +18,9 @@ Une restauration à partir de la sauvegarde peut uniquement être effectuée sur
 
 . Dans l'interface utilisateur BlueXP, cliquez sur *protection* > *sauvegarde et restauration* > *applications* et choisissez hybride.
 . Dans le  champ *Filtrer par*, sélectionnez le filtre *Type* et dans la liste déroulante, sélectionnez *HANA*.
-. Cliquez sur *Afficher les détails* correspondant à la base de données que vous souhaitez restaurer. +
-image:hana-hycl-back-image38.jpeg["hana-hycl-back-image38,largeur=624,hauteur=305"]
-. Sélectionnez la sauvegarde souhaitée et choisissez exportation du stockage. +
-image:hana-hycl-back-image39.jpeg["largeur=624,hauteur=308"]
-. Fournissez les options souhaitées : +
-image:hana-hycl-back-image40.jpeg["largeur=624,hauteur=308"]
+. Cliquez sur *Afficher les détails* correspondant à la base de données que vous souhaitez restaurer. + image::hana-hycl-back-image38.jpeg[hana-hycl-back-image38,width=624,height=305]
+. Sélectionnez la sauvegarde souhaitée et choisissez exportation du stockage. + image::hana-hycl-back-image39.jpeg[width=624,height=308]
+. Indiquez les options souhaitées : + image ::hana-hycl-back-image40.jpeg[width=624,height=308]
 +
 .. Pour l'environnement NAS, spécifiez le nom de domaine complet ou l'adresse IP de l'hôte vers lequel les volumes restaurés à partir du magasin d'objets doivent être exportés.
 .. Pour l'environnement SAN, spécifiez les initiateurs de l'hôte sur lesquels les LUN des volumes restaurés à partir du magasin d'objets doivent être mappées.
@@ -33,8 +30,5 @@ image:hana-hycl-back-image40.jpeg["largeur=624,hauteur=308"]
 . S'il n'y a pas assez d'espace sur le stockage source ou si le stockage source est en panne, sélectionnez *Modifier l'emplacement de stockage*.
 . Si vous sélectionnez *Modifier l'emplacement de stockage*, vous pouvez ajouter un suffixe au volume de destination. Si vous n'avez pas coché la case, *_restore* est ajouté par défaut au volume de destination. Cliquez sur *Suivant*.
 . Si vous avez sélectionné Modifier l'emplacement de stockage, spécifiez les détails de l'emplacement de stockage secondaire où les données restaurées à partir du magasin d'objets seront stockées dans la page mappage de stockage et cliquez sur *Suivant*.
-. Vérifiez les détails et cliquez sur *Restaurer*. +
-image:hana-hycl-back-image41.jpeg["hana-hycl-back-image41,largeur=624,hauteur=309"] +
- +
-Cette opération n'effectue que l'exportation du stockage de la sauvegarde restaurée pour l'hôte donné. Vous devez monter manuellement le système de fichiers sur l'hôte et ouvrir la base de données. Après avoir utilisé le volume, l'administrateur du stockage peut le supprimer du cluster ONTAP.
+. Vérifiez les détails et cliquez sur *Restaurer*. + image::hana-hycl-back-image41.jpeg[hana-hycl-back-image41,width=624,height=309] + + + cette opération ne fait que l'exportation du stockage de la sauvegarde restaurée pour l'hôte donné. Vous devez monter manuellement le système de fichiers sur l'hôte et ouvrir la base de données. Après avoir utilisé le volume, l'administrateur du stockage peut le supprimer du cluster ONTAP.
 

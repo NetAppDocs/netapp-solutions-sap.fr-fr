@@ -49,7 +49,7 @@ Les clients SAP savent que les étapes manuelles en vert dans la figure ci-desso
 
 La figure suivante présente la procédure générale de mise à jour du système SAP basé sur SnapCenter.
 
-image:libelle-sc-image1.png["Erreur : image graphique manquante"]
+image::libelle-sc-image1.png[Erreur : image graphique manquante]
 
 
 
@@ -61,27 +61,27 @@ Les conditions préalables suivantes doivent être remplies :
 * Le système de stockage back-end doit être configuré correctement dans SnapCenter, comme illustré dans l'image ci-dessous.
 
 
-image:libelle-sc-image2.png["Erreur : image graphique manquante"]
+image::libelle-sc-image2.png[Erreur : image graphique manquante]
 
 Les deux images suivantes couvrent l'installation standard dans laquelle l'agent SnapCenter et le plug-in SAP HANA sont installés localement sur chaque serveur de base de données.
 
 L'agent SnapCenter et le plug-in de base de données approprié doivent être installés sur la base de données source.
 
-image:libelle-sc-image3.png["Erreur : image graphique manquante"]
+image::libelle-sc-image3.png[Erreur : image graphique manquante]
 
 L'agent SnapCenter et le plug-in de base de données approprié doivent être installés sur la base de données cible.
 
-image:libelle-sc-image4.png["Erreur : image graphique manquante"]
+image::libelle-sc-image4.png[Erreur : image graphique manquante]
 
 L'image suivante décrit le déploiement central de communication-hôte dans lequel l'agent SnapCenter, le plug-in SAP HANA et le client de base de données SAP HANA sont installés sur un serveur centralisé (tel que le serveur SnapCenter) pour gérer plusieurs systèmes SAP HANA en environnement.
 
 L'agent SnapCenter, le plug-in de base de données SAP HANA et le client de base de données HANA doivent être installés sur l'hôte de communication central.
 
-image:libelle-sc-image5.png["Erreur : image graphique manquante"]
+image::libelle-sc-image5.png[Erreur : image graphique manquante]
 
 La sauvegarde de la base de données source doit être correctement configurée dans SnapCenter, de sorte que la copie Snapshot puisse être créée.
 
-image:libelle-sc-image6.png["Erreur : image graphique manquante"]
+image::libelle-sc-image6.png[Erreur : image graphique manquante]
 
 Le maître LSC et le travailleur LSC doivent être installés dans l'environnement SAP. Dans ce déploiement, nous avons également installé le maître LSC sur le serveur SnapCenter et le travailleur LSC sur le serveur de base de données SAP cible, qui doit être actualisé. Pour plus de détails, consultez la section «<<Configuration de laboratoire>>. »
 
@@ -107,7 +107,7 @@ Cette section présente un exemple d'architecture configurée dans un data Cente
 
 La figure suivante montre une installation standard dans laquelle l'agent SnapCenter et le plug-in de base de données ont été installés localement sur le serveur source et le serveur de base de données cible. Pendant la configuration de laboratoire, nous avons installé le plug-in SAP HANA. De plus, le travailleur LSC a également été installé sur le serveur cible. Pour simplifier et réduire le nombre de serveurs virtuels, nous avons installé le maître LSC sur le serveur SnapCenter. La communication entre les différents composants est illustrée dans la figure suivante.
 
-image:libelle-sc-image7.png["Erreur : image graphique manquante"]
+image::libelle-sc-image7.png[Erreur : image graphique manquante]
 
 
 
@@ -115,7 +115,7 @@ image:libelle-sc-image7.png["Erreur : image graphique manquante"]
 
 La figure suivante illustre la configuration à l'aide d'un hôte de communication central. Dans cette configuration, l'agent SnapCenter et le plug-in SAP HANA et le client de base de données HANA ont été installés sur un serveur dédié. Dans cette configuration, nous avons utilisé le serveur SnapCenter pour installer l'hôte de communication central. De plus, le travailleur LSC a été de nouveau installé sur le serveur cible. Pour simplifier et réduire le nombre de serveurs virtuels, nous avons également décidé d'installer le serveur LSC maître sur le serveur SnapCenter. La communication entre les différents composants est illustrée dans la figure ci-dessous.
 
-image:libelle-sc-image8.png["Erreur : image graphique manquante"]
+image::libelle-sc-image8.png[Erreur : image graphique manquante]
 
 
 
@@ -126,9 +126,9 @@ Il existe trois composants principaux d'une installation LSC :
 * *LSC master.* comme son nom l'indique, c'est le composant maître qui contrôle le flux de travail automatique d'une copie système basée sur Libelle. Dans l'environnement de démonstration, le maître LSC a été installé sur le serveur SnapCenter.
 * *LSC worker.* un travailleur LSC fait partie du logiciel libelle qui s'exécute généralement sur le système SAP cible et exécute les scripts requis pour la copie automatisée du système. Dans l'environnement de démonstration, le travailleur LSC a été installé sur le serveur d'applications SAP HANA cible.
 * *Satellite LSC.* un satellite LSC fait partie du logiciel libelle qui fonctionne sur un système tiers sur lequel d'autres scripts doivent être exécutés. Le maître LSC peut également remplir le rôle d'un système satellite LSC en même temps.
++
+Nous avons d'abord défini tous les systèmes impliqués dans LSC, comme illustré dans l'image suivante::
 
-
-Nous avons d'abord défini tous les systèmes impliqués dans LSC, comme illustré dans l'image suivante :
 
 * *172.30.15.35.* adresse IP du système source SAP et du système source SAP HANA.
 * *172.30.15.3.* adresse IP du maître LSC et du système satellite LSC pour cette configuration. Comme nous avons installé le maître LSC sur le serveur SnapCenter, les applets de commande SnapCenter 4.x PowerShell sont déjà disponibles sur cet hôte Windows car elles ont été installées pendant l'installation du serveur SnapCenter. Nous avons donc décidé d'activer le rôle satellite LSC pour ce système et d'exécuter toutes les applets de commande SnapCenter PowerShell sur cet hôte. Si vous utilisez un système différent, veillez à installer les applets de commande SnapCenter PowerShell sur cet hôte conformément à la documentation SnapCenter.
@@ -139,7 +139,7 @@ Au lieu d'adresses IP, de noms d'hôte ou de noms de domaine complets peuvent é
 
 L'image suivante montre la configuration LSC du maître, du travailleur, du satellite, de la source SAP, de la cible SAP, base de données source et base de données cible.
 
-image:libelle-sc-image9.png["Erreur : image graphique manquante"]
+image::libelle-sc-image9.png[Erreur : image graphique manquante]
 
 Pour l'intégration principale, nous devons à nouveau séparer les étapes de configuration dans l'installation standard et l'installation à l'aide d'un hôte de communication central.
 
@@ -151,11 +151,11 @@ Cette section décrit les étapes de configuration nécessaires à l'utilisation
 
 L'image suivante montre la configuration de la tâche LSC en phase de copie.
 
-image:libelle-sc-image10.png["Erreur : image graphique manquante"]
+image::libelle-sc-image10.png[Erreur : image graphique manquante]
 
 L'image suivante met en évidence la configuration du `NTAP_SYSTEM_CLONE` processus. Comme vous exécutez un script PowerShell, ce script Windows PowerShell est exécuté sur le système satellite. Dans ce cas, il s'agit du serveur SnapCenter avec le maître LSC installé qui sert également de système satellite.
 
-image:libelle-sc-image11.png["Erreur : image graphique manquante"]
+image::libelle-sc-image11.png[Erreur : image graphique manquante]
 
 Comme LSC doit être informé de la réussite de l'opération de copie Snapshot, de clonage et de récupération, vous devez définir au moins deux types de code retour. Un code est utilisé pour une exécution réussie du script, et l'autre code est pour une exécution échouée du script, comme indiqué dans l'image suivante.
 
@@ -163,11 +163,11 @@ Comme LSC doit être informé de la réussite de l'opération de copie Snapshot,
 * `LSC:ERROR` doit être écrit à partir du script vers la sortie standard si l'exécution a échoué.
 
 
-image:libelle-sc-image12.png["Erreur : image graphique manquante"]
+image::libelle-sc-image12.png[Erreur : image graphique manquante]
 
 L'image suivante montre une partie du script PowerShell qui doit être exécutée pour exécuter une sauvegarde basée sur Snapshot sur le système de base de données source et un clone sur le système de base de données cible. Le script n'est pas conçu pour être terminé. Le script montre plutôt à quel point l'intégration entre LSC et SnapCenter peut ressembler et à quel point il est facile de le configurer.
 
-image:libelle-sc-image13.png["Erreur : image graphique manquante"]
+image::libelle-sc-image13.png[Erreur : image graphique manquante]
 
 Comme le script est exécuté sur le maître LSC (qui est également un système satellite), le maître LSC du serveur SnapCenter doit être exécuté en tant qu'utilisateur Windows disposant des autorisations appropriées pour exécuter des opérations de sauvegarde et de clonage dans SnapCenter. Pour vérifier si l'utilisateur dispose des autorisations appropriées, l'utilisateur doit pouvoir exécuter une copie Snapshot et un clone dans l'interface utilisateur de SnapCenter.
 
@@ -183,11 +183,11 @@ Pour l'intégration entre LSC et SnapCenter à l'aide d'un hôte de communicatio
 * *NTAP_MNT_RECOVER_CP.* cette tâche arrête le système SAP cible et la base de données SAP HANA, démonte les anciens volumes, puis monte les volumes de clone de stockage nouvellement créés en fonction des paramètres transmis par la tâche précédente `NTAP_SYSTEM_CLONE_CP`. La base de données SAP HANA cible est ensuite restaurée et récupérée.
 
 
-image:libelle-sc-image14.png["Erreur : image graphique manquante"]
+image::libelle-sc-image14.png[Erreur : image graphique manquante]
 
 L'image suivante met en évidence la configuration de la tâche `NTAP_SYSTEM_CLONE_CP`. Il s'agit du script Windows PowerShell exécuté sur le système satellite. Dans ce cas, le système satellite est le serveur SnapCenter avec le maître LSC installé.
 
-image:libelle-sc-image15.png["Erreur : image graphique manquante"]
+image::libelle-sc-image15.png[Erreur : image graphique manquante]
 
 Comme LSC doit savoir si l'opération de copie Snapshot et de clonage a réussi, vous devez définir au moins deux types de code retour : un code retour pour une exécution réussie du script et l'autre pour une exécution échouée du script, comme indiqué dans l'image ci-dessous.
 
@@ -195,11 +195,11 @@ Comme LSC doit savoir si l'opération de copie Snapshot et de clonage a réussi,
 * `LSC:ERROR` doit être écrit à partir du script vers la sortie standard si l'exécution a échoué.
 
 
-image:libelle-sc-image16.png["Erreur : image graphique manquante"]
+image::libelle-sc-image16.png[Erreur : image graphique manquante]
 
 L'image suivante montre une partie du script PowerShell qui doit être exécutée pour exécuter une copie Snapshot et un clone à l'aide de l'agent SnapCenter sur l'hôte de communication central. Le script n'est pas destiné à être terminé. Le script est plutôt utilisé pour montrer à quel point l'intégration entre LSC et SnapCenter peut ressembler et à quel point il est facile de le configurer.
 
-image:libelle-sc-image17.png["Erreur : image graphique manquante"]
+image::libelle-sc-image17.png[Erreur : image graphique manquante]
 
 Comme mentionné précédemment, vous devez transférer le nom du volume de clone à la tâche suivante `NTAP_MNT_RECOVER_CP` pour monter le volume clone sur le serveur cible. Le nom du volume clone, également appelé Junction path, est stocké dans la variable `$JunctionPath`. Le transfert à une tâche LSC ultérieure est réalisé via une variable LSC personnalisée.
 
@@ -210,7 +210,7 @@ Comme le script est exécuté sur le maître LSC (qui est également un système
 
 La figure suivante présente la configuration de la tâche `NTAP_MNT_RECOVER_CP`. Parce que nous voulons exécuter un script Shell Linux, il s'agit d'un script de commande exécuté sur le système de base de données cible.
 
-image:libelle-sc-image18.png["Erreur : image graphique manquante"]
+image::libelle-sc-image18.png[Erreur : image graphique manquante]
 
 Comme LSC doit être conscient du montage des volumes clones et de la réussite de la restauration et de la récupération de la base de données cible, il faut définir au moins deux types de code retour. Un code est pour une exécution réussie du script, et un est pour une exécution échouée du script, comme illustré dans la figure suivante.
 
@@ -218,7 +218,7 @@ Comme LSC doit être conscient du montage des volumes clones et de la réussite 
 * `LSC:ERROR` doit être écrit à partir du script vers la sortie standard si l'exécution a échoué.
 
 
-image:libelle-sc-image19.png["Erreur : image graphique manquante"]
+image::libelle-sc-image19.png[Erreur : image graphique manquante]
 
 La figure suivante montre une partie du script Shell Linux utilisé pour arrêter la base de données cible, démonter l'ancien volume, monter le volume clone, restaurer et récupérer la base de données cible. Dans la tâche précédente, le chemin de jonction a été écrit dans une variable LSC. La commande suivante lit cette variable LSC et stocke la valeur dans le `$JunctionPath` Variable du script Shell Linux.
 
@@ -230,7 +230,7 @@ Le travailleur LSC sur le système cible s'exécute comme `<sidaadm>`, mais les 
 ....
 hn6adm ALL=(root) NOPASSWD:/usr/local/bin/H06/central_plugin_host_wrapper_script.sh
 ....
-image:libelle-sc-image20.png["Erreur : image graphique manquante"]
+image::libelle-sc-image20.png[Erreur : image graphique manquante]
 
 
 
@@ -240,8 +240,8 @@ Maintenant que toutes les tâches d'intégration nécessaires entre LSC et NetAp
 
 La figure suivante montre la tâche `NTAP`_`SYSTEM`_`CLONE` dans une installation standard. Comme vous pouvez le voir, la création d'une copie Snapshot et d'un clone, le montage du volume clone sur le serveur de base de données cible et la restauration et la récupération de la base de données cible ont pris environ 14 minutes. De fait, avec Snapshot et la technologie FlexClone de NetApp, la durée de cette tâche reste quasiment identique, indépendamment de la taille de la base de données source.
 
-image:libelle-sc-image21.png["Erreur : image graphique manquante"]
+image::libelle-sc-image21.png[Erreur : image graphique manquante]
 
 La figure suivante montre les deux tâches `NTAP_SYSTEM_CLONE_CP` et `NTAP_MNT_RECOVERY_CP` lors de l'utilisation d'un hôte de communication central. Comme vous pouvez le voir, la création d'une copie Snapshot, d'un clone, le montage du volume clone sur le serveur de base de données cible et la restauration et la récupération de la base de données cible ont pris environ 12 minutes. Il s'agit plus ou moins du temps nécessaire pour effectuer ces étapes lors de l'utilisation d'une installation standard. Là encore, les technologies Snapshot et NetApp FlexClone permettent d'effectuer ces tâches rapidement et de manière cohérente, quelle que soit la taille de la base de données source.
 
-image:libelle-sc-image22.png["Erreur : image graphique manquante"]
+image::libelle-sc-image22.png[Erreur : image graphique manquante]

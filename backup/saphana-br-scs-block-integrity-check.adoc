@@ -20,7 +20,7 @@ Lorsque vous planifiez des sauvegardes à l'aide de cette règle, SnapCenter cr�
 
 SnapCenter n'affiche pas la vérification de l'intégrité des blocs, de la même manière que les sauvegardes basées sur des copies Snapshot. À la place, la carte récapitulative affiche le nombre de sauvegardes basées sur des fichiers et l'état de la sauvegarde précédente.
 
-image:saphana-br-scs-image94.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image94.png[Erreur : image graphique manquante]
 
 Une sauvegarde de contrôle d'intégrité des blocs ne peut pas être supprimée à l'aide de l'interface utilisateur SnapCenter, mais pourra être supprimée à l'aide des commandes PowerShell.
 
@@ -70,7 +70,7 @@ PS C:\Users\scadmin>
 ....
 Le catalogue de sauvegardes SAP HANA affiche les entrées des bases de données système et locataire. La figure suivante montre une vérification de l'intégrité des blocs SnapCenter dans le catalogue de sauvegardes de la base de données système.
 
-image:saphana-br-scs-image95.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image95.png[Erreur : image graphique manquante]
 
 Un contrôle réussi de l'intégrité des blocs crée des fichiers de sauvegarde standard des données SAP HANA. SnapCenter utilise le chemin de sauvegarde configuré dans la base de données HANA pour des opérations de sauvegarde de données basées sur des fichiers.
 

@@ -18,14 +18,14 @@ Pour ajouter un SVM de sauvegarde à SnapCenter, effectuez la procédure suivant
 
 . Configurer le SVM où le volume cible SnapVault est situé dans SnapCenter
 +
-image:amazon-fsx-image76.png["Erreur : image graphique manquante"]
+image::amazon-fsx-image76.png[Erreur : image graphique manquante]
 
 . Dans la fenêtre plus d'options, sélectionnez All Flash FAS comme plate-forme et sélectionnez secondaire.
 +
-image:amazon-fsx-image77.png["Erreur : image graphique manquante"]
+image::amazon-fsx-image77.png[Erreur : image graphique manquante]
 
 
 
 La SVM est désormais disponible dans SnapCenter.
 
-image:amazon-fsx-image78.png["Erreur : image graphique manquante"]
+image::amazon-fsx-image78.png[Erreur : image graphique manquante]

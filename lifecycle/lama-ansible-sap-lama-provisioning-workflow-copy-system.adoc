@@ -16,23 +16,23 @@ summary: 'Dans ce chapitre, nous examinons brièvement les différences entre le
 [role="lead"]
 La figure suivante illustre les principales étapes exécutées avec le flux de travail de copie du système.
 
-image:lama-ansible-image40.png["Cette figure fournit une chronologie pour le flux de travail de copie système. Il contient les étapes de clonage du stockage, préparer le système, activer l'isolation, renommer le système, démarrer le système, importer la configuration, l'automatisation post-copie et désactiver le système."]
+image::lama-ansible-image40.png[Cette figure fournit une chronologie pour le flux de travail de copie système. Il contient les étapes de clonage du stockage, préparer le système, activer l'isolation, renommer le système, démarrer le système, importer la configuration, l'automatisation post-copie et désactiver le système.]
 
 Dans ce chapitre, nous examinons brièvement les différences entre le workflow de clonage du système et les écrans d'entrée. Comme le voyez l'image suivante, le workflow de stockage n'a rien à modifier.
 
-image:lama-ansible-image41.png["Cette figure présente un diagramme architectural avec des étapes superposées montrant où chaque étape du flux de travail se produit."]
+image::lama-ansible-image41.png[Cette figure présente un diagramme architectural avec des étapes superposées montrant où chaque étape du flux de travail se produit.]
 
 . Le flux de travail de copie du système peut être démarré lorsque le système est préparé en conséquence. Il ne s'agit pas d'une tâche spécifique pour cette configuration, et nous ne l'expliquons pas en détail. Pour plus d'informations, consultez la documentation SAP Lama.
 +
-image:lama-ansible-image42.png["Cette capture d'écran présente la vue Provisioning System sous l'onglet Systems. Deux systèmes sont répertoriés et la liste déroulante Copier système a été mise en surbrillance."]
+image::lama-ansible-image42.png[Cette capture d'écran présente la vue Provisioning System sous l'onglet Systems. Deux systèmes sont répertoriés et la liste déroulante Copier système a été mise en surbrillance.]
 
 . Pendant le flux de travail de copie, le système est renommé, comme spécifié dans le premier écran.
 +
-image:lama-ansible-image43.png["Cette capture d'écran affiche la page copie système avec l'ID système et les zones SID HANA en surbrillance."]
+image::lama-ansible-image43.png[Cette capture d'écran affiche la page copie système avec l'ID système et les zones SID HANA en surbrillance.]
 
 . Pendant le workflow, vous pouvez modifier les numéros d'instance.
 +
-image:lama-ansible-image44.png["Cette capture d'écran montre l'onglet numéros d'instance SAP avec trois boîtes de données."]
+image::lama-ansible-image44.png[Cette capture d'écran montre l'onglet numéros d'instance SAP avec trois boîtes de données.]
 
 +
 
@@ -40,18 +40,18 @@ NOTE: La modification des numéros d'instance n'a pas été testée et peut néc
 
 . Comme décrit, l'écran *Custom Clone* ne diffère pas du workflow de clonage, comme illustré ici.
 +
-image:lama-ansible-image45.png["Cette capture d'écran montre la page Copier système avec des informations de clonage personnalisé et des paramètres d'opération."]
+image::lama-ansible-image45.png[Cette capture d'écran montre la page Copier système avec des informations de clonage personnalisé et des paramètres d'opération.]
 
 . Comme nous l'avons déjà indiqué, les masques d'entrée restants ne s'écartent pas de la norme, et nous ne les allons pas plus loin ici. L'écran final affiche un résumé et l'exécution peut maintenant être démarrée.
 +
-image:lama-ansible-image46.png["Cette capture d'écran montre l'écran Copy System avec des informations de base et une liste d'hôtes. Dans le coin inférieur droit se trouve le bouton Exécuter."]
+image::lama-ansible-image46.png[Cette capture d'écran montre l'écran Copy System avec des informations de base et une liste d'hôtes. Dans le coin inférieur droit se trouve le bouton Exécuter.]
 
 
 
 Après le processus de copie, l'instance cible n'est pas activée pour le processus de clonage personnalisé.
 
-image:lama-ansible-image47.png["Cette capture d'écran présente l'écran Lama Systems et les détails des systèmes."]
+image::lama-ansible-image47.png[Cette capture d'écran présente l'écran Lama Systems et les détails des systèmes.]
 
 Il doit être adopté manuellement pour exécuter l'étape de pré-crochet pendant le processus de destruction du système car une contrainte est définie et empêche l'exécution.
 
-image:lama-ansible-image48.png["Cette capture d'écran montre l'écran Lama Systems ainsi que les détails du système, et la case à cocher utiliser le processus de traitement personnalisé est activée."]
+image::lama-ansible-image48.png[Cette capture d'écran montre l'écran Lama Systems ainsi que les détails du système, et la case à cocher utiliser le processus de traitement personnalisé est activée.]

@@ -16,8 +16,8 @@ summary: Cette section explique comment ajouter une stratégie à la protection 
 [role="lead"]
 Vous devez ajouter la nouvelle règle à la configuration de protection des ressources HANA, comme illustré dans la figure suivante.
 
-image:amazon-fsx-image86.png["Erreur : image graphique manquante"]
+image::amazon-fsx-image86.png[Erreur : image graphique manquante]
 
 Un horaire quotidien est défini dans notre configuration.
 
-image:amazon-fsx-image87.png["Erreur : image graphique manquante"]
+image::amazon-fsx-image87.png[Erreur : image graphique manquante]

@@ -26,9 +26,9 @@ Cette règle ne s'applique qu'à un système SAP HANA avec un seul locataire, do
 
 NOTE: Dès qu'une opération de création, de renommage ou de DROP de locataire est exécutée sur le système source, cet indicateur de configuration est supprimé par la base de données SAP HANA. Par conséquent, même si la configuration a été ramenée au locataire = SID, l'indicateur n'est plus disponible et l'exception concernant la récupération du locataire avec le workflow 3 n'est plus possible. Dans ce cas, l'option 2 est le flux de travail requis.
 
-image:sc-copy-clone-image10.png[""]
+image::sc-copy-clone-image10.png[copie sc clone image10]
 
-image:sc-copy-clone-image11.png[""]
+image::sc-copy-clone-image11.png[copie sc clone image11]
 
 
 
@@ -46,7 +46,7 @@ Voir aussi https://help.sap.com/docs/SAP_HANA_PLATFORM/6b94445c94ae495c83a19646e
 
 Une sauvegarde des clés racine est toujours nécessaire si des modifications ont été apportées aux clés racine. La commande backup requiert dbid comme paramètre CLI. Les dbid peuvent être identifiés à l’aide de l’instruction SQL ci-dessous.
 
-image:sc-copy-clone-image12.png[""]
+image::sc-copy-clone-image12.png[copie sc clone image12]
 
 L'instruction SQL et d'autres documentations sont disponibles dans le Guide d'administration SAP HANA aux https://help.sap.com/docs/SAP_HANA_PLATFORM/6b94445c94ae495c83a19646e7c3fd56/b1e7562e2c704c19bd86f2f9f4feedc4.html["Sauvegarder les clés racines | Portail d'aide SAP"] étapes suivantes, illustrant les opérations requises pour un système HANA avec un seul locataire SS1 et exécutées sur le système source.
 
@@ -126,6 +126,6 @@ qs1adm@hana-7:/usr/sap/QS1/HDB11>
 
 Comme décrit dans le chapitre précédent, dbid est nécessaire pour importer la clé racine du système et de toutes les bases de données de tenant. Bien que la base de données système ait toujours dbid=0, les bases de données locataires peuvent avoir des dbid différents.
 
-image:sc-copy-clone-image13.png[""]
+image::sc-copy-clone-image13.png[image clone copie sc 13]
 
 La sortie ci-dessus montre deux locataires avec dbid=3 et dbid=4. Si le système cible n'a pas encore hébergé de locataire avec dbid=4, l'importation de la clé racine échouera. Dans ce cas, vous devez d'abord restaurer la base de données système, puis importer la clé du tenant avec dbid=4.

@@ -35,7 +35,7 @@ Les sections suivantes décrivent la procédure de configuration initiale.
 
 . Connectez-vous à l'interface graphique du serveur SnapCenter.
 +
-image:saphana-br-scs-image23.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image23.png[Erreur : image graphique manquante]
 
 . Sélectionnez Storage Systems.
 +
@@ -43,7 +43,7 @@ image:saphana-br-scs-image23.png["Erreur : image graphique manquante"]
 NOTE: À l'écran, vous pouvez sélectionner le type de système de stockage, qui peut être ONTAP SVM ou ONTAP clusters. Si vous configurez les systèmes de stockage au niveau des SVM, vous devez avoir une LIF de gestion configurée pour chaque SVM. Vous pouvez également utiliser l'accès de gestion SnapCenter au niveau du cluster. La gestion de SVM est utilisée dans l'exemple suivant.
 
 +
-image:saphana-br-scs-image24.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image24.png[Erreur : image graphique manquante]
 
 . Cliquez sur Nouveau pour ajouter un système de stockage et fournir le nom d'hôte et les informations d'identification requis.
 +
@@ -51,7 +51,7 @@ image:saphana-br-scs-image24.png["Erreur : image graphique manquante"]
 NOTE: L'utilisateur SVM n'est pas requis pour être l'utilisateur vsadmin, comme indiqué dans la capture d'écran. En général, un utilisateur est configuré sur le SVM et se voit attribuer les autorisations requises pour exécuter les opérations de sauvegarde et de restauration. Pour plus d'informations sur les privilèges requis, consultez le http://docs.netapp.com/ocsc-43/index.jsp?topic=%2Fcom.netapp.doc.ocsc-isg%2Fhome.html["Guide d'installation de SnapCenter"^] Dans la section intitulée « privilèges minimum de ONTAP requis ».
 
 +
-image:saphana-br-scs-image25.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image25.png[Erreur : image graphique manquante]
 
 . Cliquez sur plus d'options pour configurer la plate-forme de stockage.
 +
@@ -62,11 +62,11 @@ La plateforme de stockage peut être FAS, AFF, ONTAP Select ou Cloud Volumes ONT
 NOTE: Dans le cas d'un système utilisé comme cible SnapVault ou SnapMirror, sélectionner l'icône secondaire.
 
 +
-image:saphana-br-scs-image26.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image26.png[Erreur : image graphique manquante]
 
 . Ajoutez des systèmes de stockage supplémentaires selon les besoins. Dans notre exemple, un autre stockage de sauvegarde hors site et un stockage de reprise sur incident ont été ajoutés.
 +
-image:saphana-br-scs-image27.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image27.png[Erreur : image graphique manquante]
 
 
 
@@ -76,22 +76,22 @@ image:saphana-br-scs-image27.png["Erreur : image graphique manquante"]
 
 . Accédez à Paramètres, sélectionnez informations d'identification, puis cliquez sur Nouveau.
 +
-image:saphana-br-scs-image28.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image28.png[Erreur : image graphique manquante]
 
 . Indiquez les informations d'identification de l'utilisateur utilisées pour les installations de plug-in sur les systèmes Linux.
 +
-image:saphana-br-scs-image29.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image29.png[Erreur : image graphique manquante]
 
 . Indiquez les informations d'identification de l'utilisateur utilisées pour les installations de plug-in sur les systèmes Windows.
 +
-image:saphana-br-scs-image30.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image30.png[Erreur : image graphique manquante]
 
 +
 La figure suivante montre les informations d'identification configurées.
 
 
 
-image:saphana-br-scs-image31.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image31.png[Erreur : image graphique manquante]
 
 
 
@@ -104,17 +104,17 @@ NOTE: Le plug-in SAP HANA requiert Java 64 bits version 1.8. Java doit être ins
 
 . Accédez à hosts et cliquez sur Add.
 +
-image:saphana-br-scs-image32.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image32.png[Erreur : image graphique manquante]
 
 . Fournissez les informations d'hôte requises. Cliquez sur soumettre.
 +
-image:saphana-br-scs-image33.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image33.png[Erreur : image graphique manquante]
 
 +
 La figure suivante montre tous les hôtes configurés une fois le plug-in HANA déployé.
 
 +
-image:saphana-br-scs-image34.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image34.png[Erreur : image graphique manquante]
 
 
 
@@ -161,31 +161,31 @@ Les sections suivantes décrivent la configuration de ces trois règles.
 
 . Accédez à Paramètres > stratégies et cliquez sur Nouveau.
 +
-image:saphana-br-scs-image35.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image35.png[Erreur : image graphique manquante]
 
 . Entrez le nom et la description de la stratégie. Cliquez sur Suivant.
 +
-image:saphana-br-scs-image36.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image36.png[Erreur : image graphique manquante]
 
 . Sélectionnez le type de sauvegarde comme basé sur Snapshot et sélectionnez horaire pour la fréquence d'horaire.
 +
-image:saphana-br-scs-image37.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image37.png[Erreur : image graphique manquante]
 
 . Configurez les paramètres de conservation pour les sauvegardes à la demande.
 +
-image:saphana-br-scs-image38.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image38.png[Erreur : image graphique manquante]
 
 . Configurez les paramètres de conservation pour les sauvegardes planifiées.
 +
-image:saphana-br-scs-image39.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image39.png[Erreur : image graphique manquante]
 
 . Configurez les options de réplication. Dans ce cas, aucune mise à jour de SnapVault ou de SnapMirror n'est sélectionnée.
 +
-image:saphana-br-scs-image40.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image40.png[Erreur : image graphique manquante]
 
 . Sur la page Récapitulatif, cliquez sur Terminer.
 +
-image:saphana-br-scs-image41.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image41.png[Erreur : image graphique manquante]
 
 
 
@@ -196,19 +196,19 @@ image:saphana-br-scs-image41.png["Erreur : image graphique manquante"]
 . Accédez à Paramètres > stratégies et cliquez sur Nouveau.
 . Entrez le nom et la description de la stratégie. Cliquez sur Suivant.
 +
-image:saphana-br-scs-image42.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image42.png[Erreur : image graphique manquante]
 
 . Définissez le type de sauvegarde sur basé sur Snapshot et la fréquence de planification sur quotidien.
 +
-image:saphana-br-scs-image43.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image43.png[Erreur : image graphique manquante]
 
 . Configurez les paramètres de conservation pour les sauvegardes à la demande.
 +
-image:saphana-br-scs-image44.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image44.png[Erreur : image graphique manquante]
 
 . Configurez les paramètres de conservation pour les sauvegardes planifiées.
 +
-image:saphana-br-scs-image45.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image45.png[Erreur : image graphique manquante]
 
 . Sélectionnez mettre à jour SnapVault après avoir créé une copie Snapshot locale.
 +
@@ -216,11 +216,11 @@ image:saphana-br-scs-image45.png["Erreur : image graphique manquante"]
 NOTE: L'étiquette de règle secondaire doit être identique à l'étiquette SnapMirror dans la configuration de protection des données sur la couche de stockage. Voir la section link:saphana-br-scs-snapcenter-resource-specific-configuration-for-sap-hana-database-backups.html#configuration-of-data-protection-to-off-site-backup-storage["“Configuration de la protection des données sur le stockage de sauvegarde hors site.”"]
 
 +
-image:saphana-br-scs-image46.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image46.png[Erreur : image graphique manquante]
 
 . Sur la page Récapitulatif, cliquez sur Terminer.
 +
-image:saphana-br-scs-image47.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image47.png[Erreur : image graphique manquante]
 
 
 
@@ -231,28 +231,28 @@ image:saphana-br-scs-image47.png["Erreur : image graphique manquante"]
 . Accédez à Paramètres > stratégies et cliquez sur Nouveau.
 . Entrez le nom et la description de la stratégie. Cliquez sur Suivant.
 +
-image:saphana-br-scs-image48.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image48.png[Erreur : image graphique manquante]
 
 . Définissez le type de sauvegarde sur fichier et fréquence de planification sur hebdomadaire.
 +
-image:saphana-br-scs-image49.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image49.png[Erreur : image graphique manquante]
 
 . Configurez les paramètres de conservation pour les sauvegardes à la demande.
 +
-image:saphana-br-scs-image50.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image50.png[Erreur : image graphique manquante]
 
 . Configurez les paramètres de conservation pour les sauvegardes planifiées.
 +
-image:saphana-br-scs-image50.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image50.png[Erreur : image graphique manquante]
 
 . Sur la page Récapitulatif, cliquez sur Terminer.
 +
-image:saphana-br-scs-image51.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image51.png[Erreur : image graphique manquante]
 
 +
 La figure suivante présente un récapitulatif des règles configurées.
 
 +
-image:saphana-br-scs-image52.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image52.png[Erreur : image graphique manquante]
 
 

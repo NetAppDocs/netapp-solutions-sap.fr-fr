@@ -34,6 +34,6 @@ Si le système n'est plus nécessaire, le processus de nettoyage est effectué a
 
 NOTE: Si vous devez réinitialiser le système sur une autre sauvegarde Snapshot, les étapes 6 et 4 sont suffisantes. Aucune actualisation du volume partagé SAP HANA n'est requise.
 
-image:sc-copy-clone-image9.png[""]
+image::sc-copy-clone-image9.png[image clone copie sc 9]
 
 La section link:sc-copy-clone-sap-system-clone-with-snapcenter.html["« Clone du système SAP avec SnapCenter »"] fournit une description détaillée détaillée du flux de travail du clone du système.

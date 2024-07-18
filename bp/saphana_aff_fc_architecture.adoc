@@ -20,7 +20,7 @@ Différents modèles de la gamme de produits des systèmes AFF peuvent être com
 
 La figure suivante présente un exemple de configuration avec huit hôtes SAP HANA reliés à une paire haute disponibilité de stockage.
 
-image:saphana_aff_fc_image2.png["Erreur : image graphique manquante"]
+image::saphana_aff_fc_image2.png[Erreur : image graphique manquante]
 
 Cette architecture peut évoluer en deux dimensions :
 
@@ -30,11 +30,11 @@ Cette architecture peut évoluer en deux dimensions :
 
 La figure suivante montre un exemple de configuration dans lequel davantage d'hôtes SAP HANA sont connectés aux contrôleurs de stockage. Dans cet exemple, il faut davantage de tiroirs disques pour répondre aux exigences de capacité et de performances des 3 16 hôtes SAP HANA. Selon les besoins en débit total, vous devez ajouter des connexions FC supplémentaires aux contrôleurs de stockage.
 
-image:saphana_aff_fc_image3.png["Erreur : image graphique manquante"]
+image::saphana_aff_fc_image3.png[Erreur : image graphique manquante]
 
 Quel que soit le système AFF déployé, l'environnement SAP HANA peut également être étendu en ajoutant des contrôleurs de stockage certifiés en fonction de la densité de nœud souhaitée, comme illustré dans la figure suivante.
 
-image:saphana_aff_fc_image4.png["Erreur : image graphique manquante"]
+image::saphana_aff_fc_image4.png[Erreur : image graphique manquante]
 
 
 
@@ -48,7 +48,7 @@ Grâce à la technologie NetApp SnapMirror, les copies Snapshot créées sur un 
 
 Les journaux de la base de données peuvent être sauvegardés directement sur le stockage secondaire à l'aide d'un montage NFS, comme illustré dans la figure suivante.
 
-image:saphana_aff_fc_image5.jpg["Erreur : image graphique manquante"]
+image::saphana_aff_fc_image5.jpg[Erreur : image graphique manquante]
 
 Les sauvegardes Snapshot basées sur le stockage offrent des avantages significatifs par rapport aux sauvegardes conventionnelles basées sur des fichiers. Ces avantages sont notamment les suivants, mais sans s'y limiter :
 
@@ -84,7 +84,7 @@ Les serveurs des sites de reprise après incident peuvent être utilisés en tan
 
 Les deux méthodes de réplication permettent d'exécuter des tests du workflow de reprise d'activité sans affecter le RPO et RTO. Les volumes FlexClone sont créés sur le stockage et rattachés aux serveurs de test de reprise après incident.
 
-image:saphana_aff_fc_image6.png["Erreur : image graphique manquante"]
+image::saphana_aff_fc_image6.png[Erreur : image graphique manquante]
 
 La réplication synchrone offre le mode StrictSync. Si l'écriture sur le stockage secondaire n'est pas terminée, pour une raison quelconque, les E/S de l'application échouent, ce qui permet de s'assurer que les systèmes de stockage primaire et secondaire sont identiques. Les E/S de l'application vers le système primaire sont reprises après le retour de la relation SnapMirror à l'état insync. En cas de panne du stockage primaire, les E/S des applications peuvent reprendre sur le stockage secondaire après le basculement, sans perte de données. En mode StrictSync, le RPO est toujours zéro.
 
@@ -94,4 +94,4 @@ La réplication synchrone offre le mode StrictSync. Si l'écriture sur le stocka
 
 La figure suivante présente une vue d'ensemble générale de la solution. Le cluster de stockage de chaque site assure une haute disponibilité locale et est utilisé pour la charge de travail de production. Les données de chaque site sont répliquées de manière synchrone sur l'autre emplacement et sont disponibles en cas de basculement.
 
-image:saphana_aff_fc_image7.png["Erreur : image graphique manquante"]
+image::saphana_aff_fc_image7.png[Erreur : image graphique manquante]

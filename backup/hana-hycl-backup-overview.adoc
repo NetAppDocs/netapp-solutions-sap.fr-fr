@@ -36,7 +36,7 @@ Un connecteur BlueXP doit être déployé au sein du réseau virtuel du client. 
 Le transfert des données entre le stockage sur site et le compartiment cloud est protégé de bout en bout avec le chiffrement AES 256 bits au repos, le chiffrement TLS/HTTPS à la volée et la prise en charge des clés gérées par le client (CMK). +
 Les données sauvegardées peuvent être stockées dans un état WORM immuable et indélébile. La seule façon d'accéder aux données à partir du stockage objet est de les restaurer dans un stockage basé sur NetApp ONTAP, y compris NetApp CVO.
 
-image:hana-hycl-back-image1.png["Ein Bild, das Text, Screenshot, Diagram, Kreis enthält. Automatic generierte Beschreibung,width=624,height=450"]
+image::hana-hycl-back-image1.png[Ein Bild,624,450]
 
 
 

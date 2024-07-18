@@ -18,10 +18,10 @@ Pour restaurer et récupérer à partir d'un stockage secondaire, procédez comm
 
 Pour récupérer la liste de toutes les sauvegardes du stockage secondaire, dans la vue topologie SnapCenter, cliquez sur copies du coffre-fort, sélectionnez une sauvegarde et cliquez sur Restaurer.
 
-image:amazon-fsx-image92.png["Erreur : image graphique manquante"]
+image::amazon-fsx-image92.png[Erreur : image graphique manquante]
 
 La boîte de dialogue de restauration affiche les emplacements secondaires.
 
-image:amazon-fsx-image93.png["Erreur : image graphique manquante"]
+image::amazon-fsx-image93.png[Erreur : image graphique manquante]
 
 Les autres étapes de restauration et de restauration sont identiques à celles précédemment décrites pour une sauvegarde Snapshot sur le stockage primaire.

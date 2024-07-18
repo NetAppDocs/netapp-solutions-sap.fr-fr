@@ -59,4 +59,4 @@ Le serveur SnapCenter est utilisé en tant qu'hôte de plug-in HANA central pour
 
 La figure suivante illustre la configuration du laboratoire.
 
-image:saphana-br-scs-image21.png["Erreur : image graphique manquante"]
+image::saphana-br-scs-image21.png[Erreur : image graphique manquante]

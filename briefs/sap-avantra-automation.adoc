@@ -36,17 +36,17 @@ Le terme copie système SAP est souvent utilisé comme terme générique pour tr
 * *Clone système SAP*. Un clone du système SAP est un clone identique d'un système SAP source. Les clones des systèmes SAP sont généralement utilisés pour gérer les corruptions logiques ou tester les scénarios de reprise d'activité. Lors d'une opération de clonage du système, le nom d'hôte, le numéro d'instance et l'identifiant sécurisé (SID) restent les mêmes. Il est donc important d'établir une barrière de réseau appropriée pour le système cible afin de s'assurer qu'il n'y a pas de communication avec l'environnement de production.
 
 
-image:sap-avantra-image1.png["Image montrant le clone du système SAP"]
+image::sap-avantra-image1.png[Image montrant le clone du système SAP]
 
 * *Copie du système SAP*. Une copie du système SAP permet de configurer un nouveau système SAP cible avec les données d'un système SAP source. Par exemple, le système cible peut être un système de test supplémentaire avec des données provenant du système de production. Le nom d'hôte, le numéro d'instance et le SID sont différents pour les systèmes source et cible. Le nouveau système n'est pas isolé du système source.
 
 
-image:sap-avantra-image2.png["Image montrant la copie du système SAP"]
+image::sap-avantra-image2.png[Image montrant la copie du système SAP]
 
 * *Actualisation du système SAP.* Une actualisation du système SAP est une actualisation d'un système SAP cible existant avec les données d'un système SAP source. Le système cible fait généralement partie d'un environnement de transport SAP, par exemple un système sandbox, qui est actualisé avec les données du système de production. Le nom d'hôte, le numéro d'instance et le SID sont différents pour le système source et le système cible.
 
 
-image:sap-avantra-image3.png["Image montrant l'actualisation du système SAP"]
+image::sap-avantra-image3.png[Image montrant l'actualisation du système SAP]
 
 Même si nous avons trois cas d'utilisation différents, le processus de gestion des données reste le même. Les trois cas d'utilisation exploitent la même technologie de gestion des données sous-jacente : NetApp Snapshot et FlexClone.
 
@@ -77,7 +77,7 @@ La solution globale comprend les principaux composants suivants :
 
 L'image suivante montre le serveur Avantra, le serveur NetApp SnapCenter, le système de stockage NetApp, les systèmes source et cible SAP, et comment tout s'intègre. L'objectif était de rendre l'intégration aussi flexible que possible en utilisant l'API REST de SnapCenter pour une réutilisation maximale du travail de configuration déjà effectué dans les composants existants.
 
-image:sap-avantra-image4.png["Image illustrant le serveur Avantra, le serveur NetApp SnapCenter, le système de stockage NetApp, les systèmes source et cible SAP, et comment tout s'intègre"]
+image::sap-avantra-image4.png[Image montrant le serveur Avantra,the NetApp SnapCenter Server,the NetApp storage system]
 
 
 
@@ -89,7 +89,7 @@ Pour réduire le temps, automatiser les tâches opérationnelles et éliminer le
 
 L'image suivante montre les améliorations possibles en termes d'efficacité opérationnelle lorsque vous utilisez l'automatisation.
 
-image:sap-avantra-image5.png["Image illustrant les éventuelles améliorations en termes d'efficacité opérationnelle lorsque vous utilisez l'automatisation"]
+image::sap-avantra-image5.png[Image illustrant les éventuelles améliorations en termes d'efficacité opérationnelle lorsque vous utilisez l'automatisation]
 
 
 

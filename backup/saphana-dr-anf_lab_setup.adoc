@@ -27,7 +27,7 @@ Un pool de capacité unique avec QoS manuelle a été configuré sur le site de 
 
 La figure suivante illustre la configuration du laboratoire.
 
-image:saphana-dr-anf_image7.png["Erreur : image graphique manquante"]
+image::saphana-dr-anf_image7.png[Erreur : image graphique manquante]
 
 
 
@@ -39,8 +39,8 @@ Avec la réplication du volume de données à l'aide de la réplication ANF Cros
 
 La figure suivante présente les sauvegardes Snapshot du volume de données HANA.
 
-image:saphana-dr-anf_image8.png["Erreur : image graphique manquante"]
+image::saphana-dr-anf_image8.png[Erreur : image graphique manquante]
 
 La figure suivante présente le catalogue des sauvegardes SAP HANA.
 
-image:saphana-dr-anf_image9.png["Erreur : image graphique manquante"]
+image::saphana-dr-anf_image9.png[Erreur : image graphique manquante]

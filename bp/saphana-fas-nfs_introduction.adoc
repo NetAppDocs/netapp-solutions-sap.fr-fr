@@ -67,7 +67,7 @@ NOTE: Reportez-vous toujours aux notes SAP appropriées pour les instructions de
 
 Les contrôleurs de stockage FAS NetApp sont certifiés dans le programme SAP HANA TDI en utilisant les protocoles NFS (NAS) et FC (SAN). Ils peuvent être déployés dans tous les scénarios SAP HANA actuels, tels que SAP Business Suite sur HANA, S/4HANA, BW/4HANA ou SAP Business Warehouse sur HANA, dans une configuration à un ou plusieurs hôtes. Tous les serveurs certifiés pour une utilisation avec SAP HANA peuvent être associés à des solutions de stockage certifiées NetApp. Pour une présentation de l'architecture, reportez-vous à la figure suivante.
 
-image:saphana-fas-nfs_image1.png["Erreur : image graphique manquante"]
+image::saphana-fas-nfs_image1.png[Erreur : image graphique manquante]
 
 Pour plus d'informations sur les prérequis et les recommandations des systèmes de production SAP HANA, consultez cette ressource SAP :
 

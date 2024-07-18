@@ -66,27 +66,27 @@ NOTE: Le quota du volume peut être défini en fonction des exigences de capacit
 
 NOTE: Si le pool de capacité a été configuré avec une QoS manuelle, vous pouvez configurer le débit en plus des besoins de capacité. Comme ci-dessus, vous pouvez configurer le débit avec une valeur faible en fonctionnement normal et l'augmenter en cas de basculement de reprise après incident.
 
-image:saphana-dr-anf_image10.png["Erreur : image graphique manquante"]
+image::saphana-dr-anf_image10.png[Erreur : image graphique manquante]
 
 Dans l'onglet Protocol, vous devez fournir le protocole réseau, le chemin du réseau et la export policy.
 
 
 NOTE: Le protocole doit être identique au protocole utilisé pour le volume source.
 
-image:saphana-dr-anf_image11.png["Erreur : image graphique manquante"]
+image::saphana-dr-anf_image11.png[Erreur : image graphique manquante]
 
 Dans l'onglet réplication, vous devez configurer l'ID du volume source et la planification de réplication. Pour la réplication du volume de données, nous avons configuré une planification de réplication quotidienne pour notre configuration de laboratoire.
 
 
 NOTE: L'ID du volume source peut être copié à partir de l'écran Propriétés du volume source.
 
-image:saphana-dr-anf_image12.png["Erreur : image graphique manquante"]
+image::saphana-dr-anf_image12.png[Erreur : image graphique manquante]
 
 En dernier lieu, vous devez autoriser la réplication sur le volume source en fournissant l'ID du volume cible.
 
 
 NOTE: Vous pouvez copier l'ID du volume de destination à partir de l'écran Propriétés du volume de destination.
 
-image:saphana-dr-anf_image13.png["Erreur : image graphique manquante"]
+image::saphana-dr-anf_image13.png[Erreur : image graphique manquante]
 
 Les mêmes étapes doivent être réalisées pour les systèmes HANA partagés et le volume de sauvegarde du journal.
