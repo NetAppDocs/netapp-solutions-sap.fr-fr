@@ -21,8 +21,8 @@ Présentation des vidéos et démonstrations illustrant la sauvegarde, la restau
 
 === Vidéos et démonstrations sur la sauvegarde, la restauration et la reprise après incident pour SAP
 
-* link:https://www.netapp.tv/details/25592["Assurez la disponibilité des applications SAP et réduisez les temps d'arrêt"]
-* link:https://www.netapp.tv/details/28399["Optimisation de la protection des données pour SAP HANA avec Azure NetApp Files"]
-* link:https://www.netapp.tv/details/28398["Options de reprise après incident pour SAP HANA"]
-* link:https://www.netapp.tv/details/28406["Reprise après incident de SAP HANA avec ANF et réplication interrégion"]
+* link:https://media.netapp.com/video-detail/10430dd1-8560-52fa-8f22-a7923582d66a/ensure-sap-application-availability-and-minimize-downtime["Assurez la disponibilité des applications SAP et réduisez les temps d'arrêt"^]
+* link:https://media.netapp.com/video-detail/5f6f3721-d1d0-5c1d-9ae9-d696eddb91ea/optimize-your-data-protection-for-sap-hana-on-azure-netapp-files["Optimisation de la protection des données pour SAP HANA avec Azure NetApp Files"^]
+* link:https://media.netapp.com/video-detail/6b94b9c3-0862-5da8-8332-5aa1ffe86419/disaster-recovery-options-for-sap-hana["Options de reprise après incident pour SAP HANA"^]
+* link:https://media.netapp.com/video-detail/049d4875-c8ea-5d25-9205-73c16d81177d/sap-hana-disaster-recovery-with-anf-and-cross-region-replication["Reprise après incident de SAP HANA avec ANF et réplication interrégion"^]
 

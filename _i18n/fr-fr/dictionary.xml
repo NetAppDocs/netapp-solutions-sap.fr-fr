@@ -2923,29 +2923,18 @@
   <block id="2259bdd472d4d2949e3eea23b5e4ef34" category="paragraph">Présentation des vidéos et démonstrations sur les solutions SAP.</block>
   <block id="aa5b0840e871ca382a477398de4a7243" category="section-title">Vidéos et démonstrations sur les meilleures pratiques en matière de configuration SAP</block>
   <block id="c482c0b5b51f55ba9a7c2dcdee1f4339" category="inline-link-macro">Les systèmes SAP HANA s'exécutent de meilleure qualité sur l'infrastructure NetApp</block>
-  <block id="1075e5efe982b7b963d04bf347c70828" category="list-text"><block ref="1075e5efe982b7b963d04bf347c70828" category="inline-link-macro-rx"></block></block>
   <block id="442aae40221b985ca5667a9e47a977f6" category="inline-link-macro">SAP sur Azure NetApp Files : présentation et mises à jour</block>
-  <block id="4081a5d960769b62df19b7b2d85d97ce" category="list-text"><block ref="4081a5d960769b62df19b7b2d85d97ce" category="inline-link-macro-rx"></block></block>
   <block id="b3c2b25543d55b6202de3f9de0d4f7ab" category="inline-link-macro">Utilisation du stockage bloc et objet NetApp pour la veille stratégique SAP</block>
-  <block id="cb5a2e1895e5b5fdd2fa4ca3c1fcdcbf" category="list-text"><block ref="cb5a2e1895e5b5fdd2fa4ca3c1fcdcbf" category="inline-link-macro-rx"></block></block>
   <block id="ed2640c6c02db4ce182af25c797097d8" category="section-title">Vidéos et démonstrations sur la sauvegarde, la restauration et la reprise après incident pour SAP</block>
   <block id="e96d40a0320cf0061a3275c5aeda86d9" category="inline-link-macro">Assurez la disponibilité des applications SAP et réduisez les temps d'arrêt</block>
-  <block id="b9866c90c2cb78ad6026a4030e7ffb9c" category="list-text"><block ref="b9866c90c2cb78ad6026a4030e7ffb9c" category="inline-link-macro-rx"></block></block>
   <block id="84ead1de39ae75908e5ae205b8846191" category="inline-link-macro">Optimisation de la protection des données pour SAP HANA avec Azure NetApp Files</block>
-  <block id="6d846c272e002c4456952b49ec920c99" category="list-text"><block ref="6d846c272e002c4456952b49ec920c99" category="inline-link-macro-rx"></block></block>
   <block id="eabc448bcef35b3d5eb92882f22f6f0c" category="inline-link-macro">Options de reprise après incident pour SAP HANA</block>
-  <block id="5821d6a1665e7444f03bfc5b38497072" category="list-text"><block ref="5821d6a1665e7444f03bfc5b38497072" category="inline-link-macro-rx"></block></block>
   <block id="a6c0b9b2156c13772cbe82711c8b07b9" category="inline-link-macro">Reprise après incident de SAP HANA avec ANF et réplication interrégion</block>
-  <block id="63c6ad8a920d440690086fc463cb53e1" category="list-text"><block ref="63c6ad8a920d440690086fc463cb53e1" category="inline-link-macro-rx"></block></block>
   <block id="18c100c6d8f14819ac80ee276eb251a6" category="section-title">Vidéos et démonstrations relatives à la gestion du cycle de vie SAP</block>
   <block id="d67e81d44a24d3d9987a4b28774f0464" category="inline-link-macro">Réduisez les risques et améliorez la qualité des projets SAP</block>
-  <block id="99cd49471231b4760684c16c9efdf186" category="list-text"><block ref="99cd49471231b4760684c16c9efdf186" category="inline-link-macro-rx"></block></block>
   <block id="5673b57ca1dc3ec2a9c2adcc115e3718" category="inline-link-macro">Assurer la continuité pour les secteurs d'activité face aux événements imprévus</block>
-  <block id="36c65cf1e1133dcc86194501c946173e" category="list-text"><block ref="36c65cf1e1133dcc86194501c946173e" category="inline-link-macro-rx"></block></block>
   <block id="5fb4ff4d48cdc2aa80ff2d0945e1a23c" category="inline-link-macro">Cas d'utilisation de SnapCenter</block>
-  <block id="f7134e3fe8e51815ce1f2311d62c2501" category="list-text"><block ref="f7134e3fe8e51815ce1f2311d62c2501" category="inline-link-macro-rx"></block></block>
   <block id="36276bf8617d4835834e31d796e6e917" category="inline-link-macro">Copie des systèmes SAP avec libelle et SnapCenter</block>
-  <block id="ad89086c301777770abecf557a90299d" category="list-text"><block ref="ad89086c301777770abecf557a90299d" category="inline-link-macro-rx"></block></block>
   <block id="6408743c7b0a502fe49fed25ac968c17" category="summary">Série de vidéos et démonstrations sur la gestion du cycle de vie SAP</block>
   <block id="1e36c812f9450a024b52c0b4085d0776" category="paragraph">Présentation des vidéos et démonstrations sur la gestion du cycle de vie SAP.</block>
   <block id="d1d283ed469f9cbb4c4f40ee4c2c78d0" category="summary">Les solutions NetApp pour optimiser la gestion du cycle de vie SAP sont intégrées aux bases de données SAP AnyDB et aux bases de données SAP HANA. En outre, NetApp s'intègre avec les outils de gestion du cycle de vie SAP, associant une protection efficace des données intégrée aux applications au provisionnement flexible des systèmes de test SAP.</block>
@@ -4264,4 +4253,15 @@ Il en va de même pour les disques NVMe internes des systèmes AFF A800, AFF A70
   <block id="d8d0cb0916cf7da8496d1f2620d2ee90" category="image-alt">copie sc clone image5</block>
   <block id="8302a6667cb8ff0d8296da1e8fed81c3" category="image-alt">image clone copie sc 6</block>
   <block id="3011dd9126a94f9a666a7fd4dc5610ae" category="paragraph">Vous trouverez une description détaillée étape par étape dans les rapports techniques</block>
+  <block id="0a93e03f240cb8b42069573a99818021" category="list-text"><block ref="0a93e03f240cb8b42069573a99818021" category="inline-link-macro-rx"></block></block>
+  <block id="77b50001f65f6144e393afa83a9d4e21" category="list-text"><block ref="77b50001f65f6144e393afa83a9d4e21" category="inline-link-macro-rx"></block></block>
+  <block id="ac94faeb4f3a2c19cbff27de5edf7c3d" category="list-text"><block ref="ac94faeb4f3a2c19cbff27de5edf7c3d" category="inline-link-macro-rx"></block></block>
+  <block id="769a56e6a2d7cc689b61d13a608afdcf" category="list-text"><block ref="769a56e6a2d7cc689b61d13a608afdcf" category="inline-link-macro-rx"></block></block>
+  <block id="34132f76907288db0e5acc88b699349f" category="list-text"><block ref="34132f76907288db0e5acc88b699349f" category="inline-link-macro-rx"></block></block>
+  <block id="a5cf81e748f3b3e6fad26b2e3470f879" category="list-text"><block ref="a5cf81e748f3b3e6fad26b2e3470f879" category="inline-link-macro-rx"></block></block>
+  <block id="3a45e49c1772de2900939131e021fa41" category="list-text"><block ref="3a45e49c1772de2900939131e021fa41" category="inline-link-macro-rx"></block></block>
+  <block id="4d95a1c44f1bef40694360da5b9a600b" category="list-text"><block ref="4d95a1c44f1bef40694360da5b9a600b" category="inline-link-macro-rx"></block></block>
+  <block id="87c8349f2562b9df828a79206981328c" category="list-text"><block ref="87c8349f2562b9df828a79206981328c" category="inline-link-macro-rx"></block></block>
+  <block id="20a0dcae2f540339bbf69dbaa7f0050a" category="list-text"><block ref="20a0dcae2f540339bbf69dbaa7f0050a" category="inline-link-macro-rx"></block></block>
+  <block id="bdd953fb1656612c27158a06dfa9be52" category="list-text"><block ref="bdd953fb1656612c27158a06dfa9be52" category="inline-link-macro-rx"></block></block>
 </blocks>
