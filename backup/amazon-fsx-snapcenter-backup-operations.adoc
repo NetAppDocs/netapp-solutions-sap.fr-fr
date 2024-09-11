@@ -28,21 +28,21 @@ La vue topologie des ressources fournit une vue d'ensemble de toutes les sauvega
 
 . Dans la ligne supérieure, sélectionnez l'icône Sauvegarder maintenant pour lancer une sauvegarde à la demande.
 +
-image::amazon-fsx-image48.png[Erreur : image graphique manquante]
+image::amazon-fsx-image48.png[amazon fsx image48]
 
 . Dans la liste déroulante, sélectionnez la stratégie de sauvegarde `LocalSnap`, Puis cliquez sur Sauvegarder pour démarrer la sauvegarde à la demande.
 +
-image::amazon-fsx-image49.png[Erreur : image graphique manquante]
+image::amazon-fsx-image49.png[amazon fsx image49]
 
 +
-image::amazon-fsx-image50.png[Erreur : image graphique manquante]
+image::amazon-fsx-image50.png[amazon fsx image50]
 
 +
 Un journal des cinq tâches précédentes est affiché dans la zone activité au bas de la vue topologie.
 
 . Les détails du travail s'affichent lorsque vous cliquez sur la ligne d'activité du travail dans la zone activité. Vous pouvez ouvrir un journal détaillé des travaux en cliquant sur Afficher les journaux
 +
-image::amazon-fsx-image51.png[Erreur : image graphique manquante]
+image::amazon-fsx-image51.png[amazon fsx image51]
 
 +
 Une fois la sauvegarde terminée, une nouvelle entrée s'affiche dans la vue topologique. Les noms de sauvegarde suivent la même nomenclature que le nom de Snapshot défini dans la section link:amazon-fsx-snapcenter-configuration.html#configure-and-protect-a-hana-resource["« Configurer et protéger une ressource HANA »."]
@@ -51,16 +51,16 @@ Une fois la sauvegarde terminée, une nouvelle entrée s'affiche dans la vue top
 Vous devez fermer et rouvrir la vue topologique pour afficher la liste des sauvegardes mise à jour.
 
 +
-image::amazon-fsx-image52.png[Erreur : image graphique manquante]
+image::amazon-fsx-image52.png[amazon fsx image52]
 
 +
 Dans le catalogue des sauvegardes SAP HANA, le nom de la sauvegarde SnapCenter est stocké comme A. `Comment` champ également `External Backup ID (EBID)`. Cette figure est présentée dans la figure suivante pour la base de données système et dans la figure suivante pour la base de données de tenant PFX.
 
 +
-image::amazon-fsx-image53.png[Erreur : image graphique manquante]
+image::amazon-fsx-image53.png[amazon fsx image53]
 
 +
-image::amazon-fsx-image54.png[Erreur : image graphique manquante]
+image::amazon-fsx-image54.png[amazon fsx image54]
 
 
 
@@ -82,19 +82,19 @@ sapcc-hana-svm::>
 
 Une opération de vérification de l'intégrité des blocs à la demande est exécutée de la même manière qu'une tâche de sauvegarde Snapshot, en sélectionnant la règle BlockIntegrtyCheck. Lorsque vous planifiez des sauvegardes à l'aide de cette règle, SnapCenter crée une sauvegarde standard des fichiers SAP HANA pour les bases de données système et locataires.
 
-image::amazon-fsx-image55.png[Erreur : image graphique manquante]
+image::amazon-fsx-image55.png[amazon fsx image55]
 
-image::amazon-fsx-image56.png[Erreur : image graphique manquante]
+image::amazon-fsx-image56.png[amazon fsx image56]
 
 SnapCenter n'affiche pas la vérification de l'intégrité des blocs, de la même manière que les sauvegardes basées sur des copies Snapshot. À la place, la carte récapitulative affiche le nombre de sauvegardes basées sur des fichiers et l'état de la sauvegarde précédente.
 
-image::amazon-fsx-image57.png[Erreur : image graphique manquante]
+image::amazon-fsx-image57.png[amazon fsx image57]
 
 Le catalogue de sauvegardes SAP HANA affiche les entrées des bases de données système et locataire. Les figures suivantes montrent le contrôle d'intégrité des blocs SnapCenter dans le catalogue de sauvegarde du système et de la base de données des locataires.
 
-image::amazon-fsx-image58.png[Erreur : image graphique manquante]
+image::amazon-fsx-image58.png[amazon fsx image58]
 
-image::amazon-fsx-image59.png[Erreur : image graphique manquante]
+image::amazon-fsx-image59.png[amazon fsx image59]
 
 Un contrôle réussi de l'intégrité des blocs crée des fichiers de sauvegarde standard des données SAP HANA. SnapCenter utilise le chemin de sauvegarde qui a été configuré avec la base de données HANA pour des opérations de sauvegarde de données basées sur des fichiers.
 

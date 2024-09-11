@@ -20,11 +20,11 @@ Une infrastructure de commutation redondante est recommandée pour assurer une c
 
 Différents modèles de la gamme de produits des systèmes FAS peuvent être combinés au niveau de la couche de stockage afin de permettre la croissance et les besoins de performances et de capacité variables. Le nombre maximal d'hôtes SAP HANA pouvant être connectés au système de stockage est défini par les exigences de performances SAP HANA et le modèle du contrôleur NetApp utilisé. Le nombre de tiroirs disques requis n'est déterminé que par les exigences de capacité et de performance des systèmes SAP HANA. La figure suivante montre un exemple de configuration avec huit hôtes SAP HANA reliés à une paire haute disponibilité du stockage.
 
-image::saphana-fas-nfs_image2.png[Erreur : image graphique manquante]
+image::saphana-fas-nfs_image2.png[image nfs saphana FAS 2]
 
 La figure suivante présente un exemple d'utilisation de VMware vSphere comme couche de virtualisation.
 
-image::saphana-fas-nfs_image3.jpg[Erreur : image graphique manquante]
+image::saphana-fas-nfs_image3.jpg[image nfs saphana FAS 3]
 
 L'architecture peut évoluer en deux dimensions :
 
@@ -34,11 +34,11 @@ L'architecture peut évoluer en deux dimensions :
 
 La figure suivante présente un exemple de configuration dans laquelle davantage d'hôtes SAP HANA sont connectés aux contrôleurs de stockage. Dans cet exemple, il faut davantage de tiroirs disques pour satisfaire à la fois les besoins en capacité et en performances de 16 hôtes SAP HANA. Selon les besoins de débit total, d'autres connexions 10GbE (ou plus rapides) aux contrôleurs de stockage doivent être ajoutées.
 
-image::saphana-fas-nfs_image4.png[Erreur : image graphique manquante]
+image::saphana-fas-nfs_image4.png[image nfs saphana FAS 4]
 
 Quel que soit le système FAS déployé, le paysage SAP HANA peut également être étendu en ajoutant des contrôleurs de stockage certifiés afin de répondre à la densité de nœud souhaitée (figure suivante).
 
-image::saphana-fas-nfs_image5.png[Erreur : image graphique manquante]
+image::saphana-fas-nfs_image5.png[image nfs saphana FAS 5]
 
 
 
@@ -52,7 +52,7 @@ La technologie NetApp SnapMirror permet de répliquer les copies Snapshot créé
 
 Les journaux de la base de données peuvent être sauvegardés directement sur le stockage secondaire à l'aide d'un montage NFS, comme illustré dans la figure suivante.
 
-image::saphana-fas-nfs_image6.jpg[Erreur : image graphique manquante]
+image::saphana-fas-nfs_image6.jpg[image nfs saphana FAS 6]
 
 Les sauvegardes Snapshot basées sur le stockage offrent un avantage considérable par rapport aux sauvegardes classiques basées sur des fichiers. Ces avantages sont, entre autres, les suivants :
 
@@ -62,7 +62,7 @@ Les sauvegardes Snapshot basées sur le stockage offrent un avantage considérab
 * Réplication compacte et économique en bande passante sur le stockage secondaire en fonction des modifications apportées aux blocs
 
 
-Pour plus d'informations sur la solution de sauvegarde et de restauration SAP HANA qui utilise SnapCenter, consultez https://www.netapp.com/us/media/tr-4614.pdf["Tr-4614 : sauvegarde et restauration SAP HANA avec SnapCenter"^].
+Pour plus d'informations sur la solution de sauvegarde et de restauration SAP HANA utilisant SnapCenter, consultez https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-overview.html["Tr-4614 : sauvegarde et restauration SAP HANA avec SnapCenter"^].
 
 
 
@@ -70,7 +70,7 @@ Pour plus d'informations sur la solution de sauvegarde et de restauration SAP HA
 
 La reprise d'activité de SAP HANA peut être effectuée soit sur la couche de base de données à l'aide de la réplication du système SAP HANA, soit sur la couche de stockage grâce aux technologies de réplication du stockage. La section suivante présente les solutions de reprise sur incident basées sur la réplication du stockage.
 
-Pour plus d'informations sur les solutions de reprise sur incident SAP HANA, consultez https://www.netapp.com/pdf.html?item=/media/8584-tr4646pdf.pdf["Tr-4646 : reprise après incident de SAP HANA avec réplication du stockage"^].
+Pour plus d'informations sur les solutions de reprise d'activité SAP HANA, reportez-vous à https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-dr-sr_pdf_link.html["Tr-4646 : reprise après incident de SAP HANA avec réplication du stockage"^]la section.
 
 
 
@@ -88,7 +88,7 @@ Les serveurs des sites de reprise d'activité peuvent être utilisés en tant qu
 
 Les deux méthodes de réplication permettent d'exécuter des tests du flux de travail de reprise d'activité sans affecter le RPO et RTO. Les volumes FlexClone sont créés sur le système de stockage et sont rattachés aux serveurs de test de reprise après incident.
 
-image::saphana-fas-nfs_image7.png[Erreur : image graphique manquante]
+image::saphana-fas-nfs_image7.png[image nfs saphana FAS 7]
 
 La réplication synchrone offre le mode StrictSync. Si l'écriture sur le stockage secondaire n'est pas terminée, pour une raison quelconque, les E/S de l'application échouent, ce qui permet de s'assurer que les systèmes de stockage primaire et secondaire sont identiques. Les E/S de l'application vers le système primaire sont CV uniquement après le retour de la relation SnapMirror à l'état insync. En cas de défaillance du stockage primaire, les E/S des applications peuvent être reprises sur le stockage secondaire après le basculement, sans perte de données. En mode StrictSync, le RPO est toujours zéro.
 
@@ -98,4 +98,4 @@ La réplication synchrone offre le mode StrictSync. Si l'écriture sur le stocka
 
 La figure suivante présente une vue d'ensemble générale de la solution. Le cluster de stockage de chaque site assure une haute disponibilité locale et est utilisé pour la charge de travail de production. Les données de chaque site sont répliquées de manière synchrone sur l'autre emplacement et sont disponibles en cas de basculement.
 
-image::saphana-fas-nfs_image8.png[Erreur : image graphique manquante]
+image::saphana-fas-nfs_image8.png[image nfs saphana FAS 8]

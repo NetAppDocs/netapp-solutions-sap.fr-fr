@@ -34,7 +34,7 @@ La détection automatique ainsi que la restauration et la restauration automatis
 
 La figure suivante résume les dépendances. Pour plus d'informations sur les options de déploiement HANA, reportez-vous à la section « Options de déploiement du plug-in SAP HANA ».
 
-image::saphana-br-scs-image9.png[Erreur : image graphique manquante]
+image::saphana-br-scs-image9.png[saphana br scs image9]
 
 
 NOTE: Les plug-ins HANA et Linux ne sont actuellement disponibles que pour les systèmes basés sur Intel. Si les bases de données HANA s'exécutent sur IBM Power Systems, un plug-in HANA central doit être utilisé.
@@ -101,7 +101,7 @@ La figure suivante montre la vue logique et la communication entre le serveur Sn
 
 Le serveur SnapCenter communique via le plug-in SAP HANA avec les bases de données SAP HANA. Le plug-in SAP HANA utilise le logiciel client SAP HANA hdbsql pour exécuter des commandes SQL sur les bases de données SAP HANA. Le hdbuserstore SAP HANA permet de fournir les identifiants de l'utilisateur, le nom de l'hôte et les informations de port pour accéder aux bases de données SAP HANA.
 
-image::saphana-br-scs-image10.png[Erreur : image graphique manquante]
+image::saphana-br-scs-image10.png[saphana br scs image10]
 
 
 NOTE: Le plug-in SAP HANA et le logiciel client SAP hdbsql, qui inclut l'outil de configuration hdbuserstore, doivent être installés ensemble sur le même hôte.
@@ -122,7 +122,7 @@ SnapCenter Server HA n'est pas pris en charge si le plug-in HANA est installé s
 
 La figure suivante montre une configuration dans laquelle le serveur SnapCenter est utilisé comme hôte plug-in central. Le plug-in SAP HANA et le logiciel client SAP hdbsql sont installés sur le serveur SnapCenter.
 
-image::saphana-br-scs-image11.png[Erreur : image graphique manquante]
+image::saphana-br-scs-image11.png[saphana br scs image11]
 
 Comme le plug-in HANA peut communiquer avec les bases de données HANA gérées par hdbclient via le réseau, il n'est pas nécessaire d'installer de composants SnapCenter sur les hôtes de base de données HANA individuels. SnapCenter peut protéger les bases de données HANA en utilisant un hôte plug-in HANA central sur lequel toutes les clés de magasin d'utilisateurs sont configurées pour les bases de données gérées.
 
@@ -139,7 +139,7 @@ La figure suivante montre une configuration dans laquelle un hôte Linux distinc
 
 NOTE: L'hôte distinct de plug-in central peut également être un hôte Windows.
 
-image::saphana-br-scs-image12.png[Erreur : image graphique manquante]
+image::saphana-br-scs-image12.png[saphana br scs image12]
 
 La même restriction concernant la disponibilité des fonctionnalités décrite dans la section précédente s'applique également à un hôte de plug-in central distinct.
 
@@ -151,7 +151,7 @@ Cependant, grâce à cette option de déploiement, le serveur SnapCenter peut ê
 
 La figure suivante montre une configuration dans laquelle le plug-in SAP HANA est installé sur chaque hôte de base de données SAP HANA.
 
-image::saphana-br-scs-image13.png[Erreur : image graphique manquante]
+image::saphana-br-scs-image13.png[saphana br scs image13]
 
 Lorsque le plug-in HANA est installé sur chaque hôte de base de données HANA individuel, toutes les fonctionnalités, telles que la découverte automatique et la restauration et la récupération automatisées, sont disponibles. Par ailleurs, le serveur SnapCenter peut être configuré dans une configuration haute disponibilité.
 
@@ -165,9 +165,9 @@ NetApp recommande de déployer le plug-in HANA sur l'hôte de base de données H
 
 Les deux figures suivantes présentent des déploiements de plug-ins mixtes avec le serveur SnapCenter ou un hôte Linux distinct en tant qu'hôte de plug-in central. La seule différence entre ces deux déploiements est la configuration haute disponibilité en option.
 
-image::saphana-br-scs-image14.png[Erreur : image graphique manquante]
+image::saphana-br-scs-image14.png[saphana br scs image14]
 
-image::saphana-br-scs-image15.png[Erreur : image graphique manquante]
+image::saphana-br-scs-image15.png[saphana br scs image15]
 
 
 
@@ -299,7 +299,7 @@ Pour la gestion de la conservation des sauvegardes de données et de la gestion 
 
 La figure suivante présente une vue d'ensemble du workflow de sauvegarde.
 
-image::saphana-br-scs-image16.png[Erreur : image graphique manquante]
+image::saphana-br-scs-image16.png[saphana br scs image16]
 
 
 
@@ -365,7 +365,7 @@ La gestion de la conservation des sauvegardes de données et le nettoyage des sa
 
 La figure suivante présente les différents flux de travail et les dépendances de chaque opération. Les sections suivantes décrivent en détail les différentes opérations.
 
-image::saphana-br-scs-image17.png[Erreur : image graphique manquante]
+image::saphana-br-scs-image17.png[saphana br scs image17]
 
 
 
@@ -534,7 +534,7 @@ Les systèmes à un seul conteneur HANA et MDC HANA qui ont été découverts au
 * *Ressource complète avec récupération manuelle.* si vous sélectionnez pas de récupération, SnapCenter arrête la base de données HANA et exécute les opérations de restauration et de démontage du système de fichiers requis. Vous devez restaurer manuellement la base de données du système et des locataires.
 
 
-image::saphana-br-scs-image18.png[Erreur : image graphique manquante]
+image::saphana-br-scs-image18.png[saphana br scs image18]
 
 
 
@@ -548,7 +548,7 @@ Même si les systèmes MDC HANA avec plusieurs locataires sont automatiquement d
 
 Les flux de travail sont les mêmes que ceux décrits dans la section précédente.
 
-image::saphana-br-scs-image19.png[Erreur : image graphique manquante]
+image::saphana-br-scs-image19.png[saphana br scs image19]
 
 
 
@@ -558,7 +558,7 @@ Les ressources HANA configurées manuellement ne sont pas activées pour la rest
 
 Pour les ressources HANA configurées manuellement, SnapCenter prend uniquement en charge la restauration manuelle, comme illustré dans la figure suivante. Le flux de travail pour la récupération manuelle est le même que celui décrit dans les sections précédentes.
 
-image::saphana-br-scs-image20.png[Erreur : image graphique manquante]
+image::saphana-br-scs-image20.png[saphana br scs image20]
 
 
 

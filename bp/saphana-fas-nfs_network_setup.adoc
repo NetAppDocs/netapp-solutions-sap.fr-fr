@@ -31,7 +31,7 @@ Au niveau de la couche de stockage, quatre connexions actives sont configurées 
 
 Au niveau de la couche de stockage, un domaine de diffusion d'une taille MTU de 9 9000 est configuré et toutes les interfaces physiques requises sont ajoutées à ce domaine de broadcast. Cette approche attribue automatiquement ces interfaces physiques au même groupe de basculement. Toutes les interfaces logiques (LIF) attribuées à ces interfaces physiques sont ajoutées à ce failover group.
 
-image::saphana-fas-nfs_image10.png[Erreur : image graphique manquante]
+image::saphana-fas-nfs_image10.png[image nfs saphana FAS 10]
 
 En général, il est également possible d'utiliser les groupes d'interface haute disponibilité sur les serveurs (liaisons) et les systèmes de stockage (par exemple, le protocole LACP (Link Aggregation Control Protocol) et les ifgroups). Avec les groupes d'interface haute disponibilité, vérifiez que la charge est répartie de manière égale entre toutes les interfaces du groupe. La distribution de la charge dépend de la fonctionnalité de l'infrastructure du commutateur réseau.
 
@@ -46,11 +46,11 @@ Toutes les données des instances SAP HANA, y compris les données sensibles aux
 
 La figure suivante fournit une vue d'ensemble du réseau.
 
-image::saphana-fas-nfs_image11.png[Erreur : image graphique manquante]
+image::saphana-fas-nfs_image11.png[image nfs saphana FAS 11]
 
 Chaque nœud SAP HANA utilise un port group dédié sur le switch distribué VMware. Ce port group améliore la qualité de service (QoS) et l'affectation dédiée des cartes d'interface réseau physiques (NIC) sur les hôtes ESX. Pour utiliser des cartes réseau physiques dédiées tout en préservant les fonctionnalités haute disponibilité en cas de défaillance de la carte réseau, la carte réseau physique dédiée est configurée comme une liaison montante active. Les cartes réseau supplémentaires sont configurées en tant que liaisons ascendantes de secours dans les paramètres de regroupement et de basculement du groupe de ports SAP HANA. En outre, les trames Jumbo (MTU 9,000) doivent être activées de bout en bout sur les commutateurs physiques et virtuels. De plus, désactivez le contrôle de flux sur tous les ports ethernet utilisés pour le trafic de stockage sur les serveurs, les commutateurs et les systèmes de stockage. La figure suivante présente un exemple de configuration de ce type.
 
 
 NOTE: L'option LRO (large Receive Offload) doit être désactivée pour les interfaces utilisées pour le trafic NFS. Pour toutes les autres instructions relatives à la configuration du réseau, consultez les guides des meilleures pratiques de VMware respectifs pour SAP HANA.
 
-image::saphana-fas-nfs_image12.png[Erreur : image graphique manquante]
+image::saphana-fas-nfs_image12.png[image nfs saphana FAS 12]

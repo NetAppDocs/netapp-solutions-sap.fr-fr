@@ -28,7 +28,7 @@ Dans le cas d'un basculement, la relation de réplication doit être rompue, les
 
 La figure suivante décrit les options de configuration HANA pour la réplication inter-région.
 
-image::saphana-dr-anf_image6.png[Erreur : image graphique manquante]
+image::saphana-dr-anf_image6.png[saphana dr anf image6]
 
 Avec la version actuelle de la réplication inter-région, seules les planifications fixes peuvent être sélectionnées et l'heure de mise à jour de la réplication réelle ne peut pas être définie par l'utilisateur. Les horaires disponibles sont tous les jours, toutes les heures et toutes les 10 minutes. Utilisez ces options de planification, deux configurations différentes selon les exigences RPO : la réplication de volume de données sans journalisation de la réplication des sauvegardes et la réplication des sauvegardes de journaux avec des planifications différentes, toutes les heures ou toutes les 10 minutes. Le RPO le plus faible possible est d'environ 20 minutes. Le tableau suivant récapitule les options de configuration et les valeurs RPO et RTO qui en résultent.
 

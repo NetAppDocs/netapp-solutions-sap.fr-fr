@@ -34,7 +34,7 @@ La figure suivante illustre HANA Studio d'un client utilisant des opérations de
 
 La majeure partie du temps d'exécution du workflow de sauvegarde est le temps nécessaire pour exécuter l'opération de point de sauvegarde de la sauvegarde HANA, et cette étape dépend de la charge exercée sur la base de données HANA. La sauvegarde Snapshot de stockage elle-même s'effectue toujours en quelques secondes.
 
-image::amazon-fsx-image1.png[Erreur : image graphique manquante]
+image::amazon-fsx-image1.png[image amazon fsx 1]
 
 
 
@@ -72,7 +72,7 @@ Les deux premières barres indiquent que, même avec une seule sauvegarde Snapsh
 
 La figure suivante montre également que quatre à six sauvegardes Snapshot par jour sont les plus utiles, car la fréquence plus élevée n'a plus d'influence sur le temps d'exécution global.
 
-image::amazon-fsx-image2.png[Erreur : image graphique manquante]
+image::amazon-fsx-image2.png[amazon fsx image2]
 
 
 
@@ -84,7 +84,7 @@ La mise à niveau du système SAP HANA est un exemple : une sauvegarde à la dem
 
 Il s'agit également d'un cycle de test standard, où les tests doivent être réalisés sur plusieurs itérations avec différents jeux de données ou paramètres. Lorsque vous utilisez les opérations de sauvegarde et de restauration rapides, vous pouvez facilement créer des points de sauvegarde au cours de votre cycle de test et réinitialiser le système à l'un de ces points de sauvegarde précédents en cas d'échec ou de répétition d'un test. Cela permet de terminer les tests plus tôt ou d'effectuer davantage de tests simultanément et améliore les résultats des tests.
 
-image::amazon-fsx-image3.png[Erreur : image graphique manquante]
+image::amazon-fsx-image3.png[amazon fsx image3]
 
 Lorsque des sauvegardes Snapshot ont été implémentées, elles peuvent être utilisées pour traiter plusieurs autres cas d'utilisation qui requièrent des copies d'une base de données HANA. FSX pour ONTAP vous permet de créer un nouveau volume basé sur le contenu de toute sauvegarde Snapshot disponible. L'exécution de cette opération est de quelques secondes, indépendamment de la taille du volume.
 
@@ -94,4 +94,4 @@ Le deuxième cas d'utilisation est la création d'un système de réparation, qu
 
 Notre dernier cas d'utilisation est la possibilité d'exécuter un test de basculement de reprise d'activité sans arrêter la réplication et sans affecter l'objectif RTO et RPO (Recovery point objective) de la configuration de la reprise d'activité. Lorsque la réplication FSX pour ONTAP NetApp SnapMirror est utilisée pour répliquer les données sur le site de reprise après incident, les sauvegardes Snapshot de production sont également disponibles sur le site de reprise après incident et peuvent ensuite être utilisées pour créer un nouveau volume pour le test de reprise après incident.
 
-image::amazon-fsx-image4.png[Erreur : image graphique manquante]
+image::amazon-fsx-image4.png[amazon fsx image4]

@@ -88,7 +88,7 @@ Un maximum d'un tiroir disque peut être connecté à une pile SAS afin d'assure
 
 NOTE: Avec le tiroir disque DS224C, il est possible d'utiliser un câblage SAS à quatre chemins, sans qu'il soit nécessaire.
 
-image::saphana_aff_nfs_image13.png[Erreur : image graphique manquante]
+image::saphana_aff_nfs_image13.png[image nfs saphana AFF 13]
 
 
 
@@ -96,7 +96,7 @@ image::saphana_aff_nfs_image13.png[Erreur : image graphique manquante]
 
 Chaque tiroir disque NVMe NS224 est connecté par contrôleur à l'aide de deux ports 100 GbE. Les disques dans chaque tiroir doivent être répartis de manière homogène sur les deux contrôleurs de la paire haute disponibilité. ADPv2, comme décrit dans le chapitre de configuration d'agrégats, est également utilisé pour le tiroir disque NS224. La figure suivante décrit la connexion du tiroir disque avec un disque NVMe.
 
-image::saphana_aff_nfs_image14.jpg[Erreur : image graphique manquante]
+image::saphana_aff_nfs_image14.jpg[image nfs saphana AFF 14]
 
 
 
@@ -106,7 +106,7 @@ En général, vous devez configurer deux agrégats par contrôleur, indépendamm
 
 L'image suivante montre une configuration de 12 hôtes SAP HANA qui s'exécutent sur un tiroir SAS 12 Gb configuré avec ADPv2. Six hôtes SAP HANA sont connectés à chaque contrôleur de stockage. Quatre agrégats distincts, deux sur chaque contrôleur de stockage, sont configurés. Chaque agrégat est configuré avec 11 disques comprenant neuf données et deux partitions de parité. Deux partitions de rechange sont disponibles pour chaque contrôleur.
 
-image::saphana_aff_nfs_image15.jpg[Erreur : image graphique manquante]
+image::saphana_aff_nfs_image15.jpg[image nfs saphana AFF 15]
 
 
 
@@ -154,7 +154,7 @@ NOTE: Si un seul contrôleur de stockage d'une paire haute disponibilité est ut
 
 NOTE: Si les volumes de données et de journaux sont stockés sur le même contrôleur, l'accès du serveur au stockage doit être effectué avec deux LIF différentes : une LIF pour accéder au volume de données et l'autre pour accéder au volume du journal.
 
-image::saphana_aff_nfs_image16.jpg[Erreur : image graphique manquante]
+image::saphana_aff_nfs_image16.jpg[saphana AFF image nfs 16]
 
 Pour chaque hôte SAP HANA, un volume de données, un volume de journal et un volume pour `/hana/shared` sont configurés. Le tableau suivant présente un exemple de configuration pour les systèmes SAP HANA à un hôte unique.
 
@@ -199,7 +199,7 @@ NOTE: Si un seul contrôleur de stockage d'une paire haute disponibilité est ut
 
 NOTE: Si les volumes de données et de journaux sont stockés sur le même contrôleur, l'accès du serveur au stockage doit être effectué avec deux LIF différentes : une LIF pour accéder au volume de données et l'autre pour accéder au volume du journal.
 
-image::saphana_aff_nfs_image17.jpg[Erreur : image graphique manquante]
+image::saphana_aff_nfs_image17.jpg[image nfs saphana AFF 17]
 
 Pour chaque hôte SAP HANA, un volume de données et un volume journal sont créés. Le `/hana/shared` Le volume est utilisé par tous les hôtes du système SAP HANA. Le tableau suivant présente un exemple de configuration pour un système SAP HANA à plusieurs hôtes avec quatre hôtes actifs.
 

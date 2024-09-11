@@ -16,7 +16,7 @@ L'exécution de SAP HANA sur Azure NetApp Files (ANF) permet aux clients d'accé
 
 Pour développer une stratégie complète de reprise sur incident, les clients doivent comprendre les exigences des applications métier et les fonctionnalités techniques dont ils ont besoin pour la protection des données et la reprise sur incident. La figure suivante fournit une présentation de la protection des données.
 
-image::saphana-dr-anf_image2.png[Erreur : image graphique manquante]
+image::saphana-dr-anf_image2.png[saphana dr anf image2]
 
 
 

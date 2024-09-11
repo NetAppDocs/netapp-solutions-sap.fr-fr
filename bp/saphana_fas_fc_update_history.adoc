@@ -15,40 +15,49 @@ summary:
 
 Les modifications techniques suivantes ont été apportées à cette solution depuis sa publication initiale.
 
-[cols="25,25,50"]
+[cols="25,50"]
 |===
-| Version | Date | Mettre à jour le résumé 
+| Date | Mettre à jour le résumé 
 
 
-| Version 1.0 | Février 2015 | Version initiale 
+| Février 2015 | Version initiale 
 
 
-| Version 2.0 | Octobre 2015 | Paramètres d'E/S inclus pour SAP HANA et HWVal SPS 10 et versions ultérieures 
+| Octobre 2015 | Paramètres d'E/S inclus pour SAP HANA et HWVal SPS 10 et versions ultérieures 
 
 
-| Version 2.1 | Février 2016 | Dimensionnement de la capacité mis à jour 
+| Février 2016 | Dimensionnement de la capacité mis à jour 
 
 
-| Version 3.0 | Février 2017 | Nouveaux systèmes de stockage et tiroirs disques NetApp nouvelles fonctionnalités de ONTAP 9 nouvelles versions de systèmes d'exploitation (SLES12 SP1 et Red Hat Enterprise Linux 7.2) Nouvelle version de SAP HANA 
+| Février 2017 | Nouveaux systèmes de stockage et tiroirs disques NetApp nouvelles fonctionnalités de ONTAP 9 nouvelles versions de systèmes d'exploitation (SLES12 SP1 et Red Hat Enterprise Linux 7.2) Nouvelle version de SAP HANA 
 
 
-| Version 3.1 | Juillet 2017 | Mises à jour mineures 
+| Juillet 2017 | Mises à jour mineures 
 
 
-| Version 4.0 | Septembre 2018 | Nouveaux systèmes de stockage NetApp nouvelles versions de système d'exploitation (SLES12 SP3 et Red Hat Enterprise Linux 7.4) mises à jour mineures supplémentaires SAP HANA 2.0 SPS3 
+| Septembre 2018 | Nouveaux systèmes de stockage NetApp nouvelles versions de système d'exploitation (SLES12 SP3 et Red Hat Enterprise Linux 7.4) mises à jour mineures supplémentaires SAP HANA 2.0 SPS3 
 
 
-| Version 4.1 | Septembre 2019 | Nouvelles mises à jour mineures du système d'exploitation 
+| Septembre 2019 | Nouvelles mises à jour mineures du système d'exploitation 
 
 
-| Version 4.2 | Avril 2020 | Les nouveaux systèmes de stockage de la gamme AFF ASA ont introduit de nombreuses fonctionnalités de partition de données disponibles depuis SAP HANA 2.0 SPS4 
+| Avril 2020 | Les nouveaux systèmes de stockage de la gamme AFF ASA ont introduit de nombreuses fonctionnalités de partition de données disponibles depuis SAP HANA 2.0 SPS4 
 
 
-| Version 4.3 | Juin 2020 | Informations supplémentaires sur les fonctionnalités facultatives mises à jour mineures 
+| Juin 2020 | Informations supplémentaires sur les fonctionnalités facultatives mises à jour mineures 
 
 
-| Version 5.0 | Février 2021 | Prise en charge de Linux LVM des nouveaux systèmes de stockage NetApp nouvelles versions du système d'exploitation (SLES15SP2, RHEL 8) 
+| Février 2021 | Prise en charge de Linux LVM des nouveaux systèmes de stockage NetApp nouvelles versions du système d'exploitation (SLES15SP2, RHEL 8) 
 
 
-| Version 5.1 | Avril 2021 | Informations spécifiques à VMware vSphere ajoutées 
+| Avril 2021 | Informations spécifiques à VMware vSphere ajoutées 
+
+
+| Septembre 2022 | Nouvelles versions du système d'exploitation 
+
+
+| Août 2023 | Nouveaux systèmes de stockage (AFF C-Series) 
+
+
+| Mai 2024 | Nouveaux systèmes de stockage (AFF A-Series) 
 |===

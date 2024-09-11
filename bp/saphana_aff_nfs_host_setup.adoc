@@ -40,14 +40,13 @@ net.ipv4.tcp_moderate_rcvbuf = 1
 net.ipv4.tcp_window_scaling = 1
 net.ipv4.tcp_timestamps = 1
 net.ipv4.tcp_sack = 1
+options sunrpc tcp_max_slot_table_entries = 128
 ....
 
 NOTE: Saptune, inclus dans SLES pour les versions de SAP OS, peut être utilisé pour définir ces valeurs. Pour plus d'informations, voir https://launchpad.support.sap.com/#/notes/3024346["Note SAP 3024346"^] (Nécessite une connexion SAP).
 
-Le `sunrpc.tcp_max_slot_table_entries` le paramètre doit être défini dans `/etc/modprobe.d/sunrpc.conf`. Si le fichier n'existe pas, il doit d'abord être créé en ajoutant la ligne suivante :
-
 ....
-options sunrpc tcp_max_slot_table_entries=128
+
 ....
 
 
@@ -55,11 +54,6 @@ options sunrpc tcp_max_slot_table_entries=128
 
 Vous devez ajuster des paramètres de noyau et de configuration supplémentaires sur chaque hôte SAP HANA pour la charge de travail générée par SAP HANA.
 
-Le `sunrpc.tcp_max_slot_table_entries` le paramètre doit être défini dans `/etc/modprobe.d/sunrpc.conf`. Si le fichier n'existe pas, il doit d'abord être créé en ajoutant la ligne suivante :
-
-....
-options sunrpc tcp_max_slot_table_entries=128
-....
 À partir de Red Hat Enterprise Linux 7.2, vous devez définir les paramètres du noyau dans un fichier de configuration dans `/etc/sysctl.d` répertoire. Par exemple, vous devez créer un fichier de configuration portant le nom `91-NetApp-HANA.conf`.
 
 ....
@@ -74,6 +68,7 @@ net.ipv4.tcp_moderate_rcvbuf = 1
 net.ipv4.tcp_window_scaling = 1
 net.ipv4.tcp_timestamps = 1
 net.ipv4.tcp_sack = 1
+options sunrpc tcp_max_slot_table_entries = 128
 ....
 
 NOTE: Depuis RedHat Enterprise Linux version 8.6, les paramètres peuvent également être appliqués à l'aide des rôles système RHEL pour SAP (Ansible). Voir https://launchpad.support.sap.com/#/notes/3024346["Note SAP 3024346"^] (Nécessite une connexion SAP).

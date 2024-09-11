@@ -22,15 +22,15 @@ La durée du transfert et la taille du transfert fournissent des informations pr
 
 La capture d'écran suivante montre l'état de réplication du volume de données HANA.
 
-image::saphana-dr-anf_image14.png[Erreur : image graphique manquante]
+image::saphana-dr-anf_image14.png[saphana dr anf image14]
 
 La capture d'écran suivante montre l'état de réplication du volume de sauvegarde du journal HANA.
 
-image::saphana-dr-anf_image15.png[Erreur : image graphique manquante]
+image::saphana-dr-anf_image15.png[saphana dr anf image15]
 
 La capture d'écran suivante montre l'état de réplication du volume partagé HANA.
 
-image::saphana-dr-anf_image16.png[Erreur : image graphique manquante]
+image::saphana-dr-anf_image16.png[saphana dr anf image16]
 
 
 
@@ -41,4 +41,4 @@ image::saphana-dr-anf_image16.png[Erreur : image graphique manquante]
 
 NOTE: Au sein du volume source et du volume cible, des copies Snapshot SnapMirror sont également créées pour les opérations de resynchronisation et de mise à jour de réplication. Ces copies Snapshot ne sont pas cohérentes au niveau de l'application du point de vue de la base de données HANA ; seuls les snapshots cohérents au niveau des applications créés via AzaCSNAP peuvent être utilisés pour les opérations de restauration HANA.
 
-image::saphana-dr-anf_image17.png[Erreur : image graphique manquante]
+image::saphana-dr-anf_image17.png[saphana dr anf image17]

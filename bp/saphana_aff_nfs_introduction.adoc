@@ -79,7 +79,7 @@ NOTE: Reportez-vous aux notes SAP correspondantes pour les instructions de confi
 
 Les contrôleurs de stockage AFF NetApp sont certifiés dans le programme SAP HANA TDI en utilisant les protocoles NFS (NAS) et FC (SAN). Ils peuvent être déployés dans tous les scénarios SAP HANA actuels, tels que SAP Business Suite sur HANA, S/4HANA, BW/HANA ou SAP Business Warehouse sur HANA, soit sur un ou plusieurs hôtes. Tous les serveurs certifiés pour une utilisation avec SAP HANA peuvent être associés à des solutions de stockage certifiées NetApp. Pour une présentation de l'architecture de SAP HANA TDI, reportez-vous à la figure suivante.
 
-image::saphana_aff_nfs_image1.png[Erreur : image graphique manquante]
+image::saphana_aff_nfs_image1.png[image AFF saphana nfs 1]
 
 Pour plus d'informations sur les prérequis et les recommandations pour les systèmes producti SAP HANA, consultez la ressource suivante :
 
@@ -99,7 +99,6 @@ Ce document décrit la configuration recommandée avec des montages NFS directs 
 Pour plus d'informations sur l'utilisation de vSphere avec SAP HANA, consultez les liens suivants :
 
 * link:https://wiki.scn.sap.com/wiki/display/VIRTUALIZATION/SAP+HANA+on+VMware+vSphere["SAP HANA sur VMware vSphere - virtualisation - Wiki communautaire"^]
-* link:http://www.vmware.com/files/pdf/SAP_HANA_on_vmware_vSphere_best_practices_guide.pdf["Meilleures pratiques et recommandations pour les déploiements scale-up de SAP HANA sur VMware vSphere"^]
-* link:http://www.vmware.com/files/pdf/sap-hana-scale-out-deployments-on-vsphere.pdf["Meilleures pratiques et recommandations pour les déploiements en mode scale-out de SAP HANA sur VMware vSphere"^]
+* https://core.vmware.com/resource/sap-hana-vmware-vsphere-best-practices-and-reference-architecture-guide#introduction["Guide des meilleures pratiques et d'architecture de référence de SAP HANA sur VMware vSphere"^]
 * link:https://launchpad.support.sap.com/#/notes/2161991["2161991 - instructions de configuration de VMware vSphere - SAP ONE support Launchpad (connexion requise)"^]
 

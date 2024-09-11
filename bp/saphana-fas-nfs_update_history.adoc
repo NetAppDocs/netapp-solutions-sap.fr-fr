@@ -15,61 +15,76 @@ summary:
 
 Les modifications techniques suivantes ont été apportées à cette solution depuis sa publication initiale.
 
-[cols="25,25,50"]
+[cols="25,50"]
 |===
-| Version | Date | Mettre à jour le résumé 
+| Date | Mettre à jour le résumé 
 
 
-| Version 1.0 | Avril 2014 | Version initiale 
+| Avril 2014 | Version initiale 
 
 
-| Version 2.0 | Août 2014 | Mise à jour de la sélection du dimensionnement des disques et ajout de la configuration SSD Ajout de la configuration du système d'exploitation Red Hat Enterprise Linux Ajout d'informations sur le connecteur de stockage SAP HANA Ajout d'informations sur la configuration VMware 
+| Août 2014 | Mise à jour de la sélection du dimensionnement des disques et ajout de la configuration SSD Ajout de la configuration du système d'exploitation Red Hat Enterprise Linux Ajout d'informations sur le connecteur de stockage SAP HANA Ajout d'informations sur la configuration VMware 
 
 
-| Version 2.1 | Novembre 2014 | Section mise à jour du dimensionnement du stockage 
+| Novembre 2014 | Section mise à jour du dimensionnement du stockage 
 
 
-| Version 2.2 | Janvier 2015 | Mise à jour de la section API de Storage Connector mise à jour de la configuration des agrégats et des volumes 
+| Janvier 2015 | Mise à jour de la section API de Storage Connector mise à jour de la configuration des agrégats et des volumes 
 
 
-| Version 2.3 | Mars 2015 | Ajout de la nouvelle section implémentation STONITH pour SAP HANA SPS9 Ajout de la section installation et configuration du nœud de calcul HANA 
+| Mars 2015 | Ajout de la nouvelle section implémentation STONITH pour SAP HANA SPS9 Ajout de la section installation et configuration du nœud de calcul HANA 
 
 
-| Version 3.0 | Octobre 2015 | Ajout de la prise en charge NFSv4 pour cdot le paramètre sysctl mis à jour inclut le paramètre E/S pour SAP HANA et HWVAL > SPS10 
+| Octobre 2015 | Ajout de la prise en charge NFSv4 pour cdot le paramètre sysctl mis à jour inclut le paramètre E/S pour SAP HANA et HWVAL > SPS10 
 
 
-| Version 3.1 | Mars 2016 | Dimensionnement de la capacité mis à jour Options de montage mises à jour pour le paramètre /hana/shared sysctl 
+| Mars 2016 | Dimensionnement de la capacité mis à jour Options de montage mises à jour pour le paramètre /hana/shared sysctl 
 
 
-| Version 4.0 | Février 2017 | Nouveaux systèmes de stockage et tiroirs disques NetApp nouvelles fonctionnalités de ONTAP 9 prise en charge de 40 GbE de nouvelles versions de systèmes d'exploitation (SUSE Linux Enterprise Server12 SP1 et Red Hat Enterprise Linux 7.2) Nouvelle version de SAP HANA 
+| Février 2017 | Nouveaux systèmes de stockage et tiroirs disques NetApp nouvelles fonctionnalités de ONTAP 9 prise en charge de 40 GbE de nouvelles versions de systèmes d'exploitation (SUSE Linux Enterprise Server12 SP1 et Red Hat Enterprise Linux 7.2) Nouvelle version de SAP HANA 
 
 
-| Version 4.1 | Juillet 2017 | Mises à jour mineures 
+| Juillet 2017 | Mises à jour mineures 
 
 
-| Version 5.0 | Septembre 2018 | Nouveaux systèmes de stockage NetApp nouvelles versions du système d'exploitation (SUSE Linux Enterprise Server 12 SP3 et Red Hat Enterprise Linux 7.4) modifications mineures supplémentaires SAP HANA 2.0 SPS3 
+| Septembre 2018 | Nouveaux systèmes de stockage NetApp nouvelles versions du système d'exploitation (SUSE Linux Enterprise Server 12 SP3 et Red Hat Enterprise Linux 7.4) modifications mineures supplémentaires SAP HANA 2.0 SPS3 
 
 
-| Version 5.1 | Septembre 2019 | Nouvelles versions du système d'exploitation (SUSE Linux Enterprise Server 12 SP4, SUSE Linux Enterprise Server 15 et Red Hat Enterprise Linux 7.6) modifications mineures de la taille du volume MAX Data 
+| Septembre 2019 | Nouvelles versions du système d'exploitation (SUSE Linux Enterprise Server 12 SP4, SUSE Linux Enterprise Server 15 et Red Hat Enterprise Linux 7.6) modifications mineures de la taille du volume MAX Data 
 
 
-| Version 5.2 | Décembre 2019 | Nouveaux systèmes de stockage NetApp Nouvelle version de système d'exploitation SUSE Linux Enterprise Server 15 SP1 
+| Décembre 2019 | Nouveaux systèmes de stockage NetApp Nouvelle version de système d'exploitation SUSE Linux Enterprise Server 15 SP1 
 
 
-| Version 5.3 | Mars 2020 | Prise en charge de nconnect pour NFSv3 Nouvelle version de Red Hat Enterprise Linux 8 
+| Mars 2020 | Prise en charge de nconnect pour NFSv3 Nouvelle version de Red Hat Enterprise Linux 8 
 
 
-| Version 5.4 | À mai 2020 | Nouvelles fonctionnalités de partition de données disponibles depuis SAP HANA 2.0 SPS4 
+| À mai 2020 | Nouvelles fonctionnalités de partition de données disponibles depuis SAP HANA 2.0 SPS4 
 
 
-| Version 5.5 | Juin 2020 | Informations supplémentaires sur les fonctionnalités facultatives mises à jour mineures 
+| Juin 2020 | Informations supplémentaires sur les fonctionnalités facultatives mises à jour mineures 
 
 
-| Version 5.6 | Décembre 2020 | Prise en charge de nconnect pour NFSv4.1 à partir de ONTAP 9.8 Nouvelle version du système d'exploitation. Nouvelle version SAP HANA 
+| Décembre 2020 | Prise en charge de nconnect pour NFSv4.1 à partir de ONTAP 9.8 Nouvelle version du système d'exploitation. Nouvelle version SAP HANA 
 
 
-| Version 5.7 | Février 2021 | Modifications des paramètres du réseau hôte et autres modifications mineures 
+| Février 2021 | Modifications des paramètres du réseau hôte et autres modifications mineures 
 
 
-| Version 5.8 | Avril 2021 | Informations spécifiques à VMware vSphere ajoutées 
+| Avril 2021 | Informations spécifiques à VMware vSphere ajoutées 
+
+
+| Septembre 2022 | Nouvelles versions du système d'exploitation 
+
+
+| Août 2023 | Nouveaux systèmes de stockage (AFF C-Series) 
+
+
+| Décembre 2023 | Mise à jour de la configuration de l'hôte Paramètres nconnect révisés informations supplémentaires sur les sessions NFSv4.1 
+
+
+| Mai 2024 | Nouveaux systèmes de stockage (AFF A-Series) 
+
+
+| Septembre 2024 | Mises à jour mineures 
 |===

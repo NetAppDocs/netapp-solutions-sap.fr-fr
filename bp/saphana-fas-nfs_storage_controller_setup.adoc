@@ -83,11 +83,11 @@ La présentation suivante résume les étapes de configuration du stockage requi
 
 Avec les disques durs, un maximum de deux tiroirs disques DS2246 ou quatre tiroirs disques DS224C peut être connecté à une pile SAS afin d'assurer les performances nécessaires aux hôtes SAP HANA, comme illustré dans la figure suivante. Les disques dans chaque tiroir doivent être répartis de manière homogène sur les deux contrôleurs de la paire haute disponibilité.
 
-image::saphana-fas-nfs_image13.png[Erreur : image graphique manquante]
+image::saphana-fas-nfs_image13.png[image nfs saphana FAS 13]
 
 Avec les disques SSD, un maximum d'un tiroir disque peut être connecté à une pile SAS afin d'assurer les performances requises pour les hôtes SAP HANA, comme illustré dans la figure suivante. Les disques dans chaque tiroir doivent être répartis de manière homogène sur les deux contrôleurs de la paire haute disponibilité. Avec le tiroir disque DS224C, il est possible d'utiliser un câblage SAS à quatre chemins, mais cela n'est pas nécessaire.
 
-image::saphana-fas-nfs_image14.png[Erreur : image graphique manquante]
+image::saphana-fas-nfs_image14.png[image nfs saphana FAS 14]
 
 
 
@@ -101,7 +101,7 @@ En général, vous devez configurer deux agrégats par contrôleur, indépendamm
 
 La figure suivante montre une configuration pour huit hôtes SAP HANA. Quatre hôtes SAP HANA sont connectés à chaque contrôleur de stockage. Deux agrégats distincts, un par contrôleur de stockage, sont configurés. Chaque agrégat est configuré avec 4 × 10 = 40 disques de données (HDD).
 
-image::saphana-fas-nfs_image15.png[Erreur : image graphique manquante]
+image::saphana-fas-nfs_image15.png[image nfs saphana FAS 15]
 
 
 
@@ -111,7 +111,7 @@ De manière générale, vous devez configurer deux agrégats par contrôleur, qu
 
 La figure ci-dessous présente une configuration de 12 hôtes SAP HANA qui s'exécutent sur un tiroir SAS 12 Gb configuré avec ADPv2. Six hôtes SAP HANA sont connectés à chaque contrôleur de stockage. Quatre agrégats distincts, deux sur chaque contrôleur de stockage, sont configurés. Chaque agrégat est configuré avec 11 disques comprenant neuf données et deux partitions de parité. Deux partitions de rechange sont disponibles pour chaque contrôleur.
 
-image::saphana-fas-nfs_image16.jpg[Erreur : image graphique manquante]
+image::saphana-fas-nfs_image16.jpg[saphana FAS image nfs 16]
 
 
 
@@ -159,7 +159,7 @@ NOTE: Si un seul contrôleur de stockage d'une paire haute disponibilité est ut
 
 NOTE: Si les volumes de données et de journaux sont stockés sur le même contrôleur, l'accès du serveur au stockage doit être effectué avec deux LIF différentes : une LIF pour accéder au volume de données et l'autre pour accéder au volume du journal.
 
-image::saphana-fas-nfs_image17.jpg[Erreur : image graphique manquante]
+image::saphana-fas-nfs_image17.jpg[image nfs saphana FAS 17]
 
 Pour chaque hôte BDD SAP HANA, un volume de données, un volume de journal et un volume pour `/hana/shared` sont configurés. Le tableau suivant présente un exemple de configuration pour les systèmes SAP HANA à un hôte unique.
 
@@ -204,7 +204,7 @@ NOTE: Si un seul contrôleur de stockage d'une paire haute disponibilité est ut
 
 NOTE: Si les volumes de données et de journaux sont stockés sur le même contrôleur, l'accès du serveur au stockage doit être effectué avec deux LIF différentes : l'une pour accéder au volume de données et l'autre pour accéder au volume du journal.
 
-image::saphana-fas-nfs_image18.jpg[Erreur : image graphique manquante]
+image::saphana-fas-nfs_image18.jpg[image nfs saphana FAS 18]
 
 Pour chaque hôte SAP HANA, un volume de données et un volume journal sont créés. Le `/hana/shared` Le volume est utilisé par tous les hôtes du système SAP HANA. Le tableau suivant présente un exemple de configuration pour un système SAP HANA à plusieurs hôtes avec quatre hôtes actifs.
 

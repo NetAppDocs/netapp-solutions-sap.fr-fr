@@ -21,15 +21,15 @@ NOTE: Pour le volume de données HANA, vous devez restaurer le volume vers la de
 
 Les deux captures d'écran suivantes montrent l'opération de peering et de suppression pour le volume de données HANA. Les mêmes opérations doivent être effectuées pour la sauvegarde du journal et le volume partagé HANA.
 
-image::saphana-dr-anf_image27.png[Erreur : image graphique manquante]
+image::saphana-dr-anf_image27.png[saphana dr anf image27]
 
-image::saphana-dr-anf_image28.png[Erreur : image graphique manquante]
+image::saphana-dr-anf_image28.png[saphana dr anf image28]
 
 Le peering de réplication ayant été supprimé, il est possible de restaurer le volume vers la dernière sauvegarde Snapshot HANA. Si le peering n'est pas supprimé, la sélection du volume revert est grisée et ne peut pas être sélectionnée. Les deux captures d'écran suivantes montrent l'opération de restauration du volume.
 
-image::saphana-dr-anf_image29.png[Erreur : image graphique manquante]
+image::saphana-dr-anf_image29.png[saphana dr anf image29]
 
-image::saphana-dr-anf_image30.png[Erreur : image graphique manquante]
+image::saphana-dr-anf_image30.png[saphana dr anf image30]
 
 Une fois le volume revert, le volume de données repose sur la sauvegarde Snapshot HANA cohérente et peut maintenant être utilisé pour exécuter les opérations de restauration par progression.
 

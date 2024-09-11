@@ -22,10 +22,10 @@ Pour utiliser n'importe quelle sauvegarde pour la restauration et effectuer une 
 
 Chaque hôte SAP HANA dispose de son propre volume de stockage. Lorsque vous utilisez un Snapshot basé sur le stockage pour effectuer une sauvegarde, un Snapshot cohérent avec la base de données est créé sur le volume de stockage de l'hôte SAP HANA principal.
 
-image::saphana-sr-scs-image3.png[Erreur : image graphique manquante]
+image::saphana-sr-scs-image3.png[saphana sr scs image3]
 
 Lorsqu'un basculement vers l'hôte 2 est effectué, l'hôte 2 devient l'hôte principal, les sauvegardes sont exécutées sur l'hôte 2 et les sauvegardes Snapshot sont créées au niveau du volume de stockage de l'hôte 2.
 
 La sauvegarde créée au niveau de l'hôte 2 peut être restaurée directement au niveau de la couche de stockage. Si vous devez utiliser une sauvegarde créée sur l'hôte 1, la sauvegarde doit être copiée depuis le volume de stockage de l'hôte 1 vers le volume de stockage de l'hôte 2. La restauration par transfert utilise les sauvegardes des journaux des deux hôtes.
 
-image::saphana-sr-scs-image4.png[Erreur : image graphique manquante]
+image::saphana-sr-scs-image4.png[saphana sr scs image4]

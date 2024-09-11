@@ -22,7 +22,7 @@ Les données sont également répliquées de manière asynchrone vers une régio
 
 Ce document présente différentes options d'implémentation d'une solution de reprise après incident de deux régions.
 
-image::saphana-dr-anf_image3.png[Erreur : image graphique manquante]
+image::saphana-dr-anf_image3.png[saphana dr anf image3]
 
 
 
@@ -52,7 +52,7 @@ La figure suivante montre la configuration d'une solution de reprise après inci
 
 La figure suivante représente la réplication système SAP HANA.
 
-image::saphana-dr-anf_image4.png[Erreur : image graphique manquante]
+image::saphana-dr-anf_image4.png[saphana dr anf image4]
 
 
 
@@ -86,7 +86,7 @@ Les serveurs des sites de reprise d'activité peuvent être utilisés en tant qu
 
 La réplication inter-région d'ANF vous permet de tester le workflow de reprise après incident sans incidence sur les objectifs RPO et RTO. Pour ce faire, il est possible de créer des clones de volume et de les relier au serveur de test de la reprise après incident.
 
-image::saphana-dr-anf_image5.png[Erreur : image graphique manquante]
+image::saphana-dr-anf_image5.png[saphana dr anf image5]
 
 
 

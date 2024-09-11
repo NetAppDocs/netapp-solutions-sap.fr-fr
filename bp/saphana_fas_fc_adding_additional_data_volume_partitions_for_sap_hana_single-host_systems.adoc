@@ -116,6 +116,6 @@ Pour ajouter une partition de volume de données supplémentaire à votre base d
 ALTER SYSTEM ALTER DATAVOLUME ADD PARTITION PATH '/hana/data2/SID/';
 ....
 +
-image::saphana_fas_fc_image28.jpg[Erreur : image graphique manquante]
+image::saphana_fas_fc_image28.jpg[saphana FAS fc image28]
 
 

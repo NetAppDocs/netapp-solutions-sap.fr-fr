@@ -32,4 +32,4 @@ Pour exécuter le basculement de reprise après incident, procédez comme suit :
 
 Les sous-sections suivantes décrivent ces étapes de manière détaillée, ainsi que la figure suivante décrit les tests de basculement en cas de reprise après incident.
 
-image::saphana-dr-anf_image26.png[Erreur : image graphique manquante]
+image::saphana-dr-anf_image26.png[saphana dr anf image26]
