@@ -57,6 +57,6 @@ image::sc-copy-clone-image6.png[image clone copie sc 6]
 
 Vous trouverez une description détaillée étape par étape dans les rapports techniques
 
-https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-dr-sr_pdf_link.html["Tr-4646 : reprise d'activité SAP HANA avec réplication du stockage (netapp.com)"]
+https://www.netapp.com/pdf.html?item=/media/8584-tr4646pdf.pdf["Tr-4646 : reprise d'activité SAP HANA avec réplication du stockage (netapp.com)"]
 
 https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-dr-anf_data_protection_overview_overview.html["Tr-4891 : reprise après incident de SAP HANA avec Azure NetApp Files"]

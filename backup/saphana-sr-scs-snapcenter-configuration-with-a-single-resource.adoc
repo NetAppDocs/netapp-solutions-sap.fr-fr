@@ -54,7 +54,7 @@ Un utilisateur a été créé dans la base de données HANA pour effectuer des o
 ....
 hdbuserstore.exe -u SYSTEM set SSRKEY ssr-vip:31013 SNAPCENTER <password>
 ....
-Pour plus d'informations sur les options de déploiement du plug-in SAP HANA et la configuration des magasins d'utilisateurs, consultez le rapport technique TR-4614 : https://www.netapp.com/us/media/tr-4614.pdf["SAP HANA : sauvegarde et restauration avec SnapCenter"^].
+Pour plus d'informations sur les options de déploiement du plug-in SAP HANA et la configuration du magasin d'utilisateurs, consultez le rapport technique TR-4614: https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-overview.html["SAP HANA : sauvegarde et restauration avec SnapCenter"^].
 
 Dans SnapCenter, la ressource est configurée comme indiqué dans la figure suivante en utilisant la clé de stockage utilisateur, configurée avant, et le serveur SnapCenter comme `hdbsql` hôte de communication.
 
