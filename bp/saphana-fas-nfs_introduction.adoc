@@ -14,7 +14,7 @@ La gamme de produits NetApp FAS a été certifiée pour une utilisation avec SAP
 
 Cette certification n'est actuellement valable que pour les modèles suivants :
 
-* FAS2750, FAS2820, FAS8300, FAS8700 ET FAS9500. Vous trouverez la liste complète des solutions de stockage certifiées NetApp pour SAP HANA dans la page https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/#/solutions?filters=v:deCertified;ve:13["Répertoire matériel SAP HANA certifié et pris en charge"^].
+* FAS2750, FAS2820, FAS8300, FAS8700, FAS70, FAS9500, FAS90 La liste complète Des solutions de stockage certifiées NetApp pour SAP HANA est disponible sur le site https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/#/solutions?filters=v:deCertified;ve:13["Répertoire matériel SAP HANA certifié et pris en charge"^] .
 
 
 Ce document décrit les exigences de configuration de ONTAP pour le protocole NFS version 3 (NFS v3) ou le protocole NFS version 4 (NFS v4.1).

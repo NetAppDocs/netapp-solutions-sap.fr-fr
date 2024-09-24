@@ -14,7 +14,7 @@ La gamme de produits NetApp FAS a été certifiée pour une utilisation avec SAP
 
 La certification est valide pour les modèles suivants :
 
-* FAS2750, FAS2820, FAS8300, FAS8700 ET FAS9500
+* FAS2750, FAS2820, FAS8300, FAS8700, FAS70, FAS9500, FAS90
 
 
 Pour obtenir la liste complète des solutions de stockage certifiées NetApp pour SAP HANA, consultez le https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/#/solutions?filters=v:deCertified;ve:13["Répertoire matériel SAP HANA certifié et pris en charge"^].

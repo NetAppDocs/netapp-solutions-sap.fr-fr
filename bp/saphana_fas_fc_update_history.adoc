@@ -41,7 +41,7 @@ Les modifications techniques suivantes ont été apportées à cette solution de
 | Septembre 2019 | Nouvelles mises à jour mineures du système d'exploitation 
 
 
-| Avril 2020 | Les nouveaux systèmes de stockage de la gamme AFF ASA ont introduit de nombreuses fonctionnalités de partition de données disponibles depuis SAP HANA 2.0 SPS4 
+| Avril 2020 | Nouvelles fonctionnalités de partition de données disponibles depuis SAP HANA 2.0 SPS4 
 
 
 | Juin 2020 | Informations supplémentaires sur les fonctionnalités facultatives mises à jour mineures 
@@ -56,8 +56,5 @@ Les modifications techniques suivantes ont été apportées à cette solution de
 | Septembre 2022 | Nouvelles versions du système d'exploitation 
 
 
-| Août 2023 | Nouveaux systèmes de stockage (AFF C-Series) 
-
-
-| Mai 2024 | Nouveaux systèmes de stockage (AFF A-Series) 
+| Septembre 2024 | Nouveaux systèmes de stockage 
 |===

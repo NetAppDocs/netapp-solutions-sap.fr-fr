@@ -77,14 +77,11 @@ Les modifications techniques suivantes ont été apportées à cette solution de
 | Septembre 2022 | Nouvelles versions du système d'exploitation 
 
 
-| Août 2023 | Nouveaux systèmes de stockage (AFF C-Series) 
-
-
 | Décembre 2023 | Mise à jour de la configuration de l'hôte Paramètres nconnect révisés informations supplémentaires sur les sessions NFSv4.1 
 
 
-| Mai 2024 | Nouveaux systèmes de stockage (AFF A-Series) 
-
-
 | Septembre 2024 | Mises à jour mineures 
+
+
+| Septembre 2024 | Nouveaux systèmes de stockage 
 |===
