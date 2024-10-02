@@ -10,7 +10,7 @@ summary: 'La sauvegarde de volumes non-données fait partie intégrante du plug-
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -28,15 +28,15 @@ Dans cet exemple, nous voulons protéger les volumes non-données de la base de 
 
 . Dans l'onglet ressource, sélectionnez non-Volume de données et cliquez sur Ajouter base de données SAP HANA.
 +
-image::saphana-br-scs-image78.png[saphana br scs image78]
+image:saphana-br-scs-image78.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 . À l'étape une de la boîte de dialogue Ajouter une base de données SAP HANA, dans la liste Type de ressource, sélectionnez volumes non data. Spécifiez un nom pour la ressource, le SID associé et l'hôte du plug-in SAP HANA que vous souhaitez utiliser pour la ressource, puis cliquez sur Next (Suivant).
 +
-image::saphana-br-scs-image79.png[saphana br scs image79]
+image:saphana-br-scs-image79.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 . Ajoutez le SVM et le volume de stockage comme empreinte du stockage, puis cliquez sur « Next » (Suivant).
 +
-image::saphana-br-scs-image80.png[saphana br scs image80]
+image:saphana-br-scs-image80.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 . Dans l'étape de résumé, cliquez sur Terminer pour enregistrer les paramètres.
 . Répétez ces étapes pour tous les volumes autres que de données requis.
@@ -49,7 +49,7 @@ NOTE: La protection des données pour des ressources sans volume de données est
 La figure suivante présente la liste des ressources de volumes non-données configurées.
 
 +
-image::saphana-br-scs-image81.png[saphana br scs image81]
+image:saphana-br-scs-image81.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 
 

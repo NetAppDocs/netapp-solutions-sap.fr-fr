@@ -10,8 +10,13 @@ summary: 'Les solutions NetApp pour optimiser la gestion du cycle de vie SAP son
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
+
+[role="lead"]
+Les solutions NetApp pour optimiser la gestion du cycle de vie SAP sont intégrées aux bases de données SAP AnyDB et aux bases de données SAP HANA. En outre, NetApp s'intègre avec les outils de gestion du cycle de vie SAP, associant une protection efficace des données intégrée aux applications au provisionnement flexible des systèmes de test SAP.
+
+Auteurs :
 
 Holger Zecha, Tobias Brandl, NetApp Franz Diegruber, Libelle
 

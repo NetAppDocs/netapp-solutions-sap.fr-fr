@@ -10,7 +10,7 @@ summary: 'La sauvegarde de volumes non-data fait partie intégrante de SnapCente
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -30,46 +30,46 @@ La procédure suivante permet de configurer des ressources sans volume de donné
 
 . Dans l'onglet Ressources, sélectionnez non-Volume de données et cliquez sur Ajouter base de données SAP HANA.
 +
-image::amazon-fsx-image60.png[amazon fsx image60]
+image:amazon-fsx-image60.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 . À l'étape une de la boîte de dialogue Ajouter une base de données SAP HANA, dans la liste Type de ressource, sélectionnez volumes non-data. Spécifiez un nom pour la ressource, le SID associé et l'hôte du plug-in SAP HANA que vous souhaitez utiliser pour la ressource, puis cliquez sur Next (Suivant).
 +
-image::amazon-fsx-image61.png[amazon fsx image61]
+image:amazon-fsx-image61.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 . Ajoutez le SVM et le volume de stockage comme empreinte du stockage, puis cliquez sur « Next » (Suivant).
 +
-image::amazon-fsx-image62.png[amazon fsx image62]
+image:amazon-fsx-image62.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 . Pour enregistrer les paramètres, cliquez sur Terminer à l'étape de résumé.
 +
-image::amazon-fsx-image63.png[amazon fsx image63]
+image:amazon-fsx-image63.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 +
 Le nouveau volume sans données est maintenant ajouté à SnapCenter. Double-cliquez sur la nouvelle ressource pour exécuter la protection des ressources.
 
 +
-image::amazon-fsx-image64.png[amazon fsx image64]
+image:amazon-fsx-image64.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 +
 La protection des ressources est effectuée de la même manière que pour une ressource de base de données HANA.
 
 . Vous pouvez maintenant exécuter une sauvegarde en cliquant sur Backup Now.
 +
-image::amazon-fsx-image65.png[amazon fsx image65]
+image:amazon-fsx-image65.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 . Sélectionnez la stratégie et démarrez l'opération de sauvegarde.
 +
-image::amazon-fsx-image66.png[amazon fsx image66]
+image:amazon-fsx-image66.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 
 
 Le journal des travaux SnapCenter affiche les différentes étapes du flux de travail.
 
-image::amazon-fsx-image67.png[amazon fsx image67]
+image:amazon-fsx-image67.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 La nouvelle sauvegarde est désormais visible dans la vue des ressources de la ressource sans volume de données.
 
-image::amazon-fsx-image68.png[amazon fsx image68]
+image:amazon-fsx-image68.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 
 
@@ -119,38 +119,38 @@ Pour effectuer une opération de restauration manuelle, procédez comme suit :
 
 . Sélectionnez une sauvegarde dans SnapCenter à utiliser pour l'opération de restauration.
 +
-image::amazon-fsx-image69.png[amazon fsx image69]
+image:amazon-fsx-image69.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 . Sélectionnez la portée et le type de restauration.
 +
 Pour les systèmes HANA MDC à un seul locataire, le scénario standard consiste à utiliser une ressource complète avec restauration du volume. Dans le cas d'un système MDC HANA avec plusieurs locataires, il se peut que vous ne souhaitiez restaurer qu'un seul locataire. Pour plus d'informations sur la restauration d'un seul locataire, reportez-vous à la section https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-restore-and-recovery.html["Restauration et récupération (netapp.com)"^].
 
 +
-image::amazon-fsx-image70.png[amazon fsx image70]
+image:amazon-fsx-image70.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 . Sélectionnez étendue de la récupération et indiquez l'emplacement de sauvegarde du journal et du catalogue.
 +
 SnapCenter utilise le chemin par défaut ou les chemins modifiés dans le fichier HANA global.ini pour remplir à l'avance les emplacements de sauvegarde du journal et du catalogue.
 
 +
-image::amazon-fsx-image71.png[amazon fsx image71]
+image:amazon-fsx-image71.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 . Entrez les commandes facultatives de pré-restauration.
 +
-image::amazon-fsx-image72.png[amazon fsx image72]
+image:amazon-fsx-image72.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 . Entrez les commandes facultatives de post-restauration.
 +
-image::amazon-fsx-image73.png[amazon fsx image73]
+image:amazon-fsx-image73.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 . Pour lancer l'opération de restauration et de récupération, cliquez sur Terminer.
 +
-image::amazon-fsx-image74.png[amazon fsx image74]
+image:amazon-fsx-image74.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 +
 SnapCenter exécute l'opération de restauration et de restauration. Cet exemple montre les détails du travail de restauration et de récupération.
 
 +
-image::amazon-fsx-image75.png[amazon fsx image75]
+image:amazon-fsx-image75.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 

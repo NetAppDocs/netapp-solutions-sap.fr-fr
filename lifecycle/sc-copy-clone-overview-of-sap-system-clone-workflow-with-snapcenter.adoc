@@ -10,9 +10,10 @@ summary: 'Les solutions NetApp pour l"optimisation de la gestion du cycle de vie
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
+[role="lead"]
 Comme indiqué dans la section précédente, SnapCenter peut gérer des clones de jeux de données à partir de n'importe quelle sauvegarde Snapshot existante et provisionner rapidement ces jeux de données sur n'importe quel système cible. Le provisionnement souple et agile des données de production sur un système de réparation pour gérer la corruption logique est essentiel, car il est souvent nécessaire de réinitialiser le système de réparation et de choisir un autre jeu de données de production. La technologie FlexClone permet un processus de provisionnement rapide et permet d'importantes économies de capacité, car le système de réparation est généralement utilisé pendant une courte période seulement.
 
 La figure ci-dessous récapitule les étapes requises pour une opération de clonage de système SAP avec SnapCenter.
@@ -34,6 +35,6 @@ Si le système n'est plus nécessaire, le processus de nettoyage est effectué a
 
 NOTE: Si vous devez réinitialiser le système sur une autre sauvegarde Snapshot, les étapes 6 et 4 sont suffisantes. Aucune actualisation du volume partagé SAP HANA n'est requise.
 
-image::sc-copy-clone-image9.png[image clone copie sc 9]
+image:sc-copy-clone-image9.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 La section link:sc-copy-clone-sap-system-clone-with-snapcenter.html["« Clone du système SAP avec SnapCenter »"] fournit une description détaillée détaillée du flux de travail du clone du système.

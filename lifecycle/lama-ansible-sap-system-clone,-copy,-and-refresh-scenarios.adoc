@@ -10,7 +10,7 @@ summary:
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -23,4 +23,4 @@ Le terme copie système SAP est souvent utilisé comme synonyme de trois process
 
 La figure suivante illustre les principales étapes à effectuer lors d'un clone du système, d'une copie du système ou d'une opération de mise à jour du système. Les cases violettes indiquent les étapes à suivre pour intégrer les fonctionnalités de stockage NetApp. Ces trois opérations peuvent être entièrement automatisées à l'aide de SAP Lama.
 
-image::lama-ansible-image1.png[Ce graphique illustre trois délais de traitement pour le clone du système, la copie du système et l'actualisation du système, respectivement.]
+image:lama-ansible-image1.png["Ce graphique illustre trois délais de traitement pour le clone du système, la copie du système et l'actualisation du système, respectivement."]

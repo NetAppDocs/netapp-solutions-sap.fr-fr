@@ -10,7 +10,7 @@ summary: SnapCenter est une plateforme unifiée et évolutive qui assure la coh�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -28,4 +28,4 @@ Les plug-ins personnalisés SnapCenter vous permettent de créer vos propres plu
 
 La figure suivante décrit les composants SnapCenter.
 
-image::saphana-br-scs-image6.png[saphana br scs image6]
+image:saphana-br-scs-image6.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]

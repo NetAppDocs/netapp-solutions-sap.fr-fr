@@ -10,7 +10,7 @@ summary: 'L"intégration d"un framework d"automatisation moderne tel qu"Ansible 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

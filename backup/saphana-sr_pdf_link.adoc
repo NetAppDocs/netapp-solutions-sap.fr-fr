@@ -10,11 +10,12 @@ summary: Le rapport TR-4719 décrit comment la technologie NetApp SnapCenter et 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
+
+[role="lead"]
+Le rapport TR-4719 décrit comment la technologie NetApp SnapCenter et le plug-in SAP HANA peuvent être utilisés pour la sauvegarde et la restauration dans un environnement de réplication système SAP HANA.
 
 Nils Bauer, NetApp
-
-Le rapport TR-4719 décrit comment la technologie NetApp SnapCenter et le plug-in SAP HANA peuvent être utilisés pour la sauvegarde et la restauration dans un environnement de réplication système SAP HANA.
 
 link:https://www.netapp.com/pdf.html?item=/media/17030-tr4719pdf.pdf["https://www.netapp.com/pdf.html?item=/media/17030-tr4719pdf.pdf"]

@@ -10,14 +10,14 @@ summary: Cette section explique comment ajouter une stratégie à la protection 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
 Vous devez ajouter la nouvelle règle à la configuration de protection des ressources HANA, comme illustré dans la figure suivante.
 
-image::amazon-fsx-image86.png[amazon fsx image86]
+image:amazon-fsx-image86.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 Un horaire quotidien est défini dans notre configuration.
 
-image::amazon-fsx-image87.png[amazon fsx image87]
+image:amazon-fsx-image87.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]

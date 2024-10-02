@@ -8,15 +8,18 @@ summary: 'Des études ont montré que les temps d"indisponibilité des applicati
 :allow-uri-read: 
 
 
-Nils Bauer, NetApp Ralf Klahr, Microsoft
+[role="lead"]
+Des études ont montré que les temps d'indisponibilité des applications d'entreprise ont un impact négatif considérable sur le business des entreprises.
 
-Des études ont montré que les temps d'indisponibilité des applications d'entreprise ont un impact négatif considérable sur le business des entreprises. En plus de l’impact financier, les temps d’arrêt peuvent également nuire à la réputation de l’entreprise, au moral du personnel et à la fidélité des clients. Il est surprenant que toutes les entreprises ne disposent pas d'une politique globale de reprise après incident.
+Auteurs : Nils Bauer, NetApp Ralf Klahr, Microsoft
+
+En plus de l’impact financier, les temps d’arrêt peuvent également nuire à la réputation de l’entreprise, au moral du personnel et à la fidélité des clients. Il est surprenant que toutes les entreprises ne disposent pas d'une politique globale de reprise après incident.
 
 L'exécution de SAP HANA sur Azure NetApp Files (ANF) permet aux clients d'accéder à des fonctionnalités supplémentaires qui étendent et améliorent la protection des données intégrée et les fonctionnalités de reprise après incident de SAP HANA. Cette section de présentation explique ces options afin d'aider les clients à sélectionner les options qui répondent à leurs besoins.
 
 Pour développer une stratégie complète de reprise sur incident, les clients doivent comprendre les exigences des applications métier et les fonctionnalités techniques dont ils ont besoin pour la protection des données et la reprise sur incident. La figure suivante fournit une présentation de la protection des données.
 
-image::saphana-dr-anf_image2.png[saphana dr anf image2]
+image:saphana-dr-anf_image2.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 
 

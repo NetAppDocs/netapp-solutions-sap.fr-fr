@@ -10,7 +10,7 @@ summary: 'Toutes les étapes de configuration de l"hôte décrites dans cette se
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

@@ -10,7 +10,7 @@ summary:
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -217,4 +217,4 @@ La taille de la mémoire RAM, la taille des données nette sur le disque de chaq
 
 La figure suivante résume le processus de dimensionnement.
 
-image::saphana_aff_fc_image8.jpg[saphana AFF fc image8]
+image:saphana_aff_fc_image8.jpg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]

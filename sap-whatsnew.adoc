@@ -10,17 +10,16 @@ keywords: 'netapp, solutions, SAP, what"s new'
 :nofooter: 
 :icons: font
 :linkattrs: 
-:table-stripes: odd
 :imagesdir: ./media/
 
 
 [role="lead"]
 Présentation de la documentation la plus récente sur les solutions et solutions SAP.
 
-* link:https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-backup-anf-overview.html["Tr-4905 : sauvegarde et restauration SAP HANA sur Azure NetApp Files avec service SnapCenter"]
-* link:https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-dr-anf_data_protection_overview_overview.html["Tr-4891 : reprise après incident de SAP HANA avec Azure NetApp Files"]
-* link:https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_aff_nfs_introduction.html["Tr-4435 : SAP HANA sur les systèmes NetApp AFF avec NFS - Guide de configuration"]
-* link:https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana-fas-nfs_introduction.html["Tr-4290 : SAP HANA sur des systèmes NetApp FAS avec guide de configuration NFS"]
-* link:https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_fas_fc_introduction.html["Tr-4384 : SAP HANA sur les systèmes NetApp FAS avec le protocole Fiber Channel"]
-* link:https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_aff_fc_introduction.html["Tr-4436 : SAP HANA sur les systèmes AFF de NetApp avec le protocole Fibre Channel"]
+* link:backup/saphana-backup-anf-overview.html["Tr-4905 : sauvegarde et restauration SAP HANA sur Azure NetApp Files avec service SnapCenter"]
+* link:backup/saphana-dr-anf_data_protection_overview_overview.html["Tr-4891 : reprise après incident de SAP HANA avec Azure NetApp Files"]
+* link:bp/saphana_aff_nfs_introduction.html["Tr-4435 : SAP HANA sur les systèmes NetApp AFF avec NFS - Guide de configuration"]
+* link:bp/saphana-fas-nfs_introduction.html["Tr-4290 : SAP HANA sur des systèmes NetApp FAS avec guide de configuration NFS"]
+* link:bp/saphana_fas_fc_introduction.html["Tr-4384 : SAP HANA sur les systèmes NetApp FAS avec le protocole Fiber Channel"]
+* link:bp/saphana_aff_fc_introduction.html["Tr-4436 : SAP HANA sur les systèmes AFF de NetApp avec le protocole Fibre Channel"]
 

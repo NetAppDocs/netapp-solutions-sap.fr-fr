@@ -10,7 +10,7 @@ summary: 'Les nouveaux volumes peuvent désormais être montés sur l"hôte cibl
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

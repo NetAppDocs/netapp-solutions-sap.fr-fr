@@ -4,7 +4,6 @@ title: Sauvegarde, restauration et reprise après incident
 entries:
 - title: SAP HANA sur Amazon FSX pour NetApp ONTAP - sauvegarde et restauration avec
     SnapCenter
-  type: solutions
   entries:
   - title: Présentation
     url: "/backup/amazon-fsx-overview.html"
@@ -38,7 +37,6 @@ entries:
   - title: Où trouver des informations complémentaires
     url: "/backup/amazon-fsx-where-to-find-additional-information.html"
 - title: Sauvegarde et restauration SAP HANA avec SnapCenter
-  type: solutions
   entries:
   - title: Présentation
     url: "/backup/saphana-br-scs-overview.html"
@@ -72,7 +70,6 @@ entries:
     url: "/backup/saphana-br-scs-where-to-find-additional-information.html"
 - title: 'Sauvegarde et restauration BlueXP pour SAP HANA : stockage objet dans le
     cloud comme destination de sauvegarde'
-  type: solutions
   entries:
   - title: 'Sauvegarde et restauration BlueXP pour SAP HANA : présentation'
     url: "/backup/hana-hycl-backup-overview.html"
@@ -83,7 +80,6 @@ entries:
   - title: Informations supplémentaires et historique des versions
     url: "/backup/hana-hycl-backup-info-version.html"
 - title: 'Réplication système SAP HANA : sauvegarde et restauration avec SnapCenter'
-  type: solutions
   entries:
   - title: Présentation de la réplication du système SAP HANA
     url: "/backup/saphana-sr-scs-sap-hana-system-replication-overview.html"
@@ -104,7 +100,6 @@ entries:
   - title: Historique des versions
     url: "/backup/saphana-sr-scs-version-history.html"
 - title: Reprise après incident de SAP HANA avec Azure NetApp Files
-  type: solutions
   entries:
   - title: Présentation de la protection des données
     url: "/backup/saphana-dr-anf_data_protection_overview_overview.html"

@@ -10,7 +10,7 @@ summary: Une solution complète de reprise sur incident doit permettre aux clien
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -22,7 +22,7 @@ Les données sont également répliquées de manière asynchrone vers une régio
 
 Ce document présente différentes options d'implémentation d'une solution de reprise après incident de deux régions.
 
-image::saphana-dr-anf_image3.png[saphana dr anf image3]
+image:saphana-dr-anf_image3.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 
 
@@ -52,7 +52,7 @@ La figure suivante montre la configuration d'une solution de reprise après inci
 
 La figure suivante représente la réplication système SAP HANA.
 
-image::saphana-dr-anf_image4.png[saphana dr anf image4]
+image:saphana-dr-anf_image4.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 
 
@@ -80,13 +80,13 @@ La figure suivante présente un exemple de solution de reprise après incident d
 
 Le RTO dépend principalement du temps nécessaire pour démarrer la base de données HANA sur le site de reprise d'activité et pour charger les données dans la mémoire. En supposant que les données sont lues avec un débit de 1000 Mo/s, le chargement de 1 To de données prendra environ 18 minutes. En fonction de la configuration de la réplication, la restauration par transfert est également requise et ajoute à la valeur RTO totale.
 
-Le chapitre fournit plus de détails sur les différentes options de configuration link:ent-apps-db/saphana-dr-anf_anf_cross-region_replication_with_sap_hana_overview.html["Options de configuration pour la réplication inter-région avec SAP HANA"].
+Pour plus de détails sur les différentes options de configuration, reportez-vous au chapitre link:saphana-dr-anf_anf_cross-region_replication_with_sap_hana_overview.html["Options de configuration pour la réplication inter-région avec SAP HANA"].
 
 Les serveurs des sites de reprise d'activité peuvent être utilisés en tant que systèmes de développement/test pendant le fonctionnement normal. En cas d'incident, les systèmes de dév/test doivent être arrêtés et démarrés est en tant que serveurs de production de reprise sur incident.
 
 La réplication inter-région d'ANF vous permet de tester le workflow de reprise après incident sans incidence sur les objectifs RPO et RTO. Pour ce faire, il est possible de créer des clones de volume et de les relier au serveur de test de la reprise après incident.
 
-image::saphana-dr-anf_image5.png[saphana dr anf image5]
+image:saphana-dr-anf_image5.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 
 

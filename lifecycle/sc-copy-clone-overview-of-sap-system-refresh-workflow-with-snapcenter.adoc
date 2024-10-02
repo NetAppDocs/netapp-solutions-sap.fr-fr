@@ -10,9 +10,10 @@ summary: 'Les solutions NetApp pour l"optimisation de la gestion du cycle de vie
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
+[role="lead"]
 SnapCenter fournit des workflows qui vous permettent de gérer des clones de jeux de données à partir de n'importe quelle sauvegarde Snapshot existante. Ce jeu de données cloné, un volume FlexClone, peut être utilisé pour provisionner rapidement un volume de données HANA à partir d'un système source et le relier à un système cible. Elle est donc parfaitement adaptée à l'exécution des opérations de mise à jour des systèmes pour les systèmes de QA, de test, de sandbox et de formation.
 
 Les workflows de clonage SnapCenter gèrent toutes les opérations requises sur la couche de stockage et peuvent être étendus à l'aide de scripts pour exécuter des opérations spécifiques à l'hôte et à la base de données HANA. Dans ce document, nous utilisons un script pour effectuer des opérations de restauration et d'arrêt de la base de données HANA. Les workflows SnapCenter avec une automatisation supplémentaire à l'aide du script traitent toutes les opérations de base de données HANA requises, mais ne couvrent pas les étapes de post-traitement SAP requises. Le post-traitement SAP doit être effectué manuellement ou à l'aide d'outils tiers.
@@ -45,7 +46,7 @@ Le workflow d'actualisation du système SAP avec SnapCenter se compose de cinq �
 
 
 
-image::sc-copy-clone-image7.png[image clone copie sc 7]
+image:sc-copy-clone-image7.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 Dans la plupart des cas, les systèmes de test/QA cibles sont utilisés pendant au moins deux semaines. Étant donné que le volume FlexClone bloque la copie Snapshot du volume du système source, cette copie Snapshot nécessite des capacités supplémentaires en fonction du taux de modification des blocs au niveau du volume du système source. Pour les systèmes source de production et un taux de modification moyen de 20 % par jour, le snapshot bloqué atteindra 100 % après 5 jours. Par conséquent, NetApp recommande de diviser le volume FlexClone immédiatement ou après deux jours, si le clone est basé sur un système source de production. L'opération de séparation des clones ne bloque pas l'utilisation du volume cloné et peut donc être effectuée à tout moment pendant que la base de données HANA est utilisée.
 
@@ -87,6 +88,6 @@ NOTE: L'ancien volume de données, précédemment divisé, doit être supprimé 
 
 
 
-image::sc-copy-clone-image8.png[copie sc clone image8]
+image:sc-copy-clone-image8.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 La section link:sc-copy-clone-sap-hana-system-refresh-with-snapcenter.html["« Mise à jour du système SAP HANA avec SnapCenter »"] fournit une description détaillée détaillée détaillée des deux flux de travail de mise à jour du système.

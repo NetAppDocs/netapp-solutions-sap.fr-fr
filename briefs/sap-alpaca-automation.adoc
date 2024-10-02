@@ -10,7 +10,7 @@ summary: 'Ce document porte sur l"intégration des technologies NetApp® Snapsho
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -26,7 +26,7 @@ Ce document porte sur l'intégration des technologies NetApp® Snapshot™ et Fl
 
 La suite ALPAGA (Cloud and Anywhere) est une interface de gestion complète qui permet de contrôler et de surveiller de manière détaillée l'ensemble de vos paysages SAP. ALPAGA rationalise et accélère les opérations de l'infrastructure SAP, en assurant une disponibilité et une transparence optimales. Il fournit une gamme complète d'outils pour la gestion de l'ensemble du paysage, y compris de l'infrastructure, et informe de manière proactive des anomalies telles que les interruptions de service, les interruptions de tâches et les encombrements. Cette suite est conçue pour fonctionner de manière transparente dans les environnements sur site, hybrides et 100 % cloud, notamment dans des scénarios multicloud, afin d'assurer l'adaptabilité à toute infrastructure. Ce framework basé sur des modules automatise les tâches d'administration SAP standard et régulières, ainsi que les scénarios complexes tels que le basculement en cas de panne. Administrateurs/experts, opérateurs et responsables, ALPACA donne à ces professionnels un haut degré de contrôle et d'automatisation.
 
-image::sap-alpaca-image1.png[Schéma de la plate-forme ALPAGA]
+image:sap-alpaca-image1.png["Schéma de la plate-forme ALPAGA"]
 
 Ce document décrit l'intégration d'ALPAGA à NetApp SnapCenter®, l'outil qui permet d'orchestrer des sauvegardes basées sur des snapshots, d'effectuer des restaurations et de créer des volumes FlexClone. Cette intégration permet aux administrateurs SAP d'accélérer considérablement les tâches opérationnelles quotidiennes du système SAP. Les technologies Snapshot, FlexClone et SnapRestore® de NetApp accélèrent les opérations de sauvegarde, de restauration et de clonage, car la technologie de stockage de NetApp est basée sur des pointeurs. Cette approche est rapide et réduit également la surcharge du stockage pendant les opérations de clonage, car seules les données nouvelles et modifiées (et non les données existantes) doivent être écrites sur le support de stockage. C'est le cas, qu'il s'agisse d'un système de stockage NetApp sur site ou d'une solution de stockage NetApp dans l'un des trois principaux fournisseurs cloud.
 
@@ -45,17 +45,17 @@ Le terme copie système SAP est souvent utilisé comme synonyme de trois process
 * *Clone système SAP*. Un clone du système SAP est un clone identique d'un système SAP source. Les clones des systèmes SAP sont généralement utilisés pour gérer les corruptions logiques ou tester les scénarios de reprise d'activité. Lors d'une opération de clonage du système, le nom d'hôte, le numéro d'instance et l'identifiant sécurisé (SID) restent les mêmes. Il est donc important d'établir une barrière réseau appropriée pour le système cible afin de s'assurer qu'il n'y a aucune communication avec l'environnement de production.
 
 
-image::sap-alpaca-image2.png[Image montrant un clone du système SAP]
+image:sap-alpaca-image2.png["Image montrant un clone du système SAP"]
 
 * *Copie du système SAP*. Une copie du système SAP permet de configurer un nouveau système SAP cible avec les données d'un système SAP source. Par exemple, le nouveau système cible peut être un système de test supplémentaire avec des données du système de production. Le nom d'hôte, le numéro d'instance et le SID sont différents pour les systèmes source et cible. Le nouveau système n'est pas isolé du système source.
 
 
-image::sap-alpaca-image3.png[Image montrant une copie du système SAP]
+image:sap-alpaca-image3.png["Image montrant une copie du système SAP"]
 
 * *Actualisation du système SAP*. Une actualisation du système SAP est une actualisation d'un système SAP cible existant avec les données d'un système SAP source. Le système cible fait généralement partie d'un environnement de transport SAP, par exemple un système sandbox, qui est actualisé avec les données du système de production. Le nom d'hôte, le numéro d'instance et le SID sont différents pour les systèmes source et cible.
 
 
-image::sap-alpaca-image4.png[Image montrant une actualisation du système SAP]
+image:sap-alpaca-image4.png["Image montrant une actualisation du système SAP"]
 
 Même s'il s'agit de trois cas d'utilisation différents, le processus de gestion des données reste le même. Les trois cas d'utilisation utilisent la même technologie de gestion des données sous-jacente : NetApp Snapshot et FlexClone.
 
@@ -86,7 +86,7 @@ La solution globale comprend les principaux composants suivants :
 
 L'image suivante montre le serveur ALPAGA, le serveur NetApp SnapCenter, le système de stockage NetApp, les systèmes source SAP et cible SAP, et comment tout est intégré. L'objectif est de rendre l'intégration aussi flexible que possible en utilisant l'API REST de SnapCenter pour garantir une réutilisation maximale du travail de configuration déjà effectué dans les composants qui sortent.
 
-image::sap-alpaca-image5.png[Image montrant le serveur ALPAGA,the NetApp SnapCenter server,the NetApp storage system]
+image:sap-alpaca-image5.png["Image illustrant le serveur ALPAGA, le serveur NetApp SnapCenter, le système de stockage NetApp, les systèmes source et cible SAP, et comment tout est intégré"]
 
 
 
@@ -98,7 +98,7 @@ Pour accélérer les opérations, automatiser les tâches et éliminer les erreu
 
 L'image suivante montre les améliorations possibles en termes d'efficacité opérationnelle lorsque vous utilisez l'automatisation.
 
-image::sap-alpaca-image6.png[Image illustrant les éventuelles améliorations en termes d'efficacité opérationnelle lorsque vous utilisez l'automatisation]
+image:sap-alpaca-image6.png["Image illustrant les éventuelles améliorations en termes d'efficacité opérationnelle lorsque vous utilisez l'automatisation"]
 
 
 

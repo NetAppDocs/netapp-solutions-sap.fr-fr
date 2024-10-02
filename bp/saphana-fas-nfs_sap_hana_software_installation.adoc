@@ -10,7 +10,7 @@ summary: 'La configuration requise pour l"installation du logiciel SAP HANA est 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

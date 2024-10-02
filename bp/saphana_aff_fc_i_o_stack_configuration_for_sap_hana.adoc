@@ -10,7 +10,7 @@ summary: 'À partir de SAP HANA 1.0 SPS10, SAP a introduit des paramètres perme
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

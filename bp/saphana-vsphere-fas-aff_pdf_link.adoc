@@ -13,13 +13,14 @@ summary: 'Ce document d"architecture de référence aide les clients à concevoi
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
-Tobias Brandl, NetApp
-
-Erik Rieger, Bhumik Patel, VMware
-
+[role="lead"]
 Ce document d'architecture de référence aide les clients à concevoir et déployer des solutions SAP HANA à un ou plusieurs hôtes dans des machines virtuelles VMware vSphere et des systèmes de stockage NetApp FAS et AFF (FAS 100 % Flash). Cette architecture de référence est une solution déployée et documentée s'appuyant sur l'expérience des clients VMware et NetApp existants, sur des simulations en conditions réelles et sur les validations du laboratoire d'ingénierie NetApp. Ce document aide les clients à tout au long du cycle de vie du projet, notamment l'évaluation des besoins, la conception de la solution, l'installation et l'administration.
+
+Auteurs :
+
+Tobias Brandl, NetApp Erik Rieger, Bhumik Patel, VMware
 
 link:https://www.netapp.com/pdf.html?item=/media/17192-tr4338pdf.pdf["https://www.netapp.com/pdf.html?item=/media/17192-tr4338pdf.pdf"]

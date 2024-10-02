@@ -10,7 +10,7 @@ summary: SnapCenter est une plateforme unifiée et évolutive qui assure la coh�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -24,7 +24,7 @@ SnapCenter gère les données dans les différents terminaux de la Data Fabric o
 
 SnapCenter inclut le serveur SnapCenter, le module de plug-in SnapCenter pour Windows et le module de plug-in SnapCenter pour Linux. Chaque offre comprend des plug-ins à SnapCenter pour divers composants d'infrastructure et d'applications.
 
-image::amazon-fsx-image5.png[amazon fsx image5]
+image:amazon-fsx-image5.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 
 
@@ -66,7 +66,7 @@ SnapCenter gère la conservation au niveau du stockage primaire, tandis que FSX 
 
 La figure suivante présente une vue d'ensemble des opérations de gestion des sauvegardes et des conservation de SnapCenter.
 
-image::amazon-fsx-image6.png[amazon fsx image6]
+image:amazon-fsx-image6.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 Lors de l'exécution d'une sauvegarde Snapshot basée sur le stockage de la base de données SAP HANA, SnapCenter effectue les tâches suivantes :
 
@@ -94,7 +94,7 @@ Dans ce document, nous utilisons la console Amazon Web Services (AWS) et l'inter
 
 La figure suivante montre une architecture de sauvegarde type pour SAP HANA sur FSX pour ONTAP. Le système HANA se trouve dans la zone de disponibilité AWS 1 et utilise un système de fichiers FSX pour ONTAP au sein de la même zone de disponibilité. Les opérations de sauvegarde Snapshot sont exécutées pour les données et le volume partagé de la base de données HANA. Outre les sauvegardes Snapshot locales, conservées pendant 3-5 jours, les sauvegardes sont également répliquées vers un stockage hors site pour une conservation à long terme. Le stockage de sauvegarde hors site est un second système de fichiers FSX pour ONTAP, situé dans une zone de disponibilité AWS différente. Les sauvegardes des données HANA et des volumes partagés sont répliquées avec SnapVault sur le deuxième système de fichiers FSX pour ONTAP, et conservées pendant 2-3 semaines.
 
-image::amazon-fsx-image7.png[amazon fsx image7]
+image:amazon-fsx-image7.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 Avant de configurer le SnapCenter, la stratégie de protection des données doit être définie en fonction des exigences RTO et RPO des divers systèmes SAP.
 
@@ -201,4 +201,4 @@ FSX pour systèmes de fichiers ONTAP :
 * Le volume de données HANA est répliqué sur le second FSX pour le système de fichiers ONTAP
 
 
-image::amazon-fsx-image8.png[amazon fsx image8]
+image:amazon-fsx-image8.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]

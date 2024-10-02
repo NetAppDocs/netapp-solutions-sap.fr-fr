@@ -8,6 +8,7 @@ summary: 'NetApp s"adresse aux défis de la lenteur de l"implémentation des fon
 :allow-uri-read: 
 
 
+[role="lead"]
 NetApp s'adresse aux défis de la lenteur de l'implémentation des fonctionnalités, du manque d'automatisation et de la perte de productivité en proposant une solution de gestion du cycle de vie entièrement intégrée avec les outils utilisés au quotidien par les administrateurs SAP, tels que SAP Landscape Management (SAP Lama). L'objectif est de simplifier les workflows de provisionnement, du prétraitement au post-traitement, y compris l'ensemble des tâches des couches stockage et logiciel nécessaire pour créer une copie du système de production. Avec cette solution, les administrateurs peuvent créer un environnement de développement et de test en quelques clics et ainsi améliorer la gestion du cycle de vie.
 
 link:https://www.netapp.com/pdf.html?item=/media/6996-sb-3978pdf.pdf["https://www.netapp.com/pdf.html?item=/media/6996-sb-3978pdf.pdf"]

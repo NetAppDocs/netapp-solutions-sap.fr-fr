@@ -10,7 +10,7 @@ summary: 'Un connecteur de stockage n"est nécessaire que dans les environnement
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

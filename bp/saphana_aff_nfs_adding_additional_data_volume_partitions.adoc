@@ -10,7 +10,7 @@ summary: 'Depuis SAP HANA 2.0 SPS4, des partitions de volume de données supplé
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -217,4 +217,4 @@ Exécutez l'instruction SQL suivante sur la base de données du locataire pour a
 ....
 ALTER SYSTEM ALTER DATAVOLUME ADD PARTITION PATH '/hana/data2/SID/';
 ....
-image::saphana_aff_nfs_image18.jpg[image nfs saphana AFF 18]
+image:saphana_aff_nfs_image18.jpg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]

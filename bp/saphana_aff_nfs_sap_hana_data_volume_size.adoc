@@ -10,7 +10,7 @@ summary: 'Par défaut, SAP HANA n"utilise qu"un seul volume de données par serv
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

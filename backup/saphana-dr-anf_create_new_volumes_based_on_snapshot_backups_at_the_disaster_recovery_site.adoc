@@ -10,7 +10,7 @@ summary: 'Selon la configuration de reprise après incident (avec ou sans répli
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -20,33 +20,33 @@ Un nouveau volume du volume de sauvegarde des journaux doit être créé si les 
 
 . L'une des sauvegardes Snapshot cohérentes au niveau des applications est sélectionnée comme source pour le nouveau volume du volume de données HANA. L'option Restaurer vers un nouveau volume est sélectionnée pour créer un nouveau volume basé sur la sauvegarde snapshot.
 +
-image::saphana-dr-anf_image19.png[saphana dr anf image19]
+image:saphana-dr-anf_image19.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 . Le nouveau nom de volume et quota doivent être fournis dans l'interface utilisateur.
 +
-image::saphana-dr-anf_image20.png[saphana dr anf image20]
+image:saphana-dr-anf_image20.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 . Le chemin des fichiers et l'export policy sont configurés dans l'onglet Protocol.
 +
-image::saphana-dr-anf_image21.png[saphana dr anf image21]
+image:saphana-dr-anf_image21.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 . L'écran Créer et revoir résume la configuration.
 +
-image::saphana-dr-anf_image22.png[saphana dr anf image22]
+image:saphana-dr-anf_image22.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 . Un nouveau volume a été créé à partir de la sauvegarde snapshot HANA.
 +
-image::saphana-dr-anf_image23.png[saphana dr anf image23]
+image:saphana-dr-anf_image23.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 
 
 Il faut maintenant effectuer les mêmes étapes pour les volumes HANA partagés et de sauvegarde des journaux, comme indiqué dans les deux captures d'écran suivantes. Étant donné qu'aucun snapshot supplémentaire n'a été créé pour le volume de sauvegarde de journaux et partagé HANA, la copie Snapshot SnapMirror la plus récente doit être sélectionnée comme source pour le nouveau volume. Il s'agit de données non structurées et la copie Snapshot de SnapMirror peut être utilisée dans ce cas d'utilisation.
 
-image::saphana-dr-anf_image24.png[saphana dr anf image24]
+image:saphana-dr-anf_image24.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 La capture d'écran suivante montre le volume partagé HANA restauré vers le nouveau volume.
 
-image::saphana-dr-anf_image25.png[saphana dr anf image25]
+image:saphana-dr-anf_image25.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 
 NOTE: Lorsqu'un pool de capacité doté d'un niveau de performance faible a été utilisé, les volumes doivent à présent être déplacés vers un pool de capacité qui fournit les performances requises.

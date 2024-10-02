@@ -10,8 +10,10 @@ summary: 'Les informations relatives à la réplication inter-région peuvent ê
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
-Des informations indépendantes des applications sur la réplication inter-région sont disponibles à l'adresse https://docs.microsoft.com/en-us/azure/azure-netapp-files/["Documentation Azure NetApp Files | Microsoft Docs"^] dans les sections concepts et mode d'emploi.
+Vous trouverez des informations indépendantes des applications sur la réplication interrégionale à l'emplacement suivant.
+
+link:https://docs.microsoft.com/en-us/azure/azure-netapp-files/["Documentation Azure NetApp Files | Microsoft Docs"^] dans les sections concepts et guide.

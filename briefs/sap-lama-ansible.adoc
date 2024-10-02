@@ -10,7 +10,7 @@ summary: 'Ce document est axé sur l"intégration des systèmes de stockage NetA
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -43,7 +43,7 @@ Le terme copie système SAP est souvent utilisé comme synonyme de trois process
 
 L'image suivante montre les étapes du workflow Lama de clonage, de copie et d'actualisation du système SAP liées au stockage NetApp.
 
-image::sap-lama-image1.png[Image présentant les étapes du workflow Lama de clonage, de copie et d'actualisation du système SAP liées à NetApp Storage]
+image:sap-lama-image1.png["Image présentant les étapes du workflow Lama de clonage, de copie et d'actualisation du système SAP liées à NetApp Storage"]
 
 
 
@@ -68,7 +68,7 @@ La solution globale comprend les principaux composants suivants :
 
 L'image suivante montre comment les systèmes de stockage SAP Lama et NetApp s'intègrent via des playbooks Ansible sur un hôte Ansible dédié, déclenché par des scripts shell exécutés à partir de l'agent hôte SAP.
 
-image::sap-lama-image2.png[Image montrant comment les systèmes de stockage SAP Lama et NetApp s'intègrent via des playbooks Ansible sur un hôte Ansible dédié, déclenché par des scripts shell exécutés à partir de l'agent hôte SAP]
+image:sap-lama-image2.png["Image montrant comment les systèmes de stockage SAP Lama et NetApp s'intègrent via des playbooks Ansible sur un hôte Ansible dédié, déclenché par des scripts shell exécutés à partir de l'agent hôte SAP"]
 
 
 
@@ -80,7 +80,7 @@ Pour accélérer et automatiser les tâches requises au niveau des couches d'inf
 
 L'image suivante montre les améliorations possibles en termes d'efficacité opérationnelle lorsque vous utilisez l'automatisation.
 
-image::sap-lama-image3.png[Image illustrant les éventuelles améliorations en termes d'efficacité opérationnelle lorsque vous utilisez l'automatisation]
+image:sap-lama-image3.png["Image illustrant les éventuelles améliorations en termes d'efficacité opérationnelle lorsque vous utilisez l'automatisation"]
 
 
 

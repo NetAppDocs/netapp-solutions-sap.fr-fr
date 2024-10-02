@@ -10,7 +10,7 @@ summary: Pour mettre en œuvre une stratégie de reprise après incident efficac
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -37,4 +37,4 @@ Pour tester la reprise après incident, procédez comme suit :
 
 Les sous-sections suivantes décrivent ces étapes en détail.
 
-image::saphana-dr-anf_image18.png[saphana dr anf image18]
+image:saphana-dr-anf_image18.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]

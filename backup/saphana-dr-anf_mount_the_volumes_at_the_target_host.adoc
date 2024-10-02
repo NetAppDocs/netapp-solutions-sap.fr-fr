@@ -10,7 +10,7 @@ summary: 'Les volumes peuvent désormais être montés sur l"hôte cible, basé 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

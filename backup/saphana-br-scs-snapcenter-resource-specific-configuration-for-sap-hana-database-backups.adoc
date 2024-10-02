@@ -10,7 +10,7 @@ summary: Cette section décrit les étapes de configuration pour deux exemples d
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -48,7 +48,7 @@ NOTE: Les privilèges requis ont été modifiés avec la version HANA 2.0 SPS5 :
 
 NOTE: Pour un système MDC SAP HANA, l'utilisateur doit être créé dans la base de données du système car toutes les commandes de sauvegarde pour le système et les bases de données des locataires sont exécutées à l'aide de la base de données du système.
 
-image::saphana-br-scs-image53.png[saphana br scs image53]
+image:saphana-br-scs-image53.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 Sur l'hôte du plug-in HANA, sur lequel est installé le plug-in SAP HANA et le client SAP hdbsql, une clé de magasin utilisateur doit être configurée.
 
@@ -163,17 +163,17 @@ La figure suivante montre la relation de protection configurée pour le système
 
 NOTE: La planification de la relation doit être définie sur aucun, car SnapCenter déclenche la mise à jour SnapVault.
 
-image::saphana-br-scs-image54.png[saphana br scs image54]
+image:saphana-br-scs-image54.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 La figure suivante illustre la règle de protection. La règle de protection utilisée pour la relation de protection définit l'étiquette SnapMirror, ainsi que la conservation des sauvegardes sur le stockage secondaire. Dans notre exemple, l'étiquette utilisée est `Daily`, et la rétention est définie sur 5.
 
 
-NOTE: L'étiquette SnapMirror de la règle en cours de création doit correspondre à l'étiquette définie dans la configuration de la règle SnapCenter. Pour plus de détails, reportez-vous à la section «<<Règle applicable aux sauvegardes Snapshot quotidiennes avec réplication SnapVault>>. »
+NOTE: L'étiquette SnapMirror de la règle en cours de création doit correspondre à l'étiquette définie dans la configuration de la règle SnapCenter. Pour plus de détails, reportez-vous à link:saphana-br-scs-snapcenter-initial-configuration.html#snapshot-policy["Règle applicable aux sauvegardes Snapshot quotidiennes avec réplication SnapVault"].
 
 
 NOTE: La conservation des sauvegardes sur le stockage de sauvegarde hors site est définie dans la règle et contrôlée par ONTAP.
 
-image::saphana-br-scs-image55.png[saphana br scs image55]
+image:saphana-br-scs-image55.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 
 
@@ -203,18 +203,18 @@ Dans notre exemple, le plug-in HANA est le serveur SnapCenter.
 La clé hdbuserstore doit correspondre à la clé configurée pour la base de données HANA SS2. Dans notre exemple, il s'agit de SS2KEY.
 
 +
-image::saphana-br-scs-image56.png[saphana br scs image56]
+image:saphana-br-scs-image56.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 +
 
 NOTE: Pour un système SAP HANA à plusieurs hôtes, les clés de hdbuserstore pour tous les hôtes doivent être incluses, comme illustré dans la figure suivante. SnapCenter essaie de se connecter à la première clé de la liste et continuera dans l'autre cas, si la première clé ne fonctionne pas. Cette configuration est nécessaire pour prendre en charge le basculement HANA sur un système à plusieurs hôtes avec des hôtes workers et de secours.
 
 +
-image::saphana-br-scs-image57.png[saphana br scs image57]
+image:saphana-br-scs-image57.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 .. Sélectionner les données requises pour le système de stockage (SVM) et le nom du volume.
 +
-image::saphana-br-scs-image58.png[saphana br scs image58]
+image:saphana-br-scs-image58.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 +
 
@@ -225,16 +225,16 @@ NOTE: Dans le cas d'une configuration SAN Fibre Channel, la LUN doit également 
 NOTE: Pour un système SAP HANA à plusieurs hôtes, tous les volumes de données du système SAP HANA doivent être sélectionnés, comme illustré dans la figure suivante.
 
 +
-image::saphana-br-scs-image59.png[saphana br scs image59]
+image:saphana-br-scs-image59.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 +
 L'écran récapitulatif de la configuration de la ressource s'affiche.
 
 .. Cliquez sur Terminer pour ajouter la base de données SAP HANA.
 +
-image::saphana-br-scs-image60.png[saphana br scs image60]
+image:saphana-br-scs-image60.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
-.. Une fois la configuration des ressources terminée, effectuez la configuration de la protection des ressources comme décrit dans la section «<<Configuration de la protection des ressources>>. »
+.. Lorsque la configuration des ressources est terminée, effectuez la configuration de la protection des ressources comme décrit dans la section link:saphana-br-scs-snapcenter-resource-specific-configuration-for-sap-hana-database-backups.html#resource-protection["Configuration de la protection des ressources"].
 
 
 
@@ -251,17 +251,17 @@ NOTE: Le plug-in SAP HANA requiert Java 64 bits version 1.8. Java doit être ins
 . Dans l'onglet hôte, cliquez sur Ajouter.
 . Fournissez des informations sur l'hôte et sélectionnez le plug-in SAP HANA à installer. Cliquez sur soumettre.
 +
-image::saphana-br-scs-image61.png[saphana br scs image61]
+image:saphana-br-scs-image61.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 . Confirmez l'empreinte digitale.
 +
-image::saphana-br-scs-image62.png[saphana br scs image62]
+image:saphana-br-scs-image62.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 +
 L'installation du plug-in HANA et du plug-in Linux démarre automatiquement. Lorsque l'installation est terminée, la colonne d'état de l'hôte indique exécution. Il s'affiche également que le plug-in Linux est installé avec le plug-in HANA.
 
 +
-image::saphana-br-scs-image63.png[saphana br scs image63]
+image:saphana-br-scs-image63.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 +
 Une fois l'installation du plug-in terminée, le processus de détection automatique de la ressource HANA démarre automatiquement. Dans l'écran Ressources, une nouvelle ressource est créée, marquée comme étant verrouillée par l'icône de cadenas rouge.
@@ -272,21 +272,21 @@ Une fois l'installation du plug-in terminée, le processus de détection automat
 NOTE: Vous pouvez également déclencher le processus de détection automatique manuellement dans l'écran Ressources en cliquant sur Actualiser les ressources.
 
 +
-image::saphana-br-scs-image64.png[saphana br scs image64]
+image:saphana-br-scs-image64.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 . Fournissez la clé de magasin d'utilisateurs pour la base de données HANA.
 +
-image::saphana-br-scs-image65.png[saphana br scs image65]
+image:saphana-br-scs-image65.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 +
 La détection automatique du second niveau commence par la découverte des informations relatives aux données des locataires et à l'encombrement du stockage.
 
 . Cliquez sur Details pour consulter les informations de configuration des ressources HANA dans la vue topologique des ressources.
 +
-image::saphana-br-scs-image66.png[saphana br scs image66]
+image:saphana-br-scs-image66.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 +
-image::saphana-br-scs-image67.png[saphana br scs image67]
+image:saphana-br-scs-image67.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 +
 Lorsque la configuration des ressources est terminée, la configuration de la protection des ressources doit être exécutée comme décrit dans la section suivante.
@@ -318,41 +318,41 @@ Dans la configuration indiquée dans la figure suivante, les noms de sauvegarde 
 NOTE: Même si une conservation est définie pour des sauvegardes à la demande dans la configuration de règles, l'organisation des données n'est effectuée que lorsqu'une autre sauvegarde à la demande est exécutée. Par conséquent, les sauvegardes à la demande doivent généralement être supprimées manuellement dans SnapCenter afin d'assurer que ces sauvegardes sont également supprimées dans le catalogue de sauvegardes SAP HANA et que les services de gestion des sauvegardes de journaux ne reposent pas sur une sauvegarde à la demande trop ancienne.
 
 +
-image::saphana-br-scs-image68.png[saphana br scs image68]
+image:saphana-br-scs-image68.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 
 
 . Aucun paramètre spécifique ne doit être défini sur la page Paramètres de l'application. Cliquez sur Suivant.
 +
-image::saphana-br-scs-image69.png[saphana br scs image69]
+image:saphana-br-scs-image69.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 . Sélectionnez les stratégies à ajouter à la ressource.
 +
-image::saphana-br-scs-image70.png[saphana br scs image70]
+image:saphana-br-scs-image70.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 . Définissez le planning de la stratégie LocalSnap (dans cet exemple, toutes les quatre heures).
 +
-image::saphana-br-scs-image71.png[saphana br scs image71]
+image:saphana-br-scs-image71.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 . Définissez la planification de la stratégie LocalSnapAndSnapVault (dans cet exemple, une fois par jour).
 +
-image::saphana-br-scs-image72.png[saphana br scs image72]
+image:saphana-br-scs-image72.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 . Définissez le planning de la stratégie de contrôle d'intégrité des blocs (dans cet exemple, une fois par semaine).
 +
-image::saphana-br-scs-image73.png[saphana br scs image73]
+image:saphana-br-scs-image73.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 . Fournir des informations sur la notification par e-mail.
 +
-image::saphana-br-scs-image74.png[saphana br scs image74]
+image:saphana-br-scs-image74.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 . Sur la page Récapitulatif, cliquez sur Terminer.
 +
-image::saphana-br-scs-image75.png[saphana br scs image75]
+image:saphana-br-scs-image75.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 . Des sauvegardes à la demande peuvent désormais être créées sur la page topologie. Les sauvegardes planifiées s'exécutent en fonction des paramètres de configuration.
 +
-image::saphana-br-scs-image76.png[saphana br scs image76]
+image:saphana-br-scs-image76.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 
 
@@ -396,4 +396,4 @@ Si un hôte Linux distinct est utilisé en tant qu'hôte de plug-in HANA central
 
 La figure suivante montre la commande Post Quiesce dans l'écran de configuration de la protection des ressources.
 
-image::saphana-br-scs-image77.png[saphana br scs image77]
+image:saphana-br-scs-image77.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]

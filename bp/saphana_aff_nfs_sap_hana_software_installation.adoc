@@ -10,7 +10,7 @@ summary: 'Cette section décrit comment configurer un système pour l"installati
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

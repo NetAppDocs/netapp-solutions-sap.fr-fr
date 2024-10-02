@@ -10,6 +10,8 @@ summary:
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
+[role="lead"]
+Ce document présente la configuration et l'installation de l'infrastructure pour les systèmes NetApp AFF et NFS.

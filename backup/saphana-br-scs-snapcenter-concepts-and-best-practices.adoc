@@ -10,7 +10,7 @@ summary: Cette section décrit les concepts et les bonnes pratiques SnapCenter c
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -34,7 +34,7 @@ La détection automatique ainsi que la restauration et la restauration automatis
 
 La figure suivante résume les dépendances. Pour plus d'informations sur les options de déploiement HANA, reportez-vous à la section « Options de déploiement du plug-in SAP HANA ».
 
-image::saphana-br-scs-image9.png[saphana br scs image9]
+image:saphana-br-scs-image9.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 
 NOTE: Les plug-ins HANA et Linux ne sont actuellement disponibles que pour les systèmes basés sur Intel. Si les bases de données HANA s'exécutent sur IBM Power Systems, un plug-in HANA central doit être utilisé.
@@ -73,7 +73,7 @@ NOTE: Les systèmes MDC HANA avec plusieurs locataires sont pris en charge pour 
 La configuration manuelle des ressources HANA est prise en charge pour toutes les architectures HANA, mais elle nécessite un plug-in HANA central. Le plug-in central peut être le serveur SnapCenter lui-même ou un hôte Linux ou Windows distinct.
 
 
-NOTE: Lorsque le plug-in HANA est déployé sur l'hôte de base de données HANA, la ressource est automatiquement découverte par défaut. La détection automatique peut être désactivée pour les hôtes individuels, afin que le plug-in puisse être déployé. Par exemple, sur un hôte de base de données avec la réplication système HANA activée et dans une version SnapCenter < 4.6, où la détection automatique n'est pas prise en charge. Pour plus d'informations, reportez-vous à la section link:saphana-br-scs-advanced-configuration-and-tuning.html#disable-auto-discovery-on-the-HANA-plug-in-host["“Désactiver la détection automatique sur l'hôte du plug-in HANA.”"]
+NOTE: Lorsque le plug-in HANA est déployé sur l'hôte de base de données HANA, la ressource est automatiquement découverte par défaut. La détection automatique peut être désactivée pour les hôtes individuels, afin que le plug-in puisse être déployé. Par exemple, sur un hôte de base de données avec la réplication système HANA activée et dans une version SnapCenter < 4.6, où la détection automatique n'est pas prise en charge. Pour plus d'informations, reportez-vous à la section link:saphana-br-scs-advanced-configuration-and-tuning.html#disable-auto["“Désactiver la détection automatique sur l'hôte du plug-in HANA.”"]
 
 Le tableau suivant présente les configurations HANA prises en charge pour la configuration manuelle des ressources HANA.
 
@@ -101,7 +101,7 @@ La figure suivante montre la vue logique et la communication entre le serveur Sn
 
 Le serveur SnapCenter communique via le plug-in SAP HANA avec les bases de données SAP HANA. Le plug-in SAP HANA utilise le logiciel client SAP HANA hdbsql pour exécuter des commandes SQL sur les bases de données SAP HANA. Le hdbuserstore SAP HANA permet de fournir les identifiants de l'utilisateur, le nom de l'hôte et les informations de port pour accéder aux bases de données SAP HANA.
 
-image::saphana-br-scs-image10.png[saphana br scs image10]
+image:saphana-br-scs-image10.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 
 NOTE: Le plug-in SAP HANA et le logiciel client SAP hdbsql, qui inclut l'outil de configuration hdbuserstore, doivent être installés ensemble sur le même hôte.
@@ -122,7 +122,7 @@ SnapCenter Server HA n'est pas pris en charge si le plug-in HANA est installé s
 
 La figure suivante montre une configuration dans laquelle le serveur SnapCenter est utilisé comme hôte plug-in central. Le plug-in SAP HANA et le logiciel client SAP hdbsql sont installés sur le serveur SnapCenter.
 
-image::saphana-br-scs-image11.png[saphana br scs image11]
+image:saphana-br-scs-image11.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 Comme le plug-in HANA peut communiquer avec les bases de données HANA gérées par hdbclient via le réseau, il n'est pas nécessaire d'installer de composants SnapCenter sur les hôtes de base de données HANA individuels. SnapCenter peut protéger les bases de données HANA en utilisant un hôte plug-in HANA central sur lequel toutes les clés de magasin d'utilisateurs sont configurées pour les bases de données gérées.
 
@@ -139,7 +139,7 @@ La figure suivante montre une configuration dans laquelle un hôte Linux distinc
 
 NOTE: L'hôte distinct de plug-in central peut également être un hôte Windows.
 
-image::saphana-br-scs-image12.png[saphana br scs image12]
+image:saphana-br-scs-image12.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 La même restriction concernant la disponibilité des fonctionnalités décrite dans la section précédente s'applique également à un hôte de plug-in central distinct.
 
@@ -151,7 +151,7 @@ Cependant, grâce à cette option de déploiement, le serveur SnapCenter peut ê
 
 La figure suivante montre une configuration dans laquelle le plug-in SAP HANA est installé sur chaque hôte de base de données SAP HANA.
 
-image::saphana-br-scs-image13.png[saphana br scs image13]
+image:saphana-br-scs-image13.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 Lorsque le plug-in HANA est installé sur chaque hôte de base de données HANA individuel, toutes les fonctionnalités, telles que la découverte automatique et la restauration et la récupération automatisées, sont disponibles. Par ailleurs, le serveur SnapCenter peut être configuré dans une configuration haute disponibilité.
 
@@ -165,9 +165,9 @@ NetApp recommande de déployer le plug-in HANA sur l'hôte de base de données H
 
 Les deux figures suivantes présentent des déploiements de plug-ins mixtes avec le serveur SnapCenter ou un hôte Linux distinct en tant qu'hôte de plug-in central. La seule différence entre ces deux déploiements est la configuration haute disponibilité en option.
 
-image::saphana-br-scs-image14.png[saphana br scs image14]
+image:saphana-br-scs-image14.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
-image::saphana-br-scs-image15.png[saphana br scs image15]
+image:saphana-br-scs-image15.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 
 
@@ -299,7 +299,7 @@ Pour la gestion de la conservation des sauvegardes de données et de la gestion 
 
 La figure suivante présente une vue d'ensemble du workflow de sauvegarde.
 
-image::saphana-br-scs-image16.png[saphana br scs image16]
+image:saphana-br-scs-image16.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 
 
@@ -365,7 +365,7 @@ La gestion de la conservation des sauvegardes de données et le nettoyage des sa
 
 La figure suivante présente les différents flux de travail et les dépendances de chaque opération. Les sections suivantes décrivent en détail les différentes opérations.
 
-image::saphana-br-scs-image17.png[saphana br scs image17]
+image:saphana-br-scs-image17.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 
 
@@ -404,7 +404,7 @@ La tâche de nettoyage est planifiée une fois par semaine par défaut. Ce plann
 
 NOTE: La tâche de nettoyage peut également être déclenchée manuellement pour une ressource individuelle en cliquant sur le bouton d'actualisation dans la vue topologique de la ressource.
 
-Pour plus d'informations sur l'adaptation du planning du travail de nettoyage ou sur le déclenchement d'une actualisation manuelle, reportez-vous à la section link:saphana-br-scs-advanced-configuration-and-tuning.html#change-scheduling-frequency-of-backup-synchronization-with-off-site-backup-storage["“Modification de la fréquence de synchronisation des sauvegardes avec le stockage de sauvegarde hors site.”"]
+Pour plus d'informations sur l'adaptation de la planification de la tâche de nettoyage ou sur la manière de déclencher une actualisation manuelle, reportez-vous à la section link:saphana-br-scs-advanced-configuration-and-tuning.html#change-schedule["“Modification de la fréquence de synchronisation des sauvegardes avec le stockage de sauvegarde hors site.”"]
 
 
 
@@ -434,7 +434,7 @@ NOTE: SnapCenter gère uniquement les sauvegardes qui ont été créées par Sna
 
 NOTE: Même si une conservation est définie pour des sauvegardes à la demande dans la configuration de règles, l'organisation des données n'est effectuée que lorsqu'une autre sauvegarde à la demande est exécutée. Par conséquent, les sauvegardes à la demande doivent généralement être supprimées manuellement dans SnapCenter afin d'être certain que ces sauvegardes sont également supprimées dans le catalogue de sauvegardes SAP HANA, et que les services de gestion des sauvegardes de journaux ne reposent pas sur une sauvegarde à la demande trop ancienne.
 
-La gestion de la conservation des sauvegardes de journaux est activée par défaut. Si nécessaire, il peut être désactivé comme décrit dans la section link:saphana-br-scs-advanced-configuration-and-tuning.html#disable-auto-discovery-on-the-HANA-plug-in-host["“Désactiver la détection automatique sur l'hôte du plug-in HANA.”"]
+La gestion de la conservation des sauvegardes de journaux est activée par défaut. Si nécessaire, il peut être désactivé comme décrit dans la section link:saphana-br-scs-advanced-configuration-and-tuning.html#disable-auto["“Désactiver la détection automatique sur l'hôte du plug-in HANA.”"]
 
 
 
@@ -534,7 +534,7 @@ Les systèmes à un seul conteneur HANA et MDC HANA qui ont été découverts au
 * *Ressource complète avec récupération manuelle.* si vous sélectionnez pas de récupération, SnapCenter arrête la base de données HANA et exécute les opérations de restauration et de démontage du système de fichiers requis. Vous devez restaurer manuellement la base de données du système et des locataires.
 
 
-image::saphana-br-scs-image18.png[saphana br scs image18]
+image:saphana-br-scs-image18.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 
 
@@ -548,7 +548,7 @@ Même si les systèmes MDC HANA avec plusieurs locataires sont automatiquement d
 
 Les flux de travail sont les mêmes que ceux décrits dans la section précédente.
 
-image::saphana-br-scs-image19.png[saphana br scs image19]
+image:saphana-br-scs-image19.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 
 
@@ -558,7 +558,7 @@ Les ressources HANA configurées manuellement ne sont pas activées pour la rest
 
 Pour les ressources HANA configurées manuellement, SnapCenter prend uniquement en charge la restauration manuelle, comme illustré dans la figure suivante. Le flux de travail pour la récupération manuelle est le même que celui décrit dans les sections précédentes.
 
-image::saphana-br-scs-image20.png[saphana br scs image20]
+image:saphana-br-scs-image20.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 
 

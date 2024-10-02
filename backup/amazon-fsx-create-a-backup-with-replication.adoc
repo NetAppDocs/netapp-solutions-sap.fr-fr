@@ -10,7 +10,7 @@ summary: Cette section décrit comment créer une sauvegarde avec réplication.
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -18,11 +18,11 @@ La création d'une sauvegarde est effectuée de la même manière que pour une c
 
 Pour créer une sauvegarde avec réplication, sélectionnez la stratégie qui inclut la réplication de sauvegarde et cliquez sur Sauvegarder.
 
-image::amazon-fsx-image88.png[amazon fsx image88]
+image:amazon-fsx-image88.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 Dans le journal des tâches SnapCenter, vous pouvez voir l'étape mise à jour secondaire, qui lance une opération de mise à jour SnapVault. Réplication des blocs modifiés depuis le volume source vers le volume cible.
 
-image::amazon-fsx-image89.png[amazon fsx image89]
+image:amazon-fsx-image89.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 Sur le système de fichiers FSX pour ONTAP, un snapshot du volume source est créé à l'aide de l'étiquette SnapMirror, `snapcenter`, Tel qu'il est configuré dans la politique SnapCenter.
 
@@ -52,8 +52,8 @@ FsxId05f7f00af49dc7a3e::>
 ....
 La nouvelle sauvegarde Snapshot est également incluse dans le catalogue de sauvegardes HANA.
 
-image::amazon-fsx-image90.png[amazon fsx image90]
+image:amazon-fsx-image90.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 Dans SnapCenter, vous pouvez lister les sauvegardes répliquées en cliquant sur les copies du coffre-fort dans la vue topologique.
 
-image::amazon-fsx-image91.png[amazon fsx image91]
+image:amazon-fsx-image91.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]

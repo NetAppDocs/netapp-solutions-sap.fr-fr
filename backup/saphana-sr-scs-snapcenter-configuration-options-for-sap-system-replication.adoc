@@ -10,7 +10,7 @@ summary: Cette page décrit les options de configuration de la réplication syst
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -20,7 +20,7 @@ Deux options permettent de configurer la protection des données avec le logicie
 * Une seule ressource SnapCenter pour les deux hôtes SAP HANA utilisant une adresse IP virtuelle.
 
 
-image::saphana-sr-scs-image5.png[saphana sr scs image5]
+image:saphana-sr-scs-image5.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 Depuis SnapCenter 4.6, SnapCenter prend en charge la découverte automatique des systèmes HANA configurés dans une relation de réplication système HANA. Chaque hôte est configuré à l'aide de son adresse IP physique (nom d'hôte) et de son volume de données individuel sur la couche de stockage. Les deux ressources SnapCenter sont combinées dans un groupe de ressources, et SnapCenter identifie automatiquement l'hôte principal ou secondaire et exécute les opérations de sauvegarde requises en conséquence. La gestion des données de conservation pour les sauvegardes Snapshot et basées sur les fichiers créées par SnapCenter s'effectue sur les deux hôtes pour s'assurer que les anciennes sauvegardes sont également supprimées sur l'hôte secondaire actuel.
 

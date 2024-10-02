@@ -10,7 +10,7 @@ summary: 'NFS version 4 et ultérieure requiert l"authentification utilisateur. 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

@@ -10,7 +10,7 @@ summary: 'Vous devez synchroniser l"heure entre les contrôleurs de stockage et 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

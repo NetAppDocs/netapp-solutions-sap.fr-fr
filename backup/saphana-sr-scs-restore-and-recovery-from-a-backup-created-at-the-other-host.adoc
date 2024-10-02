@@ -10,7 +10,7 @@ summary: 'Une opération de restauration à partir d"une sauvegarde créée sur 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -27,11 +27,11 @@ Une sauvegarde a été créée au niveau de T1 sur l'hôte 1. Un basculement a �
 . L'hôte 1 est démarré et une resynchronisation de réplication système de l'hôte 1 est automatiquement démarrée.
 
 
-image::saphana-sr-scs-image48.png[saphana sr scs image48]
+image:saphana-sr-scs-image48.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 La figure suivante montre le catalogue de sauvegardes SAP HANA et met en évidence la sauvegarde créée sur l'hôte 1, qui a été utilisée pour l'opération de restauration et de reprise.
 
-image::saphana-sr-scs-image49.png[saphana sr scs image49]
+image:saphana-sr-scs-image49.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 L'opération de restauration implique les étapes suivantes :
 
@@ -42,7 +42,7 @@ L'opération de restauration implique les étapes suivantes :
 
 Dans SnapCenter, la sauvegarde est sélectionnée et l'opération de clonage est démarrée.
 
-image::saphana-sr-scs-image50.png[saphana sr scs image50]
+image:saphana-sr-scs-image50.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 Vous devez fournir le serveur clone et l'adresse IP d'exportation NFS.
 
@@ -51,11 +51,11 @@ NOTE: Dans une configuration SnapCenter à ressource unique, le plug-in SAP HANA
 
 + dans une configuration SnapCenter avec des ressources distinctes, l'hôte de base de données HANA est sélectionné comme serveur clone, et un script de montage est utilisé pour monter le clone sur l'hôte cible.
 
-image::saphana-sr-scs-image51.png[saphana sr scs image51]
+image:saphana-sr-scs-image51.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 Pour déterminer le chemin de jonction nécessaire au montage du volume cloné, vérifiez le journal des tâches de la tâche de clonage, comme le montre la figure suivante.
 
-image::saphana-sr-scs-image52.png[saphana sr scs image52]
+image:saphana-sr-scs-image52.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 Le volume cloné peut désormais être monté.
 

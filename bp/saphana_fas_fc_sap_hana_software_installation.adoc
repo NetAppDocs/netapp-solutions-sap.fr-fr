@@ -10,7 +10,7 @@ summary: 'Les conditions requises pour l"installation du logiciel SAP HANA sont 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

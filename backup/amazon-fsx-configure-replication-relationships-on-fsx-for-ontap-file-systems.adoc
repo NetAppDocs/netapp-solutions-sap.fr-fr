@@ -10,7 +10,7 @@ summary: Cette section décrit comment peer-to-peer FSX pour les systèmes de fi
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

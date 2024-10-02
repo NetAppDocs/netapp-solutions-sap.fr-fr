@@ -10,7 +10,7 @@ summary: Toutes les étapes décrites dans cette section sont valides pour les e
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

@@ -10,7 +10,7 @@ summary: Cette section répertorie les composants, les versions et configuration
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -81,7 +81,7 @@ NOTE: SnapCenter gère la conservation au niveau du stockage primaire, tandis qu
 
 La figure suivante présente un aperçu de la configuration de sauvegarde des bases de données et des journaux, dans laquelle les sauvegardes des journaux sont écrites sur un montage NFS du stockage de sauvegarde hors site.
 
-image::saphana-br-scs-image7.png[saphana br scs image7]
+image:saphana-br-scs-image7.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 Lors de l'exécution d'une sauvegarde Snapshot basée sur le stockage de volumes non-données, SnapCenter effectue les tâches suivantes :
 
@@ -121,4 +121,4 @@ SnapCenter prend en charge plusieurs architectures et versions SAP HANA :
 
 À partir de la version 4.6, SnapCenter prend en charge la découverte automatique des systèmes HANA configurés dans une relation de réplication système HANA. Chaque hôte est configuré à l'aide de son adresse IP physique (nom d'hôte) et de son volume de données individuel sur la couche de stockage. Les deux ressources SnapCenter sont combinées dans un groupe de ressources, SnapCenter identifie automatiquement l'hôte principal ou secondaire, puis exécute les opérations de sauvegarde requises en conséquence. La gestion des données de conservation pour les sauvegardes Snapshot et basées sur les fichiers créées avec SnapCenter s'effectue sur les deux hôtes pour s'assurer que les anciennes sauvegardes sont également supprimées sur l'hôte secondaire actuel. La figure suivante présente une vue d'ensemble générale. Vous trouverez une description détaillée de la configuration et du fonctionnement des systèmes HANA compatibles avec la réplication système dans SnapCenter dans le https://www.netapp.com/pdf.html?item=/media/17030-tr4719pdf.pdf["Tr-4719 réplication système SAP HANA, sauvegarde et restauration avec SnapCenter"^].
 
-image::saphana-br-scs-image8.png[saphana br scs image8]
+image:saphana-br-scs-image8.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]

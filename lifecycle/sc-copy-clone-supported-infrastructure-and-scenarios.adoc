@@ -10,9 +10,10 @@ summary: 'Les solutions NetApp pour l"optimisation de la gestion du cycle de vie
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
+[role="lead"]
 Ce document présente les scénarios d'actualisation et de clonage des systèmes SAP HANA s'exécutant sur des systèmes NetApp sur site, sur des systèmes Amazon FSX pour NetApp ONTAP et sur Azure NetApp Files. Toutefois, certaines fonctionnalités et certains scénarios ne sont pas disponibles sur chaque plateforme de stockage. Le tableau ci-dessous récapitule les configurations prises en charge.
 
 Ce document utilise un paysage SAP HANA s'exécutant sur des systèmes NetApp sur site avec le protocole de stockage NFS. La plupart des étapes de workflow sont identiques sur les différentes plates-formes et, en cas de différences, elles sont mises en évidence dans ce document.

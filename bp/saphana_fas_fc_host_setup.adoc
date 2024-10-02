@@ -10,7 +10,7 @@ summary: La documentation contient également des informations sur les configura
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

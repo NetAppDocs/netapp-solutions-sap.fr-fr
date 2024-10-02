@@ -10,20 +10,21 @@ summary: 'Les solutions NetApp pour l"optimisation de la gestion du cycle de vie
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 :firstname: ---
 :author: ---
 :authorinitials: -
 :authors: ---
 
 
-Nils Bauer, NetApp
+[role="lead"]
+Dans le contexte économique dynamique actuel, les entreprises doivent fournir des innovations continues et réagir rapidement aux marchés en constante évolution. Dans ces circonstances concurrentielles, les entreprises qui mettent en œuvre une plus grande flexibilité dans leurs processus de travail peuvent s'adapter plus efficacement aux demandes du marché.
+
+Auteur: Nils Bauer, NetApp
 
 
 
 == Introduction
-
-Dans le contexte économique dynamique actuel, les entreprises doivent fournir des innovations continues et réagir rapidement aux marchés en constante évolution. Dans ces circonstances concurrentielles, les entreprises qui mettent en œuvre une plus grande flexibilité dans leurs processus de travail peuvent s'adapter plus efficacement aux demandes du marché.
 
 L'évolution des demandes du marché affecte également les environnements SAP d'une entreprise de sorte qu'ils exigent des intégrations, des changements et des mises à jour réguliers. Les services INFORMATIQUES doivent mettre en œuvre ces modifications avec moins de ressources et sur des périodes plus courtes. La réduction des risques lors du déploiement de ces modifications nécessite des tests exhaustifs et une formation qui nécessitent la présence de systèmes SAP supplémentaires sur les données réelles issues de la production.
 
@@ -31,7 +32,7 @@ En matière de provisionnement de ces systèmes, les approches classiques de ges
 
 Les solutions NetApp pour optimiser la gestion du cycle de vie SAP sont intégrées aux bases de données SAP HANA et aux outils de gestion du cycle de vie. Elles combinent la protection efficace des données intégrée aux applications et le provisionnement flexible des systèmes de test SAP, comme illustré ci-dessous. Ces solutions sont disponibles pour SAP HANA s'exécutant sur site ou dans le cloud sur Azure NetApp Files (ANF) ou Amazon FSX pour NetApp ONTAP (FSX pour ONTAP).
 
-image::sc-copy-clone-image1.png[image clone copie sc 1]
+image:sc-copy-clone-image1.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 
 

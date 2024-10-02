@@ -10,6 +10,8 @@ summary:
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./ent-apps-db/media/
+:imagesdir: ../media/
 
 
+[role="lead"]
+Ce document couvre la réplication multirégionale ANF avec SAP HANA.

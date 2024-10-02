@@ -10,7 +10,7 @@ summary: 'Des hôtes SAP HANA sont connectés aux contrôleurs de stockage via u
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -22,11 +22,11 @@ Différents modèles de la gamme de produits des systèmes AFF peuvent être com
 
 La figure suivante montre un exemple de configuration avec huit hôtes SAP HANA reliés à une paire haute disponibilité du stockage.
 
-image::saphana_aff_nfs_image2.png[image nfs saphana AFF 2]
+image:saphana_aff_nfs_image2.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 La figure suivante présente un exemple d'utilisation de VMware vSphere comme couche de virtualisation.
 
-image::saphana_aff_nfs_image3.jpg[image nfs saphana AFF 3]
+image:saphana_aff_nfs_image3.jpg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 L'architecture peut évoluer en deux dimensions :
 
@@ -36,11 +36,11 @@ L'architecture peut évoluer en deux dimensions :
 
 La figure suivante présente un exemple de configuration dans laquelle davantage d'hôtes SAP HANA sont connectés aux contrôleurs de stockage. Dans cet exemple, il faut davantage de tiroirs disques pour satisfaire aux exigences en termes de capacité et de performances des 12 16 hôtes SAP HANA. Selon les besoins en débit total, vous devez ajouter des connexions 10GbE ou plus rapides aux contrôleurs de stockage.
 
-image::saphana_aff_nfs_image4.png[image nfs saphana AFF 4]
+image:saphana_aff_nfs_image4.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 Quel que soit le système AFF déployé, le paysage SAP HANA peut également être étendu en ajoutant des contrôleurs de stockage certifiés en fonction de la densité de nœud souhaitée, comme l'illustre la figure suivante.
 
-image::saphana_aff_nfs_image5.png[image nfs saphana AFF 5]
+image:saphana_aff_nfs_image5.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 
 
@@ -54,7 +54,7 @@ Grâce à la technologie NetApp SnapMirror, les copies Snapshot créées sur un 
 
 Les journaux de la base de données peuvent être sauvegardés directement sur le stockage secondaire à l'aide d'un montage NFS, comme illustré dans la figure suivante.
 
-image::saphana_aff_nfs_image6.jpg[image nfs saphana AFF 6]
+image:saphana_aff_nfs_image6.jpg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 Les sauvegardes Snapshot basées sur le stockage offrent des avantages significatifs par rapport aux sauvegardes conventionnelles basées sur des fichiers. Ces avantages sont, entre autres, les suivants :
 
@@ -91,7 +91,7 @@ Les serveurs des sites de reprise après incident peuvent être utilisés en tan
 
 Les deux méthodes de réplication permettent d'exécuter des tests du workflow de reprise d'activité sans affecter le RPO et RTO. Les volumes FlexClone sont créés sur le stockage et rattachés aux serveurs de test de reprise après incident.
 
-image::saphana_aff_nfs_image7.png[image nfs saphana AFF 7]
+image:saphana_aff_nfs_image7.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 La réplication synchrone offre le mode StrictSync. Si l'écriture sur le stockage secondaire n'est pas terminée, pour une raison quelconque, les E/S de l'application échouent, ce qui permet de s'assurer que les systèmes de stockage primaire et secondaire sont identiques. Les E/S de l'application vers le système primaire sont reprises après le retour de la relation SnapMirror à l'état insync. En cas de panne du stockage primaire, les E/S des applications peuvent reprendre sur le stockage secondaire après le basculement, sans perte de données. En mode StrictSync, le RPO est toujours zéro.
 
@@ -101,4 +101,4 @@ La réplication synchrone offre le mode StrictSync. Si l'écriture sur le stocka
 
 La figure suivante présente une vue d'ensemble générale de la solution. Le cluster de stockage de chaque site assure une haute disponibilité locale et est utilisé pour la charge de travail de production. Les données de chaque site sont répliquées de manière synchrone sur l'autre emplacement et sont disponibles en cas de basculement.
 
-image::saphana_aff_nfs_image8.png[image nfs saphana AFF 8]
+image:saphana_aff_nfs_image8.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]

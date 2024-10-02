@@ -10,7 +10,7 @@ summary: 'Les sections suivantes fournissent des instructions d"installation et 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

@@ -10,7 +10,7 @@ summary: 'Microsoft Azure ne garantit pas la disponibilité d"un type de machine
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

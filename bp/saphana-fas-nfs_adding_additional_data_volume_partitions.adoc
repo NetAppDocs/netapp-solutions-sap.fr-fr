@@ -10,7 +10,7 @@ summary: 'En commençant par SAP HANA 2.0 SPS4, vous pouvez configurer des parti
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -212,4 +212,4 @@ Exécutez l'instruction SQL suivante sur la base de données du locataire pour a
 ....
 ALTER SYSTEM ALTER DATAVOLUME ADD PARTITION PATH '/hana/data2/SID/';
 ....
-image::saphana-fas-nfs_image19.jpg[image nfs saphana FAS 19]
+image:saphana-fas-nfs_image19.jpg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]

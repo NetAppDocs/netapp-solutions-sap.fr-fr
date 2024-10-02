@@ -10,7 +10,7 @@ summary: Les étapes de la restauration de bases de données HANA sont décrites
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

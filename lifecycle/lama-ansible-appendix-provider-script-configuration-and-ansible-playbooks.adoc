@@ -10,7 +10,7 @@ summary: 'Dans cette documentation, le fichier de configuration, le script d"ex√
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

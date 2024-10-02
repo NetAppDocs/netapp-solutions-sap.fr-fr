@@ -10,8 +10,11 @@ summary:
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
+
+[role="lead"]
+Historique des versions :
 
 |===
 | Version | Date | Historique des versions du document 

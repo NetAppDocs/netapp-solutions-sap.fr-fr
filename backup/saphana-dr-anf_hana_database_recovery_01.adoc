@@ -10,7 +10,7 @@ summary: Les étapes suivantes sont décrites pour la restauration de bases de d
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

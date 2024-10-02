@@ -10,6 +10,8 @@ summary:
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
+[role="lead"]
+Cette section présente les fonctionnalités de reprise d'activité pour SAP HANA dans Azure NetApp Files (ANF).
