@@ -369,17 +369,6 @@ host1 ...... WWPN:2100000e1e163701
 
 NOTE: Le `sanlun` L'outil fait partie des utilitaires hôtes NetApp et doit être installé sur chaque hôte SAP HANA. Pour plus d'informations, reportez-vous à la section « Host_setup ».
 
-Les étapes suivantes montrent la configuration d'un système HANA à plusieurs hôtes 2+1 avec le SID SS3 :
-
-. Démarrez l'assistant de provisionnement d'applications pour SAP HANA dans System Manager et fournissez les informations requises. Tous les initiateurs (WWPN) de tous les hôtes doivent être ajoutés.
-+
-image:saphana_aff_fc_image18.jpeg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
-
-. Confirmation que le stockage est provisionné avec succès
-
-
-image:saphana_aff_fc_image19.jpeg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
-
 
 
 == Création de LUN, volumes et mappage de LUN sur des groupes initiateurs à l'aide de l'interface de ligne de commandes
@@ -396,7 +385,8 @@ vol create -volume FC5_data_mnt00002  -aggregate aggr2_2 -size 1200g -snapshot-p
 vol create -volume FC5_data2_mnt00001 -aggregate aggr1_2 -size 1200g -snapshot-policy none -foreground true -encrypt false -space-guarantee none
 vol create -volume FC5_log2_mnt00002  -aggregate aggr2_2 -size 280g -snapshot-policy none -foreground true -encrypt false -space-guarantee none
 vol create -volume FC5_log2_mnt00001  -aggregate aggr1_1 -size 280g -snapshot-policy none -foreground true -encrypt false  -space-guarantee none
-vol create -volume FC5_data2_mnt00002  -aggregate aggr2_1 -size 1200g -snapshot-policy none -foreground true -encrypt false -space-guarantee nonevol create -volume FC5_shared -aggregate aggr1_1 -size 512g -state online -policy default -snapshot-policy none -junction-path /FC5_shared -encrypt false  -space-guarantee none
+vol create -volume FC5_data2_mnt00002  -aggregate aggr2_1 -size 1200g -snapshot-policy none -foreground true -encrypt false -space-guarantee none
+vol create -volume FC5_shared -aggregate aggr1_1 -size 512g -state online -policy default -snapshot-policy none -junction-path /FC5_shared -encrypt false  -space-guarantee none
 ....
 . Créer toutes les LUN.
 +
