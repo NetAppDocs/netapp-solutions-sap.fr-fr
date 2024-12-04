@@ -11,7 +11,7 @@ summary: 'La gamme de produits NetApp FAS a été certifiée pour une utilisatio
 [role="lead"]
 La gamme de produits NetApp FAS a été certifiée pour une utilisation avec SAP HANA dans le cadre de projets Tailored Data Center Integration (TDI). Le système de stockage d'entreprise certifié se caractérise par le logiciel NetApp ONTAP.
 
-Nils Bauer et Marco Schön, NetApp
+Marco Schön, NetApp
 
 Cette certification n'est actuellement valable que pour les modèles suivants :
 
@@ -81,7 +81,7 @@ Pour plus d'informations sur les prérequis et les recommandations des systèmes
 
 Il existe plusieurs options pour connecter le stockage à des machines virtuelles (VM). La première option consiste à connecter les volumes de stockage avec NFS directement hors du système d'exploitation invité. Avec cette option, la configuration des hôtes et des stockages n'est pas différente d'un hôte physique à l'autre.
 
-Les data stores NFS ou VVOL avec NFS sont également pris en charge. Pour les deux options, seule une donnée SAP HANA ou un volume de journal doit être stocké dans le datastore pour la production. De plus, les fonctionnalités de sauvegarde et de restauration basées sur les copies Snapshot, orchestrées par SnapCenter, et les solutions reposant sur ceci, comme le clonage du système SAP, ne peuvent pas être mises en œuvre.
+Les data stores NFS ou VVOL avec NFS sont également pris en charge. Pour les deux options, seule une donnée SAP HANA ou un volume de journal doit être stocké dans le datastore pour la production.
 
 Ce document décrit la configuration recommandée avec des montages NFS directs à partir du système d'exploitation invité.
 
