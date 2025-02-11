@@ -134,17 +134,6 @@ image:saphana_fas_fc_image15.jpeg["Figure montrant la boîte de dialogue entrée
 
 
 
-== Jeux de ports FCP
-
-Un ensemble de ports FCP est utilisé pour définir les LIFs à utiliser par un groupe initiateur spécifique. En général, toutes les LIF créées pour les systèmes HANA sont placées dans le même ensemble de ports. La figure suivante montre la configuration d'un port set nommé 32g, qui inclut les quatre LIF qui ont déjà été créées.
-
-image:saphana_fas_fc_image16.jpeg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
-
-
-NOTE: Avec ONTAP 9.8, un ensemble de ports n'est pas nécessaire, mais il peut être créé et utilisé via la ligne de commande.
-
-
-
 == Groupes d'initiateurs
 
 Un groupe initiateur peut être configuré pour chaque serveur ou pour un groupe de serveurs nécessitant l'accès à une LUN. La configuration d'un groupe initiateur nécessite les noms de port (WWPN) mondiaux des serveurs.

@@ -69,7 +69,7 @@ La présentation suivante résume les étapes de configuration du stockage requi
 . Créez et configurez les agrégats requis, comme décrit dans la section «<<Configuration d'agrégat>>."
 . Créer un serveur SVM (Storage Virtual machine), comme décrit dans la section «<<Configuration des serveurs virtuels de stockage>>."
 . Création d'interfaces logiques (LIF), comme décrit dans la section «<<Configuration de l'interface logique>>."
-. Créez un ensemble de ports, comme décrit dans la section «<<Jeux de ports FCP>>."
+. Créez un ensemble de ports, comme décrit dans la section «<<FCP port sets>>."
 . Créez des groupes initiateurs, des volumes et des LUN au sein des agrégats, comme décrit à la section création de «<<Creating LUNs,Des volumes et un mappage des LUN sur les groupes initiateurs>> ».
 
 
@@ -128,17 +128,6 @@ image:saphana_aff_fc_image13.jpeg["Figure montrant la boîte de dialogue entrée
 Lors de la création d'un SVM avec ONTAP 9.8 System Manager, vous pouvez sélectionner tous les ports FCP physiques requis et une LIF par port physique est créée automatiquement.
 
 image:saphana_aff_fc_image14.jpeg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
-
-
-
-== Jeux de ports FCP
-
-Un jeu de ports FCP est utilisé pour définir les LIFs à utiliser par un groupe initiateur spécifique. En général, toutes les LIF créées pour les systèmes HANA sont placées dans le même ensemble de ports. La figure suivante montre la configuration d'un port set nommé 32g qui inclut les quatre LIF qui ont déjà été créées.
-
-image:saphana_aff_fc_image15.jpeg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
-
-
-NOTE: Avec ONTAP 9.8, un ensemble de ports n'est pas nécessaire, mais il peut être créé et utilisé via la ligne de commande.
 
 
 
