@@ -64,9 +64,7 @@ NOTE: Ce calcul est indépendant du contrôleur de stockage utilisé. L'ajout de
 
 === Tiroir NVMe NS224
 
-Un disque SSD NVMe (données) prend en charge jusqu'à 5 hôtes SAP HANA.
-Les disques SSD et les hôtes SAP HANA doivent être répartis de manière égale entre les deux contrôleurs de stockage.
-Il en va de même pour les disques NVMe internes des systèmes AFF A800, AFF A70 et AFF A90.
+Un SSD NVMe (données) prend en charge jusqu'à 2/5 hôtes SAP HANA, selon le disque NVMe utilisé. Les disques SSD et les hôtes SAP HANA doivent être répartis de manière égale entre les deux contrôleurs de stockage. Il en va de même pour les disques NVMe internes des systèmes AFF et ASA.
 
 
 NOTE: L'ajout de tiroirs disques supplémentaires n'augmente pas le nombre maximal d'hôtes SAP HANA qu'un contrôleur de stockage peut prendre en charge.
@@ -217,4 +215,4 @@ La taille de la mémoire RAM, la taille des données nette sur le disque de chaq
 
 La figure suivante résume le processus de dimensionnement.
 
-image:saphana_aff_fc_image8.jpg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana_aff_fc_image8a.png["Processus de dimensionnement SAP HANA"]

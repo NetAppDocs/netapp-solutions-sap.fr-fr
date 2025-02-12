@@ -27,15 +27,13 @@ Lors de la configuration du réseau, suivez les instructions suivantes :
 * Pour éviter les interférences entre elles, utilisez des chemins réseau/E/S distincts pour le journal et la zone de données.
 
 
-La figure suivante montre un exemple avec quatre hôtes SAP HANA reliés à une paire haute disponibilité de contrôleur de stockage utilisant un réseau 10GbE. Chaque hôte SAP HANA dispose d'une connexion active/passive vers la structure redondante.
+La figure suivante montre un exemple avec quatre hôtes SAP HANA reliés à une paire haute disponibilité de contrôleur de stockage utilisant un réseau 10GbE. Chaque hôte SAP HANA dispose d'une connexion actif-actif à la structure redondante.
 
-Au niveau de la couche de stockage, quatre connexions actives sont configurées pour fournir un débit de 10 Go pour chaque hôte SAP HANA. En outre, une interface de spare est configurée sur chaque contrôleur de stockage.
+Au niveau de la couche de stockage, quatre connexions actives sont configurées pour fournir un débit de 10 Go pour chaque hôte SAP HANA. Au niveau de la couche de stockage, un domaine de diffusion d'une taille MTU de 9 9000 est configuré et toutes les interfaces physiques requises sont ajoutées à ce domaine de broadcast. Cette approche attribue automatiquement ces interfaces physiques au même groupe de basculement. Toutes les interfaces logiques (LIF) attribuées à ces interfaces physiques sont ajoutées à ce failover group.
 
-Au niveau de la couche de stockage, un domaine de diffusion d'une taille MTU de 9 9000 est configuré et toutes les interfaces physiques requises sont ajoutées à ce domaine de broadcast. Cette approche attribue automatiquement ces interfaces physiques au même groupe de basculement. Toutes les interfaces logiques (LIF) attribuées à ces interfaces physiques sont ajoutées à ce failover group.
+image:saphana_aff_nfs_image10a.png["Présentation du réseau"]
 
-image:saphana_aff_nfs_image10.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
-
-En général, il est également possible d'utiliser les groupes d'interface haute disponibilité sur les serveurs (liaisons) et les systèmes de stockage (par exemple, le protocole LACP (Link Aggregation Control Protocol) et les ifgroups). Avec les groupes d'interface haute disponibilité, vérifiez que la charge est répartie de manière égale entre toutes les interfaces du groupe. La distribution de la charge dépend de la fonctionnalité de l'infrastructure du commutateur réseau.
+En général, il est recommandé d'utiliser les groupes d'interface haute disponibilité sur les serveurs (liaisons) et les systèmes de stockage (par exemple, le protocole LACP (Link Aggregation Control Protocol) et ifgroups). Avec les groupes d'interface haute disponibilité, vérifiez que la charge est répartie de manière égale entre toutes les interfaces du groupe. La distribution de la charge dépend de la fonctionnalité de l'infrastructure du commutateur réseau.
 
 
 NOTE: Selon le nombre d'hôtes SAP HANA et la vitesse de connexion utilisées, un nombre différent de ports physiques actifs est nécessaire. Pour plus de détails, reportez-vous à la section link:saphana_aff_nfs_storage_controller_setup.html#lif-configuration["Configuration de LIF"].

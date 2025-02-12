@@ -138,7 +138,7 @@ Le nombre maximal de montages de volumes de données et de journaux par interfac
 | Vitesse du port Ethernet | 10GbE | 25 GbE | 40 GbE | 100GeE 
 
 
-| Nombre maximal de montages de journaux ou de volumes de données par port physique | 2 | 6 | 12 | 24 
+| Nombre maximal de montages de journaux ou de volumes de données par port physique | 3 | 8 | 12 | 30 
 |===
 
 NOTE: Le partage d'une LIF entre différents hôtes SAP HANA peut nécessiter un remontage des volumes de données ou de journaux sur une autre LIF. Cette modification évite de pénalités si les volumes sont déplacés vers un autre contrôleur de stockage.

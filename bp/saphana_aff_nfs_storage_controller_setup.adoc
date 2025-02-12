@@ -88,7 +88,7 @@ Un maximum d'un tiroir disque peut être connecté à une pile SAS afin d'assure
 
 NOTE: Avec le tiroir disque DS224C, il est possible d'utiliser un câblage SAS à quatre chemins, sans qu'il soit nécessaire.
 
-image:saphana_aff_nfs_image13.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana_aff_nfs_image13.png["Connexions des tiroirs SAS"]
 
 
 
@@ -96,17 +96,17 @@ image:saphana_aff_nfs_image13.png["Figure montrant la boîte de dialogue entrée
 
 Chaque tiroir disque NVMe NS224 est connecté par contrôleur à l'aide de deux ports 100 GbE. Les disques dans chaque tiroir doivent être répartis de manière homogène sur les deux contrôleurs de la paire haute disponibilité. ADPv2, comme décrit dans le chapitre de configuration d'agrégats, est également utilisé pour le tiroir disque NS224. La figure suivante décrit la connexion du tiroir disque avec un disque NVMe.
 
-image:saphana_aff_nfs_image14.jpg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana_aff_nfs_image14a.png["Connexions des tiroirs disques MVME"]
 
 
 
 == Configuration d'agrégat
 
-En général, vous devez configurer deux agrégats par contrôleur, indépendamment du tiroir disque ou de la technologie de disque (SSD SAS ou SSD NVMe) utilisé. Cette étape est nécessaire pour que vous puissiez utiliser toutes les ressources disponibles du contrôleur. Pour les systèmes AFF A200, un seul agrégat de données suffit.
+En général, vous devez configurer deux agrégats par contrôleur, indépendamment du tiroir disque ou de la technologie de disque (SSD SAS ou SSD NVMe) utilisé.
 
 L'image suivante montre une configuration de 12 hôtes SAP HANA qui s'exécutent sur un tiroir SAS 12 Gb configuré avec ADPv2. Six hôtes SAP HANA sont connectés à chaque contrôleur de stockage. Quatre agrégats distincts, deux sur chaque contrôleur de stockage, sont configurés. Chaque agrégat est configuré avec 11 disques comprenant neuf données et deux partitions de parité. Deux partitions de rechange sont disponibles pour chaque contrôleur.
 
-image:saphana_aff_nfs_image15.jpg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana_aff_nfs_image15a.png["Configuration d'agrégat"]
 
 
 
@@ -133,7 +133,7 @@ La quantité maximale de montages des volumes de données et de journaux par int
 | Vitesse du port Ethernet | 10GbE | 25 GbE | 40 GbE | 100GeE 
 
 
-| Nombre maximal de montages de journaux ou de volumes de données par port physique | 2 | 6 | 12 | 24 
+| Nombre maximal de montages de journaux ou de volumes de données par port physique | 3 | 8 | 12 | 30 
 |===
 
 NOTE: Le partage d'une LIF entre différents hôtes SAP HANA peut nécessiter un remontage des volumes de données ou de journaux sur une autre LIF. Cette modification évite de pénalités si les volumes sont déplacés vers un autre contrôleur de stockage.
@@ -154,7 +154,7 @@ NOTE: Si un seul contrôleur de stockage d'une paire haute disponibilité est ut
 
 NOTE: Si les volumes de données et de journaux sont stockés sur le même contrôleur, l'accès du serveur au stockage doit être effectué avec deux LIF différentes : une LIF pour accéder au volume de données et l'autre pour accéder au volume du journal.
 
-image:saphana_aff_nfs_image16.jpg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana_aff_nfs_image16a.png["Configuration des volumes hôtes uniques SAP HANA"]
 
 Pour chaque hôte SAP HANA, un volume de données, un volume de journal et un volume pour `/hana/shared` sont configurés. Le tableau suivant présente un exemple de configuration pour les systèmes SAP HANA à un hôte unique.
 
@@ -199,7 +199,7 @@ NOTE: Si un seul contrôleur de stockage d'une paire haute disponibilité est ut
 
 NOTE: Si les volumes de données et de journaux sont stockés sur le même contrôleur, l'accès du serveur au stockage doit être effectué avec deux LIF différentes : une LIF pour accéder au volume de données et l'autre pour accéder au volume du journal.
 
-image:saphana_aff_nfs_image17.jpg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana_aff_nfs_image17a.png["Configuration des volumes plusieurs hôtes SAP HANA"]
 
 Pour chaque hôte SAP HANA, un volume de données et un volume journal sont créés. Le `/hana/shared` Le volume est utilisé par tous les hôtes du système SAP HANA. Le tableau suivant présente un exemple de configuration pour un système SAP HANA à plusieurs hôtes avec quatre hôtes actifs.
 

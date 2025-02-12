@@ -69,7 +69,6 @@ La présentation suivante résume les étapes de configuration du stockage requi
 . Créez et configurez les agrégats requis, comme décrit dans la section «<<Configuration d'agrégat>>."
 . Créer un serveur SVM (Storage Virtual machine), comme décrit dans la section «<<Configuration des serveurs virtuels de stockage>>."
 . Création d'interfaces logiques (LIF), comme décrit dans la section «<<Configuration de l'interface logique>>."
-. Créez un ensemble de ports, comme décrit dans la section «<<FCP port sets>>."
 . Créez des groupes initiateurs, des volumes et des LUN au sein des agrégats, comme décrit à la section création de «<<Creating LUNs,Des volumes et un mappage des LUN sur les groupes initiateurs>> ».
 
 
@@ -81,30 +80,33 @@ La présentation suivante résume les étapes de configuration du stockage requi
 
 === Tiroirs disques basés sur SAS
 
-Un maximum d'un tiroir disque peut être connecté à une pile SAS afin d'assurer les performances requises pour les hôtes SAP HANA, comme l'illustre la figure suivante. Les disques dans chaque tiroir doivent être répartis de manière homogène entre les deux contrôleurs de la paire haute disponibilité. La fonction ADPv2 est utilisée avec ONTAP 9 et les nouveaux tiroirs disques DS224C.
+Un maximum d'un tiroir disque peut être connecté à une pile SAS afin d'assurer les performances requises pour les hôtes SAP HANA, comme l'illustre la figure suivante. Les disques dans chaque tiroir doivent être répartis de manière homogène entre les deux contrôleurs de la paire haute disponibilité. ADPv2 est utilisé avec ONTAP 9 et les tiroirs disques DS224C.
 
 
 NOTE: Avec le tiroir disque DS224C, il est possible d'utiliser un câblage SAS à quatre chemins, sans qu'il soit nécessaire.
 
-image:saphana_aff_fc_image10.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana_aff_fc_image10.png["Connexion du tiroir disque DS224C"]
 
 
 
 === Tiroirs disques basés sur NVMe (100 GbE)
 
-Chaque tiroir de bureau NVMe NS224 est connecté par contrôleur à deux ports 100 GbE, comme illustré dans la figure ci-dessous. Les disques dans chaque tiroir doivent être répartis de manière homogène sur les deux contrôleurs de la paire haute disponibilité. ADPv2 est également utilisé pour le tiroir disque NS224.
+Chaque tiroir disque NVMe NS224 est connecté à deux ports 100 GbE par contrôleur, comme illustré dans la figure ci-dessous. Les disques dans chaque tiroir doivent être répartis de manière homogène sur les deux contrôleurs de la paire haute disponibilité. ADPv2 est également utilisé pour le tiroir disque NS224.
 
-image:saphana_aff_fc_image11.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana_aff_fc_image11a.png["Connexion au tiroir disque NVMe NS224"]
 
 
 
 == Configuration d'agrégat
 
-De manière générale, vous devez configurer deux agrégats par contrôleur, quel que soit le tiroir disque ou la technologie HDD utilisée. Cette étape est nécessaire pour que vous puissiez utiliser toutes les ressources disponibles du contrôleur. Pour les systèmes AFF A200, un seul agrégat de données est suffisant.
+De manière générale, vous devez configurer deux agrégats par contrôleur, quel que soit le tiroir disque ou la technologie HDD utilisée. Cette étape est nécessaire pour que vous puissiez utiliser toutes les ressources disponibles du contrôleur.
+
+
+NOTE: Les systèmes ASA lancés après août 2024 ne nécessitent pas cette étape car elle est effectuée automatiquement
 
 La figure ci-dessous présente une configuration de 12 hôtes SAP HANA qui s'exécutent sur un tiroir SAS 12 Gb configuré avec ADPv2. Six hôtes SAP HANA sont connectés à chaque contrôleur de stockage. Quatre agrégats distincts, deux sur chaque contrôleur de stockage, sont configurés. Chaque agrégat est configuré avec 11 disques comprenant neuf données et deux partitions de parité. Deux partitions de rechange sont disponibles pour chaque contrôleur.
 
-image:saphana_aff_fc_image12.jpg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana_aff_fc_image12a.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 
 
@@ -123,11 +125,14 @@ vserver modify -vserver <svm-name> -qos-policy-group none
 
 Dans la configuration du cluster de stockage, une interface réseau (LIF) doit être créée et attribuée à un port FCP dédié. Si, par exemple, quatre ports FCP sont requis pour des raisons de performances, quatre LIF doivent être créées. La figure ci-dessous présente une capture d'écran des huit LIF (nommée `fc_*_*`) qui ont été configurés sur le `hana` SVM.
 
-image:saphana_aff_fc_image13.jpeg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana_aff_fc_image13a.png["Présentation des interfaces logiques"]
 
-Lors de la création d'un SVM avec ONTAP 9.8 System Manager, vous pouvez sélectionner tous les ports FCP physiques requis et une LIF par port physique est créée automatiquement.
+Au cours de la création du SVM avec ONTAP System Manager, vous pouvez sélectionner tous les ports FCP physiques requis et une LIF par port physique est créée automatiquement.
 
-image:saphana_aff_fc_image14.jpeg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana_aff_fc_image14a.png["Création des SVM"]
+
+
+NOTE: Les systèmes ASA lancés après août 2024 ne nécessitent pas cette étape car elle est effectuée automatiquement
 
 
 
@@ -138,7 +143,7 @@ La figure suivante montre la configuration de volume de quatre systèmes SAP HAN
 
 NOTE: Si un seul contrôleur de stockage d'une paire HA est utilisé pour les systèmes SAP HANA, les volumes de données et les volumes journaux peuvent également être stockés sur le même contrôleur de stockage.
 
-image:saphana_aff_fc_image16.jpg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana_aff_fc_image16a.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 Pour chaque hôte SAP HANA, un volume de données, un volume de journal et un volume pour `/hana/shared` sont configurés. Le tableau suivant présente un exemple de configuration avec quatre systèmes SAP HANA à un seul hôte.
 
@@ -220,7 +225,7 @@ NOTE: Si un seul contrôleur de stockage d'une paire haute disponibilité est ut
 
 NOTE: Les systèmes ASA AFF de NetApp ne prennent pas en charge NFS en tant que protocole. NetApp recommande d'utiliser un système AFF ou FAS supplémentaire pour le `/hana/shared` système de fichiers.
 
-image:saphana_aff_fc_image17.jpg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana_aff_fc_image17a.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 Pour chaque hôte SAP HANA, un volume de données et un volume journal sont créés. Le `/hana/shared` Le volume est utilisé par tous les hôtes du système SAP HANA. Le tableau suivant montre un exemple de configuration pour un système SAP HANA à plusieurs hôtes dans 4+1.
 
@@ -377,6 +382,10 @@ vol create -volume FC5_log2_mnt00001  -aggregate aggr1_1 -size 280g -snapshot-po
 vol create -volume FC5_data2_mnt00002  -aggregate aggr2_1 -size 1200g -snapshot-policy none -foreground true -encrypt false -space-guarantee none
 vol create -volume FC5_shared -aggregate aggr1_1 -size 512g -state online -policy default -snapshot-policy none -junction-path /FC5_shared -encrypt false  -space-guarantee none
 ....
++
+
+NOTE: Les systèmes ASA lancés après août 2024 ne nécessitent pas cette étape car elle est automatiquement effectuée pendant _lun create_
+
 . Créer toutes les LUN.
 +
 ....
@@ -389,6 +398,10 @@ lun create -path /vol/FC5_log2_mnt00001/FC5_log2_mnt00001 -size 260g -ostype lin
 lun create -path /vol/FC5_log_mnt00002/FC5_log_mnt00002 -size 260g -ostype linux -space-reserve disabled -space-allocation disabled -class regular
 lun create -path /vol/FC5_log2_mnt00002/FC5_log2_mnt00002 -size 260g -ostype linux -space-reserve disabled -space-allocation disabled -class regular
 ....
++
+
+NOTE: Indiquez le nom de LUN uniquement en tant que chemin pour les systèmes ASA lancés après août 2024. Cela s'applique également à la commande _lun map_ ci-dessous. En outre, les options _-space-Reserve_ et _-space-allocation_ ne sont pas disponibles.
+
 . Créez le groupe initiateur pour tous les serveurs appartenant au système FC5.
 +
 ....

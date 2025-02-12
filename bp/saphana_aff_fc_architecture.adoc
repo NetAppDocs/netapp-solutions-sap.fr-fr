@@ -20,7 +20,7 @@ Différents modèles de la gamme de produits des systèmes AFF peuvent être com
 
 La figure suivante présente un exemple de configuration avec huit hôtes SAP HANA reliés à une paire haute disponibilité de stockage.
 
-image:saphana_aff_fc_image2.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana_aff_fc_image2a.png["Huit hôtes SAP HANA reliés à une paire haute disponibilité de stockage"]
 
 Cette architecture peut évoluer en deux dimensions :
 
@@ -30,11 +30,11 @@ Cette architecture peut évoluer en deux dimensions :
 
 La figure suivante montre un exemple de configuration dans lequel davantage d'hôtes SAP HANA sont connectés aux contrôleurs de stockage. Dans cet exemple, il faut davantage de tiroirs disques pour répondre aux exigences de capacité et de performances des 3 16 hôtes SAP HANA. Selon les besoins en débit total, vous devez ajouter des connexions FC supplémentaires aux contrôleurs de stockage.
 
-image:saphana_aff_fc_image3.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana_aff_fc_image3a.png["Hôtes SAP HANA supplémentaires reliés à une paire haute disponibilité de stockage"]
 
 Quel que soit le système AFF déployé, l'environnement SAP HANA peut également être étendu en ajoutant des contrôleurs de stockage certifiés en fonction de la densité de nœud souhaitée, comme illustré dans la figure suivante.
 
-image:saphana_aff_fc_image4.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana_aff_fc_image4a.png["Ajout d'une paire haute disponibilité de stockage supplémentaire"]
 
 
 
