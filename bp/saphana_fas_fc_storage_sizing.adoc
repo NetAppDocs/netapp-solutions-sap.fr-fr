@@ -73,6 +73,12 @@ NOTE: Ce calcul est indépendant du contrôleur de stockage utilisé. L'ajout de
 
 
 
+=== Tiroir NVMe NS224
+
+Un disque SSD NVMe (données) prend en charge jusqu'à 2 hôtes SAP HANA. Les disques SSD et les hôtes SAP HANA doivent être répartis de manière égale entre les deux contrôleurs de stockage.
+
+
+
 == Workloads mixtes
 
 SAP HANA et les autres charges de travail applicatives s'exécutant sur le même contrôleur de stockage ou dans le même agrégat de stockage sont pris en charge. Il s'agit cependant d'une bonne pratique NetApp de séparer les workloads SAP HANA de toutes les autres charges de travail applicatives.

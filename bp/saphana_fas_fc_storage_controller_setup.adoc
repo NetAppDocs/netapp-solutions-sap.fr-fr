@@ -67,13 +67,13 @@ FabricPool est une bonne option pour déplacer les sauvegardes des journaux vers
 
 La présentation suivante résume les étapes de configuration du stockage requises. Chaque étape est traitée de manière plus détaillée dans les sections suivantes. Avant d'entreprendre ces étapes, terminez la configuration du matériel de stockage, l'installation du logiciel ONTAP et la connexion des ports FCP de stockage à la structure SAN.
 
-. Vérifiez la configuration de la pile SAS appropriée, comme indiqué dans la section link:saphana_fas_fc_storage_controller_setup.html#disk-shelf-connection["Connexion du tiroir disque."]
-. Créez et configurez les agrégats requis, comme décrit dans la section link:saphana_fas_fc_storage_controller_setup.html#aggregate-configuration["Configuration d'agrégat."]
-. Créer un SVM (Storage Virtual machine) comme décrit dans la section link:saphana_fas_fc_storage_controller_setup.html#storage-virtual-machine-configuration["Configuration des serveurs virtuels de stockage."]
-. Créer des interfaces logiques (LIF) comme décrit dans la section link:saphana_fas_fc_storage_controller_setup.html#logical-interface-configuration["Configuration de l'interface logique."]
-. Créez des jeux de ports FCP comme décrit dans la section link:saphana_fas_fc_storage_controller_setup.html#fcp-port-sets["Jeux de ports FCP."]
-. Créez des groupes initiateurs avec des noms WWN (WWN) des serveurs HANA dans le monde entier, comme décrit dans la section link:saphana_fas_fc_storage_controller_setup.html#initiator-groups["Groupes d'initiateurs."]
-. Créez des volumes et des LUN au sein des agrégats, comme décrit dans la section link:saphana_fas_fc_storage_controller_setup.html#volume-and-lun-configuration-for-sap-hana-single-host-systems["Configuration de volumes et de LUN pour les systèmes SAP HANA à un seul hôte"] et link:saphana_fas_fc_storage_controller_setup.html#volume-and-lun-configuration-for-sap-hana-multiple-host-systems["Configuration de volumes et de LUN pour les systèmes SAP HANA à plusieurs hôtes."]
+. Vérifiez la configuration correcte des tiroirs disques, comme décrit dans la <<Connexion du tiroir disque>>.
+. Créez et configurez les agrégats requis, comme décrit à la section <<Configuration d'agrégat>>.
+. Créez un SVM (Storage Virtual machine), comme décrit dans la <<Configuration des serveurs virtuels de stockage>>.
+. Créez des interfaces logiques (LIF), comme décrit dans <<Configuration de l'interface logique>>.
+. Créez des groupes initiateurs (igroups) avec des noms WWN (WWN) des serveurs HANA, comme décrit dans la section link:saphana_FAS_fc_Storage_Controller_setup.html#initiator-groups <<Groupes d'initiateurs>>.
+. Créez des volumes et des LUN au sein d'agrégats comme décrit dans les sections <<Configuration de volumes et de LUN pour les systèmes SAP HANA à un seul hôte>> et <<Configuration de volumes et de LUN pour les systèmes SAP HANA à plusieurs hôtes>>
+. Créez des groupes initiateurs, des volumes et des LUN au sein des agrégats, comme décrit dans la section <<#lun_create,Création de LUN, volumes et mappage de LUN sur des groupes initiateurs>>.
 
 
 
@@ -87,6 +87,14 @@ image:saphana_fas_fc_image10.png["Figure montrant la boîte de dialogue entrée/
 Avec les disques SSD, un maximum d'un tiroir disque peut être connecté à une pile SAS afin d'assurer les performances requises pour les hôtes SAP HANA, comme illustré dans la figure suivante. Les disques dans chaque tiroir doivent être répartis de manière homogène sur les deux contrôleurs de la paire haute disponibilité. Avec le tiroir disque DS224C, il est possible d'utiliser un câblage SAS à quatre chemins, sans qu'il soit nécessaire.
 
 image:saphana_fas_fc_image11.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+
+
+=== Tiroirs disques NVMe (100 GbE)
+
+Chaque tiroir disque NVMe NS224 est connecté à deux ports 100 GbE par contrôleur, comme illustré dans la figure ci-dessous. Les disques dans chaque tiroir doivent être répartis de manière homogène sur les deux contrôleurs de la paire haute disponibilité.
+
+image:saphana_fas_ns224.png["Connexions des tiroirs disques MVME"]
 
 
 
@@ -106,7 +114,7 @@ image:saphana_fas_fc_image12.png["Figure montrant la boîte de dialogue entrée/
 
 === Configuration d'agrégat avec des systèmes SDD uniquement
 
-En règle générale, deux agrégats par contrôleur doivent être configurés, indépendamment desquels le tiroir disque ou la technologie HDD sont utilisés. Pour les systèmes de la gamme FAS2000, un seul agrégat de données est suffisant.
+En règle générale, deux agrégats par contrôleur doivent être configurés, indépendamment desquels le tiroir disque ou la technologie HDD sont utilisés.
 
 La figure ci-dessous présente une configuration de 12 hôtes SAP HANA qui s'exécutent sur un tiroir SAS 12 Gb configuré avec ADPv2. Six hôtes SAP HANA sont connectés à chaque contrôleur de stockage. Quatre agrégats distincts, deux sur chaque contrôleur de stockage, sont configurés. Chaque agrégat est configuré avec 11 disques comprenant neuf données et deux partitions de parité. Deux partitions de rechange sont disponibles pour chaque contrôleur.
 
@@ -122,15 +130,15 @@ Plusieurs paysages SAP avec des bases de données SAP HANA peuvent utiliser une 
 
 == Configuration de l'interface logique
 
-Dans la configuration du cluster de stockage, une interface réseau (LIF) doit être créée et attribuée à un port FCP dédié. Si, par exemple, quatre ports FCP sont requis pour des raisons de performances, quatre LIF doivent être créées. La figure ci-dessous présente une capture d'écran des quatre LIF (nommée `fc_*_*)` qui ont été configurés sur le `hana` SVM.
+Dans la configuration du cluster de stockage, une interface réseau (LIF) doit être créée et attribuée à un port FCP dédié. Si, par exemple, quatre ports FCP sont requis pour des raisons de performances, quatre LIF doivent être créées. La figure suivante présente une capture d'écran des huit LIF configurées sur le SVM.
 
-image:saphana_fas_fc_image14.jpeg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana_fas_fc_image14a.png["Présentation des interfaces logiques"]
 
-Lors de la création de SVM avec ONTAP 9.8 System Manager, tous les ports FCP physiques requis peuvent être sélectionnés et une LIF par port physique est créée automatiquement.
+Lors de la création de SVM avec ONTAP 9 System Manager, tous les ports FCP physiques requis peuvent être sélectionnés et une LIF par port physique est créée automatiquement.
 
-La figure suivante décrit la création d'un SVM et de LIF avec ONTAP 9.8 System Manager.
+La figure suivante décrit la création d'un SVM et de LIF avec ONTAP System Manager.
 
-image:saphana_fas_fc_image15.jpeg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana_fas_fc_image15a.png["Création des SVM"]
 
 
 
@@ -151,15 +159,16 @@ host1 ...... WWPN:2100000e1e163701
 
 NOTE: Le `sanlun` L'outil fait partie des utilitaires hôtes NetApp et doit être installé sur chaque hôte SAP HANA. Plus de détails sont disponibles dans la section link:saphana_fas_fc_host_setup.html["Configuration de l'hôte."]
 
-La figure ci-dessous présente la liste des initiateurs pour SS3_HANA. Le groupe initiateur contient tous les WWPN des serveurs et est attribué au jeu de ports du contrôleur de stockage.
+Les groupes initiateurs peuvent être créés à l'aide de l'interface de ligne de commandes du cluster ONTAP.
 
-image:saphana_fas_fc_image17.jpeg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
-
+....
+lun igroup create -igroup <igroup name> -protocol fcp -ostype linux -initiator <list of initiators> -vserver <SVM name>
+....
 
 
 == Configuration de volumes et de LUN pour les systèmes SAP HANA à un seul hôte
 
-La figure suivante montre la configuration de volume de quatre systèmes SAP HANA à hôte unique. Les volumes de données et de journaux de chaque système SAP HANA sont répartis sur différents contrôleurs de stockage. Par exemple, volume `SID1`_`data`_`mnt00001 `is configured on controller A and volume `SID1`_`log`_`mnt00001` Est configuré sur le contrôleur B. Une seule LUN est configurée au sein de chaque volume.
+La figure suivante montre la configuration de volume de quatre systèmes SAP HANA à hôte unique. Les volumes de données et de journaux de chaque système SAP HANA sont répartis sur différents contrôleurs de stockage. Par exemple, le volume `SID1_data_mnt00001` est configuré sur le contrôleur A et le volume `SID1_log_mnt00001` sur le contrôleur B. dans chaque volume, une seule LUN est configurée.
 
 
 NOTE: Si un seul contrôleur de stockage d'une paire haute disponibilité est utilisé pour les systèmes SAP HANA, les volumes de données et les volumes de journaux peuvent également être stockés sur le même contrôleur de stockage.
@@ -198,7 +207,7 @@ Le tableau suivant montre un exemple de configuration de point de montage pour u
 | SID1_shared | /hana/shared/SID1 | Monté à l'aide de l'entrée /etc/fstab 
 |===
 
-NOTE: Avec la configuration décrite, le `/usr/sap/SID1` Le répertoire dans lequel le répertoire de base par défaut de l'utilisateur SID1adm est stocké se trouve sur le disque local. Dans le cadre d'une configuration de reprise sur incident avec réplication sur disque, NetApp recommande de créer un LUN supplémentaire au sein du `SID1`_`shared `volume for the `/usr/sap/SID1` de sorte que tous les systèmes de fichiers soient dans le stockage central.
+NOTE: Avec la configuration décrite, le `/usr/sap/SID1` Le répertoire dans lequel le répertoire de base par défaut de l'utilisateur SID1adm est stocké se trouve sur le disque local. Dans le cadre d'une configuration de reprise sur incident avec réplication sur disque, NetApp recommande de créer un LUN supplémentaire au sein du `SID1_shared` volume pour le `/usr/sap/SID1` de sorte que tous les systèmes de fichiers soient dans le stockage central.
 
 
 
@@ -230,13 +239,13 @@ Sur l'hôte SAP HANA, des groupes de volumes et des volumes logiques doivent êt
 | LUN : SID1_shared | /hana/shared/SID1 | Monté à l'aide de l'entrée /etc/fstab 
 |===
 
-NOTE: Avec la configuration décrite, le `/usr/sap/SID1` Le répertoire dans lequel le répertoire de base par défaut de l'utilisateur SID1adm est stocké se trouve sur le disque local. Dans le cadre d'une configuration de reprise sur incident avec réplication sur disque, NetApp recommande de créer un LUN supplémentaire au sein du `SID1`_`shared `volume for the `/usr/sap/SID1` de sorte que tous les systèmes de fichiers soient dans le stockage central.
+NOTE: Avec la configuration décrite, le `/usr/sap/SID1` Le répertoire dans lequel le répertoire de base par défaut de l'utilisateur SID1adm est stocké se trouve sur le disque local. Dans le cadre d'une configuration de reprise sur incident avec réplication sur disque, NetApp recommande de créer un LUN supplémentaire au sein du `SID1_shared` volume pour le `/usr/sap/SID1` de sorte que tous les systèmes de fichiers soient dans le stockage central.
 
 
 
 == Configuration de volumes et de LUN pour les systèmes SAP HANA à plusieurs hôtes
 
-La figure suivante montre la configuration de volume d'un système SAP HANA à plusieurs hôtes dans 4+1. Les volumes de données et les volumes de journaux de chaque hôte SAP HANA sont distribués sur différents contrôleurs de stockage. Par exemple, le volume `SID`_`data`_`mnt00001` Est configuré sur le contrôleur A et le volume `SID`_`log`_`mnt00001` Est configuré sur le contrôleur B. Une LUN est configurée au sein de chaque volume.
+La figure suivante montre la configuration de volume d'un système SAP HANA à plusieurs hôtes dans 4+1. Les volumes de données et les volumes de journaux de chaque hôte SAP HANA sont distribués sur différents contrôleurs de stockage. Par exemple, le volume `SID_data_mnt00001` Est configuré sur le contrôleur A et le volume `SID_log_mnt00001` Est configuré sur le contrôleur B. Une LUN est configurée au sein de chaque volume.
 
 Le `/hana/shared` Le volume doit être accessible par tous les hôtes HANA et est donc exporté via NFS. Même s'il n'existe aucun KPI spécifique de performance pour le `/hana/shared` Pour le système de fichiers, NetApp recommande d'utiliser une connexion Ethernet 10 Gbits.
 
@@ -298,7 +307,7 @@ Le tableau suivant présente la configuration et les points de montage d'un syst
 | Volume : SID_shared | /hana/partagé/SID | Monté sur tous les hôtes à l'aide de l'entrée NFS et /etc/fstab 
 |===
 
-NOTE: Avec la configuration décrite, le `/usr/sap/SID` Le répertoire dans lequel le répertoire de base par défaut de l'utilisateur sidadm est stocké se trouve sur le disque local de chaque hôte HANA. Dans le cadre d'une configuration de reprise après incident avec réplication sur disque, NetApp recommande de créer quatre sous-répertoires supplémentaires dans le `SID`_`shared` volume pour le `/usr/sap/SID` système de fichiers de sorte que chaque hôte de base de données dispose de tous ses systèmes de fichiers sur le stockage central.
+NOTE: Avec la configuration décrite, le `/usr/sap/SID` répertoire dans lequel le répertoire home par défaut de l'utilisateur sidadm est stocké se trouve sur le disque local de chaque hôte HANA. Dans une configuration de reprise sur incident avec réplication sur disque, NetApp recommande de créer quatre sous-répertoires supplémentaires dans le `SID_shared` volume pour le `/usr/sap/SID` système de fichiers afin que chaque hôte de base de données dispose de tous ses systèmes de fichiers sur le stockage central.
 
 
 
@@ -342,7 +351,7 @@ Sur l'hôte SAP HANA, il est nécessaire de créer et de monter des groupes de v
 | Volume : SID_shared | /hana/partagé | Monté sur tous les hôtes à l'aide de l'entrée NFS et /etc/fstab 
 |===
 
-NOTE: Avec la configuration décrite, le `/usr/sap/SID` Le répertoire dans lequel le répertoire de base par défaut de l'utilisateur sidadm est stocké se trouve sur le disque local de chaque hôte HANA. Dans le cadre d'une configuration de reprise après incident avec réplication sur disque, NetApp recommande de créer quatre sous-répertoires supplémentaires dans le `SID`_`shared` volume pour le `/usr/sap/SID` système de fichiers de sorte que chaque hôte de base de données dispose de tous ses systèmes de fichiers sur le stockage central.
+NOTE: Avec la configuration décrite, le `/usr/sap/SID` Le répertoire dans lequel le répertoire de base par défaut de l'utilisateur sidadm est stocké se trouve sur le disque local de chaque hôte HANA. Dans le cadre d'une configuration de reprise après incident avec réplication sur disque, NetApp recommande de créer quatre sous-répertoires supplémentaires dans le `SID_shared` volume pour le `/usr/sap/SID` système de fichiers de sorte que chaque hôte de base de données dispose de tous ses systèmes de fichiers sur le stockage central.
 
 
 
@@ -363,52 +372,13 @@ Les options du volume répertoriées dans le tableau suivant doivent être véri
 
 == Création de LUN, volumes et mappage de LUN sur des groupes initiateurs
 
-Vous pouvez utiliser NetApp OnCommand System Manager pour créer des volumes et des LUN de stockage, et les mapper aux igroups des serveurs.
-
-Les étapes suivantes montrent la configuration d'un système HANA à plusieurs hôtes 2+1 avec le SID SS3.
-
-. Démarrez l'assistant de création de LUN dans NetApp ONTAP System Manager.
-+
-image:saphana_fas_fc_image20.jpeg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
-
-. Indiquez le nom de la LUN, sélectionnez le type de LUN, puis indiquez la taille de celle-ci.
-+
-image:saphana_fas_fc_image21.jpeg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
-
-. Entrer le nom du volume et l'agrégat d'hébergement
-+
-image:saphana_fas_fc_image22.jpeg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
-
-. Sélectionnez les groupes initiateurs auxquels les LUN doivent être mappées.
-+
-image:saphana_fas_fc_image23.jpeg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
-
-. Fournissent les paramètres de QoS.
-+
-image:saphana_fas_fc_image24.jpeg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
-
-. Cliquez sur Suivant sur la page Résumé.
-+
-image:saphana_fas_fc_image25.jpeg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
-
-. Cliquez sur Terminer sur la page achèvement.
-+
-image:saphana_fas_fc_image26.jpeg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
-
-. Répétez les étapes 2 à 7 pour chaque LUN.
-+
-La figure suivante présente un récapitulatif de toutes les LUN qui doivent être créées pour la configuration avec plusieurs hôtes 2+1.
-
-+
-image:saphana_fas_fc_image27.jpeg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+Vous pouvez utiliser NetApp ONTAP System Manager pour créer des volumes de stockage et des LUN, et les mapper sur les igroups des serveurs et sur l'interface de ligne de commande de ONTAP. Ce guide décrit l'utilisation de l'interface de ligne de commandes.
 
 
 
+=== Création de LUN, volumes et mappage de LUN sur des igroups à l'aide de l'interface de ligne de commande
 
-
-== Création de LUN, volumes et mappage de LUN sur des igroups à l'aide de l'interface de ligne de commande
-
-Cette section présente un exemple de configuration à l'aide de la ligne de commande avec ONTAP 9.8 pour un système hôte SAP HANA multiple 2+1 avec SID FC5 utilisant LVM et deux LUN par groupe de volumes LVM.
+Cette section présente un exemple de configuration à l'aide de la ligne de commande avec ONTAP 9 pour un système hôte SAP HANA multiple 2+1 avec SID FC5 utilisant LVM et deux LUN par groupe de volumes LVM.
 
 . Créer tous les volumes nécessaires
 +

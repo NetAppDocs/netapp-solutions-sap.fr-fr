@@ -91,6 +91,14 @@ image:saphana-fas-nfs_image14.png["Figure montrant la boîte de dialogue entrée
 
 
 
+=== Tiroirs disques NVMe (100 GbE)
+
+Chaque tiroir disque NVMe NS224 est connecté à deux ports 100 GbE par contrôleur, comme illustré dans la figure ci-dessous. Les disques dans chaque tiroir doivent être répartis de manière homogène sur les deux contrôleurs de la paire haute disponibilité.
+
+image:saphana_fas_ns224.png["Connexions des tiroirs disques MVME"]
+
+
+
 == Configuration d'agrégat
 
 En général, vous devez configurer deux agrégats par contrôleur, indépendamment du tiroir disque ou de la technologie de disque (SSD ou HDD) utilisée. Pour les systèmes de la gamme FAS2000, un seul agrégat de données suffit.
