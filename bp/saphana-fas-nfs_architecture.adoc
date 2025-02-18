@@ -22,10 +22,6 @@ Différents modèles de la gamme de produits des systèmes FAS peuvent être com
 
 image:saphana-fas-nfs_image2.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
-La figure suivante présente un exemple d'utilisation de VMware vSphere comme couche de virtualisation.
-
-image:saphana-fas-nfs_image3.jpg["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
-
 L'architecture peut évoluer en deux dimensions :
 
 * En ajoutant des hôtes SAP HANA et/ou une capacité de stockage supplémentaire au stockage existant, si les contrôleurs de stockage offrent des performances suffisantes pour satisfaire les indicateurs clés de performances (KPI, Key Performance Indicators) SAP actuels.
