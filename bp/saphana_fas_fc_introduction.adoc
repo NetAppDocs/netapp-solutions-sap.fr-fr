@@ -57,7 +57,7 @@ Les mappages de périphériques bruts (RDM), les data stores FCP ou les data sto
 
 Pour plus d'informations sur l'utilisation de vSphere avec SAP HANA, consultez les liens suivants :
 
-* https://wiki.scn.sap.com/wiki/display/VIRTUALIZATION/SAP+HANA+on+VMware+vSphere["SAP HANA sur VMware vSphere - virtualisation - Wiki communautaire"^]
-* https://core.vmware.com/resource/sap-hana-vmware-vsphere-best-practices-and-reference-architecture-guide#introduction["Guide des meilleures pratiques et d'architecture de référence de SAP HANA sur VMware vSphere"^]
+* https://help.sap.com/docs/SUPPORT_CONTENT/virtualization/3362185751.html["SAP HANA sur VMware vSphere - virtualisation - Wiki communautaire"^]
+* https://www.vmware.com/docs/sap_hana_on_vmware_vsphere_best_practices_guide-white-paper["Guide des bonnes pratiques de SAP HANA sur VMware vSphere"^]
 * https://launchpad.support.sap.com/["2161991 - instructions de configuration de VMware vSphere - SAP ONE support Launchpad (connexion requise)"^]
 

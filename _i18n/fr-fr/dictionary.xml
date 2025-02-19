@@ -264,8 +264,6 @@
   <block id="9282f2106e2ecc166cf241e78c58163e" category="list-text"><block ref="9282f2106e2ecc166cf241e78c58163e" category="inline-link-rx"></block></block>
   <block id="4769b140b92a70ffdab406be16d30122" category="paragraph">Il existe plusieurs options pour connecter le stockage à des machines virtuelles. L'option privilégiée est de connecter les volumes de stockage avec NFS directement hors du système d'exploitation invité. Grâce à cette option, la configuration des hôtes et du stockage ne diffère pas entre les hôtes physiques et les machines virtuelles.</block>
   <block id="f7fbf8be79b2dbbf7cca7d63ea2aaa3e" category="paragraph">Ce document décrit la configuration recommandée avec des montages NFS directs à partir du système d'exploitation invité.</block>
-  <block id="181fc43b08ba57214c4bbd2448ec470d" category="list-text"><block ref="181fc43b08ba57214c4bbd2448ec470d" category="inline-link-macro-rx"></block></block>
-  <block id="302092b20c647fa4f675ff96913675f9" category="list-text"><block ref="302092b20c647fa4f675ff96913675f9" category="inline-link-macro-rx"></block></block>
   <block id="7db55fece99cd60241eaadd5b0b310da" category="summary">La section suivante fournit une vue d'ensemble des facteurs de performance et de capacité à prendre en compte pour le dimensionnement d'un système de stockage pour SAP HANA.</block>
   <block id="83814b9c4a7b826717cc464aa8fb78ac" category="admonition">Contactez votre ingénieur commercial partenaire NetApp ou NetApp pour gérer le dimensionnement du stockage et créer un environnement de stockage de taille appropriée.</block>
   <block id="9b5082bba6ed43c3e4659d132b4df7f3" category="paragraph">SAP a défini un ensemble statique d'indicateurs clés de performance du stockage. Ces indicateurs clés de performance sont valides pour tous les environnements SAP HANA de production indépendamment de la taille de mémoire des hôtes de base de données et des applications qui utilisent la base de données SAP HANA. Ces indicateurs clés de performance sont valides pour les environnements à hôte unique, multihôte, Business Suite sur HANA, Business Warehouse sur HANA, S/4HANA et BW/HANA. Par conséquent, l'approche actuelle de dimensionnement des performances dépend uniquement du nombre d'hôtes SAP HANA actifs connectés au système de stockage.</block>
@@ -794,7 +792,6 @@
   <block id="b9c48200eb9eba714e3c88803e97b4ce" category="section-title">Création de LUN, volumes et mappage de LUN sur des groupes initiateurs</block>
   <block id="a86be254d15f1254d56b97c8755a5b77" category="admonition">Le<block ref="3a8e4afa851609127d534b04e7d29c08" prefix=" " category="inline-code"></block> L'outil fait partie des utilitaires hôtes NetApp et doit être installé sur chaque hôte SAP HANA. Pour plus d'informations, reportez-vous à la section « Host_setup ».</block>
   <block id="8c4751bd2d7d17062a8b536388ba69bc" category="section-title">Création de LUN, volumes et mappage de LUN sur des groupes initiateurs à l'aide de l'interface de ligne de commandes</block>
-  <block id="6204c72c80408db453e7fea0b62d2e36" category="paragraph">Cette section présente un exemple de configuration à l'aide de la ligne de commande avec ONTAP 9.8 pour un système hôte SAP HANA multiple 2+1 avec SID FC5 utilisant LVM et deux LUN par groupe de volumes LVM :</block>
   <block id="c48caf1c739d7975abd91d926cd56982" category="list-text">Créer tous les volumes nécessaires</block>
   <block id="8e5c1549db5f0e31853b6809f7049388" category="list-text">Créer toutes les LUN.</block>
   <block id="d595b9142c1fd0d3ea19c8cd10165661" category="list-text">Créez le groupe initiateur pour tous les serveurs appartenant au système FC5.</block>
@@ -3921,8 +3918,6 @@ Reportez-vous à la section<block ref="7f3b31b88f0e42104578f538777bc3e6" categor
   <block id="20a0dcae2f540339bbf69dbaa7f0050a" category="list-text"><block ref="20a0dcae2f540339bbf69dbaa7f0050a" category="inline-link-macro-rx"></block></block>
   <block id="b0be0a2f6c57f7c66aa9ab049763af3a" category="paragraph">Pour plus d'informations sur la solution de sauvegarde et de restauration SAP HANA utilisant SnapCenter, consultez<block ref="7d612f806d1e07d1f3292801524311f8" category="inline-link-rx"></block>.</block>
   <block id="c2107d876323ca6269d87dd4ef892a8a" category="paragraph">Pour plus d'informations sur les solutions de reprise d'activité SAP HANA, reportez-vous à<block ref="22d31f63af3553980c791e5bf538fbdd" category="inline-link-rx"></block>la section.</block>
-  <block id="78439f11ea8c9762eac371e8475447aa" category="inline-link">Guide des meilleures pratiques et d'architecture de référence de SAP HANA sur VMware vSphere</block>
-  <block id="52d5e1f1eef3e549b479feffef1c376c" category="list-text"><block ref="52d5e1f1eef3e549b479feffef1c376c" category="inline-link-rx"></block></block>
   <block id="1b70ac0a972fddf1e1a33e6ed9df49c7" category="cell">Septembre 2022</block>
   <block id="3c3691e44e6ff923dc83662b2f7e1001" category="cell">Nouvelles versions du système d'exploitation</block>
   <block id="6d6bbe0ff14c220c87649b72d24ad927" category="cell">Août 2023</block>
@@ -4748,4 +4743,7 @@ Reportez-vous à la section<block ref="7f3b31b88f0e42104578f538777bc3e6" categor
   <block id="c9f801c3b76e183b280276e75a8ebaea" category="list-text">Guide des bonnes pratiques de SAP HANA sur VMware vSphere</block>
   <block id="838491807b9e9689bc796a7e547fe188" category="inline-link"><block ref="838491807b9e9689bc796a7e547fe188" category="inline-link-rx"></block></block>
   <block id="b61d59281011f2681050ce1756929d77" category="paragraph"><block ref="b61d59281011f2681050ce1756929d77" category="inline-link-rx"></block></block>
+  <block id="22c7eb5619fc26c433125aab7cfd57af" category="list-text"><block ref="22c7eb5619fc26c433125aab7cfd57af" category="inline-link-rx"></block></block>
+  <block id="d8cb082280c9ef193a28bdb60d8e9779" category="list-text"><block ref="d8cb082280c9ef193a28bdb60d8e9779" category="inline-link-rx"></block></block>
+  <block id="147a64bd742e2d54a7d7a7f133c3561c" category="paragraph">Cette section présente un exemple de configuration à l'aide de la ligne de commande avec ONTAP 9 pour un système hôte SAP HANA multiple 2+1 avec SID FC5 utilisant LVM et deux LUN par groupe de volumes LVM :</block>
 </blocks>

@@ -382,7 +382,7 @@ NOTE: Le `sanlun` L'outil fait partie des utilitaires hôtes NetApp et doit êtr
 
 === Création de LUN, volumes et mappage de LUN sur des groupes initiateurs à l'aide de l'interface de ligne de commandes
 
-Cette section présente un exemple de configuration à l'aide de la ligne de commande avec ONTAP 9.8 pour un système hôte SAP HANA multiple 2+1 avec SID FC5 utilisant LVM et deux LUN par groupe de volumes LVM :
+Cette section présente un exemple de configuration à l'aide de la ligne de commande avec ONTAP 9 pour un système hôte SAP HANA multiple 2+1 avec SID FC5 utilisant LVM et deux LUN par groupe de volumes LVM :
 
 . Créer tous les volumes nécessaires
 +
