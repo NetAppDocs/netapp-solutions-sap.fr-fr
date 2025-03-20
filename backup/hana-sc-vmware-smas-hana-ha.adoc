@@ -1,0 +1,123 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-vmware-smas-hana-ha.html 
+keywords: SAP HANA, VMware, SnapMirror active sync, SnapCenter, backup and recovery 
+summary:  
+---
+= Présentation de la haute disponibilité SAP HANA
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:firstname: ---
+:author: ---
+:authorinitials: -
+:authors: ---
+
+
+[role="lead"]
+Ce chapitre présente les options de haute disponibilité pour SAP HANA, en comparant la réplication sur la couche applicative à la réplication du stockage.
+
+
+
+== Réplication système SAP HANA (HSR)
+
+La réplication du système SAP HANA offre un mode de fonctionnement dans lequel les données sont répliquées de manière synchrone, préchargées dans la mémoire et mises à jour en continu sur l'hôte secondaire. Ce mode active des valeurs RTO très faibles, environ 1 minute ou moins, mais il nécessite également un serveur dédié qui est utilisé uniquement pour recevoir les données de réplication du système source. En raison du faible délai de basculement, la réplication du système SAP HANA est également souvent utilisée pour des opérations de maintenance qui ne nécessitent quasiment aucune interruption, comme les mises à niveau du logiciel HANA. Les solutions de cluster Linux Pacemaker sont généralement utilisées pour automatiser les opérations de basculement.
+
+En cas de panne sur le site principal, le stockage, l'hôte ou l'ensemble du site, le système HANA bascule automatiquement vers le site secondaire contrôlé par le cluster Linux Pacemaker.
+
+Pour une description complète de toutes les options de configuration et des scénarios de réplication, reportez-vous à la section https://help.sap.com/docs/SAP_HANA_PLATFORM/4e9b18c116aa42fc84c7dbfd02111aba/afac7100bc6d47729ae8eae32da5fdec.html["Portail d'aide SAP HANA : réplication système ++|++"].
+
+image:sc-saphana-vmware-smas-image2.png[""]
+
+
+
+== Synchronisation active NetApp SnapMirror
+
+La synchronisation active SnapMirror assure la continuité des services, même en cas de défaillance complète d'un site. Les applications peuvent ainsi basculer en toute transparence au moyen d'une copie secondaire. Aucune intervention manuelle ni script personnalisé n'est nécessaire pour déclencher un basculement avec la synchronisation active SnapMirror. La synchronisation active SnapMirror est prise en charge sur les clusters AFF, les clusters de baies SAN 100 % Flash (ASA) et les systèmes C-Series (AFF ou ASA). La synchronisation active SnapMirror protège les applications avec des LUN iSCSI ou FCP.
+
+À partir de ONTAP 9.15.1, la synchronisation active SnapMirror prend en charge une fonction active/active symétrique. Le mode actif-actif symétrique permet d'effectuer des opérations de lecture et d'écriture d'E/S à partir des deux copies d'un LUN protégé avec une réplication synchrone bidirectionnelle, de sorte que les deux copies de LUN puissent traiter des opérations d'E/S localement.
+
+Plus de détails peuvent être trouvés à https://docs.netapp.com/us-en/ontap/snapmirror-active-sync/index.html["Présentation de la synchronisation active SnapMirror dans ONTAP"].
+
+
+
+=== HANA bare Metal
+
+Lorsque vous exécutez SAP HANA sur un serveur bare Metal, vous pouvez utiliser la synchronisation active SnapMirror pour fournir une solution de stockage haute disponibilité. Les données sont répliquées de manière synchrone, avec un RPO=0.
+
+En cas de défaillance du stockage, le système HANA accède de manière transparente à la copie en miroir sur le site secondaire via le second chemin FCP pour fournir un RTO=0.
+
+En cas de défaillance d'un hôte ou d'un site complet, un nouveau serveur sur le site secondaire doit être fourni pour accéder aux données à partir de l'hôte défaillant. Il s'agit généralement d'un système de test ou d'assurance qualité de la même taille que celui de production qui sera maintenant arrêté et utilisé pour exécuter le système de production. Une fois que les LUN du site secondaire sont connectées au nouvel hôte, la base de données HANA doit être démarrée. L'objectif RTO total dépend donc du temps nécessaire au provisionnement de l'hôte et de l'heure de démarrage de la base de données HANA.
+
+image:sc-saphana-vmware-smas-image3.png[""]
+
+
+
+=== Cluster de stockage vSphere Metro (vMSC)
+
+Lors de l'exécution de SAP HANA dans un environnement VMware utilisant des datastores FCP, vous pouvez utiliser la synchronisation active SnapMirror pour créer un cluster de stockage VMware Metro. Dans une telle configuration, les datastores utilisés par le système HANA sont répliqués de manière synchrone sur le site secondaire.
+
+En cas de défaillance du stockage, l'hôte ESX accède automatiquement à la copie en miroir sur le site secondaire, à condition que l'objectif RTO = 0.
+
+En cas de défaillance d'un hôte ou d'un site complet, vSphere HA permet de démarrer la machine virtuelle HANA sur l'hôte ESX secondaire. Lorsque la machine virtuelle HANA est en cours d'exécution, la base de données HANA doit être démarrée. L'objectif RTO total dépend donc principalement du temps de démarrage de la base de données HANA.
+
+image:sc-saphana-vmware-smas-image4.png[""]
+
+
+
+== Comparaison des solutions
+
+Le tableau suivant présente les principales caractéristiques des solutions décrites ci-dessus.
+
+[cols="25%,^25%,^25%,^25%"]
+|===
+|  | Réplication système HANA | Synchronisation active SnapMirror – bare Metal | Synchronisation active SnapMirror – VMware vMSC 
+
+
+| RPO en cas de défaillance | RPO=0 + réplication synchrone |  |  
+
+
+| RTO avec défaillance du stockage | RTO ++<+ 1 min | RTO=0 + basculement transparent du stockage |  
+
+
+| RTO + avec défaillance du site ou de l'hôte | RTO ++<+ 1 min | RTO : selon le temps requis pour la préparation du serveur et le démarrage de la base de données HANA. | RTO : selon le temps nécessaire au démarrage de la base de données HANA. 
+
+
+| Automatisation du basculement  a| 
+Oui,
+
+Basculement automatique vers l'hôte HSR secondaire
+
+contrôlé par le cluster de stimulateurs cardiaques.
+ a| 
+Oui, en cas de défaillance du stockage
+
+Non, en cas de défaillance de l'hôte ou du site
+
+(Provisionnement de l'hôte, connexion des ressources de stockage, démarrage de la base de données HANA)
+ a| 
+Oui, en cas de défaillance du stockage
+
+Oui, en cas de défaillance de l'hôte ou du site
+
+(Basculement de la machine virtuelle vers un autre site automatisé avec vSphere HA, démarrage de la base de données HANA)
+
+
+
+| Serveur dédié sur le site secondaire requis  a| 
+Oui,
+
+nécessaire pour précharger les données en mémoire et activer le basculement rapide sans démarrer la base de données.
+ a| 
+Non,
+
+le serveur n'est requis qu'en cas de basculement. Généralement, le serveur utilisé pour l'assurance qualité est alors utilisé pour la production.
+ a| 
+Non,
+
+Les ressources de l'hôte ESX sont uniquement nécessaires en cas de basculement. Généralement, les ressources d'assurance qualité sont alors utilisées pour la production.
+
+|===

@@ -1,0 +1,87 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-vmware-smas-failover-scenarios.html 
+keywords: SAP HANA, VMware, SnapMirror active sync, SnapCenter, backup and recovery 
+summary:  
+---
+= Scénarios de basculement
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:firstname: ---
+:author: ---
+:authorinitials: -
+:authors: ---
+
+
+
+
+== Configuration d'accès uniforme
+
+Dans une configuration d'accès uniforme, le SAN Fibre Channel est étendu sur les deux sites. Les hôtes ESX des deux sites pouvaient accéder aux deux copies des jeux de données. Pendant le fonctionnement normal, l'hôte ESX exécutant le système HANA accède à la copie locale des données en fonction des paramètres de proximité dans la configuration du groupe initiateur. Chaque hôte ESX dispose d'un chemin optimisé actif vers la copie locale et d'un chemin actif non optimisé vers la copie en miroir.
+
+
+
+=== Fonctionnement normal
+
+Pendant un fonctionnement normal, le système HANA lit et écrit depuis/vers la copie locale en fonction du chemin optimisé actif à partir de l'hôte ESX ESX-1. À chaque opération de sauvegarde, SnapCenter détecte le site principal actuel de la relation de réplication et exécute les opérations de sauvegarde sur le site principal. Les snapshots sont répliqués sur la copie en miroir et sont disponibles sur les deux sites. Une opération de restauration SnapCenter est exécutée sur le site principal.
+
+image:sc-saphana-vmware-smas-image42.png[""]
+
+
+
+=== Panne du stockage
+
+Si le système de stockage du site 1 tombe en panne, les systèmes HANA accèdent à la copie en miroir sur le site 2 et continuent de fonctionner. Le site principal bascule vers le site secondaire, et SnapCenter exécute à présent les opérations de sauvegarde et de restauration sur le nouveau site primaire.
+
+image:sc-saphana-vmware-smas-image43.png[""]
+
+
+
+=== Panne du site
+
+En cas de défaillance de site, la machine virtuelle HANA ainsi que SnapCenter et la machine virtuelle du plug-in SnapCenter pour VMware basculeront vers l'hôte ESX sur le site secondaire à l'aide de vSphere HA. La base de données HANA doit être démarrée, pour accéder à la copie en miroir sur le second site. Le site principal bascule vers le site secondaire, et SnapCenter exécute à présent les opérations de sauvegarde et de restauration sur le nouveau site primaire.
+
+image:sc-saphana-vmware-smas-image44.png[""]
+
+
+
+== Configuration de l'accès non uniforme
+
+Dans une configuration d'accès non uniforme, le SAN Fibre Channel n'est pas étendu sur les deux sites. Chaque hôte ESX de chaque site ne peut accéder qu'à la copie locale des jeux de données.
+
+
+
+=== Fonctionnement normal
+
+Pendant un fonctionnement normal, le système HANA lit et écrit depuis/vers la copie locale. À chaque opération de sauvegarde, SnapCenter détecte le site principal actuel de la relation de réplication et exécute les opérations de sauvegarde sur le site principal. Les snapshots sont répliqués sur la copie en miroir et sont disponibles sur les deux sites. Une opération de restauration SnapCenter est exécutée sur le site principal.
+
+image:sc-saphana-vmware-smas-image45.png[""]
+
+
+
+=== Panne du stockage
+
+En cas de défaillance du stockage, la machine virtuelle HANA ainsi que SnapCenter et la machine virtuelle du plug-in SnapCenter pour VMware basculeront vers l'hôte ESX sur le site secondaire à l'aide de vSphere HA. La base de données HANA doit être démarrée, pour accéder à la copie en miroir sur le second site. Le site principal bascule vers le site secondaire, et SnapCenter exécute à présent les opérations de sauvegarde et de restauration sur le nouveau site primaire.
+
+image:sc-saphana-vmware-smas-image46.png[""]
+
+
+
+=== Panne du site
+
+Identique à une défaillance du stockage.
+
+image:sc-saphana-vmware-smas-image47.png[""]
+
+
+
+=== Déplacement d'une VM ou d'un site principal HANA
+
+Si la machine virtuelle HANA est déplacée vers l'autre hôte ESX et que le site principal du stockage reste le même, une opération de restauration avec SnapCenter échoue. Étant donné que SnapCenter utilise le site principal pour exécuter les opérations de restauration, le clone est créé sur la gauche, tandis que la VM HANA s'exécute sur la droite. Comme il n'y a pas de chemin de données entre les sites, SnapCenter ne copie pas les données.
+
+Pour résoudre ce problème, vous devez vous assurer que le déplacement des serveurs virtuels et du côté primaire est effectué ensemble, ou que vous devez basculer le site principal avant de procéder à la restauration avec SnapCenter.
+
+image:sc-saphana-vmware-smas-image48.png[""]
