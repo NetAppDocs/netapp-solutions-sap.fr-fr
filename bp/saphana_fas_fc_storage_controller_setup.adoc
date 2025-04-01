@@ -40,13 +40,36 @@ SAP HANA prend en charge l'utilisation du chiffrement de volume NetApp (NVE) et 
 
 == Qualité de service
 
-La qualité de service peut être utilisée pour limiter le débit du stockage de systèmes SAP HANA spécifiques. Dans ce cas, il serait possible de limiter le débit des systèmes de développement et de test de manière à ce qu'ils ne puissent pas influencer les systèmes de production dans une configuration mixte.
+La QoS peut être utilisée pour limiter le débit du stockage pour des systèmes SAP HANA spécifiques ou des applications non SAP sur un contrôleur partagé.
 
-Au cours du processus de dimensionnement, les exigences de performance d'un système non opérationnel doivent être déterminées. Les systèmes de développement et de test peuvent être dimensionnés avec des valeurs de performances inférieures, généralement entre 20 et 50 % d'un système de production.
 
-Depuis la version ONTAP 9, la qualité de service est configurée au niveau du volume de stockage et utilise des valeurs maximales pour le débit (Mbit/s) et le nombre d'E/S (IOPS).
 
-Les E/S d'écriture importantes ont le plus grand impact sur les performances du système de stockage. Par conséquent, la limite de débit de la qualité de service doit être définie sur un pourcentage des valeurs KPI des performances du stockage SAP HANA d'écriture correspondantes dans les volumes de données et de journaux.
+=== Production et développement/test
+
+Dans ce cas, il serait possible de limiter le débit des systèmes de développement et de test de manière à ce qu'ils ne puissent pas influencer les systèmes de production dans une configuration mixte. Au cours du processus de dimensionnement, vous devez déterminer les exigences de performance d'un système non opérationnel. Les systèmes de développement et de test peuvent être dimensionnés avec des valeurs de performances inférieures, généralement dans la plage de 20 à 50 % d'un KPI de système de production tel que défini par SAP. Les E/S d'écriture importantes ont le plus grand impact sur les performances du système de stockage. Par conséquent, la limite de débit de la qualité de service doit être définie sur un pourcentage des valeurs KPI des performances du stockage SAP HANA d'écriture correspondantes dans les volumes de données et de journaux.
+
+
+
+=== Environnements partagés
+
+Autre cas d'usage : limiter le débit de charges de travail en écriture élevées, surtout pour éviter que ces charges de travail aient un impact sur d'autres charges de travail en écriture sensibles à la latence. Dans de tels environnements, il est recommandé d'appliquer une règle de groupe de QoS au plafond de débit non partagé à chaque LUN au sein de chaque SVM afin de limiter le débit maximal de chaque objet de stockage à la valeur donnée. Cela réduit le risque qu'une seule charge de travail puisse avoir une influence négative sur d'autres charges de travail.
+
+Pour cela, il faut créer une group-policy en utilisant l'interface de ligne de commandes du cluster ONTAP pour chaque SVM :
+
+....
+qos policy-group create -policy-group <policy-name> -vserver <vserver name> -max-throughput 1000MB/s -is-shared false
+....
+Et appliquées à chaque LUN au sein du SVM. Voici un exemple d'application de la « policy group » à toutes les LUN existantes au sein d'un SVM :
+
+....
+lun modify -vserver <vserver name>  -path * -qos-policy-group  <policy-name>
+....
+Cela doit être fait pour chaque SVM. Le nom du groupe de police QoS pour chaque SVM doit être différent. Pour les nouveaux LUN, la règle peut être appliquée directement :
+
+....
+lun create -vserver <vserver_name> -path  /vol/<volume_name>/<lun_name>   -size <size> -ostype <e.g. linux>  -qos-policy-group <policy-name>
+....
+Il est recommandé d'utiliser 1 000 Mo/s comme débit maximal pour une LUN donnée. Si une application requiert un débit supérieur, plusieurs LUN avec répartition par LUN doivent être utilisées pour fournir la bande passante nécessaire. Ce guide fournit un exemple de SAP HANA basé sur Linux LVM à la section https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_fas_fc_host_setup.html#create-lvm-volume-groups-and-logical-volumes["Configuration de l'hôte"].
 
 
 
