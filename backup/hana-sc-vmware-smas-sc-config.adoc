@@ -11,12 +11,9 @@ summary:
 :icons: font
 :linkattrs: 
 :imagesdir: ../media/
-:firstname: ---
-:author: ---
-:authorinitials: -
-:authors: ---
 
 
+[role="lead"]
 Comme indiqué au début de ce document, l'objectif de ce document est de fournir les meilleures pratiques pour un environnement HANA utilisant VMware avec VMFS et la synchronisation active SnapMirror. Nous aborderons uniquement les détails et les étapes importantes relatifs à cette solution spécifique et n'expliquerons pas les concepts généraux de SnapCenter. Ces concepts et d'autres informations supplémentaires sur SnapCenter sont disponibles à l'adresse suivante :
 
 https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-overview.html["Tr-4614 : sauvegarde et restauration SAP HANA avec SnapCenter"]
@@ -62,11 +59,11 @@ La gestion et le contrôle de la synchronisation active SnapMirror nécessitent 
 ....
 <add key="IsRestEnabledForStorageConnection" value="true">
 ....
-image:sc-saphana-vmware-smas-image21.png[""]
+image:sc-saphana-vmware-smas-image21.png["Figure illustrant le contenu discuté"]
 
 Après la modification du paramètre, le service SMCore de SnapCenter doit être redémarré.
 
-image:sc-saphana-vmware-smas-image22.png[""]
+image:sc-saphana-vmware-smas-image22.png["Figure illustrant le contenu discuté"]
 
 
 
@@ -74,9 +71,9 @@ image:sc-saphana-vmware-smas-image22.png[""]
 
 Des systèmes de stockage peuvent être ajoutés une fois que l'API REST est activée pour SnapCenter. Il est nécessaire d'ajouter les deux clusters de stockage, pas les SVM individuellement.
 
-image:sc-saphana-vmware-smas-image23.png[""]
+image:sc-saphana-vmware-smas-image23.png["Figure illustrant le contenu discuté"]
 
-image:sc-saphana-vmware-smas-image24.png[""]
+image:sc-saphana-vmware-smas-image24.png["Figure illustrant le contenu discuté"]
 
 
 
@@ -89,11 +86,11 @@ Avant de pouvoir ajouter l'hôte dans SnapCenter, le plug-in SnapCenter pour VMw
 
 NOTE: Les informations d'identification doivent être définies lors du flux de travail d'ajout d'hôte, dans lequel vSphere peut être sélectionné comme type d'hôte.
 
-image:sc-saphana-vmware-smas-image25.png[""]
+image:sc-saphana-vmware-smas-image25.png["Figure illustrant le contenu discuté"]
 
-image:sc-saphana-vmware-smas-image26.png[""]
+image:sc-saphana-vmware-smas-image26.png["Figure illustrant le contenu discuté"]
 
-image:sc-saphana-vmware-smas-image27.png[""]
+image:sc-saphana-vmware-smas-image27.png["Figure illustrant le contenu discuté"]
 
 
 NOTE: Aucune configuration supplémentaire n'est requise au niveau du plug-in SnapCenter pour vSphere lui-même.
@@ -112,7 +109,7 @@ Après la détection automatique des ressources, le site principal actuel s'affi
 ....
 volume show -vserver <vs> -volume <vol> -fields smbc-consensus,is-smbc-master
 ....
-image:sc-saphana-vmware-smas-image28.png[""]
+image:sc-saphana-vmware-smas-image28.png["Figure illustrant le contenu discuté"]
 
 
 
@@ -120,9 +117,9 @@ image:sc-saphana-vmware-smas-image28.png[""]
 
 La stratégie utilisée pour la ressource protégée avec la synchronisation active SnapMirror doit être configurée à l'aide de la réplication SnapMirror même si SnapCenter ne déclenche aucune opération de mise à jour SnapMirror.
 
-image:sc-saphana-vmware-smas-image29.png[""]
+image:sc-saphana-vmware-smas-image29.png["Figure illustrant le contenu discuté"]
 
-image:sc-saphana-vmware-smas-image30.png[""]
+image:sc-saphana-vmware-smas-image30.png["Figure illustrant le contenu discuté"]
 
 
 

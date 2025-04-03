@@ -11,11 +11,10 @@ summary:
 :icons: font
 :linkattrs: 
 :imagesdir: ../media/
-:firstname: ---
-:author: ---
-:authorinitials: -
-:authors: ---
 
+
+[role="lead"]
+Cet article décrit les étapes de configuration requises pour cette solution.
 
 
 
@@ -25,9 +24,9 @@ Les clusters de stockage et les SVM correspondants doivent être peering.
 
 Le médiateur ONTAP doit être disponible et configuré au niveau des deux clusters de stockage.
 
-image:sc-saphana-vmware-smas-image10.png[""]
+image:sc-saphana-vmware-smas-image10.png["Figure illustrant le contenu discuté"]
 
-image:sc-saphana-vmware-smas-image11.png[""]
+image:sc-saphana-vmware-smas-image11.png["Figure illustrant le contenu discuté"]
 
 
 
@@ -41,7 +40,7 @@ L'objectif d'un groupe de cohérence est de prendre des images Snapshot simultan
 
 Pour la réplication des systèmes HANA, le groupe de cohérence doit inclure tous les volumes utilisés par le système HANA individuel (données, journal et partagé). Les volumes qui doivent faire partie d'un groupe de cohérence doivent être stockés sur la même SVM. Les images du système d'exploitation peuvent être stockées dans un volume distinct avec son propre groupe de cohérence. La figure ci-dessous illustre un exemple de configuration avec deux systèmes HANA.
 
-image:sc-saphana-vmware-smas-image12.png[""]
+image:sc-saphana-vmware-smas-image12.png["Figure illustrant le contenu discuté"]
 
 
 
@@ -51,9 +50,9 @@ Dans la configuration de notre laboratoire, nous avons créé un groupe initiate
 
 En utilisant les paramètres de proximité, nous avons défini l'hôte ESX le plus proche de quel cluster de stockage. Dans notre cas, le système A700 est proche de ESX-1 et le système A800 est proche de ESX-2.
 
-image:sc-saphana-vmware-smas-image13.png[""]
+image:sc-saphana-vmware-smas-image13.png["Figure illustrant le contenu discuté"]
 
-image:sc-saphana-vmware-smas-image14.png[""]
+image:sc-saphana-vmware-smas-image14.png["Figure illustrant le contenu discuté"]
 
 
 NOTE: Dans une configuration d'accès non uniforme, le groupe initiateur du cluster de stockage principal (A700) doit inclure uniquement les initiateurs de l'hôte ESX-1, car il n'y a pas de connexion SAN à ESX-2. En outre, vous devez configurer un autre groupe initiateur sur le second cluster de stockage (A800) qui inclut uniquement les initiateurs de l'hôte ESX-2. La configuration de proximité et la réplication des groupes initiateurs ne sont pas requises.
@@ -62,7 +61,7 @@ NOTE: Dans une configuration d'accès non uniforme, le groupe initiateur du clus
 
 == Configurez la protection à l'aide de ONTAP System Manager
 
-image:sc-saphana-vmware-smas-image15.png[""]
+image:sc-saphana-vmware-smas-image15.png["Figure illustrant le contenu discuté"]
 
 
 
@@ -75,11 +74,11 @@ Vous devez créer un nouveau groupe de cohérence et ajouter les trois LUN du sy
 
 NOTE: Dans une configuration d'accès non uniforme, le groupe initiateur ne doit pas être répliqué, car un groupe initiateur distinct doit être configuré sur le second cluster de stockage.
 
-image:sc-saphana-vmware-smas-image16.png[""]
+image:sc-saphana-vmware-smas-image16.png["Figure illustrant le contenu discuté"]
 
 En cliquant sur les paramètres de proximité, vous pouvez vérifier la configuration effectuée auparavant dans la configuration des groupes initiateurs.
 
-image:sc-saphana-vmware-smas-image17.png[""]
+image:sc-saphana-vmware-smas-image17.png["Figure illustrant le contenu discuté"]
 
 Le cluster de stockage de destination doit être configuré et « initialize relation » doit être activé.
 
@@ -89,11 +88,11 @@ Le cluster de stockage de destination doit être configuré et « initialize rel
 
 La nouvelle relation est maintenant répertoriée dans le cluster de stockage A700 (source).
 
-image:sc-saphana-vmware-smas-image18.png[""]
+image:sc-saphana-vmware-smas-image18.png["Figure illustrant le contenu discuté"]
 
 Sur le cluster de stockage A800 (destination), la nouvelle relation et l'état de la réplication sont répertoriés.
 
-image:sc-saphana-vmware-smas-image19.png[""]
+image:sc-saphana-vmware-smas-image19.png["Figure illustrant le contenu discuté"]
 
 
 
@@ -118,4 +117,4 @@ Le site primaire est détecté par SnapCenter et utilisé pour exécuter les op�
 
 NOTE: N'oubliez pas que la source et la destination ne sont pas liées au SVM ou au cluster de stockage, mais peuvent être différentes pour chaque relation de réplication.
 
-image:sc-saphana-vmware-smas-image20.png[""]
+image:sc-saphana-vmware-smas-image20.png["Figure illustrant le contenu discuté"]

@@ -11,15 +11,12 @@ summary:
 :icons: font
 :linkattrs: 
 :imagesdir: ../media/
-:firstname: ---
-:author: ---
-:authorinitials: -
-:authors: ---
 
 
+[role="lead"]
 À chaque opération de sauvegarde, SnapCenter exécute la découverte côté VMware ainsi que la détection du site principal. En cas de basculement du stockage, SnapCenter détecte le nouveau site principal dès qu'une sauvegarde a été exécutée pour la ressource.
 
-image:sc-saphana-vmware-smas-image31.png[""]
+image:sc-saphana-vmware-smas-image31.png["Figure illustrant le contenu discuté"]
 
 
 
@@ -27,13 +24,13 @@ image:sc-saphana-vmware-smas-image31.png[""]
 
 Dans la vue topologique, SnapCenter affiche les sauvegardes des clusters de stockage source et de destination.
 
-image:sc-saphana-vmware-smas-image32.png[""]
+image:sc-saphana-vmware-smas-image32.png["Figure illustrant le contenu discuté"]
 
-image:sc-saphana-vmware-smas-image33.png[""]
+image:sc-saphana-vmware-smas-image33.png["Figure illustrant le contenu discuté"]
 
 En cliquant sur le numéro de compte sur le stockage secondaire, la relation actuelle et la direction de réplication s'affichent. La source est toujours le site principal actuel. Après un basculement de stockage, le site principal change et l'affichage est adapté en conséquence. Toutes les sauvegardes ont toujours la même relation en fonction du système de stockage actuel du site principal.
 
-image:sc-saphana-vmware-smas-image34.png[""]
+image:sc-saphana-vmware-smas-image34.png["Figure illustrant le contenu discuté"]
 
 
 
@@ -43,8 +40,8 @@ Les sauvegardes Snapshot créées par SnapCenter sont disponibles au niveau des 
 
 La figure ci-dessous présente les snapshots du volume de données HANA au niveau du cluster A700.
 
-image:sc-saphana-vmware-smas-image35.png[""]
+image:sc-saphana-vmware-smas-image35.png["Figure illustrant le contenu discuté"]
 
 La figure ci-dessous présente les snapshots du volume de données HANA au niveau du cluster A800.
 
-image:sc-saphana-vmware-smas-image36.png[""]
+image:sc-saphana-vmware-smas-image36.png["Figure illustrant le contenu discuté"]

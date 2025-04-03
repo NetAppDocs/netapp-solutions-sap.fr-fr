@@ -30,7 +30,7 @@ En cas de panne sur le site principal, le stockage, l'hôte ou l'ensemble du sit
 
 Pour une description complète de toutes les options de configuration et des scénarios de réplication, reportez-vous à la section https://help.sap.com/docs/SAP_HANA_PLATFORM/4e9b18c116aa42fc84c7dbfd02111aba/afac7100bc6d47729ae8eae32da5fdec.html["Portail d'aide SAP HANA : réplication système ++|++"].
 
-image:sc-saphana-vmware-smas-image2.png[""]
+image:sc-saphana-vmware-smas-image2.png["Figure illustrant le contenu discuté"]
 
 
 
@@ -52,7 +52,7 @@ En cas de défaillance du stockage, le système HANA accède de manière transpa
 
 En cas de défaillance d'un hôte ou d'un site complet, un nouveau serveur sur le site secondaire doit être fourni pour accéder aux données à partir de l'hôte défaillant. Il s'agit généralement d'un système de test ou d'assurance qualité de la même taille que celui de production qui sera maintenant arrêté et utilisé pour exécuter le système de production. Une fois que les LUN du site secondaire sont connectées au nouvel hôte, la base de données HANA doit être démarrée. L'objectif RTO total dépend donc du temps nécessaire au provisionnement de l'hôte et de l'heure de démarrage de la base de données HANA.
 
-image:sc-saphana-vmware-smas-image3.png[""]
+image:sc-saphana-vmware-smas-image3.png["Figure illustrant le contenu discuté"]
 
 
 
@@ -64,7 +64,7 @@ En cas de défaillance du stockage, l'hôte ESX accède automatiquement à la co
 
 En cas de défaillance d'un hôte ou d'un site complet, vSphere HA permet de démarrer la machine virtuelle HANA sur l'hôte ESX secondaire. Lorsque la machine virtuelle HANA est en cours d'exécution, la base de données HANA doit être démarrée. L'objectif RTO total dépend donc principalement du temps de démarrage de la base de données HANA.
 
-image:sc-saphana-vmware-smas-image4.png[""]
+image:sc-saphana-vmware-smas-image4.png["Figure illustrant le contenu discuté"]
 
 
 

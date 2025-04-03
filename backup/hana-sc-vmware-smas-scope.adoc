@@ -37,4 +37,4 @@ Ce document ne doit pas être une description détaillée de la configuration de
 
 Nous nous concentrerons sur une configuration VMware Metro Storage Cluster (vMSC) à l'aide d'une configuration d'accès uniforme de la synchronisation active SnapMirror, comme illustré dans la figure ci-dessous. Nous nous concentrerons également brièvement sur les systèmes bare Metal ainsi que sur les configurations d'accès non uniformes.
 
-image:sc-saphana-vmware-smas-image1.png[""]
+image:sc-saphana-vmware-smas-image1.png["Figure illustrant le contenu discuté"]

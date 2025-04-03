@@ -10,11 +10,10 @@ summary:
 :icons: font
 :linkattrs: 
 :imagesdir: ../media/
-:firstname: ---
-:author: ---
-:authorinitials: -
-:authors: ---
 
+
+[role="lead"]
+Cet article présente les scénarios de basculement pour cette solution.
 
 
 
@@ -28,7 +27,7 @@ Dans une configuration d'accès uniforme, le SAN Fibre Channel est étendu sur l
 
 Pendant un fonctionnement normal, le système HANA lit et écrit depuis/vers la copie locale en fonction du chemin optimisé actif à partir de l'hôte ESX ESX-1. À chaque opération de sauvegarde, SnapCenter détecte le site principal actuel de la relation de réplication et exécute les opérations de sauvegarde sur le site principal. Les snapshots sont répliqués sur la copie en miroir et sont disponibles sur les deux sites. Une opération de restauration SnapCenter est exécutée sur le site principal.
 
-image:sc-saphana-vmware-smas-image42.png[""]
+image:sc-saphana-vmware-smas-image42.png["Figure illustrant le contenu discuté"]
 
 
 
@@ -36,7 +35,7 @@ image:sc-saphana-vmware-smas-image42.png[""]
 
 Si le système de stockage du site 1 tombe en panne, les systèmes HANA accèdent à la copie en miroir sur le site 2 et continuent de fonctionner. Le site principal bascule vers le site secondaire, et SnapCenter exécute à présent les opérations de sauvegarde et de restauration sur le nouveau site primaire.
 
-image:sc-saphana-vmware-smas-image43.png[""]
+image:sc-saphana-vmware-smas-image43.png["Figure illustrant le contenu discuté"]
 
 
 
@@ -44,7 +43,7 @@ image:sc-saphana-vmware-smas-image43.png[""]
 
 En cas de défaillance de site, la machine virtuelle HANA ainsi que SnapCenter et la machine virtuelle du plug-in SnapCenter pour VMware basculeront vers l'hôte ESX sur le site secondaire à l'aide de vSphere HA. La base de données HANA doit être démarrée, pour accéder à la copie en miroir sur le second site. Le site principal bascule vers le site secondaire, et SnapCenter exécute à présent les opérations de sauvegarde et de restauration sur le nouveau site primaire.
 
-image:sc-saphana-vmware-smas-image44.png[""]
+image:sc-saphana-vmware-smas-image44.png["Figure illustrant le contenu discuté"]
 
 
 
@@ -58,7 +57,7 @@ Dans une configuration d'accès non uniforme, le SAN Fibre Channel n'est pas ét
 
 Pendant un fonctionnement normal, le système HANA lit et écrit depuis/vers la copie locale. À chaque opération de sauvegarde, SnapCenter détecte le site principal actuel de la relation de réplication et exécute les opérations de sauvegarde sur le site principal. Les snapshots sont répliqués sur la copie en miroir et sont disponibles sur les deux sites. Une opération de restauration SnapCenter est exécutée sur le site principal.
 
-image:sc-saphana-vmware-smas-image45.png[""]
+image:sc-saphana-vmware-smas-image45.png["Figure illustrant le contenu discuté"]
 
 
 
@@ -66,7 +65,7 @@ image:sc-saphana-vmware-smas-image45.png[""]
 
 En cas de défaillance du stockage, la machine virtuelle HANA ainsi que SnapCenter et la machine virtuelle du plug-in SnapCenter pour VMware basculeront vers l'hôte ESX sur le site secondaire à l'aide de vSphere HA. La base de données HANA doit être démarrée, pour accéder à la copie en miroir sur le second site. Le site principal bascule vers le site secondaire, et SnapCenter exécute à présent les opérations de sauvegarde et de restauration sur le nouveau site primaire.
 
-image:sc-saphana-vmware-smas-image46.png[""]
+image:sc-saphana-vmware-smas-image46.png["Figure illustrant le contenu discuté"]
 
 
 
@@ -74,7 +73,7 @@ image:sc-saphana-vmware-smas-image46.png[""]
 
 Identique à une défaillance du stockage.
 
-image:sc-saphana-vmware-smas-image47.png[""]
+image:sc-saphana-vmware-smas-image47.png["Figure illustrant le contenu discuté"]
 
 
 
@@ -84,4 +83,4 @@ Si la machine virtuelle HANA est déplacée vers l'autre hôte ESX et que le sit
 
 Pour résoudre ce problème, vous devez vous assurer que le déplacement des serveurs virtuels et du côté primaire est effectué ensemble, ou que vous devez basculer le site principal avant de procéder à la restauration avec SnapCenter.
 
-image:sc-saphana-vmware-smas-image48.png[""]
+image:sc-saphana-vmware-smas-image48.png["Figure illustrant le contenu discuté"]
