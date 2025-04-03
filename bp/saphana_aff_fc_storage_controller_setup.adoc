@@ -70,6 +70,9 @@ lun create -vserver <vserver_name> -path  /vol/<volume_name>/<lun_name>   -size 
 Il est recommandé d'utiliser 1 000 Mo/s comme débit maximal pour une LUN donnée. Si une application requiert un débit supérieur, plusieurs LUN avec répartition par LUN doivent être utilisées pour fournir la bande passante nécessaire. Ce guide fournit un exemple de SAP HANA basé sur Linux LVM à la section https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_aff_fc_host_setup.html#create-lvm-volume-groups-and-logical-volumes["Configuration de l'hôte"].
 
 
+NOTE: La limite s'applique également aux lectures. Utilisez donc suffisamment de LUN pour remplir les SLA requis pour le délai de démarrage de la base de données SAP HANA et pour les sauvegardes.
+
+
 
 == NetApp FabricPool
 
