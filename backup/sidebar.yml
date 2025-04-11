@@ -182,3 +182,7 @@ entries:
 - title: 'SAP HANA sur les baies SAN 100 % NetApp : San moderne, protection des données
     et reprise après incident'
   url: "/backup/saphana-san_pdf_link.html"
+- title: Intégration de SnapCenter pour la base de données SAP ASE
+  url: "/backup/snapcenter-sap-ase.html"
+- title: Intégration SnapCenter pour IBM DB2 Database
+  url: "/backup/snapcenter-ibm-db2.html"

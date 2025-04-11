@@ -1,0 +1,341 @@
+---
+sidebar: sidebar 
+permalink: backup/snapcenter-ibm-db2.html 
+keywords: SAP, snapcenter, IBM DB2, database, backup, restore 
+summary: 'Ce document décrit les caractéristiques d"intégration de SnapCenter pour la base de données IBM DB2 utilisée dans un environnement SAP.' 
+---
+= Intégration SnapCenter pour IBM DB2 Database
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ce document décrit les caractéristiques d'intégration de SnapCenter pour la base de données IBM DB2 utilisée dans un environnement SAP.
+
+
+
+== Introduction
+
+Ce document ne doit pas être une description détaillée de la configuration de l'environnement complet, mais il couvre les concepts et les détails pertinents relatifs aux éléments suivants :
+
+* Exemple de présentation de la configuration
+* Présentation de l'échantillon
+* Protéger la base de données DB2
+* Restaurez et restaurez la base de données DB2
+
+
+Auteur: Michael Schlosser, NetApp
+
+
+
+== Exemple de présentation de la configuration
+
+Exemple d'implémentation pour le plug-in DB2 SnapCenter pour un système SAP s'exécutant sur la plateforme Azure.
+
+
+NOTE: Cette implémentation décrit la configuration de volume minimale requise.
+
+Vous pouvez également utiliser la structure de volume décrite dans cette link:https://techcommunity.microsoft.com/blog/sapapplications/db2-installation-guide-on-anf/3709437["Blog de la communauté technique MS"]section.
+
+image:sc-ibm-db2-image01.png["Diagramme de l'exemple d'implémentation avec IBM DB2"]
+
+
+
+== Environnement de démonstration
+
+
+
+=== Versions logicielles
+
+[cols="50%, 50%"]
+|===
+| *Logiciel* | *Version* 
+
+
+| Linux | SLES POUR SAP 15 SP5 
+
+
+| SAP | SAP NetWeaver 7.5 
+
+
+| DB2 | 10.5.0.7 
+
+
+| SnapCenter | 6,1 
+|===
+
+
+=== Conception de volumes DB2
+
+Vous devez utiliser la mise en page de volume minimum suivante pour activer la sauvegarde/restauration et le clonage des cas d'utilisation de la base de données DB2. L'exemple de configuration utilise <SID>: D01.
+
+[cols="20%, 20%, 30%, 30%"]
+|===
+| *Nom du volume* | *Répertoire (qtree) sur le volume* | *Point de montage sur le serveur* | *Commentaire* 
+
+
+| <SID>-sapdb2 | db2 | /db2 |  
+
+
+|  |  | /db2/<SID> | Répertoire parent pour les fichiers liés à DB2 
+
+
+|  |  | /db2/<sid> | Répertoire personnel de l'utilisateur <sid> et du logiciel DB2 
+
+
+|  |  | /db2/<SID>/db2dump | Journaux de diagnostic DB2 et fichiers de vidage 
+
+
+|  |  | /db2/<SID>/backup | Emplacement de sauvegarde (peut être placé sur un volume différent) 
+
+
+|  |  | /db2/<SID>/log_arch | Journaux de rétablissement hors ligne (peut être placé sur un autre volume ; l'instantané sera déclenché) 
+
+
+|  |  | /db2/<SID>/log_dir | Journaux de rétablissement en ligne (peut être placé sur un autre volume ; l'instantané sera déclenché) 
+
+
+|  | <sid>, choix | /home/<sid> | Répertoire personnel de l'utilisateur <sid> 
+
+
+|  | <sid> | /home/<sid> | Répertoire personnel de l'utilisateur <sid> 
+
+
+|  | usrsaptrans | /usr/sap/trans | Répertoire de transport 
+
+
+|  | <SID> | /Usr/sap/<SID> | Usr sap 
+
+
+|  | <SID> | /Sapmnt/<SID> | Directeur de SAP GlobalHost 
+
+
+| Données-<SID> | sapdata1 | /db2/<SID>/sapdata1 | Données de BASE de données 
+
+
+|  | sapdata2 | /db2/<SID>/sapdata2 | Données de BASE de données 
+
+
+|  | sapdata3 | /db2/<SID>/sapdata3 | Données de BASE de données 
+
+
+|  | sapdata4 | /db2/<SID>/sapdata4 | Données de BASE de données 
+
+
+|  | saptmp1 | /db2/<SID>/saptmp1 | Fichiers DB Temp 
+
+
+|  | saptmp2 | /db2/<SID>/saptmp2 | Fichiers DB Temp 
+
+
+|  | saptmp3 | /db2/<SID>/saptmp3 | Fichiers DB Temp 
+
+
+|  | saptmp4 | /db2/<SID>/saptmp4 | Fichiers DB Temp 
+
+
+|  | <sid> | /db2/<SID>/<sid> | Fichiers d'instance 
+|===
+Comme la découverte automatique est activée par défaut pour le plug-in DB2, un snapshot est créé pour les volumes correspondant aux chemins de fichier suivants.
+
+image:sc-ibm-db2-image02.png["Capture d'écran des chemins des fichiers de base de données"]
+
+
+
+=== Étapes pour protéger la base de données D01
+
+* Vérifiez la distribution du fichier, en fonction de la disposition de l'échantillon
+* Vérifier les prérequis pour l'hôte (vm-d01)
+* Vérifier les prérequis pour la base de données (D01)
+* Déployer/installer l'agent SnapCenter sur l'hôte (vm-d01)
+* Créer une configuration de ressource d'instance SnapCenter
+
+
+
+
+=== Conditions préalables sur l'hôte
+
+Vous trouverez des informations plus récentes à l'adresse suivante :
+
+* https://docs.netapp.com/us-en/snapcenter/protect-scu/reference_prerequisites_for_adding_hosts_and_installing_snapcenter_plug_ins_package_for_linux.html[]
+* https://docs.netapp.com/us-en/snapcenter/protect-db2/prerequisites-for-using-snapcenter-plug-in-for-ibm-db2.html[]
+
+
+Avant d'ajouter un hôte et d'installer le package de plug-ins pour Linux, vous devez remplir toutes les conditions requises.
+
+* Si vous utilisez iSCSI, le service iSCSI doit être en cours d'exécution.
+* Vous pouvez utiliser l'authentification basée sur un mot de passe pour l'utilisateur root ou non root ou l'authentification basée sur une clé SSH.
+* Le plug-in SnapCenter pour systèmes de fichiers Unix peut être installé par un utilisateur non root. Cependant, vous devez configurer les privilèges sudo pour que l'utilisateur non-root installe et démarre le processus de plug-in. Après l'installation du plug-in, les processus s'exécutent en tant qu'utilisateur non-racine efficace.
+* Créez des informations d'identification avec le mode d'authentification Linux pour l'utilisateur d'installation.
+* Vous devez avoir installé Java 11 sur votre hôte Linux.
+* Assurez-vous d'avoir installé uniquement l'édition certifiée de JAVA 11 sur l'hôte Linux
+* Pour plus d'informations sur le téléchargement de JAVA, reportez-vous à la section : Téléchargements Java pour tous les systèmes d'exploitation
+* Vous devez avoir bash comme shell par défaut pour l'installation du plug-in.
+
+
+
+
+=== Conditions requises pour la base de données : activez la journalisation et les sauvegardes
+
+
+NOTE: pour activer les journaux hors ligne, une sauvegarde complète hors ligne de la base de données est requise. En général, il est déjà activé pour les systèmes de production.
+
+* Créer des répertoires pour la sauvegarde et log_arch (/db2/D01/backup, /sybase/D01/log_arch)
+* Activer logarchmeth1 (en tant qu'utilisateur OS db2d01)
++
+** db2 update db cfg pour D01 avec logarchmeth1 DISK:/db2/D01/log_arch/
+
+
+* Créer une sauvegarde hors ligne (en tant qu'utilisateur système d'exploitation db2d01)
++
+** force db2stop
+** db2start admin mode accès restreint
+** db2 Backup db D01 vers /db2/D01/backup
+** db2 Active db D01
+
+
+
+
+
+
+=== Déployez l'agent SnapCenter sur l'hôte vm-d01
+
+Pour plus d'informations, consultez le link:https://docs.netapp.com/us-en/snapcenter/protect-scu/task_add_hosts_and_install_the_snapcenter_plug_ins_package_for_linux.html["Documentation SnapCenter"].
+
+Sélectionnez IBM DB2 et Unix File Systems Plugins.
+
+image:sc-ibm-db2-image03.png["Capture d'écran de l'ajout de plug-ins de système de fichiers IBM DB2 et Unix"]
+
+
+NOTE: Après l'installation, une découverte des bases de données sur l'hôte est déclenchée.
+
+image:sc-ibm-db2-image04.png["Capture d'écran de la découverte de la base de données sur l'hôte"]
+
+
+
+=== Créer une configuration de ressource pour la base de données D01
+
+Sélectionnez ressource découverte D01
+
+image:sc-ibm-db2-image05.png["Capture d'écran de la découverte de la base de données sur l'hôte"]
+
+Configurer le nom du snapshot
+
+image:sc-ibm-db2-image06.png["Capture d'écran de la boîte de dialogue configurer le nom de l'instantané"]
+
+Aucun paramètre d'application spécifique n'est requis. Configurez les paramètres de stratégie et de notification selon les besoins.
+
+image:sc-ibm-db2-image07.png["Capture d'écran de la stratégie de configuration et des paramètres de notification"]
+
+Et terminez la configuration.
+
+
+
+==== Séquence de récupération du système D01
+
+. Arrêt du système SAP D01 (y compris la base de données)
+. Restaurer la sauvegarde SnapCenter (volume D01-data)
++
+.. Démontez Filesystems
+.. Restaurer le volume
+.. Monter les systèmes de fichiers
+.. Base de données init en tant que base de données miroir
+
+
+. Restaurer la base de données D01 (à l'aide de db2 rollforward)
+. Démarrez SAP System D01
+
+
+
+
+=== Restaurer la base de données D01
+
+* Arrêter SAP System + DB D01 sur l'hôte vm-d01
++
+** Utilisateur d01adm : stopsap
+
+
+* Restaurer la sauvegarde
++
+** Interface graphique SnapCenter : sélectionnez la sauvegarde requise pour la restauration
++
+image:sc-ibm-db2-image08.png["Capture d'écran de l'interface graphique de SnapCenter pour sélectionner la sauvegarde à restaurer"]
+
+** Pour le déploiement d'ANF : seule une ressource complète est disponible
++
+image:sc-ibm-db2-image09.png["Capture d'écran de l'interface graphique de SnapCenter pour sélectionner la sauvegarde à restaurer"]
+
+
+
+
+
+Le résumé s'affiche et avec Terminer, la restauration réelle démarre.
+
+image:sc-ibm-db2-image10.png["Capture d'écran du récapitulatif de la sauvegarde pour la restauration"]
+
+
+NOTE: “Db2inidb D01 en tant que miroir” fait partie du workflow de restauration SnapCenter.
+
+* Vérifier l'état de la restauration de la base de données D01 (en tant qu'utilisateur db2d01)
++
+** État de la requête db2 rollforward db D01
+
+
+* Restaurer la base de données selon les besoins – une restauration sans objet est en effet mise en place (sous la forme de l'utilisateur db2d01)
++
+** db2 fait un transfert aval de la base de données D01 à la fin des journaux
+
+
+* Arrêter la récupération de la base de données et la base de données en ligne D01 (en tant qu'utilisateur db2d01)
++
+** db2 rollforward db D01 stop
+
+
+* Démarrer le système SAP (en tant qu'utilisateur d01adm)
++
+** startsap
+
+
+
+
+
+
+== Informations supplémentaires et historique des versions
+
+Les démonstrations recodées suivantes sont disponibles pour prendre en charge la documentation.
+
+.Installation et configuration du plug-in DB2, sauvegarde de la base de données DB2
+video::66c87afd-ca53-4af1-8bd8-b2b900c1fb0f[panopto,width=360]
+.Restauration et récupération de la base de données DB2
+video::3a82e561-e5a2-4a23-9465-b2b900c1fac5[panopto,width=360]
+Pour en savoir plus sur les informations données dans ce livre blanc, consultez ces documents et/ou sites web :
+
+* link:https://techcommunity.microsoft.com/blog/sapapplications/db2-installation-guide-on-anf/3709437["SAP sur DB2 installation Azure sur ANF"]
+* link:https://docs.netapp.com/us-en/snapcenter/protect-scu/reference_prerequisites_for_adding_hosts_and_installing_snapcenter_plug_ins_package_for_linux.html["SnapCenter prérequis pour les plug-ins"]
+* link:https://docs.netapp.com/us-en/snapcenter/protect-scu/task_add_hosts_and_install_the_snapcenter_plug_ins_package_for_linux.html["Plug-ins d'installation SnapCenter"]
+* link:https://docs.netapp.com/us-en/snapcenter/protect-db2/snapcenter-plug-in-for-ibm-db2-overview.html["Documentation du plug-in DB2 SnapCenter"]
+* SAP Notes (connexion requise)
++
+** 83000 - DB2/390 : options de sauvegarde et de restauration : https://me.sap.com/notes/83000[]
+** 594301 - DB6 : Outils d'administration et miroir divisé : https://me.sap.com/notes/594301[]
+
+
+* Documentation des produits NetApp : https://www.netapp.com/support-and-training/documentation/[]
+* Solutions SAP NetApp – informations sur les utilisations, les meilleures pratiques et les avantages : https://docs.netapp.com/us-en/netapp-solutions-sap[]
+
+
+
+
+=== Historique des versions
+
+[cols="25 %, 25%, 50%"]
+|===
+| *Version* | *Date* | *Historique de la version du document* 
+
+
+| Version 1.0 | Avril 2025 | Version initiale – sauvegarde/restauration de la base de données DB2 
+|===
