@@ -175,13 +175,8 @@ entries:
       url: "/backup/saphana-dr-anf_update_history.html"
 - title: Reprise après incident de SAP HANA avec la réplication du stockage
   url: "/backup/saphana-dr-sr_pdf_link.html"
-- title: Sauvegarde et restauration de SAP HANA à l'aide de Snap Creator
-  url: "/backup/saphana-bandr-sc_pdf_link.html"
 - title: SAP HANA Backup and Recovery à l'aide du stockage NetApp et du logiciel CommVault
   url: "/backup/saphana-commvault_pdf_link.html"
-- title: 'SAP HANA sur les baies SAN 100 % NetApp : San moderne, protection des données
-    et reprise après incident'
-  url: "/backup/saphana-san_pdf_link.html"
 - title: Intégration de SnapCenter pour la base de données SAP ASE
   url: "/backup/snapcenter-sap-ase.html"
 - title: Intégration SnapCenter pour IBM DB2 Database
