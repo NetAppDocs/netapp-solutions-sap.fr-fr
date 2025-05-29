@@ -1,0 +1,162 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sr-scs-4.6-config-using-resource-group.html 
+keywords: resource group, configuration, discovery, retention management 
+summary: 'SnapCenter 4.6 prend en charge la détection automatique des systèmes HANA configurés avec la réplication système HANA. SnapCenter 4.6 inclut la logique permettant d"identifier les hôtes HANA principaux et secondaires pendant les opérations de sauvegarde, et gère également la gestion de la conservation sur les hôtes HANA.' 
+---
+= Configuration de SnapCenter 4.6 à l'aide d'un groupe de ressources
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapCenter 4.6 prend en charge la détection automatique des systèmes HANA configurés avec la réplication système HANA. SnapCenter 4.6 inclut la logique permettant d'identifier les hôtes HANA principaux et secondaires pendant les opérations de sauvegarde, et gère également la gestion de la conservation sur les hôtes HANA. De plus, la restauration et la restauration automatisées sont désormais disponibles pour les environnements de réplication système HANA.
+
+
+
+== Configuration SnapCenter 4.6 des environnements de réplication système HANA
+
+La figure suivante illustre la configuration de laboratoire utilisée pour ce chapitre. Deux hôtes HANA, hana-3 et hana-4, ont été configurés avec la réplication système HANA.
+
+Un utilisateur de base de données « SnapCenter » a été créé pour la base de données du système HANA avec le Privileges requis pour exécuter les opérations de sauvegarde et de restauration (voir link:hana-br-scs-overview.html["SAP HANA : sauvegarde et restauration avec SnapCenter"^]). Une clé de magasin d'utilisateurs HANA doit être configurée sur les deux hôtes à l'aide de l'utilisateur de base de données ci-dessus.
+
+....
+ss2adm@hana- 3: / > hdbuserstore set SS2KEY hana- 3:33313 SNAPCENTER <password>
+....
+....
+ss2adm@hana- 4:/ > hdbuserstore set SS2KEY hana-4:33313 SNAPCENTER <password>
+....
+De manière générale, vous devez effectuer les étapes suivantes pour configurer la réplication système HANA dans SnapCenter.
+
+. Installez le plug-in HANA sur les hôtes principal et secondaire. La détection automatique est exécutée et l'état de réplication du système HANA est détecté pour chaque hôte principal ou secondaire.
+. Exécuter SnapCenter `configure database` et fournir le `hdbuserstore` clé. D'autres opérations de découverte automatique sont exécutées.
+. Créez un groupe de ressources, y compris les hôtes et configurez la protection.
+
+
+image:saphana-sr-scs-image6.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Une fois le plug-in SnapCenter HANA installé sur les deux hôtes HANA, les systèmes HANA s'affichent dans la vue des ressources SnapCenter de la même manière que les autres ressources autodécouvertes. Depuis la version SnapCenter 4.6, une colonne supplémentaire affiche l'état de la réplication système HANA (activée/désactivée, principale/secondaire).
+
+image:saphana-sr-scs-image7.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+En cliquant sur la ressource, SnapCenter demande la clé de magasin utilisateur HANA pour le système HANA.
+
+image:saphana-sr-scs-image8.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+D'autres étapes de découverte automatique sont exécutées. SnapCenter affiche les détails des ressources. Avec SnapCenter 4.6, l'état de réplication du système et le serveur secondaire sont répertoriés dans cette vue.
+
+image:saphana-sr-scs-image9.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Après avoir effectué les mêmes étapes pour la seconde ressource HANA, le processus de détection automatique est terminé et les deux ressources HANA sont configurées dans SnapCenter.
+
+image:saphana-sr-scs-image10.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Pour les systèmes compatibles avec la réplication système HANA, vous devez configurer un groupe de ressources SnapCenter, y compris les deux ressources HANA.
+
+image:saphana-sr-scs-image11.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+NetApp recommande d'utiliser un format de nom personnalisé pour le nom du snapshot, qui doit inclure le nom d'hôte, la règle et la planification.
+
+image:saphana-sr-scs-image12.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Vous devez ajouter les deux hôtes HANA au groupe de ressources.
+
+image:saphana-sr-scs-image13.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Les stratégies et les planifications sont configurées pour le groupe de ressources.
+
+
+NOTE: La conservation définie dans la règle est utilisée sur les deux hôtes HANA. Si, par exemple, une rétention de 10 est définie dans la règle, la somme des sauvegardes des deux hôtes est utilisée comme critère pour la suppression de la sauvegarde. SnapCenter supprime la sauvegarde la plus ancienne de manière indépendante si elle a été créée sur l'hôte principal ou secondaire actuel.
+
+image:saphana-sr-scs-image14.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+La configuration des groupes de ressources est maintenant terminée et les sauvegardes peuvent être exécutées.
+
+image:saphana-sr-scs-image15.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+image:saphana-sr-scs-image16.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+
+
+== Opérations de sauvegarde Snapshot
+
+Lors de l'exécution d'une opération de sauvegarde du groupe de ressources, SnapCenter identifie l'hôte principal et déclenche uniquement une sauvegarde sur l'hôte principal. Cela signifie que seul le volume de données de l'hôte principal sera snapshotted. Dans notre exemple, hana-3 est l'hôte principal actuel, et une sauvegarde est exécutée sur cet hôte.
+
+image:saphana-sr-scs-image17.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Le journal des tâches SnapCenter affiche l'opération d'identification et l'exécution de la sauvegarde sur l'hôte principal actuel hana-3.
+
+image:saphana-sr-scs-image18.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Une sauvegarde Snapshot a été créée au niveau de la ressource HANA principale. Le nom d'hôte inclus dans le nom de la sauvegarde indique hana-3.
+
+image:saphana-sr-scs-image19.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+La même sauvegarde Snapshot est également visible dans le catalogue des sauvegardes HANA.
+
+image:saphana-sr-scs-image20.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Lors de l'exécution d'une opération de basculement, d'autres sauvegardes SnapCenter identifient désormais l'ancien hôte secondaire (hana-4) comme hôte principal et l'opération de sauvegarde est exécutée sur hana-4. Là encore, seul le volume de données du nouvel hôte principal (hana-4) est snapshotted.
+
+
+NOTE: La logique d'identification SnapCenter couvre uniquement les scénarios dans lesquels les hôtes HANA font partie d'une relation primaire-secondaire ou lorsque l'un des hôtes HANA est hors ligne.
+
+image:saphana-sr-scs-image21.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Le journal des tâches SnapCenter affiche l'opération d'identification et l'exécution de la sauvegarde sur l'hôte principal actuel hana-4.
+
+image:saphana-sr-scs-image22.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Une sauvegarde Snapshot a été créée au niveau de la ressource HANA principale. Le nom d'hôte inclus dans le nom de la sauvegarde indique hana-4.
+
+image:saphana-sr-scs-image23.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+La même sauvegarde Snapshot est également visible dans le catalogue des sauvegardes HANA.
+
+image:saphana-sr-scs-image24.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+
+
+== Opérations de contrôle de l'intégrité des blocs avec les sauvegardes basées sur des fichiers
+
+SnapCenter 4.6 utilise la même logique que celle décrite pour les opérations de sauvegarde de Snapshot dans le cadre des opérations de vérification de l'intégrité des blocs avec des sauvegardes basées sur des fichiers. SnapCenter identifie l'hôte HANA principal actuel et exécute la sauvegarde basée sur les fichiers pour cet hôte. La gestion de la conservation s'effectue également sur les deux hôtes, de sorte que la sauvegarde la plus ancienne soit supprimée, quel que soit l'hôte utilisé actuellement comme système primaire.
+
+
+
+== Réplication SnapVault
+
+Pour permettre des opérations de sauvegarde transparentes sans interaction manuelle en cas de basculement et quel hôte HANA est actuellement l'hôte primaire, vous devez configurer une relation SnapVault pour les volumes de données des deux hôtes. SnapCenter exécute une opération de mise à jour SnapVault pour l'hôte principal actuel à chaque sauvegarde.
+
+
+NOTE: Si un basculement vers l'hôte secondaire n'est pas effectué pendant une longue période, le nombre de blocs modifiés pour la première mise à jour SnapVault sur l'hôte secondaire sera élevé.
+
+La gestion des durées de conservation de la cible SnapVault est gérée en dehors de SnapCenter par ONTAP, la conservation ne peut pas être gérée entre les deux hôtes HANA. Les sauvegardes créées avant le basculement ne sont donc pas supprimées avec les opérations de sauvegarde de l'ancien système secondaire. Ces sauvegardes restent tant que l'ancien système primaire n'est pas de nouveau primaire. Pour ne pas bloquer la gestion des durées de conservation des sauvegardes des journaux, ces sauvegardes doivent être supprimées manuellement au niveau de la cible SnapVault ou dans le catalogue de sauvegardes HANA.
+
+
+NOTE: Un nettoyage de toutes les copies SnapVault Snapshot n'est pas possible, car une copie Snapshot est bloquée en tant que point de synchronisation. Si vous devez également supprimer la dernière copie Snapshot, la relation de réplication SnapVault doit être supprimée. Dans ce cas, NetApp recommande de supprimer les sauvegardes du catalogue de sauvegardes HANA pour débloquer la gestion de la conservation des sauvegardes de journaux.
+
+image:saphana-sr-scs-image25.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+
+
+== La gestion de la conservation
+
+SnapCenter 4.6 gère la conservation pour les sauvegardes Snapshot, les opérations de contrôle de l'intégrité des blocs, les entrées du catalogue de sauvegardes HANA et les sauvegardes de journaux (s'ils ne sont pas désactivés) entre les deux hôtes HANA, ce qui n'importe quel hôte est actuellement principal ou secondaire. Les sauvegardes (données et journaux) et les entrées du catalogue HANA sont supprimées en fonction de la conservation définie, que la suppression soit nécessaire sur l'hôte principal ou secondaire actuel. En d'autres termes, aucune interaction manuelle n'est requise si une opération de basculement est effectuée et/ou si la réplication est configurée dans l'autre direction.
+
+Si la réplication SnapVault fait partie de la stratégie de protection des données, une interaction manuelle est requise pour des scénarios spécifiques, comme décrit dans la section link:#snapvault-replication["Réplication SnapVault"]
+
+
+
+== Restauration et reprise
+
+La figure suivante représente un scénario dans lequel plusieurs sauvegardes Snapshot ont été exécutées sur les deux sites. Avec le statut actuel, l'hôte hana-3 est l'hôte principal et la dernière sauvegarde est T4, qui a été créée à l'hôte hana-3. Si vous devez effectuer une opération de restauration et de récupération, les sauvegardes T1 et T4 sont disponibles pour la restauration et la récupération dans SnapCenter. Les sauvegardes, qui ont été créées sur l'hôte hana-4 (T2, T3), ne peuvent pas être restaurées à l'aide de SnapCenter. Ces sauvegardes doivent être copiées manuellement vers le volume de données hana-3 à des fins de restauration.
+
+image:saphana-sr-scs-image26.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Les opérations de restauration et de récupération d'une configuration de groupes de ressources SnapCenter 4.6 sont identiques à celles d'une configuration de réplication non système autodécouverte. Toutes les options de restauration et de récupération automatisée sont disponibles. Pour plus de détails, voir le rapport technique link:hana-br-scs-overview.html["Tr-4614 : sauvegarde et restauration SAP HANA avec SnapCenter"^].
+
+Une opération de restauration à partir d'une sauvegarde créée sur l'autre hôte est décrite dans la section link:hana-sr-scs-restore-recovery-other-host-backup.html["Restauration à partir d'une sauvegarde créée sur l'autre hôte"].

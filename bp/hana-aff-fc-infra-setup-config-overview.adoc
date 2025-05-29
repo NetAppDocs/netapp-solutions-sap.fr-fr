@@ -1,0 +1,30 @@
+---
+sidebar: sidebar 
+permalink: bp/hana-aff-fc-infra-setup-config-overview.html 
+keywords:  
+summary:  
+---
+= Installation et configuration de l'infrastructure
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les sections suivantes fournissent des instructions d'installation et de configuration de l'infrastructure SAP HANA et décrivent toutes les étapes nécessaires à la configuration d'un système SAP HANA. Les exemples de configurations suivants sont utilisés dans ces sections :
+
+* Système HANA avec SID=SS3
++
+** SAP HANA à un ou plusieurs hôtes
+** Un hôte unique SAP HANA avec plusieurs partitions SAP HANA
+
+
+* Système HANA avec SID=FC5 utilisant LVM (Logical Volume Manager) Linux
++
+** SAP HANA à un ou plusieurs hôtes
+
+
+

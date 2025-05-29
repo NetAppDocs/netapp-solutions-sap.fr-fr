@@ -1,0 +1,31 @@
+---
+sidebar: sidebar 
+permalink: lifecycle/lama-ansible-provision-wf-sys-refresh.html 
+keywords: refresh, workflow, storage clone 
+summary: 'Durant le workflow d"actualisation, le clone de stockage doit être supprimé. Vous pouvez utiliser le même PlayBook Ansible que pour le workflow de destruction du système. Cependant, le crochet personnalisé est défini sur une étape différente, de sorte que le manuel de vente porte le nom correspondant. L"étape de traitement du clone ne diffère pas.' 
+---
+= Workflow de provisionnement SAP Lama : actualisation du système
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+La figure suivante met en évidence les principales étapes exécutées avec le flux de travail d'actualisation du système.
+
+image:lama-ansible-image49.png["Cette image représente une chronologie des étapes du flux de travail d'actualisation du système. Il contient la configuration d'exportation, arrêter le système, annuler la préparation du système, supprimer le clone de stockage, clonage du stockage, préparer le système, activer l'isolation, renommer le système, démarrer le système, importer la configuration, automatisation post-copie et désactivation de l'isolation."]
+
+Durant le workflow d'actualisation, le clone de stockage doit être supprimé. Vous pouvez utiliser le même PlayBook Ansible que pour le workflow de destruction du système. Cependant, le crochet personnalisé est défini sur une étape différente, de sorte que le manuel de vente porte le nom correspondant. L'étape du processus du clone ne diffère pas.
+
+image:lama-ansible-image50.png["Cette image montre un diagramme architectural qui inclut les étapes contenues dans ce flux de travail."]
+
+Le workflow d'actualisation peut être déclenché via l'écran de provisionnement d'un système copié.
+
+image:lama-ansible-image51.png["Cette capture d'écran montre la vue du système de provisionnement avec la liste déroulante Actualiser le système mise en surbrillance."]
+
+Là encore, rien ne diffère des écrans d'entrée de la norme et l'exécution du workflow peut être démarrée à partir de l'écran de résumé.
+
+image:lama-ansible-image52.png["Cette capture d'écran affiche l'écran Actualiser le système, y compris les données de base du système à actualiser et la sélection de l'hôte du système cible."]

@@ -1,0 +1,81 @@
+---
+sidebar: sidebar 
+permalink: bp/hana-aff-fc-introduction.html 
+keywords: introduction, raw device mapping, rdm, tailored data center integration, FCP datastore 
+summary: 'La gamme de produits NetApp AFF est certifiée pour une utilisation avec SAP HANA dans les projets TDI. La plateforme de stockage d"entreprise certifiée se caractérise par le logiciel NetApp ONTAP.' 
+---
+= SAP HANA sur les systèmes AFF de NetApp avec le protocole Fibre Channel
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+La gamme de produits NetApp AFF est certifiée pour une utilisation avec SAP HANA dans les projets TDI. La plateforme de stockage d'entreprise certifiée se caractérise par le logiciel NetApp ONTAP.
+
+Marco Schoen, NetApp
+
+
+
+== Introduction
+
+Les gammes NetApp AFF A-Series et AFF C-Series ont été certifiées pour une utilisation avec SAP HANA dans le cadre de projets TDI (Tailored Data Center Integration).
+
+Cette certification est valable pour les modèles suivants :
+
+* AFF A150, AFF A20, AFF A250, AFF A30, AFF A400, AFF A50, AFF A70, AFF A1K, AFF A90, AFF A900, AFF A800
+* AFF C250, AFF C30, AFF C400, AFF C60, AFF C800, AFF C80
+* ASA A250, ASA A20, ASA A30, ASA A400, ASA A50, ASA A70, ASA A800, ASA A900, ASA A90, ASA A1K
+* ASA C250, ASA C400, ASA C800
++
+
+NOTE: NetApp AFF et ASA C-Series requièrent NetApp ONTAP 9.13.1 ou version ultérieure
+
+
+
+Pour obtenir la liste complète des solutions de stockage certifiées NetApp pour SAP HANA, consultez la https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/#/solutions?filters=v:deCertified;ve:13["Répertoire matériel SAP HANA certifié et pris en charge"^].
+
+Ce document décrit les configurations AFF qui utilisent le protocole FCP (Fibre Channel Protocol).
+
+
+NOTE: La configuration décrite dans ce document est nécessaire pour atteindre les KPI SAP HANA requis et les meilleures performances pour SAP HANA. La modification de certains paramètres ou l'utilisation de fonctionnalités non répertoriées dans ce document peut entraîner une dégradation des performances ou un comportement inattendu, et ces opérations ne doivent être effectuées que si l'équipe de support NetApp en recommande l'utilisation.
+
+Les guides de configuration pour les systèmes AFF qui utilisent NFS et NetApp FAS sont disponibles via les liens suivants :
+
+* link:hana-fas-fc-introduction.html["SAP HANA sur les systèmes FAS de NetApp avec le protocole FCP"^]
+* link:hana-fas-nfs-introduction.html["SAP HANA sur les systèmes FAS de NetApp avec NFS"^]
+* link:hana-aff-nfs-introduction.html["SAP HANA sur les systèmes AFF de NetApp avec NFS"^]
+
+
+Dans un environnement SAP HANA à plusieurs hôtes, le connecteur de stockage standard SAP HANA permet d'isoler les données en cas de basculement d'hôte SAP HANA. Reportez-vous toujours aux notes SAP appropriées pour les instructions de configuration du système d'exploitation et les dépendances spécifiques au noyau Linux HANA. Pour plus d'informations, voir https://launchpad.support.sap.com/["Note SAP 2235581 – systèmes d'exploitation pris en charge par SAP HANA"^].
+
+
+
+== SAP HANA Tailored Data Center Integration
+
+Les systèmes de stockage AFF de NetApp sont certifiés dans le programme SAP HANA TDI en utilisant les protocoles NFS (NAS) et FC (SAN). Ils peuvent être déployés dans tous les scénarios SAP HANA actuels, tels que SAP Business Suite sur HANA, S/4HANA, BW/HANA ou SAP Business Warehouse sur HANA, soit sur un ou plusieurs hôtes. Tous les serveurs certifiés pour une utilisation avec SAP HANA peuvent être associés à des solutions de stockage certifiées NetApp. La figure suivante montre une vue d'ensemble de l'architecture.
+
+image:saphana_aff_fc_image1.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Pour plus d'informations sur les prérequis et les recommandations de systèmes SAP HANA productifs, consultez la ressource suivante :
+
+* http://go.sap.com/documents/2016/05/e8705aae-717c-0010-82c7-eda71af511fa.html["FAQ sur l'intégration de SAP HANA Tailored Data Center Integration"^]
+
+
+
+
+= SAP HANA avec VMware vSphere
+
+Il existe plusieurs options pour connecter le stockage à des machines virtuelles (VM). La première option consiste à connecter les volumes de stockage avec NFS directement hors du système d'exploitation invité. Cette option est décrite dans link:hana-aff-nfs-introduction.html["SAP HANA sur les systèmes AFF de NetApp avec NFS"].
+
+Les mappages de périphériques bruts (RDM), les data stores FCP ou les data stores VVOL avec FCP sont également pris en charge. Pour les deux options de datastore, un seul volume de données ou de journaux SAP HANA doit être stocké dans le datastore pour des utilisations productives.
+
+Pour plus d'informations sur l'utilisation de vSphere avec SAP HANA, consultez les liens suivants :
+
+* https://help.sap.com/docs/SUPPORT_CONTENT/virtualization/3362185751.html["SAP HANA sur VMware vSphere - virtualisation - Wiki communautaire"^]
+* https://www.vmware.com/docs/sap_hana_on_vmware_vsphere_best_practices_guide-white-paper["Guide des bonnes pratiques de SAP HANA sur VMware vSphere"^]
+* https://launchpad.support.sap.com/["2161991 - instructions de configuration de VMware vSphere - SAP ONE support Launchpad (connexion requise)"^]
+

@@ -1,0 +1,193 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sr-scs-config-single-resource.html 
+keywords: virtual ip, single resource, configuration, 
+summary: 'Une ressource SnapCenter est configurée avec l"adresse IP virtuelle (nom d"hôte) de l"environnement de réplication système HANA. Avec cette approche, SnapCenter communique toujours avec l"hôte principal, que l"hôte 1 ou l"hôte 2 soit principal.' 
+---
+= Configuration SnapCenter avec une seule ressource
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Une ressource SnapCenter est configurée avec l'adresse IP virtuelle (nom d'hôte) de l'environnement de réplication système HANA. Avec cette approche, SnapCenter communique toujours avec l'hôte principal, que l'hôte 1 ou l'hôte 2 soit principal. Les volumes de données des deux hôtes SAP HANA sont inclus dans la ressource SnapCenter.
+
+
+NOTE: Nous supposons que l'adresse IP virtuelle est toujours liée à l'hôte SAP HANA principal. Le basculement de l'adresse IP virtuelle est effectué en dehors de SnapCenter dans le cadre du workflow de basculement de réplication du système HANA.
+
+Lors de l'exécution d'une sauvegarde avec l'hôte 1 comme hôte principal, une sauvegarde Snapshot cohérente avec la base de données est créée au niveau du volume de données de l'hôte 1. Le volume de données de l'hôte 2 faisant partie de la ressource SnapCenter, une autre copie Snapshot est créée pour ce volume. Cette copie Snapshot n'est pas cohérente avec la base de données. Il s'agit plutôt d'une image de panne de l'hôte secondaire.
+
+Le catalogue de sauvegardes SAP HANA et la ressource SnapCenter comprennent la sauvegarde créée à l'hôte 1.
+
+image:saphana-sr-scs-image27.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+La figure suivante montre l'opération de sauvegarde après le basculement vers l'hôte 2 et la réplication de l'hôte 2 vers l'hôte 1. SnapCenter communique automatiquement avec l'hôte 2 en utilisant l'adresse IP virtuelle configurée dans la ressource SnapCenter. Les sauvegardes sont maintenant créées sur l'hôte 2. Deux copies Snapshot sont créées par SnapCenter : une sauvegarde cohérente avec la base de données au niveau du volume de données de l'hôte 2 et une copie Snapshot d'image de panne au niveau du volume de données de l'hôte 1. Le catalogue de sauvegardes SAP HANA et la ressource SnapCenter incluent désormais la sauvegarde créée sur l'hôte 1 et la sauvegarde créée sur l'hôte 2.
+
+La gestion des sauvegardes de données et de journaux dépend de la règle de conservation SnapCenter définie ; les sauvegardes sont supprimées, quel que soit l'hôte principal ou secondaire.
+
+image:saphana-sr-scs-image28.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Comme indiqué dans la section link:hana-sr-scs-storage-snapshot-backups-sap-system-replication.html["Sauvegardes Snapshot de stockage et réplication système SAP"], une opération de restauration avec des sauvegardes Snapshot basées sur le stockage est différente, en fonction de la sauvegarde à restaurer. Il est important d'identifier l'hôte sur lequel la sauvegarde a été créée pour déterminer si la restauration peut être effectuée sur le volume de stockage local, ou si la restauration doit être effectuée sur le volume de stockage de l'autre hôte.
+
+Avec la configuration SnapCenter à ressource unique, SnapCenter ne sait pas où la sauvegarde a été créée. NetApp vous recommande donc d'ajouter un script de présauvegarde au workflow de sauvegarde SnapCenter pour identifier l'hôte qui est actuellement le principal hôte SAP HANA.
+
+La figure suivante décrit l'identification de l'hôte de sauvegarde.
+
+image:saphana-sr-scs-image29.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+
+
+== Configuration SnapCenter
+
+La figure suivante présente la configuration du laboratoire et un aperçu de la configuration SnapCenter requise.
+
+image:saphana-sr-scs-image30.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Pour effectuer des opérations de sauvegarde, quel que soit l'hôte SAP HANA principal et même lorsqu'un hôte est en panne, le plug-in SnapCenter SAP HANA doit être déployé sur un hôte plug-in central. Dans notre configuration de laboratoire, nous avons utilisé le serveur SnapCenter comme plug-in central, et nous avons déployé le plug-in SAP HANA sur le serveur SnapCenter.
+
+Un utilisateur a été créé dans la base de données HANA pour effectuer des opérations de sauvegarde. Une clé de magasin utilisateur a été configurée au niveau du serveur SnapCenter sur lequel le plug-in SAP HANA a été installé. La clé de magasin utilisateur inclut l'adresse IP virtuelle des hôtes de réplication système SAP HANA (`ssr-vip`).
+
+....
+hdbuserstore.exe -u SYSTEM set SSRKEY ssr-vip:31013 SNAPCENTER <password>
+....
+Pour plus d'informations sur les options de déploiement du plug-in SAP HANA et la configuration du magasin d'utilisateurs, consultez le rapport technique TR-4614: link:hana-br-scs-overview.html["SAP HANA : sauvegarde et restauration avec SnapCenter"^].
+
+Dans SnapCenter, la ressource est configurée comme indiqué dans la figure suivante en utilisant la clé de stockage utilisateur, configurée avant, et le serveur SnapCenter comme `hdbsql` hôte de communication.
+
+image:saphana-sr-scs-image31.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Les volumes de données des deux hôtes SAP HANA sont inclus dans la configuration de l'empreinte du stockage, comme le montre la figure suivante.
+
+image:saphana-sr-scs-image32.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Comme indiqué précédemment, SnapCenter ne sait pas où la sauvegarde a été créée. NetApp vous recommande donc d'ajouter un script de pré-sauvegarde dans le workflow de sauvegarde SnapCenter pour identifier l'hôte qui est actuellement l'hôte SAP HANA principal. Vous pouvez effectuer cette identification à l'aide d'une instruction SQL ajoutée au flux de travail de sauvegarde, comme le montre la figure suivante.
+
+....
+Select host from “SYS”.M_DATABASE
+....
+image:saphana-sr-scs-image33.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+
+
+== Opération de sauvegarde SnapCenter
+
+Les opérations de sauvegarde sont désormais exécutées normalement. L'organisation des sauvegardes des données et des journaux est indépendante desquelles l'hôte SAP HANA est primaire ou secondaire.
+
+Les journaux des tâches de sauvegarde incluent la sortie de l'instruction SQL, qui vous permet d'identifier l'hôte SAP HANA où la sauvegarde a été créée.
+
+La figure suivante montre le journal des tâches de sauvegarde avec l'hôte 1 comme hôte principal.
+
+image:saphana-sr-scs-image34.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Cette figure illustre le journal des tâches de sauvegarde avec l'hôte 2 comme hôte principal.
+
+image:saphana-sr-scs-image35.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+La figure suivante présente le catalogue des sauvegardes SAP HANA dans SAP HANA Studio. Lorsque la base de données SAP HANA est en ligne, l'hôte SAP HANA sur lequel la sauvegarde a été créée est visible dans SAP HANA Studio.
+
+
+NOTE: Le catalogue de sauvegardes SAP HANA sur le système de fichiers, utilisé lors d'une opération de restauration et de restauration, n'inclut pas le nom d'hôte sur lequel la sauvegarde a été créée. La seule façon d'identifier l'hôte lorsque la base de données est en panne est de combiner les entrées du catalogue de sauvegarde avec le `backup.log` Fichier des deux hôtes SAP HANA.
+
+image:saphana-sr-scs-image36.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+
+
+== Restauration et reprise
+
+Comme indiqué précédemment, vous devez être en mesure d'identifier l'emplacement de création de la sauvegarde sélectionnée pour définir l'opération de restauration requise. Si la base de données SAP HANA est toujours en ligne, vous pouvez utiliser SAP HANA Studio pour identifier l'hôte sur lequel la sauvegarde a été créée. Si la base de données est hors ligne, les informations sont uniquement disponibles dans le journal des tâches de sauvegarde SnapCenter.
+
+La figure suivante illustre les différentes opérations de restauration en fonction de la sauvegarde sélectionnée.
+
+Si une opération de restauration doit être effectuée après l'horodatage T3 et que l'hôte 1 est le primaire, vous pouvez restaurer la sauvegarde créée à T1 ou T3 à l'aide de SnapCenter. Ces sauvegardes Snapshot sont disponibles au niveau du volume de stockage rattaché à l'hôte 1.
+
+Si vous devez restaurer à l'aide de la sauvegarde créée au niveau de l'hôte 2 (T2), qui est une copie Snapshot au niveau du volume de stockage de l'hôte 2, la sauvegarde doit être mise à disposition de l'hôte 1. Vous pouvez mettre cette sauvegarde à disposition en créant une copie NetApp FlexClone à partir de la sauvegarde, en montant la copie FlexClone sur l'hôte 1 et en copiant les données à l'emplacement d'origine.
+
+image:saphana-sr-scs-image37.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Avec une configuration de ressource SnapCenter unique, des copies Snapshot sont créées au niveau des deux volumes de stockage des hôtes de réplication système SAP HANA. Seule la sauvegarde Snapshot créée au niveau du volume de stockage de l'hôte SAP HANA principal peut être utilisée pour la restauration suivante. La copie Snapshot créée au niveau du volume de stockage de l'hôte SAP HANA secondaire est une image de panne qui ne peut pas être utilisée pour la restauration avant.
+
+Vous pouvez effectuer une opération de restauration avec SnapCenter de deux manières différentes :
+
+* Restaurez uniquement la sauvegarde valide
+* Restaurer la ressource complète, y compris la sauvegarde valide et l'image de planeLes sections suivantes décrivent plus en détail les deux opérations de restauration différentes.
+
+
+Une opération de restauration à partir d'une sauvegarde créée sur l'autre hôte est décrite dans la section link:hana-sr-scs-restore-recovery-other-host-backup.html["Restauration à partir d'une sauvegarde créée sur l'autre hôte"].
+
+La figure suivante illustre les opérations de restauration avec une configuration de ressource SnapCenter unique.
+
+image:saphana-sr-scs-image38.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+
+
+=== Restauration SnapCenter de la sauvegarde valide uniquement
+
+La figure suivante présente un aperçu du scénario de restauration et de récupération décrit dans cette section.
+
+Une sauvegarde a été créée au niveau de T1 sur l'hôte 1. Un basculement a été effectué sur l'hôte 2. Après un certain point dans le temps, un autre basculement vers l'hôte 1 a été effectué. Au point actuel dans le temps, l'hôte 1 est l'hôte principal.
+
+. Un échec s'est produit et vous devez restaurer la sauvegarde créée sur T1 à l'hôte 1.
+. L'hôte secondaire (hôte 2) est arrêté, mais aucune opération de restauration n'est exécutée.
+. Le volume de stockage de l'hôte 1 est restauré dans la sauvegarde créée à T1.
+. Une restauration de transfert est effectuée avec des journaux de l'hôte 1 et de l'hôte 2.
+. L'hôte 2 est démarré et une resynchronisation de réplication système de l'hôte 2 est automatiquement démarrée.
+
+
+image:saphana-sr-scs-image39.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+La figure suivante présente le catalogue des sauvegardes SAP HANA dans SAP HANA Studio. La sauvegarde mise en surbrillance montre la sauvegarde créée au niveau de T1 sur l'hôte 1.
+
+image:saphana-sr-scs-image40.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Une opération de restauration et de reprise est lancée dans SAP HANA Studio. Comme le montre la figure suivante, le nom de l'hôte sur lequel la sauvegarde a été créée n'est pas visible dans le workflow de restauration et de reprise.
+
+
+NOTE: Dans notre scénario de test, nous avons pu identifier la sauvegarde appropriée (la sauvegarde créée sur l'hôte 1) dans SAP HANA Studio lorsque la base de données était toujours en ligne. Si la base de données n'est pas disponible, vous devez consulter le journal des tâches de sauvegarde SnapCenter pour identifier la sauvegarde adéquate.
+
+image:saphana-sr-scs-image41.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Dans SnapCenter, la sauvegarde est sélectionnée et une opération de restauration au niveau des fichiers est effectuée. Sur l'écran de restauration au niveau des fichiers, seul le volume hôte 1 est sélectionné pour que seule la sauvegarde valide soit restaurée.
+
+image:saphana-sr-scs-image42.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Une fois l'opération de restauration effectuée, la sauvegarde est mise en surbrillance en vert dans SAP HANA Studio. Vous n’avez pas besoin d’entrer un emplacement de sauvegarde de journal supplémentaire, car le chemin d’accès aux fichiers des sauvegardes de journaux de l’hôte 1 et de l’hôte 2 est inclus dans le catalogue de sauvegarde.
+
+image:saphana-sr-scs-image43.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Une fois la restauration par transfert terminée, l'hôte secondaire (hôte 2) est démarré et la resynchronisation de réplication du système SAP HANA est démarrée.
+
+
+NOTE: Bien que l'hôte secondaire soit à jour (aucune opération de restauration n'a été effectuée pour l'hôte 2), SAP HANA exécute une réplication complète de toutes les données. Ce comportement est standard après une opération de restauration et de reprise avec la réplication système SAP HANA.
+
+image:saphana-sr-scs-image44.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+
+
+=== Restauration SnapCenter d'une image de sauvegarde et de panne valide
+
+La figure suivante présente un aperçu du scénario de restauration et de récupération décrit dans cette section.
+
+Une sauvegarde a été créée au niveau de T1 sur l'hôte 1. Un basculement a été effectué sur l'hôte 2. Après un certain point dans le temps, un autre basculement vers l'hôte 1 a été effectué. Au point actuel dans le temps, l'hôte 1 est l'hôte principal.
+
+. Un échec s'est produit et vous devez restaurer la sauvegarde créée sur T1 à l'hôte 1.
+. L'hôte secondaire (hôte 2) est arrêté et l'image de panne T1 est restaurée.
+. Le volume de stockage de l'hôte 1 est restauré dans la sauvegarde créée à T1.
+. Une restauration de transfert est effectuée avec des journaux de l'hôte 1 et de l'hôte 2.
+. L'hôte 2 est démarré et une resynchronisation de réplication système de l'hôte 2 est automatiquement démarrée.
+
+
+image:saphana-sr-scs-image45.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+L'opération de restauration et de récupération avec SAP HANA Studio est identique à celle décrite dans la section link:hana-sr-scs-config-single-resource.html#snapcenter-restore-of-the-valid-backup-only["Restauration SnapCenter de la sauvegarde valide uniquement"].
+
+Pour effectuer l'opération de restauration, sélectionnez ressource complète dans SnapCenter. Les volumes des deux hôtes sont restaurés.
+
+image:saphana-sr-scs-image46.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Une fois la restauration par transfert terminée, l'hôte secondaire (hôte 2) est démarré et la resynchronisation de réplication du système SAP HANA est démarrée. Une réplication complète de toutes les données est exécutée.
+
+image:saphana-sr-scs-image47.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]

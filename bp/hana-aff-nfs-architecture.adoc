@@ -1,0 +1,100 @@
+---
+sidebar: sidebar 
+permalink: bp/hana-aff-nfs-architecture.html 
+keywords: host, storage controller, nfs, 10gbe, architecture, back up, disaster recovery, dr, replication, snapmirror, metrocluster 
+summary: 'Des hôtes SAP HANA sont connectés aux contrôleurs de stockage via une infrastructure réseau redondante 10GbE ou plus rapide. La communication des données entre les hôtes SAP HANA et les contrôleurs de stockage repose sur le protocole NFS. Une infrastructure de commutation redondante est nécessaire pour assurer une connectivité hôte vers stockage SAP HANA tolérante aux pannes en cas de défaillance d"un switch ou d"une carte réseau.' 
+---
+= Architecture
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Des hôtes SAP HANA sont connectés aux contrôleurs de stockage via une infrastructure réseau redondante 10GbE ou plus rapide. La communication des données entre les hôtes SAP HANA et les contrôleurs de stockage repose sur le protocole NFS. Une infrastructure de commutation redondante est nécessaire pour assurer une connectivité hôte vers stockage SAP HANA tolérante aux pannes en cas de défaillance d'un switch ou d'une carte réseau.
+
+Les commutateurs peuvent agréger des performances de ports individuels avec des canaux de port pour s'afficher en tant qu'entité logique unique au niveau de l'hôte.
+
+Différents modèles de la gamme de produits des systèmes AFF peuvent être combinés au niveau de la couche de stockage afin de permettre la croissance et les besoins de performances et de capacité variables. Le nombre maximal d'hôtes SAP HANA pouvant être connectés au système de stockage est défini par les exigences de performances SAP HANA et le modèle du contrôleur NetApp utilisé. Le nombre de tiroirs disques requis n'est déterminé que par les exigences de capacité et de performance des systèmes SAP HANA.
+
+La figure suivante montre un exemple de configuration avec huit hôtes SAP HANA reliés à une paire haute disponibilité du stockage.
+
+image:saphana_aff_nfs_image2a.png["Huit hôtes SAP HANA reliés à une paire haute disponibilité du stockage"]
+
+L'architecture peut évoluer en deux dimensions :
+
+* En ajoutant des hôtes SAP HANA et une capacité de stockage supplémentaire au stockage existant, si les contrôleurs de stockage fournissent des performances suffisantes pour satisfaire les indicateurs de performances clés (KPI, Key Performance Indicators) SAP HANA actuels.
+* En ajoutant davantage de systèmes de stockage avec une capacité de stockage supplémentaire pour les hôtes SAP HANA supplémentaires
+
+
+La figure suivante présente un exemple de configuration dans laquelle davantage d'hôtes SAP HANA sont connectés aux contrôleurs de stockage. Dans cet exemple, il faut davantage de tiroirs disques pour satisfaire aux exigences en termes de capacité et de performances des 12 16 hôtes SAP HANA. Selon les besoins en débit total, vous devez ajouter des connexions 10GbE ou plus rapides aux contrôleurs de stockage.
+
+image:saphana_aff_nfs_image3a.png["Hôtes SAP HANA supplémentaires vers une paire haute disponibilité de contrôleur de stockage existant"]
+
+Quel que soit le système AFF déployé, le paysage SAP HANA peut également être étendu en ajoutant des contrôleurs de stockage certifiés en fonction de la densité de nœud souhaitée, comme l'illustre la figure suivante.
+
+image:saphana_aff_nfs_image4a.png["Paire haute disponibilité supplémentaire ajoutée"]
+
+
+
+== Sauvegarde SAP HANA
+
+Le logiciel ONTAP présent sur tous les contrôleurs de stockage NetApp offre un mécanisme intégré pour sauvegarder les bases de données SAP HANA sans nuire aux performances. Les sauvegardes NetApp Snapshot basées sur le stockage sont une solution de sauvegarde entièrement prise en charge et intégrée disponible pour les conteneurs uniques SAP HANA et pour les systèmes MDC (Multitenant Database Containers) SAP HANA avec un ou plusieurs locataires.
+
+Les sauvegardes Snapshot basées sur le stockage sont implémentées grâce au plug-in NetApp SnapCenter pour SAP HANA. Il est ainsi possible de créer des sauvegardes Snapshot cohérentes basées sur le stockage à l'aide des interfaces fournies de manière native par les bases de données SAP HANA. SnapCenter enregistre chacune des sauvegardes Snapshot dans le catalogue des sauvegardes SAP HANA. Par conséquent, les sauvegardes prises par SnapCenter sont visibles dans SAP HANA Studio et Cockpit où elles peuvent être sélectionnées directement pour les opérations de restauration et de reprise.
+
+Grâce à la technologie NetApp SnapMirror, les copies Snapshot créées sur un système de stockage peuvent être répliquées sur un système de stockage de sauvegarde secondaire contrôlé par SnapCenter. Différentes règles de conservation des sauvegardes peuvent ensuite être définies pour chaque jeu de sauvegarde sur le stockage primaire et pour les jeux de sauvegarde sur les systèmes de stockage secondaires. Le plug-in SnapCenter pour SAP HANA gère automatiquement la conservation des sauvegardes de données basées sur des copies Snapshot et des sauvegardes de journaux, y compris les opérations de gestion du catalogue de sauvegardes. Le plug-in SnapCenter pour SAP HANA permet également d'exécuter un contrôle d'intégrité des blocs de la base de données SAP HANA en exécutant une sauvegarde basée sur fichier.
+
+Les journaux de la base de données peuvent être sauvegardés directement sur le stockage secondaire à l'aide d'un montage NFS, comme illustré dans la figure suivante.
+
+image:saphana_aff_nfs_image6.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Les sauvegardes Snapshot basées sur le stockage offrent des avantages significatifs par rapport aux sauvegardes conventionnelles basées sur des fichiers. Ces avantages sont, entre autres, les suivants :
+
+* Sauvegarde plus rapide (quelques minutes)
+* L'objectif de durée de restauration (RTO) est réduit grâce à une durée de restauration bien plus rapide sur la couche de stockage (quelques minutes), ainsi qu'à des sauvegardes plus fréquentes
+* Aucune dégradation des performances de l'hôte, du réseau ou du stockage de la base de données SAP HANA pendant les opérations de sauvegarde et de restauration
+* Réplication compacte et économique en bande passante sur le stockage secondaire en fonction des modifications apportées aux blocs
+
+
+
+NOTE: Pour plus d'informations sur la solution de sauvegarde et de restauration SAP HANAlink:../backup/hana-br-scs-overview.html["Tr-4614 : sauvegarde et restauration SAP HANA avec SnapCenter"^], consultez .
+
+
+
+== Reprise d'activité SAP HANA
+
+La reprise d'activité SAP HANA peut être effectuée sur la couche de base de données à l'aide de la réplication du système SAP HANA ou sur la couche de stockage à l'aide de technologies de réplication du stockage. La section suivante présente les solutions de reprise sur incident basées sur la réplication du stockage.
+
+Pour plus d'informations sur les solutions de reprise d'activité SAP HANA, reportez-vous à link:../backup/hana-dr-sr-pdf-link.html["Tr-4646 : reprise après incident de SAP HANA avec réplication du stockage"^]la section .
+
+
+
+=== Réplication du stockage basée sur SnapMirror
+
+La figure suivante présente une solution de reprise sur incident sur trois sites qui utilise la réplication SnapMirror synchrone vers le data Center local de reprise sur incident et SnapMirror asynchrone pour répliquer les données vers le data Center distant de reprise sur incident.
+
+La réplication des données à l'aide de SnapMirror synchrone assure un RPO nul. La distance entre le data Center principal et le centre de reprise après incident local est limitée à environ 100 km.
+
+La protection contre les défaillances du site principal et du site de reprise sur incident local est effectuée par la réplication des données vers un troisième data Center distant à l'aide de SnapMirror asynchrone. Le RPO dépend de la fréquence des mises à jour de réplication et de la rapidité de leur transfert. En théorie, la distance est illimitée, mais la limite dépend de la quantité de données à transférer et de la connexion disponible entre les centres de données. Les valeurs RPO typiques sont comprises dans une plage de 30 minutes à plusieurs heures.
+
+Le RTO des deux méthodes de réplication dépend principalement du temps nécessaire pour démarrer la base de données HANA sur le site de reprise et charger les données dans la mémoire. L'hypothèse que le débit de lecture des données est de 1 000 Mbit/s, le chargement de 1 To de données prendra environ 18 minutes.
+
+Les serveurs des sites de reprise après incident peuvent être utilisés en tant que systèmes de développement et de test en temps normal. En cas d'incident, les systèmes de dév/test doivent être arrêtés et démarrés est en tant que serveurs de production de reprise sur incident.
+
+Les deux méthodes de réplication permettent d'exécuter des tests du workflow de reprise d'activité sans affecter le RPO et RTO. Les volumes FlexClone sont créés sur le stockage et rattachés aux serveurs de test de reprise après incident.
+
+image:saphana_aff_nfs_image7.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+La réplication synchrone offre le mode StrictSync. Si l'écriture sur le stockage secondaire n'est pas terminée, pour une raison quelconque, les E/S de l'application échouent, ce qui permet de s'assurer que les systèmes de stockage primaire et secondaire sont identiques. Les E/S de l'application vers le système primaire sont reprises après le retour de la relation SnapMirror à l'état insync. En cas de panne du stockage primaire, les E/S des applications peuvent reprendre sur le stockage secondaire après le basculement, sans perte de données. En mode StrictSync, le RPO est toujours zéro.
+
+
+
+=== Réplication du stockage basée sur MetroCluster
+
+La figure suivante présente une vue d'ensemble générale de la solution. Le cluster de stockage de chaque site assure une haute disponibilité locale et est utilisé pour la charge de travail de production. Les données de chaque site sont répliquées de manière synchrone sur l'autre emplacement et sont disponibles en cas de basculement.
+
+image:saphana_aff_nfs_image8.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]

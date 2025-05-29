@@ -1,0 +1,19 @@
+---
+sidebar: sidebar 
+permalink: bp/hana-fas-fc-storage-connector-api.html 
+keywords: sap, hana, storage, connector, api, fas, fc 
+summary: 'Un connecteur de stockage n"est nécessaire que dans les environnements à plusieurs hôtes disposant de fonctionnalités de basculement.' 
+---
+= API du connecteur de stockage SAP HANA
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un connecteur de stockage n'est nécessaire que dans les environnements à plusieurs hôtes disposant de fonctionnalités de basculement. Dans des configurations à plusieurs hôtes, SAP HANA offre des fonctionnalités haute disponibilité afin qu'un hôte de base de données SAP HANA puisse basculer vers un hôte en veille. Dans ce cas, les LUN de l'hôte en panne sont accessibles et utilisées par l'hôte en veille. Le connecteur de stockage est utilisé pour s'assurer qu'une partition de stockage est activement accessible par un seul hôte de base de données à la fois.
+
+Dans les configurations SAP HANA à plusieurs hôtes avec le stockage NetApp, le connecteur de stockage standard fourni par SAP est utilisé. Le « Guide d'administration du connecteur de stockage FC SAP HANA » se trouve en tant que pièce jointe à https://service.sap.com/sap/support/notes/1900823["Note SAP 1900823"^].

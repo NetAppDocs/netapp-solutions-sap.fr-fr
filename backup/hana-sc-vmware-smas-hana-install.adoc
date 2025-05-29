@@ -18,7 +18,7 @@ summary:
 
 
 [role="lead"]
-Ce chapitre décrit l'installation et la configuration du système SAP HANA spécifique à une configuration VMware utilisant VMFS. D'autres meilleures pratiques génériques sont disponibles à l'adresse https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_aff_fc_introduction.html#sap-hana-tailored-data-center-integration["SAP HANA sur les systèmes AFF de NetApp avec le protocole Fibre Channel"].
+Ce chapitre décrit l'installation et la configuration du système SAP HANA spécifique à une configuration VMware utilisant VMFS. D'autres meilleures pratiques génériques sont disponibles à l'adresse link:../bp/hana-aff-fc-introduction.html#sap-hana-tailored-data-center-integration["SAP HANA sur les systèmes AFF de NetApp avec le protocole Fibre Channel"].
 
 
 
@@ -234,7 +234,7 @@ NOTE: Avec la configuration décrite, le répertoire /usr/sap/SMA se trouve sur 
 
 Un magasin d'utilisateurs pour un utilisateur de base de données système doit être créé, qui doit être utilisé par SnapCenter. Le numéro d'instance HANA doit être défini en conséquence pour le port de communication. Dans notre installation, le numéro d'instance « 00 » est utilisé.
 
-Une description plus détaillée est disponible à l'adresse https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-snapcenter-resource-specific-configuration-for-sap-hana-database-backups.html#sap-hana-backup-user-and-hdbuserstore-configuration["Configuration SnapCenter propre aux ressources pour les sauvegardes de bases de données SAP HANA"]
+Une description plus détaillée est disponible à l'adresse link:hana-br-scs-resource-config-hana-database-backups.html#sap-hana-backup-user-and-hdbuserstore-configuration["Configuration SnapCenter propre aux ressources pour les sauvegardes de bases de données SAP HANA"]
 
 ....
 smaadm@hana-1:/usr/sap/SMA/HDB00> hdbuserstore set SMAKEY hana-1:30013 SNAPCENTER <password>

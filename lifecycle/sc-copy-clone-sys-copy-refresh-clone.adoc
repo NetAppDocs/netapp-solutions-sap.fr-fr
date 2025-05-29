@@ -1,0 +1,26 @@
+---
+sidebar: sidebar 
+permalink: lifecycle/sc-copy-clone-sys-copy-refresh-clone.html 
+keywords: tr4667, 4667, SAP HANA, cloning, system refresh 
+summary: 'Les solutions NetApp pour l"optimisation de la gestion du cycle de vie SAP sont intégrées aux outils de gestion du cycle de vie et de la base de données SAP HANA. Elles combinent une protection des données intégrée aux applications efficace avec le provisionnement flexible des systèmes de test SAP.' 
+---
+= Scénarios de copie, d'actualisation et de clonage des systèmes SAP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le terme copie système SAP est souvent utilisé comme synonyme de trois processus différents : actualisation système SAP, copie système SAP ou opérations de clonage de système SAP. Il est important de distinguer les différentes opérations, car les flux de travail et les cas d'utilisation diffèrent d'une opération à l'autre.
+
+* *Actualisation du système SAP.* une actualisation du système SAP est une actualisation d'un système SAP cible existant avec les données d'un système SAP source. Le système cible fait généralement partie d'un environnement de transport SAP, par exemple un système d'assurance qualité, qui est actualisé avec les données du système de production. Le nom d'hôte, le numéro d'instance et le SID sont différents pour les systèmes source et cible.
+* *Copie système SAP.* une copie système SAP est une configuration d'un nouveau système SAP cible avec des données d'un système SAP source. Le nouveau système cible pourrait être, par exemple, un système de test supplémentaire avec des données du système de production. Le nom d'hôte, le numéro d'instance et le SID sont différents pour les systèmes source et cible.
+* *Clone système SAP.* un clone système SAP est un clone identique d'un système SAP source. Les clones des systèmes SAP sont généralement utilisés pour gérer les corruptions logiques ou tester les scénarios de reprise d'activité. Lors d'une opération de clonage du système, le nom d'hôte, le numéro d'instance et le SID restent inchangés. Il est donc important d'établir une barrière de réseau appropriée pour le système cible afin de s'assurer qu'il n'y a pas de communication avec l'environnement de production.
+
+
+La figure ci-dessous illustre les principales étapes à effectuer lors d'une actualisation du système, d'une copie du système ou d'une opération de clonage du système. Les cases bleues indiquent les étapes qui peuvent être automatisées avec SnapCenter, tandis que les cases grises indiquent les étapes qui doivent être effectuées en dehors de SnapCenter, manuellement ou à l'aide d'outils tiers.
+
+image:sc-copy-clone-image2.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]

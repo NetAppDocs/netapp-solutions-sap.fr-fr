@@ -1,0 +1,26 @@
+---
+sidebar: sidebar 
+permalink: lifecycle/lama-ansible-sys-clone-copy-refresh.html 
+keywords:  
+summary:  
+---
+= Scénarios de clonage, de copie et d'actualisation de systèmes SAP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le terme copie système SAP est souvent utilisé comme synonyme de trois processus différents : clone système SAP, copie système SAP ou actualisation système SAP. Il est important de distinguer les différentes opérations, car les flux de travail et les cas d'utilisation diffèrent d'une opération à l'autre.
+
+* *Clone système SAP.* un clone système SAP est un clone identique d'un système SAP source. Les clones des systèmes SAP sont généralement utilisés pour gérer les corruptions logiques ou tester les scénarios de reprise d'activité. Lors d'une opération de clonage du système, le nom d'hôte, le numéro d'instance et le SID restent inchangés. Il est donc important d'établir une barrière de réseau appropriée pour le système cible afin de s'assurer qu'il n'y a pas de communication avec l'environnement de production.
+* *Copie système SAP.* une copie système SAP est une configuration d'un nouveau système SAP cible avec des données d'un système SAP source. Le nouveau système cible pourrait être, par exemple, un système de test supplémentaire avec des données du système de production. Le nom d'hôte, le numéro d'instance et le SID sont différents pour les systèmes source et cible.
+* *Actualisation du système SAP.* une actualisation du système SAP est une actualisation d'un système SAP cible existant avec les données d'un système SAP source. Le système cible fait généralement partie d'un environnement de transport SAP, par exemple un système d'assurance qualité, qui est actualisé avec les données du système de production. Le nom d'hôte, le numéro d'instance et le SID sont différents pour les systèmes source et cible.
+
+
+La figure suivante illustre les principales étapes à effectuer lors d'un clone du système, d'une copie du système ou d'une opération de mise à jour du système. Les cases violettes indiquent les étapes à suivre pour intégrer les fonctionnalités de stockage NetApp. Ces trois opérations peuvent être entièrement automatisées à l'aide de SAP Lama.
+
+image:lama-ansible-image1.png["Ce graphique illustre trois délais de traitement pour le clone du système, la copie du système et l'actualisation du système, respectivement."]

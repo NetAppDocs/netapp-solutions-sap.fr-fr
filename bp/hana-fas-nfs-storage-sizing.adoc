@@ -1,0 +1,218 @@
+---
+sidebar: sidebar 
+permalink: bp/hana-fas-nfs-storage-sizing.html 
+keywords: storage, sizing, sap, hana, fas, nfs, performance, considerations, mixed, workloads, process, capacity 
+summary: 'La section suivante fournit un aperçu des considérations de performance et de capacité requises pour le dimensionnement d"un système de stockage pour SAP HANA.' 
+---
+= Dimensionnement du stockage
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+La section suivante fournit un aperçu des considérations de performance et de capacité requises pour le dimensionnement d'un système de stockage pour SAP HANA.
+
+
+NOTE: Contactez NetApp ou votre ingénieur commercial partenaire NetApp pour vous aider à créer un environnement de stockage de taille appropriée.
+
+
+
+== Performances
+
+SAP a défini un ensemble statique d'indicateurs clés de performance du stockage valide pour tous les environnements SAP HANA de production, indépendamment de la taille de mémoire des hôtes de base de données et des applications qui utilisent la base de données SAP HANA. Ces indicateurs clés de performance sont valides pour les environnements à hôte unique, multihôte, Business Suite sur HANA, Business Warehouse sur HANA, S/4HANA et BW/HANA. Par conséquent, l'approche actuelle de dimensionnement des performances dépend uniquement du nombre d'hôtes SAP HANA actifs connectés au système de stockage.
+
+
+NOTE: Les indicateurs de performance du stockage ne sont mandatés que pour les systèmes SAP HANA de production, mais vous pouvez les implémenter sur tous les systèmes HANA.
+
+SAP propose un outil de test des performances permettant de valider les performances du système de stockage pour les hôtes SAP HANA actifs connectés au stockage.
+
+NetApp a testé et prédéfini le nombre maximal d'hôtes SAP HANA qui peuvent être connectés à un modèle de stockage spécifique, tout en répondant aux indicateurs clés de performance du stockage requis de SAP pour les systèmes SAP HANA basés sur la production.
+
+
+NOTE: Les contrôleurs de stockage de la famille de produits certifiés FAS peuvent également être utilisés pour SAP HANA avec d'autres types de disques ou des solutions internes sur disque. Elles doivent cependant être prises en charge par NetApp et remplir les indicateurs de performance de SAP HANA TDI. À titre d'exemple, NetApp Storage Encryption (NSE) et la technologie NetApp FlexArray.
+
+Ce document décrit le dimensionnement des disques pour les disques durs SAS et les disques SSD.
+
+
+
+=== Disques durs
+
+Un minimum de 10 disques de données (SAS 10 000 tours/min) par nœud SAP HANA est requis pour remplir les indicateurs de performance du stockage de SAP.
+
+
+NOTE: Ce calcul est indépendant du contrôleur de stockage et du tiroir disque utilisés, ainsi que des besoins en capacité de la base de données. L'ajout de tiroirs de disque supplémentaires n'augmente pas la quantité maximale d'hôtes SAP HANA pouvant être pris en charge par un contrôleur de stockage.
+
+
+
+=== Disques SSD
+
+Avec les disques SSD, le nombre de disques de données est déterminé par le débit de la connexion SAS entre les contrôleurs de stockage et le tiroir SSD.
+
+Le nombre maximal d'hôtes SAP HANA pouvant être exécutés sur un tiroir disque unique et le nombre minimal de SSD requis par hôte SAP HANA ont été déterminés via l'outil de test des performances SAP. Ce test ne prend pas en compte les besoins réels en capacité de stockage des hôtes. De plus, vous devez calculer les besoins en capacité pour déterminer la configuration de stockage réellement nécessaire.
+
+* Le tiroir disque SAS 12 Gb (DS224C) avec 24 SSD prend en charge jusqu'à 14 hôtes SAP HANA lorsque le tiroir disque est connecté à 12 Gb.
+* Le tiroir disque SAS 6 Gbit/s (DS2246) avec 24 SSD prend en charge jusqu'à 4 hôtes SAP HANA.
+
+
+Les disques SSD et les hôtes SAP HANA doivent être répartis de manière égale entre les deux contrôleurs de stockage.
+
+Le tableau suivant récapitule le nombre pris en charge d'hôtes SAP HANA par tiroir disque.
+
+|===
+|  | Tiroirs SAS 6 Gbit/s (DS2246) entièrement chargés avec 24 disques SSD | Tiroirs SAS 12 Gb (DS224C) entièrement chargés avec 24 SSD 
+
+
+| Nombre maximal d'hôtes SAP HANA par tiroir disque | 4 | 14 
+|===
+
+NOTE: Ce calcul est indépendant du contrôleur de stockage utilisé. L'ajout de tiroirs de disque supplémentaires n'augmente pas la quantité maximale d'hôtes SAP HANA pouvant être pris en charge par un contrôleur de stockage.
+
+
+
+== Workloads mixtes
+
+SAP HANA et les autres charges de travail applicatives s'exécutant sur le même contrôleur de stockage ou dans le même agrégat de stockage sont pris en charge. Il s'agit cependant d'une bonne pratique NetApp de séparer les workloads SAP HANA de toutes les autres charges de travail applicatives.
+
+Vous pouvez décider de déployer des workloads SAP HANA et d'autres charges de travail applicatives sur le même contrôleur de stockage ou sur le même agrégat. Le cas échéant, vous devez vérifier que les performances de SAP HANA sont disponibles dans l'environnement de workloads mixtes. NetApp recommande également d'utiliser les paramètres de qualité de service (QoS) pour réguler les effets de ces autres applications et garantir le débit pour les applications SAP HANA.
+
+L'outil de test des performances SAP doit être utilisé pour vérifier si d'autres hôtes SAP HANA peuvent être exécutés sur un contrôleur de stockage existant déjà utilisé pour d'autres charges de travail. Les serveurs applicatifs SAP peuvent être placés en toute sécurité sur le même contrôleur de stockage et/ou agrégat que les bases de données SAP HANA.
+
+
+
+== Considérations sur la capacité
+
+Une description détaillée des besoins en capacité pour SAP HANA se trouve dans https://launchpad.support.sap.com/#/notes/1900823["Note SAP 1900823"^] livre blanc joint.
+
+
+NOTE: Le dimensionnement de la capacité de l'environnement SAP global avec plusieurs systèmes SAP HANA doit être déterminé à l'aide des outils de dimensionnement du stockage SAP HANA de NetApp. Contactez NetApp ou votre ingénieur commercial partenaire NetApp pour valider le processus de dimensionnement du stockage en vue d'un environnement de stockage correctement dimensionné.
+
+
+
+== Configuration de l'outil de test des performances
+
+À partir de SAP HANA 1.0 SPS10, SAP a introduit des paramètres permettant d'ajuster le comportement des E/S et d'optimiser la base de données pour le système de fichiers et de stockage utilisé. Ces paramètres doivent également être définis lors du test des performances du stockage avec l'outil de test des performances SAP.
+
+Des tests de performance ont été réalisés par NetApp pour définir les valeurs optimales. Le tableau suivant répertorie les paramètres qui doivent être définis dans le fichier de configuration de l'outil de test des performances SAP.
+
+|===
+| Paramètre | Valeur 
+
+
+| max_parallel_io_requests | 128 
+
+
+| async_read_submit | marche 
+
+
+| async_write_submit_active | marche 
+
+
+| async_write_submit_blocks | tous 
+|===
+Pour plus d'informations sur la configuration de l'outil de test SAP, voir https://service.sap.com/sap/support/notes/1943937["Note SAP 1943937"^] Pour HWCCT (SAP HANA 1.0) et https://launchpad.support.sap.com/["Note SAP 2493172"^] POUR HCMT/HCOT (SAP HANA 2.0).
+
+L'exemple suivant montre comment les variables peuvent être définies pour le plan d'exécution HCMT/HCOT.
+
+....
+…{
+         "Comment": "Log Volume: Controls whether read requests are submitted asynchronously, default is 'on'",
+         "Name": "LogAsyncReadSubmit",
+         "Value": "on",
+         "Request": "false"
+      },
+      {
+         "Comment": "Data Volume: Controls whether read requests are submitted asynchronously, default is 'on'",
+         "Name": "DataAsyncReadSubmit",
+         "Value": "on",
+         "Request": "false"
+      },
+      {
+         "Comment": "Log Volume: Controls whether write requests can be submitted asynchronously",
+         "Name": "LogAsyncWriteSubmitActive",
+         "Value": "on",
+         "Request": "false"
+      },
+      {
+         "Comment": "Data Volume: Controls whether write requests can be submitted asynchronously",
+         "Name": "DataAsyncWriteSubmitActive",
+         "Value": "on",
+         "Request": "false"
+      },
+      {
+         "Comment": "Log Volume: Controls which blocks are written asynchronously. Only relevant if AsyncWriteSubmitActive is 'on' or 'auto' and file system is flagged as requiring asynchronous write submits",
+         "Name": "LogAsyncWriteSubmitBlocks",
+         "Value": "all",
+         "Request": "false"
+      },
+      {
+         "Comment": "Data Volume: Controls which blocks are written asynchronously. Only relevant if AsyncWriteSubmitActive is 'on' or 'auto' and file system is flagged as requiring asynchronous write submits",
+         "Name": "DataAsyncWriteSubmitBlocks",
+         "Value": "all",
+         "Request": "false"
+      },
+      {
+         "Comment": "Log Volume: Maximum number of parallel I/O requests per completion queue",
+         "Name": "LogExtMaxParallelIoRequests",
+         "Value": "128",
+         "Request": "false"
+      },
+      {
+         "Comment": "Data Volume: Maximum number of parallel I/O requests per completion queue",
+         "Name": "DataExtMaxParallelIoRequests",
+         "Value": "128",
+         "Request": "false"
+      }, …
+....
+Ces variables doivent être utilisées pour la configuration de test. C'est généralement le cas avec les plans d'exécution prédéfinis de SAP fournis avec l'outil HCMT/HCOT. L'exemple suivant pour un test d'écriture de journal 4k provient d'un plan d'exécution.
+
+....
+…
+      {
+         "ID": "D664D001-933D-41DE-A904F304AEB67906",
+         "Note": "File System Write Test",
+         "ExecutionVariants": [
+            {
+               "ScaleOut": {
+                  "Port": "${RemotePort}",
+                  "Hosts": "${Hosts}",
+                  "ConcurrentExecution": "${FSConcurrentExecution}"
+               },
+               "RepeatCount": "${TestRepeatCount}",
+               "Description": "4K Block, Log Volume 5GB, Overwrite",
+               "Hint": "Log",
+               "InputVector": {
+                  "BlockSize": 4096,
+                  "DirectoryName": "${LogVolume}",
+                  "FileOverwrite": true,
+                  "FileSize": 5368709120,
+                  "RandomAccess": false,
+                  "RandomData": true,
+                  "AsyncReadSubmit": "${LogAsyncReadSubmit}",
+                  "AsyncWriteSubmitActive": "${LogAsyncWriteSubmitActive}",
+                  "AsyncWriteSubmitBlocks": "${LogAsyncWriteSubmitBlocks}",
+                  "ExtMaxParallelIoRequests": "${LogExtMaxParallelIoRequests}",
+                  "ExtMaxSubmitBatchSize": "${LogExtMaxSubmitBatchSize}",
+                  "ExtMinSubmitBatchSize": "${LogExtMinSubmitBatchSize}",
+                  "ExtNumCompletionQueues": "${LogExtNumCompletionQueues}",
+                  "ExtNumSubmitQueues": "${LogExtNumSubmitQueues}",
+                  "ExtSizeKernelIoQueue": "${ExtSizeKernelIoQueue}"
+               }
+            }, …
+....
+
+
+== Présentation des processus de dimensionnement du stockage
+
+Le nombre de disques par hôte HANA et la densité hôte SAP HANA pour chaque modèle de stockage ont été déterminés à l'aide de l'outil de test des performances SAP.
+
+Le processus de dimensionnement requiert des informations détaillées telles que le nombre d'hôtes SAP HANA de production et non productifs, la taille de la RAM de chaque hôte et la conservation des sauvegardes des copies Snapshot basées sur le stockage. Le nombre d'hôtes SAP HANA détermine le contrôleur de stockage et le nombre de disques nécessaires.
+
+La taille de la mémoire RAM, la taille des données nette sur le disque de chaque hôte SAP HANA et la période de conservation des sauvegardes de copie Snapshot sont utilisées comme entrées lors du dimensionnement de la capacité.
+
+La figure suivante résume le processus de dimensionnement.
+
+image:saphana-fas-nfs_image9.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]

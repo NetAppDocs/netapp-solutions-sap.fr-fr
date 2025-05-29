@@ -114,7 +114,7 @@ L'association des technologies de gestion des données Avantra et NetApp constit
 Pour en savoir plus sur les informations données dans ce livre blanc, consultez ces documents et sites web :
 
 * link:https://www.avantra.com/["Avantra"]
-* link:https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/sc-copy-clone-introduction.html["Automatisation des opérations de copie et de clonage du système SAP HANA avec SnapCenter"]
+* link:../lifecycle/sc-copy-clone-introduction.html["Automatisation des opérations de copie et de clonage du système SAP HANA avec SnapCenter"]
 * link:https://docs.netapp.com/us-en/snapcenter/sc-automation/reference_supported_rest_apis.html["API REST prises en charge pour SnapCenter Server et les plug-ins"]
 
 

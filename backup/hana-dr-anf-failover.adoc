@@ -1,0 +1,17 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-dr-anf-failover.html 
+keywords:  
+summary:  
+---
+= Basculement de reprise d'activité
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Cette section présente les fonctionnalités de reprise d'activité pour SAP HANA dans Azure NetApp Files (ANF).

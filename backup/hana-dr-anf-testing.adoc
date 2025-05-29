@@ -1,0 +1,17 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-dr-anf-testing.html 
+keywords:  
+summary:  
+---
+= Test de reprise après incident
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Cette section présente les tests de reprise d'activité pour SAP HANA dans Azure NetApp Files (ANF).

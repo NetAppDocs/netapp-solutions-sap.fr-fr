@@ -1,0 +1,19 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-dr-anf-cross-region-replication-overview.html 
+keywords: application, agnostic, information, azure, sap, hana 
+summary: 'Les informations relatives à la réplication inter-région peuvent être trouvées à l"emplacement suivant.' 
+---
+= Réplication ANF entre les régions avec SAP HANA
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous trouverez des informations indépendantes des applications sur la réplication interrégionale à l'emplacement suivant.
+
+link:https://docs.microsoft.com/en-us/azure/azure-netapp-files/["Documentation Azure NetApp Files | Microsoft Docs"^] dans les sections concepts et guide.

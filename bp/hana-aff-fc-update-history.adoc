@@ -1,0 +1,70 @@
+---
+sidebar: sidebar 
+permalink: bp/hana-aff-fc-update-history.html 
+keywords:  
+summary:  
+---
+= Historique des mises à jour
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les modifications techniques suivantes ont été apportées à cette solution depuis sa publication initiale.
+
+[cols="25,50"]
+|===
+| Date | Mettre à jour le résumé 
+
+
+| Octobre 2015 | Version initiale 
+
+
+| Mars 2016 | Dimensionnement de la capacité mis à jour 
+
+
+| Février 2017 | Nouveaux systèmes de stockage et tiroirs disques NetApp nouvelles fonctionnalités de ONTAP 9 nouvelles versions de systèmes d'exploitation (SLES12 SP1 et RHEL 7.2) Nouvelle version de SAP HANA 
+
+
+| Juillet 2017 | Mises à jour mineures 
+
+
+| Septembre 2018 | Nouveaux systèmes de stockage NetApp nouvelles versions de système d'exploitation (SLES12 SP3 et RHEL 7.4) mises à jour mineures supplémentaires SAP HANA 2.0 SPS3 
+
+
+| Novembre 2019 | Nouveaux systèmes de stockage NetApp et tiroir NVMe nouvelles versions du système d'exploitation (SLES12 SP4, SLES 15 et RHEL 7.6) mises à jour mineures supplémentaires 
+
+
+| Avril 2020 | Les nouveaux systèmes de stockage de la gamme AFF ASA ont introduit plusieurs fonctionnalités de partition de données disponibles depuis SAP HANA 2.0 SPS4 
+
+
+| Juin 2020 | Informations supplémentaires sur les fonctionnalités facultatives mises à jour mineures 
+
+
+| Février 2021 | Prise en charge de Linux LVM des nouveaux systèmes de stockage NetApp nouvelles versions du système d'exploitation (SLES15SP2, RHEL 8) 
+
+
+| Avril 2021 | Informations spécifiques à VMware vSphere ajoutées 
+
+
+| Septembre 2022 | Nouvelles versions du système d'exploitation 
+
+
+| Août 2023 | Nouveaux systèmes de stockage (AFF C-Series) 
+
+
+| Mai 2024 | Nouveaux systèmes de stockage (AFF A-Series) 
+
+
+| Septembre 2024 | Nouveaux systèmes de stockage (ASA A-Series) 
+
+
+| Novembre 2024 | Nouveaux systèmes de stockage 
+
+
+| Février 2025 | Nouveaux systèmes de stockage 
+|===

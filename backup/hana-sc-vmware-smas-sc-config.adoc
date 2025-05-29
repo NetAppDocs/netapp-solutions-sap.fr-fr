@@ -16,11 +16,11 @@ summary:
 [role="lead"]
 Comme indiqué au début de ce document, l'objectif de ce document est de fournir les meilleures pratiques pour un environnement HANA utilisant VMware avec VMFS et la synchronisation active SnapMirror. Nous aborderons uniquement les détails et les étapes importantes relatifs à cette solution spécifique et n'expliquerons pas les concepts généraux de SnapCenter. Ces concepts et d'autres informations supplémentaires sur SnapCenter sont disponibles à l'adresse suivante :
 
-https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-br-scs-overview.html["Tr-4614 : sauvegarde et restauration SAP HANA avec SnapCenter"]
+link:hana-br-scs-overview.html["Tr-4614 : sauvegarde et restauration SAP HANA avec SnapCenter"]
 
-https://docs.netapp.com/us-en/netapp-solutions-sap/backup/saphana-sr-scs-sap-hana-system-replication-overview.html["Tr-4719 : réplication système SAP HANA - sauvegarde et restauration avec SnapCenter"]
+link:hana-sr-scs-system-replication-overview.html["Tr-4719 : réplication système SAP HANA - sauvegarde et restauration avec SnapCenter"]
 
-https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/sc-copy-clone-introduction.html["Tr-4667 : automatisation des opérations de copie système et de clonage SAP HANA avec SnapCenter"]
+link:../lifecycle/sc-copy-clone-introduction.html["Tr-4667 : automatisation des opérations de copie système et de clonage SAP HANA avec SnapCenter"]
 
 
 

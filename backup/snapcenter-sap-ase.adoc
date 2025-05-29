@@ -440,7 +440,7 @@ Pour en savoir plus sur les informations données dans ce livre blanc, consultez
 ** 1585981 - SYB : garantir la restauration de SAP ASE : https://me.sap.com/notes/1585981/E[]
 ** 1588316 - SYB : configuration des sauvegardes automatiques des bases de données et des journaux : https://me.sap.com/notes/1588316/E[]
 ** Documentation des produits NetApp : https://www.netapp.com/support-and-training/documentation/[]
-** Solutions SAP NetApp – informations sur les utilisations, les meilleures pratiques et les avantages : https://docs.netapp.com/us-en/netapp-solutions-sap[]
+** link:../index.html["Solutions SAP NetApp : informations sur les cas d'utilisation, les meilleures pratiques et les avantages"]
 
 
 

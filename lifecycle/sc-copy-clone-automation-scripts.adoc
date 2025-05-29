@@ -1,0 +1,100 @@
+---
+sidebar: sidebar 
+permalink: lifecycle/sc-copy-clone-automation-scripts.html 
+keywords: tr4667, 4667, SAP HANA, cloning, system refresh 
+summary: 'Les solutions NetApp pour l"optimisation de la gestion du cycle de vie SAP sont intégrées aux outils de gestion du cycle de vie et de la base de données SAP HANA. Elles combinent une protection des données intégrée aux applications efficace avec le provisionnement flexible des systèmes de test SAP.' 
+---
+= Scripts d'exemple d'automatisation
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Dans ce document, deux scripts sont utilisés pour automatiser davantage les opérations de création de clones et de suppression des clones SnapCenter.
+
+* Le script `sc-system-refresh`.sh est utilisé pour le workflow d'actualisation du système et de clonage du système afin d'exécuter les opérations de restauration et d'arrêt de la base de données SAP HANA.
+* Le script `sc-mount-volume.sh` est utilisé pour le workflow de clonage du système afin d'exécuter des opérations de montage et de démontage pour le volume partagé SAP HANA.
++
+
+NOTE: Les scripts exemple sont fournis en l'état et ne sont pas pris en charge par NetApp. Vous pouvez demander ces scripts par e-mail à l'adresse ng-sapcc@netapp.com.
+
+
+
+
+
+== Script sc-system-refresh.sh
+
+L'exemple de script `sc-system-refresh.sh` est utilisé pour exécuter des opérations de récupération et d'arrêt. Le script est appelé avec des options de ligne de commande spécifiques dans les workflows SnapCenter clone create and clone delete, comme indiqué dans la figure ci-dessous.
+
+Le script est générique et lit tous les paramètres requis, comme le SID du système cible. Le script doit être disponible sur l'hôte cible de l'opération d'actualisation du système. Une clé de stockage utilisateur hdb doit être configurée pour l'utilisateur <SID> DentreD sur le système cible. La clé doit autoriser l'accès à la base de données du système SAP HANA et fournir des privilèges pour les opérations de restauration. La clé doit avoir le nom <TARGET-SID>.
+
+Le script écrit un fichier journal `sc-system-refresh-SID.log``, dans le même répertoire, où il est exécuté.
+
+
+NOTE: La version actuelle du script prend en charge les systèmes hôtes uniques MDC avec un seul tenant ou plusieurs configurations de tenant MDC. Elle ne prend pas en charge les systèmes SAP HANA à hôtes multiples.
+
+image:sc-copy-clone-image14.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+
+
+=== Prise en charge des opérations de restauration par locataire
+
+Comme décrit dans la section « workflows d'actualisation des systèmes SAP HANA à l'aide d'une Snapshot de stockage », les opérations de restauration possibles des locataires sur le système cible dépendent de la configuration des locataires du système source. Le script `sc-system-refresh.sh` prend en charge toutes les opérations de restauration des locataires, qui peuvent dépendre de la configuration du système source, comme indiqué dans le tableau ci-dessous.
+
+Si un autre nom de locataire est requis sur le système cible, le locataire doit être renommé manuellement après l'opération de restauration.
+
+[cols="29%,35%,36%"]
+|===
+| Système SAP HANA | Configuration des locataires + au système source | Configuration de locataire + au niveau du système cible 
+
+
+| MDC locataire unique | Nom du locataire source égal au SID source | Le nom du locataire cible est égal au SID cible 
+
+
+| MDC locataire unique | Le nom du locataire source n'est pas égal au SID source | Le nom du locataire cible est identique au nom du locataire source 
+
+
+| MDC pour plusieurs locataires | Tous les noms de locataire | Tous les locataires sont récupérés et auront le même nom que les locataires source. 
+|===
+
+
+== Script sc-mount-volume.sh
+
+L'exemple de script `sc-mount-volume.sh` est utilisé pour exécuter mount et unmount pour n'importe quel volume. Le script permet de monter le volume partagé SAP HANA avec l'opération de clonage du système SAP HANA. Le script est appelé avec des options de ligne de commande spécifiques dans les workflows SnapCenter clone create and clone delete, comme indiqué dans la figure ci-dessous.
+
+
+NOTE: Le script prend en charge les systèmes SAP HANA qui utilisent NFS comme protocole de stockage.
+
+image:sc-copy-clone-image15.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+
+
+=== Les variables d'environnement SnapCenter
+
+SnapCenter fournit un ensemble de variables d'environnement disponibles dans le script exécuté sur l'hôte cible. Le script utilise ces variables pour déterminer les paramètres de configuration appropriés.
+
+* Les variables de script `STORAGE, JUNCTION_PATH` sont utilisées pour l'opération de montage.
+* Dérivé de `CLONED_VOLUMES_MOUNT_PATH` variable d'environnement.
+* `CLONED_VOLUMES_MOUNT_PATH=${STORAGE}:/${JUNCTION_PATH}`
+* Par exemple : `CLONED_VOLUMES_MOUNT_PATH=192.168.175.117:/SS1_shared_Clone_05112206115489411`
+
+
+
+
+== Script pour obtenir les variables d'environnement SnapCenter
+
+Si les scripts d'automatisation ne doivent pas être utilisés et que la procédure doit être exécutée manuellement, vous devez connaître le chemin de jonction du système de stockage du volume FlexClone. La Junction path n'est pas visible dans SnapCenter. Vous devez soit rechercher le Junction path directement sur le système de stockage, soit utiliser un script simple qui fournit les variables d'environnement SnapCenter sur l'hôte cible. Ce script doit être ajouté en tant que script d'opération de montage dans l'opération de création du clone SnapCenter.
+
+....
+ss1adm@hana-1:/mnt/sapcc-share/SAP-System-Refresh> cat get-env.sh
+#!/bin/bash
+env > /tmp/env-from-sc.txt
+ss1adm@hana-1:/mnt/sapcc-share/SAP-System-Refresh>
+....
+Dans le `env-from-sc.txt` fichier, recherchez la variable `CLONED_VOLUMES_MOUNT_PATH` Pour obtenir l'adresse IP du système de stockage et le chemin de jonction du volume FlexClone.
+
+Par exemple : `CLONED_VOLUMES_MOUNT_PATH=192.168.175.117:/SS1_data_mnt00001_Clone_05112206115489411`

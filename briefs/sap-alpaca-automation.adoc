@@ -121,7 +121,7 @@ L'association d'ALPACA et des technologies de gestion des données NetApp offre 
 Pour en savoir plus sur les informations contenues dans ce document, consultez les documents et sites web suivants :
 
 * link:https://pcg.io/de/sap/alpaca/["ALPAGA"]
-* link:https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/sc-copy-clone-introduction.html["Automatisation des opérations de copie et de clonage du système SAP HANA avec SnapCenter"]
+* link:../lifecycle/sc-copy-clone-introduction.html["Automatisation des opérations de copie et de clonage du système SAP HANA avec SnapCenter"]
 * link:https://docs.netapp.com/us-en/snapcenter/sc-automation/reference_supported_rest_apis.html["API REST prises en charge pour le serveur SnapCenter et les plug-ins"]
 
 

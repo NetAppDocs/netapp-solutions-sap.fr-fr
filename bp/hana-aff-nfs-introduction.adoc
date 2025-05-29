@@ -1,0 +1,105 @@
+---
+sidebar: sidebar 
+permalink: bp/hana-aff-nfs-introduction.html 
+keywords: introduction, certification, AFF A220, AFF A250, AFF A300, AFF A320, AFF A400, AFF A700s, AFF A700, AFF A800A, 
+summary: 'La famille de produits des systèmes NetApp AFF a été certifiée pour une utilisation avec SAP HANA dans le cadre de projets Tailored Data Center Integration (TDI). Le système de stockage d"entreprise certifié se caractérise par le logiciel NetApp ONTAP.' 
+---
+= SAP HANA sur les systèmes NetApp AFF avec NFS - Guide de configuration
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les gammes NetApp AFF A-Series et AFF C-Series ont été certifiées pour une utilisation avec SAP HANA dans le cadre de projets TDI (Tailored Data Center Integration).
+
+Marco Schön, NetApp
+
+Cette certification est valable pour les modèles suivants :
+
+* AFF A150, AFF A20, AFF A250, AFF A30, AFF A400, AFF A50, AFF A70, AFF A1K, AFF A900, AFF A90, AFF A800
+* AFF C250, AFF C30, AFF C400, AFF C60, AFF C800, AFF C80
++
+
+NOTE: NetApp AFF C-Series requiert NetApp ONTAP 9.13.1 ou version ultérieure
+
+
+
+Vous trouverez la liste complète des solutions de stockage certifiées NetApp pour SAP HANA dans la page https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/#/solutions?filters=v:deCertified;ve:13["Répertoire matériel SAP HANA certifié et pris en charge"^].
+
+Ce document décrit les exigences de configuration de ONTAP pour le protocole NFS version 3 (NFS v3) ou la version 4 du protocole NFS (NFS v4.1).
+
+
+NOTE: Seules les versions NFS 3 ou 4.1 sont prises en charge. Les versions NFS 1, 2, 4.0 et 4.2 ne sont pas prises en charge.
+
+
+NOTE: La configuration décrite dans ce document est nécessaire pour atteindre les KPI SAP HANA requis et les meilleures performances pour SAP HANA. La modification de certains paramètres ou l'utilisation de fonctionnalités non répertoriées dans ce document peut entraîner une dégradation des performances ou un comportement inattendu, et ces opérations ne doivent être effectuées que si l'équipe de support NetApp en recommande l'utilisation.
+
+Les guides de configuration pour les systèmes NetApp AFF utilisant FCP et pour les systèmes FAS utilisant NFS ou FCP sont disponibles via les liens suivants :
+
+* link:hana-fas-fc-introduction.html["SAP HANA sur les systèmes FAS de NetApp avec le protocole Fibre Channel"^]
+* link:hana-fas-nfs-introduction.html["SAP HANA sur les systèmes FAS de NetApp avec NFS"^]
+* link:hana-aff-fc-introduction.html["SAP HANA sur les systèmes AFF de NetApp avec le protocole Fibre Channel"^]
+
+
+Le tableau suivant présente les combinaisons prises en charge pour les versions NFS, le verrouillage NFS et les implémentations d'isolation requises, en fonction de la configuration de la base de données SAP HANA.
+
+Pour les systèmes SAP HANA à un ou plusieurs hôtes n'utilisant pas de basculement automatique des hôtes, NFSv3 et NFSv4 sont pris en charge.
+
+Pour plusieurs systèmes hôtes SAP HANA avec basculement automatique hôte, NetApp prend uniquement en charge NFSv4, tout en utilisant le verrouillage NFSv4 comme alternative à l'implémentation STONITH (SAP HANA HA/DR Provider) spécifique au serveur.
+
+|===
+| SAP HANA | Version NFS | Verrouillage NFS | FOURNISSEUR HAUTE DISPONIBILITÉ/DE REPRISE SAP HANA 
+
+
+| SAP HANA un seul hôte, plusieurs hôtes sans basculement automatique de l'hôte | NFSv3 | Éteint | s/o 
+
+
+|  | NFSv4 | Marche | s/o 
+
+
+| Plusieurs hôtes SAP HANA utilisent le basculement automatique des hôtes | NFSv3 | Éteint | Mise en œuvre obligatoire de STONITH spécifique au serveur 
+
+
+|  | NFSv4 | Marche | Non requis 
+|===
+
+NOTE: Une implémentation STONITH spécifique au serveur ne fait pas partie de ce guide. Contactez votre fournisseur de serveur pour une telle implémentation.
+
+Ce document présente les recommandations de configuration de SAP HANA s'exécutant sur des serveurs physiques et sur des serveurs virtuels qui utilisent VMware vSphere.
+
+
+NOTE: Reportez-vous aux notes SAP correspondantes pour les instructions de configuration du système d'exploitation et les dépendances du noyau Linux spécifiques à HANA. Pour en savoir plus, consultez la note SAP 2235581 : systèmes d'exploitation pris en charge par SAP HANA.
+
+
+
+== SAP HANA Tailored Data Center Integration
+
+Les contrôleurs de stockage AFF NetApp sont certifiés dans le programme SAP HANA TDI en utilisant les protocoles NFS (NAS) et FC (SAN). Ils peuvent être déployés dans tous les scénarios SAP HANA actuels, tels que SAP Business Suite sur HANA, S/4HANA, BW/HANA ou SAP Business Warehouse sur HANA, soit sur un ou plusieurs hôtes. Tous les serveurs certifiés pour une utilisation avec SAP HANA peuvent être associés à des solutions de stockage certifiées NetApp. Pour une présentation de l'architecture de SAP HANA TDI, reportez-vous à la figure suivante.
+
+image:saphana_aff_nfs_image1.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Pour plus d'informations sur les prérequis et les recommandations pour les systèmes producti SAP HANA, consultez la ressource suivante :
+
+* http://go.sap.com/documents/2016/05/e8705aae-717c-0010-82c7-eda71af511fa.html["FAQ sur l'intégration de SAP HANA Tailored Data Center Integration"^]
+
+
+
+
+== SAP HANA avec VMware vSphere
+
+Il existe plusieurs options pour connecter le stockage à des machines virtuelles. L'option privilégiée est de connecter les volumes de stockage avec NFS directement hors du système d'exploitation invité. Grâce à cette option, la configuration des hôtes et du stockage ne diffère pas entre les hôtes physiques et les machines virtuelles.
+
+Les data stores NFS et les data stores VVOL avec NFS sont également pris en charge. Pour les deux options, seule une donnée SAP HANA ou un volume de journal doit être stocké dans le datastore pour la production.
+
+Ce document décrit la configuration recommandée avec des montages NFS directs à partir du système d'exploitation invité.
+
+Pour plus d'informations sur l'utilisation de vSphere avec SAP HANA, consultez les liens suivants :
+
+* https://help.sap.com/docs/SUPPORT_CONTENT/virtualization/3362185751.html["SAP HANA sur VMware vSphere - virtualisation - Wiki communautaire"^]
+* https://www.vmware.com/docs/sap_hana_on_vmware_vsphere_best_practices_guide-white-paper["Guide des bonnes pratiques de SAP HANA sur VMware vSphere"^]
+* https://launchpad.support.sap.com/["2161991 - instructions de configuration de VMware vSphere - SAP ONE support Launchpad (connexion requise)"^]
+

@@ -1,0 +1,134 @@
+---
+sidebar: sidebar 
+permalink: lifecycle/sc-copy-clone-sys-refresh-using-snapshot-backups.html 
+keywords: tr4667, 4667, SAP HANA, cloning, system refresh 
+summary: 'Les solutions NetApp pour l"optimisation de la gestion du cycle de vie SAP sont intégrées aux outils de gestion du cycle de vie et de la base de données SAP HANA. Elles combinent une protection des données intégrée aux applications efficace avec le provisionnement flexible des systèmes de test SAP.' 
+---
+= Considérations relatives aux opérations d'actualisation des systèmes SAP HANA avec les sauvegardes Snapshot de stockage
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les solutions NetApp pour l'optimisation de la gestion du cycle de vie SAP sont intégrées aux outils de gestion du cycle de vie et de la base de données SAP HANA. Elles combinent une protection des données intégrée aux applications efficace avec le provisionnement flexible des systèmes de test SAP.
+
+
+
+== Nom(s) de locataire sur le système cible
+
+La procédure d'actualisation d'un système SAP HANA dépend de la configuration des locataires du système source et du nom de locataire requis sur le système cible, comme illustré dans la figure ci-dessous.
+
+Le nom du locataire étant configuré dans la base de données du système, le nom du locataire du système source est également disponible sur le système cible après la récupération de la base de données du système. Par conséquent, le tenant du système cible ne peut être restauré qu'avec le même nom que le tenant source, comme indiqué dans l'option 1. Si le nom du locataire sur le système cible doit être différent, le locataire doit d'abord être restauré avec le même nom que le locataire source, puis renommé avec le nom du locataire cible requis. C'est l'option 2.
+
+Cette règle ne s'applique qu'à un système SAP HANA avec un seul locataire, dont le nom est identique à l'ID système. Cette configuration est la configuration par défaut après une installation SAP HANA initiale. Cette configuration spécifique est signalée par la base de données SAP HANA. Dans ce cas, la restauration des locataires sur le système cible peut être exécutée avec le nom de locataire du système cible, qui doit également être identique au SID du système cible. Ce flux de travail est présenté dans l'option 3.
+
+
+NOTE: Dès qu'une opération de création, de renommage ou de DROP de locataire est exécutée sur le système source, cet indicateur de configuration est supprimé par la base de données SAP HANA. Par conséquent, même si la configuration a été ramenée au locataire = SID, l'indicateur n'est plus disponible et l'exception concernant la récupération du locataire avec le workflow 3 n'est plus possible. Dans ce cas, l'option 2 est le flux de travail requis.
+
+image:sc-copy-clone-image10.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+image:sc-copy-clone-image11.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+
+
+== Workflow d'actualisation du système avec chiffrement SAP HANA activé
+
+Lorsque le chiffrement de persistance SAP HANA est activé, des étapes supplémentaires sont requises pour pouvoir restaurer la base de données SAP HANA sur le système cible.
+
+Sur le système source, vous devez créer une sauvegarde des clés de cryptage root pour la base de données système, ainsi que pour toutes les bases de données de tenant. Les fichiers de sauvegarde doivent être copiés sur le système cible et les clés racine doivent être importées à partir de la sauvegarde avant l'exécution de l'opération de récupération.
+
+Voir aussi https://help.sap.com/docs/SAP_HANA_PLATFORM/6b94445c94ae495c83a19646e7c3fd56/b1e7562e2c704c19bd86f2f9f4feedc4.html["Guide d'administration de SAP HANA"].
+
+
+
+=== Sauvegarde des clés racine
+
+Une sauvegarde des clés racine est toujours nécessaire si des modifications ont été apportées aux clés racine. La commande backup requiert dbid comme paramètre CLI. Les dbid peuvent être identifiés à l’aide de l’instruction SQL ci-dessous.
+
+image:sc-copy-clone-image12.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+L'instruction SQL et d'autres documentations sont disponibles dans le Guide d'administration SAP HANA aux https://help.sap.com/docs/SAP_HANA_PLATFORM/6b94445c94ae495c83a19646e7c3fd56/b1e7562e2c704c19bd86f2f9f4feedc4.html["Sauvegarder les clés racines | Portail d'aide SAP"] étapes suivantes, illustrant les opérations requises pour un système HANA avec un seul locataire SS1 et exécutées sur le système source.
+
+. Définissez le mot de passe de sauvegarde pour les bases de données système et locataire (SS1) (si ce n'est pas encore fait).
+
+
+....
+hdbsql SYSTEMDB=> ALTER SYSTEM SET ENCRYPTION ROOT KEYS BACKUP PASSWORD Netapp123;
+0 rows affected (overall time 3658.128 msec; server time 3657.967 msec)
+hdbsql SYSTEMDB=>
+hdbsql SS1=> ALTER SYSTEM SET ENCRYPTION ROOT KEYS BACKUP PASSWORD Netapp123;
+0 rows affected (overall time 2424.236 msec; server time 2424.010 msec)
+hdbsql SS1=>
+....
+. Créez une sauvegarde des clés root pour les bases de données SS1 (système et locataire).
+
+
+....
+ss1adm@hana-1:/usr/sap/SS1/home> /usr/sap/SS1/HDB00/exe/hdbnsutil -backupRootKeys root-key-backup-SS1-SYSTEMDB.rkb --dbid=1 --type='ALL'
+Exporting root key backup for database SYSTEMDB (DBID: 1) to /usr/sap/SS1/home/root-key-backup-SS1-SYSTEMDB.rkb
+done.
+ss1adm@hana-1:/usr/sap/SS1/home> /usr/sap/SS1/HDB00/exe/hdbnsutil -backupRootKeys root-key-backup-SS1-SS1.rkb --dbid=3 --type='ALL'
+Exporting root key backup for database SS1 (DBID: 3) to /usr/sap/SS1/home/root-key-backup-SS1-SS1.rkb
+done.
+....
+. Validation des sauvegardes de clés racine (facultatif)
+
+
+....
+ss1adm@hana-1:/usr/sap/SS1/home> ls -al root*
+-rw-r----- 1 ss1adm sapsys 1440 Apr 24 07:00 root-key-backup-SS1-SS1.rkb
+-rw-r----- 1 ss1adm sapsys 1440 Apr 24 06:54 root-key-backup-SS1-SYSTEMDB.rkb
+ss1adm@hana-1:/usr/sap/SS1/home>
+
+ss1adm@hana-1:/usr/sap/SS1/home> /usr/sap/SS1/HDB00/exe/hdbnsutil -validateRootKeysBackup root-key-backup-SS1-SS1.rkb
+Please Enter the password:
+Successfully validated SSFS backup file /usr/sap/SS1/home/root-key-backup-SS1-SS1.rkb
+done.
+
+ss1adm@hana-1:/usr/sap/SS1/home> /usr/sap/SS1/HDB00/exe/hdbnsutil -validateRootKeysBackup root-key-backup-SS1-SYSTEMDB.rkb
+Please Enter the password:
+Successfully validated SSFS backup file /usr/sap/SS1/home/root-key-backup-SS1-SYSTEMDB.rkb
+done.
+....
+
+
+=== Importation des clés racine sur le système cible
+
+L'importation des clés racine est initialement requise pour la première opération d'actualisation du système. Si les clés racine ne sont pas modifiées sur le système source, aucune importation supplémentaire n'est requise. La commande d'importation requiert dbid comme paramètre CLI. Les dbid peuvent être identifiés de la même manière que pour la sauvegarde de la clé racine.
+
+. Dans notre configuration, les clés root sont copiées du système source vers un partage NFS
+
+
+....
+hana-1:~ # cp /usr/sap/SS1/home/root-key-backup-SS1-SS1.rkb /mnt/sapcc-share/SAP-System-Refresh/
+hana-1:~ # cp /usr/sap/SS1/home/root-key-backup-SS1-SYSTEMDB.rkb /mnt/sapcc-share/SAP-System-Refresh/
+....
+. Les clés racine peuvent maintenant être importées à l'aide de hdbnsutil. La commande doit être fournie avec la commande dbid pour le système et la base de données des locataires. Le mot de passe de sauvegarde est également requis.
+
+
+....
+qs1adm@hana-7:/usr/sap/QS1/HDB11> ./exe/hdbnsutil -recoverRootKeys /mnt/sapcc-share/SAP-System-Refresh/root-key-backup-SS1-SYSTEMDB.rkb --dbid=1 --type=ALL
+Please Enter the password:
+Importing root keys for DBID: 1 from /mnt/sapcc-share/SAP-System-Refresh/root-key-backup-SS1-SYSTEMDB.rkb
+Successfully imported root keys from /mnt/sapcc-share/SAP-System-Refresh/root-key-backup-SS1-SYSTEMDB.rkb
+done.
+
+qs1adm@hana-7:/usr/sap/QS1/HDB11> ./exe/hdbnsutil -recoverRootKeys /mnt/sapcc-share/SAP-System-Refresh/root-key-backup-SS1-SS1.rkb --dbid=3 --type=ALL Please Enter the password:
+Importing root keys for DBID: 3 from /mnt/sapcc-share/SAP-System-Refresh/root-key-backup-SS1-SS1.rkb
+Successfully imported root keys from /mnt/sapcc-share/SAP-System-Refresh/root-key-backup-SS1-SS1.rkb
+done.
+qs1adm@hana-7:/usr/sap/QS1/HDB11>
+....
+
+
+=== Importation de clé racine, si dbid n'existe pas sur la cible
+
+Comme décrit dans le chapitre précédent, dbid est nécessaire pour importer la clé racine du système et de toutes les bases de données de tenant. Bien que la base de données système ait toujours dbid=0, les bases de données locataires peuvent avoir des dbid différents.
+
+image:sc-copy-clone-image13.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+La sortie ci-dessus montre deux locataires avec dbid=3 et dbid=4. Si le système cible n'a pas encore hébergé de locataire avec dbid=4, l'importation de la clé racine échouera. Dans ce cas, vous devez d'abord restaurer la base de données système, puis importer la clé du tenant avec dbid=4.

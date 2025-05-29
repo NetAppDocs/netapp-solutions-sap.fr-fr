@@ -1,0 +1,92 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-dr-anf-config-steps-cross-region-replication.html 
+keywords: configuration, steps, anf, cross, region, replication, preparation, 
+summary: 'Quelques étapes de préparation doivent être effectuées sur le site de reprise d"activité pour que la réplication de volume puisse être configurée.' 
+---
+= Étapes de configuration pour la réplication ANF inter-région
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quelques étapes de préparation doivent être effectuées sur le site de reprise d'activité pour que la réplication de volume puisse être configurée.
+
+* Un compte NetApp doit être disponible et configuré avec le même abonnement Azure que la source.
+* Un pool de capacité doit être disponible et configuré à l'aide du compte NetApp ci-dessus.
+* Un réseau virtuel doit être disponible et configuré.
+* Au sein du réseau virtuel, un sous-réseau délégué doit être disponible et configuré pour une utilisation avec ANF.
+
+
+Des volumes de protection peuvent désormais être créés pour les données HANA, le partage HANA et le volume de sauvegarde du journal HANA. Le tableau suivant présente les volumes de destination configurés dans notre configuration de laboratoire.
+
+
+NOTE: Pour optimiser la latence, les volumes doivent être placés près des machines virtuelles qui exécutent SAP HANA en cas de basculement. Par conséquent, le même processus de épinglage est requis pour les volumes de reprise après incident et pour tout autre système de production SAP HANA.
+
+|===
+| Volume HANA | Source | Destination | Planification de la réplication 
+
+
+| Volume de données HANA | PR1-data-mnt00001 | PR1-data-mnt00001-sm-dest | Tous les jours 
+
+
+| Volume partagé HANA | PR1-partagé | PR1-shared-sm-dest | Horaire 
+
+
+| Volume de sauvegarde de log/Catalog HANA | hanabackup | hanabackup-sm-dest | Horaire 
+|===
+Pour chaque volume, les étapes suivantes doivent être effectuées :
+
+. Créez un nouveau volume de protection sur le site de reprise après incident :
++
+.. Indiquez le nom du volume, le pool de capacité, le quota et les informations réseau.
+.. Fournissez le protocole et les informations d'accès aux volumes.
+.. Indiquez l'ID du volume source et la planification de la réplication.
+.. Créer un volume cible.
+
+
+. Autoriser la réplication sur le volume source.
++
+** Indiquez l'ID du volume cible.
+
+
+
+
+Les captures d'écran suivantes montrent en détail les étapes de configuration.
+
+Sur le site de reprise après incident, un nouveau volume de protection est créé en sélectionnant volumes et en cliquant sur Ajouter une réplication des données. Dans l'onglet Basics, vous devez fournir le nom du volume, le pool de capacité et les informations sur le réseau.
+
+
+NOTE: Le quota du volume peut être défini en fonction des exigences de capacité, car les performances du volume n'ont aucun impact sur le processus de réplication. Dans le cas d'un basculement de reprise après incident, le quota doit être ajusté pour répondre aux exigences de performances réelles.
+
+
+NOTE: Si le pool de capacité a été configuré avec une QoS manuelle, vous pouvez configurer le débit en plus des besoins de capacité. Comme ci-dessus, vous pouvez configurer le débit avec une valeur faible en fonctionnement normal et l'augmenter en cas de basculement de reprise après incident.
+
+image:saphana-dr-anf_image10.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Dans l'onglet Protocol, vous devez fournir le protocole réseau, le chemin du réseau et la export policy.
+
+
+NOTE: Le protocole doit être identique au protocole utilisé pour le volume source.
+
+image:saphana-dr-anf_image11.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Dans l'onglet réplication, vous devez configurer l'ID du volume source et la planification de réplication. Pour la réplication du volume de données, nous avons configuré une planification de réplication quotidienne pour notre configuration de laboratoire.
+
+
+NOTE: L'ID du volume source peut être copié à partir de l'écran Propriétés du volume source.
+
+image:saphana-dr-anf_image12.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+En dernier lieu, vous devez autoriser la réplication sur le volume source en fournissant l'ID du volume cible.
+
+
+NOTE: Vous pouvez copier l'ID du volume de destination à partir de l'écran Propriétés du volume de destination.
+
+image:saphana-dr-anf_image13.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Les mêmes étapes doivent être réalisées pour les systèmes HANA partagés et le volume de sauvegarde du journal.

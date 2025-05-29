@@ -1,0 +1,51 @@
+---
+sidebar: sidebar 
+permalink: backup/fsxn-create-snapcenter-policy-backup-replication.html 
+keywords: policy, backup, replication, snapshot 
+summary: Cette section décrit comment configurer une stratégie de réplication de sauvegarde. 
+---
+= Créez une nouvelle règle SnapCenter pour la réplication des sauvegardes
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez configurer une stratégie pour la réplication de sauvegarde comme suit :
+
+. Indiquez un nom pour la règle.
++
+image:amazon-fsx-image79.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+. Sélectionnez sauvegarde Snapshot et fréquence de planification. Chaque jour est généralement utilisé pour la réplication de sauvegarde.
++
+image:amazon-fsx-image80.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+. Sélectionnez la conservation des sauvegardes Snapshot.
++
+image:amazon-fsx-image81.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
++
+Il s'agit de la conservation des sauvegardes Snapshot quotidiennes effectuées sur le stockage primaire. La conservation pour les sauvegardes secondaires sur la cible SnapVault a déjà été configurée au préalable à l'aide de la commande add rule au niveau de ONTAP. Reportez-vous à la section “Configuration des relations de réplication sur FSX pour les systèmes de fichiers ONTAP” (xref).
+
++
+image:amazon-fsx-image82.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+. Sélectionnez le champ SnapVault de mise à jour et fournissez un libellé personnalisé.
++
+Cette étiquette doit correspondre à l'étiquette SnapMirror fournie dans le `add rule` Commande au niveau de ONTAP.
+
++
+image:amazon-fsx-image83.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
++
+image:amazon-fsx-image84.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+
+
+La nouvelle règle SnapCenter est maintenant configurée.
+
+image:amazon-fsx-image85.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]

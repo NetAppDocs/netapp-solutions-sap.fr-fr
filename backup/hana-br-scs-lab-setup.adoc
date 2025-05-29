@@ -1,0 +1,62 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-br-scs-lab-setup.html 
+keywords: lab, setup, configuration, 
+summary: Le rapport technique utilisé pour la configuration de laboratoire inclut cinq configurations SAP HANA différentes. 
+---
+= Configuration de laboratoire utilisée pour ce rapport
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le rapport technique utilisé pour la configuration de laboratoire inclut cinq configurations SAP HANA différentes :
+
+* *MS1.*
++
+** Système mutualisé multi-hôte MDC SAP HANA
+** Gestion avec un hôte plug-in central (serveur SnapCenter)
+** Utilise NFS comme protocole de stockage
+
+
+* *SS1.*
++
+** Système locataire unique MDC à hôte unique SAP HANA
+** Découverte automatique avec le plug-in HANA installé sur l'hôte de base de données HANA
+** Utilise NFS comme protocole de stockage
+
+
+* *SM1.*
++
+** Système multitenant MDC à hôte unique SAP HANA
+** Découverte automatique avec le plug-in HANA installé sur l'hôte de base de données HANA
+** Utilise NFS comme protocole de stockage
+
+
+* *SS2.*
++
+** Système locataire unique MDC à hôte unique SAP HANA
+** Gestion avec un hôte plug-in central (SnapCenter Server)
+** Utilise NFS comme protocole de stockage
+
+
+* *SS3.*
++
+** Système locataire unique MDC à hôte unique SAP HANA
+** Découverte automatique avec le plug-in HANA installé sur l'hôte de base de données HANA
+** Utilise SAN Fibre Channel comme protocole de stockage
+
+
+
+
+Les sections suivantes décrivent la configuration complète et les flux de travail de sauvegarde, de restauration et de récupération. Cette description couvre les sauvegardes Snapshot locales, ainsi que la réplication sur le stockage de sauvegarde via SnapVault. Les serveurs virtuels de stockage sont les serveurs virtuels `hana-primary` pour le stockage primaire et `hana-backup` pour le stockage de sauvegarde hors site.
+
+Le serveur SnapCenter est utilisé en tant qu'hôte de plug-in HANA central pour les systèmes HANA MS1 et SS2.
+
+La figure suivante illustre la configuration du laboratoire.
+
+image:saphana-br-scs-image21.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]

@@ -23,11 +23,11 @@ Cette section explique comment configurer l'environnement de travail, comment co
 Ajoutez le système de stockage sur site à votre environnement de travail.
 
 . Dans le menu de gauche, choisissez *Storage* -> *Canvas* -> *My Working* Environment.
-. Appuyez sur *+ Ajouter un environnement de travail*. + image:hana-hycl-back-image2.jpeg["hana-hycl-back-image2,largeur=624,hauteur=316"]
-. Choisissez *sur place*. + image:hana-hycl-back-image3.jpeg["Ein Bild, das Text enthält. Automatic generierte Beschreibung,width=624,height=316"]
-. Choisissez *découvrir ONTAP* sur place. + image:hana-hycl-back-image4.jpeg["Ein Bild, das Text enthält. Automatic generierte Beschreibung,width=624,height=316"]
-. Ajoutez l'adresse IP du cluster ONTAP et le mot de passe, puis appuyez sur *découvrir*. + image:hana-hycl-back-image5.jpeg["hana-hycl-back-image5,largeur=624,hauteur=316"]
-. Le cluster ONTAP est désormais disponible. + image:hana-hycl-back-image6.jpeg["Ein Bild, das Diagram enthält. Automatic generierte Beschreibung,width=624,height=316"]
+. Appuyez sur *+ Ajouter un environnement de travail*. + image:hana-hycl-back-image2.png["hana-hycl-back-image2,largeur=624,hauteur=316"]
+. Choisissez *sur place*. + image:hana-hycl-back-image3.png["Ein Bild, das Text enthält. Automatic generierte Beschreibung,width=624,height=316"]
+. Choisissez *découvrir ONTAP* sur place. + image:hana-hycl-back-image4.png["Ein Bild, das Text enthält. Automatic generierte Beschreibung,width=624,height=316"]
+. Ajoutez l'adresse IP du cluster ONTAP et le mot de passe, puis appuyez sur *découvrir*. + image:hana-hycl-back-image5.png["hana-hycl-back-image5,largeur=624,hauteur=316"]
+. Le cluster ONTAP est désormais disponible. + image:hana-hycl-back-image6.png["Ein Bild, das Diagram enthält. Automatic generierte Beschreibung,width=624,height=316"]
 
 
 
@@ -40,17 +40,17 @@ Reportez-vous à la section https://docs.aws.amazon.com/vpc/latest/privatelink/v
 
 Pour créer une première sauvegarde de volume, effectuez les opérations suivantes :
 
-. Naviguez via *protection* jusqu'à *sauvegarde et récupération* et choisissez *volumes*. + image:hana-hycl-back-image7.jpeg["hana-hycl-back-image7,largeur=624,hauteur=308"]
-. Appuyez sur le bouton *Activer la sauvegarde*. + image:hana-hycl-back-image8.jpeg["hana-hycl-back-image8,largeur=624,hauteur=309"]
-. Choisissez le système de stockage sur site de votre choix et cliquez sur *Activer la sauvegarde*. + image:hana-hycl-back-image9.jpeg["hana-hycl-back-image9,largeur=624,hauteur=304"]
-. Choisissez *Backup*. + image:hana-hycl-back-image10.jpeg["hana-hycl-back-image10,largeur=624,hauteur=307"]
-. Choisissez un volume qui est stocké sur le même SVM que vos fichiers de données SAP HANA et appuyez sur *Suivant*. Dans cet exemple, le volume pour /hana/shared a été choisi. + image:hana-hycl-back-image12.jpeg["hana-hycl-back-image12,largeur=624,hauteur=305"]
-. *Continuer*, s'il existe une politique existante. + image:hana-hycl-back-image11.jpeg["hana-hycl-back-image11,largeur=624,hauteur=304"]
-. Cochez *option de sauvegarde* et choisissez le fournisseur de sauvegarde de votre choix. Dans cet exemple, AWS. + garder l'option cochée pour les polices déjà existantes. + décochez les options que vous ne souhaitez pas utiliser. + image:hana-hycl-back-image13.jpeg["Ein Bild, das Text, Software, Computersymbol, Webseite enthält. Automatic generierte Beschreibung,width=624,height=306"]
-. Créez un nouveau compartiment ou choisissez un compartiment existant. Indiquez les paramètres de votre compte AWS, la régio, votre clé d'accès et la clé secrète. Appuyez sur *Suivant*. + image:hana-hycl-back-image14.jpeg["hana-hycl-back-image14,largeur=624,hauteur=306"]
-. Choisissez l'IPspace approprié de votre système de stockage sur site, sélectionnez *Configuration du terminal privé* et choisissez le terminal VPC pour S3. Appuyez sur *Suivant*. + image:hana-hycl-back-image15.jpeg["hana-hycl-back-image15,largeur=624,hauteur=304"]
-. Vérifiez votre configuration et appuyez sur *Activer la sauvegarde*. + image:hana-hycl-back-image16.jpeg["hana-hycl-back-image16,largeur=624,hauteur=304"]
-. La sauvegarde a été lancée avec succès. + image:hana-hycl-back-image17.jpeg["hana-hycl-back-image17,largeur=624,hauteur=304"]
+. Naviguez via *protection* jusqu'à *sauvegarde et récupération* et choisissez *volumes*. + image:hana-hycl-back-image7.png["hana-hycl-back-image7,largeur=624,hauteur=308"]
+. Appuyez sur le bouton *Activer la sauvegarde*. + image:hana-hycl-back-image8.png["hana-hycl-back-image8,largeur=624,hauteur=309"]
+. Choisissez le système de stockage sur site de votre choix et cliquez sur *Activer la sauvegarde*. + image:hana-hycl-back-image9.png["hana-hycl-back-image9,largeur=624,hauteur=304"]
+. Choisissez *Backup*. + image:hana-hycl-back-image10.png["hana-hycl-back-image10,largeur=624,hauteur=307"]
+. Choisissez un volume qui est stocké sur le même SVM que vos fichiers de données SAP HANA et appuyez sur *Suivant*. Dans cet exemple, le volume pour /hana/shared a été choisi. + image:hana-hycl-back-image12.png["hana-hycl-back-image12,largeur=624,hauteur=305"]
+. *Continuer*, s'il existe une politique existante. + image:hana-hycl-back-image11.png["hana-hycl-back-image11,largeur=624,hauteur=304"]
+. Cochez *option de sauvegarde* et choisissez le fournisseur de sauvegarde de votre choix. Dans cet exemple, AWS. + garder l'option cochée pour les polices déjà existantes. + décochez les options que vous ne souhaitez pas utiliser. + image:hana-hycl-back-image13.png["Ein Bild, das Text, Software, Computersymbol, Webseite enthält. Automatic generierte Beschreibung,width=624,height=306"]
+. Créez un nouveau compartiment ou choisissez un compartiment existant. Indiquez les paramètres de votre compte AWS, la régio, votre clé d'accès et la clé secrète. Appuyez sur *Suivant*. + image:hana-hycl-back-image14.png["hana-hycl-back-image14,largeur=624,hauteur=306"]
+. Choisissez l'IPspace approprié de votre système de stockage sur site, sélectionnez *Configuration du terminal privé* et choisissez le terminal VPC pour S3. Appuyez sur *Suivant*. + image:hana-hycl-back-image15.png["hana-hycl-back-image15,largeur=624,hauteur=304"]
+. Vérifiez votre configuration et appuyez sur *Activer la sauvegarde*. + image:hana-hycl-back-image16.png["hana-hycl-back-image16,largeur=624,hauteur=304"]
+. La sauvegarde a été lancée avec succès. + image:hana-hycl-back-image17.png["hana-hycl-back-image17,largeur=624,hauteur=304"]
 
 
 
@@ -58,7 +58,7 @@ Pour créer une première sauvegarde de volume, effectuez les opérations suivan
 == Configurez la ressource système SAP HANA sur SnapCenter
 
 . Vérifiez si le SVM (hana dans cet exemple) sur lequel votre système SAP HANA est stocké a été ajouté via le cluster. Si seul le SVM a été ajouté, ajouter le cluster. + image:hana-hycl-back-image18.png["Interface utilisateur graphique, application Description générée automatiquement,largeur=604,hauteur=156"]
-. Définissez une règle d'horaires avec un type d'horaire quotidien, hebdomadaire ou mensuel. + image:hana-hycl-back-image19.png["Interface utilisateur graphique, application Description générée automatiquement,largeur=604,hauteur=140"] image:hana-hycl-back-image20.jpeg["hana-hycl-back-image20,largeur=167,hauteur=167"]
+. Définissez une règle d'horaires avec un type d'horaire quotidien, hebdomadaire ou mensuel. + image:hana-hycl-back-image19.png["Interface utilisateur graphique, application Description générée automatiquement,largeur=604,hauteur=140"] image:hana-hycl-back-image20.png["hana-hycl-back-image20,largeur=167,hauteur=167"]
 . Ajoutez la nouvelle règle à votre système SAP HANA et attribuez un planning quotidien. + image:hana-hycl-back-image21.png["Interface utilisateur graphique, application Description générée automatiquement,largeur=604,hauteur=215"]
 . Une fois les nouvelles sauvegardes configurées avec cette stratégie seront disponibles une fois la règle exécutée conformément au calendrier défini. image:hana-hycl-back-image22.png["Interface utilisateur graphique, application, équipes Description générée automatiquement, largeur=604, hauteur=193"]
 
@@ -68,33 +68,33 @@ Pour créer une première sauvegarde de volume, effectuez les opérations suivan
 == Ajout de SnapCenter à l'environnement de travail BlueXP
 
 . Dans le menu de gauche, choisissez *protection* -> *sauvegarde et récupération* -> *applications*.
-. Choisissez *Hybrid* dans le menu déroulant. + image:hana-hycl-back-image23.jpeg["hana-hycl-back-image23,largeur=624,hauteur=316"]
-. Choisissez *serveurs SnapCenter* dans le menu Paramètres. + image:hana-hycl-back-image24.jpeg["Ein Bild, das Text enthält. Automatic generierte Beschreibung,width=624,height=316"]
-. Enregistrez le serveur SnapCenter. + image:hana-hycl-back-image25.jpeg["Ein Bild, das Text enthält. Automatic generierte Beschreibung,width=624,height=316"]
-. Ajoutez les informations d'identification du serveur SnapCenter. + image:hana-hycl-back-image26.jpeg["hana-hycl-back-image26,largeur=624,hauteur=315"]
-. Les serveurs SnapCenter ont été ajoutés et les données seront découvertes. + image:hana-hycl-back-image27.jpeg["hana-hycl-back-image27,largeur=624,hauteur=316"]
-. Une fois la tâche de découverte terminée, le système SAP HANA est disponible. + image:hana-hycl-back-image28.jpeg["Ein Bild, das Text enthält. Automatic generierte Beschreibung,width=624,height=316"]
+. Choisissez *Hybrid* dans le menu déroulant. + image:hana-hycl-back-image23.png["hana-hycl-back-image23,largeur=624,hauteur=316"]
+. Choisissez *serveurs SnapCenter* dans le menu Paramètres. + image:hana-hycl-back-image24.png["Ein Bild, das Text enthält. Automatic generierte Beschreibung,width=624,height=316"]
+. Enregistrez le serveur SnapCenter. + image:hana-hycl-back-image25.png["Ein Bild, das Text enthält. Automatic generierte Beschreibung,width=624,height=316"]
+. Ajoutez les informations d'identification du serveur SnapCenter. + image:hana-hycl-back-image26.png["hana-hycl-back-image26,largeur=624,hauteur=315"]
+. Les serveurs SnapCenter ont été ajoutés et les données seront découvertes. + image:hana-hycl-back-image27.png["hana-hycl-back-image27,largeur=624,hauteur=316"]
+. Une fois la tâche de découverte terminée, le système SAP HANA est disponible. + image:hana-hycl-back-image28.png["Ein Bild, das Text enthält. Automatic generierte Beschreibung,width=624,height=316"]
 
 
 
 
 == Création d'une règle de sauvegarde pour la sauvegarde des applications
 
-. Choisissez *stratégies* dans le menu des paramètres. + image:hana-hycl-back-image29.jpeg["hana-hycl-back-image29,largeur=624,hauteur=316"]
-. Créez une nouvelle stratégie, si vous le souhaitez, en cliquant sur *Créer une stratégie*. + image:hana-hycl-back-image30.jpeg["hana-hycl-back-image30,largeur=624,hauteur=316"]
-. Indiquez le nom de la règle, le libellé SnapMirror souhaité, choisissez les options souhaitées, puis appuyez sur *Create*. + image:hana-hycl-back-image31.jpeg["hana-hycl-back-image31,largeur=624,hauteur=315"]
-. La nouvelle politique est disponible. + image:hana-hycl-back-image32.jpeg["hana-hycl-back-image32,largeur=624,hauteur=315"]
+. Choisissez *stratégies* dans le menu des paramètres. + image:hana-hycl-back-image29.png["hana-hycl-back-image29,largeur=624,hauteur=316"]
+. Créez une nouvelle stratégie, si vous le souhaitez, en cliquant sur *Créer une stratégie*. + image:hana-hycl-back-image30.png["hana-hycl-back-image30,largeur=624,hauteur=316"]
+. Indiquez le nom de la règle, le libellé SnapMirror souhaité, choisissez les options souhaitées, puis appuyez sur *Create*. + image:hana-hycl-back-image31.png["hana-hycl-back-image31,largeur=624,hauteur=315"]
+. La nouvelle politique est disponible. + image:hana-hycl-back-image32.png["hana-hycl-back-image32,largeur=624,hauteur=315"]
 
 
 
 
 == Protection de la base de données SAP HANA avec Cloud Backup pour les applications
 
-. Choisissez *Activer la sauvegarde* pour le système SAP HANA. + image:hana-hycl-back-image33.jpeg["largeur=624,hauteur=316"]
-. Choisissez la stratégie précédemment créée et cliquez sur *Suivant*. + image:hana-hycl-back-image34.jpeg["largeur=624,hauteur=316"]
-. Comme le système de stockage et le connecteur ont configuré en amont, la sauvegarde est activée. + image:hana-hycl-back-image35.jpeg["largeur=624,hauteur=316"]
-. Une fois la tâche terminée, le système s'affiche. + image:hana-hycl-back-image36.jpeg["largeur=624,hauteur=337"]
-. Après un certain temps, les sauvegardes seront répertoriées dans la vue détaillée du système SAP HANA. + Une sauvegarde quotidienne sera répertoriée le jour suivant. + image:hana-hycl-back-image37.jpeg["hana-hycl-back-image37,largeur=624,hauteur=316"]
+. Choisissez *Activer la sauvegarde* pour le système SAP HANA. + image:hana-hycl-back-image33.png["largeur=624,hauteur=316"]
+. Choisissez la stratégie précédemment créée et cliquez sur *Suivant*. + image:hana-hycl-back-image34.png["largeur=624,hauteur=316"]
+. Comme le système de stockage et le connecteur ont configuré en amont, la sauvegarde est activée. + image:hana-hycl-back-image35.png["largeur=624,hauteur=316"]
+. Une fois la tâche terminée, le système s'affiche. + image:hana-hycl-back-image36.png["largeur=624,hauteur=337"]
+. Après un certain temps, les sauvegardes seront répertoriées dans la vue détaillée du système SAP HANA. + Une sauvegarde quotidienne sera répertoriée le jour suivant. + image:hana-hycl-back-image37.png["hana-hycl-back-image37,largeur=624,hauteur=316"]
 
 
 Dans certains environnements, il peut être nécessaire de supprimer les paramètres de planification existants de la source snapmirror. Pour ce faire, exécutez la commande suivante sur le système ONTAP source : _snapmirror modify -destination-path <hana-cloud-svm>:<SID_data_mnt00001>_copy -schedule ""_ .

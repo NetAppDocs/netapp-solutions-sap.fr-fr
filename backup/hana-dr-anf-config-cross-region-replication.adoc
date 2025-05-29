@@ -1,0 +1,52 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-dr-anf-config-cross-region-replication.html 
+keywords: configuration, options, cross, region, replication, sap, hana, azure 
+summary: La figure suivante montre les relations de réplication de volume pour un système SAP HANA utilisant la réplication inter-région ANF. 
+---
+= Options de configuration pour la réplication inter-région avec SAP HANA
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+La figure suivante montre les relations de réplication de volume pour un système SAP HANA utilisant la réplication inter-région ANF. Avec la réplication inter-région ANF, les données HANA et le volume partagé HANA doivent être répliqués. Si seul le volume de données HANA est répliqué, les valeurs RPO typiques sont comprises dans la plage d'une journée. Si des valeurs RPO plus faibles sont requises, les sauvegardes du journal HANA doivent également être répliquées pour une restauration par progression.
+
+
+NOTE: Le terme « sauvegarde du journal » utilisé dans ce document inclut la sauvegarde du journal et la sauvegarde du catalogue de sauvegardes HANA. Le catalogue de sauvegardes HANA est nécessaire pour exécuter les opérations de récupération par transfert.
+
+
+NOTE: Les descriptions suivantes ainsi que la configuration de laboratoire sont axées sur la base de données HANA. D'autres fichiers partagés, par exemple le répertoire de transport SAP est protégé et répliqué de la même manière que le volume partagé HANA.
+
+Pour permettre la restauration HANA des points de sauvegarde ou la restauration suivante à l'aide des sauvegardes de journaux, des sauvegardes Snapshot de données cohérentes au niveau des applications doivent être créées sur le site principal pour le volume de données HANA. Cela peut être fait par exemple avec l'outil de sauvegarde ANF AzAcSnap (voir aussi https://docs.microsoft.com/en-us/azure/azure-netapp-files/azacsnap-introduction["Qu'est-ce que l'outil Snapshot Azure application cohérent pour Azure NetApp Files | Microsoft Docs"^]). Les sauvegardes Snapshot créées sur le site primaire sont ensuite répliquées sur le site de reprise sur incident.
+
+Dans le cas d'un basculement, la relation de réplication doit être rompue, les volumes doivent être montés sur le serveur de production de reprise après incident et la base de données HANA doit être récupérée, soit vers le dernier point de sauvegarde HANA, soit avec récupération via les sauvegardes de journaux répliquées. Le chapitre link:hana-dr-anf-failover-overview.html["Basculement de reprise d'activité"], décrit les étapes requises.
+
+La figure suivante décrit les options de configuration HANA pour la réplication inter-région.
+
+image:saphana-dr-anf_image6.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Avec la version actuelle de la réplication inter-région, seules les planifications fixes peuvent être sélectionnées et l'heure de mise à jour de la réplication réelle ne peut pas être définie par l'utilisateur. Les horaires disponibles sont tous les jours, toutes les heures et toutes les 10 minutes. Utilisez ces options de planification, deux configurations différentes selon les exigences RPO : la réplication de volume de données sans journalisation de la réplication des sauvegardes et la réplication des sauvegardes de journaux avec des planifications différentes, toutes les heures ou toutes les 10 minutes. Le RPO le plus faible possible est d'environ 20 minutes. Le tableau suivant récapitule les options de configuration et les valeurs RPO et RTO qui en résultent.
+
+|===
+|  | Réplication du volume de données | Réplication du volume de sauvegarde des données et des journaux | Réplication du volume de sauvegarde des données et des journaux 
+
+
+| Volume de données de planification CRR | Tous les jours | Tous les jours | Tous les jours 
+
+
+| Volume de sauvegarde du journal CRR schedule | s/o | Horaire | 10 min 
+
+
+| RPO max | +24 heures + planning Snapshot (par ex. 6 heures)+ | 1 heure | 2 x 10 min 
+
+
+| RTO max | Principalement défini par l'heure de démarrage HANA | +temps de démarrage HANA + temps de restauration+ | +temps de démarrage HANA + temps de restauration+ 
+
+
+| Vers l'avant la reprise | NA | +journaux des dernières 24 heures + calendrier Snapshot (par ex. 6 heures)+ | +journaux des dernières 24 heures + calendrier Snapshot (par ex. 6 heures)+ 
+|===

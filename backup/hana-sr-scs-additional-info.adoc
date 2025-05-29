@@ -1,0 +1,25 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sr-scs-additional-info.html 
+keywords: additional information, version history 
+summary:  
+---
+= Où trouver des informations complémentaires
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Pour en savoir plus sur les informations fournies dans ce document, consultez ces documents :
+
+* link:hana-br-scs-overview.html["SAP HANA : sauvegarde et restauration avec SnapCenter"]
+* link:../lifecycle/sc-copy-clone-introduction.html["Automatisation des opérations de copie et de clonage du système SAP HANA avec SnapCenter"]
+* Reprise après incident de SAP HANA avec la réplication du stockage
++
+https://www.netapp.com/pdf.html?item=/media/8584-tr4646pdf.pdf["https://www.netapp.com/us/media/tr-4646.pdf"^]
+
+
