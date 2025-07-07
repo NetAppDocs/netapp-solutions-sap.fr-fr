@@ -76,4 +76,7 @@ Les modifications techniques suivantes ont été apportées à cette solution de
 
 
 | Novembre 2024 | Nouveaux systèmes de stockage 
+
+
+| Juillet 2025 | Mises à jour mineures 
 |===

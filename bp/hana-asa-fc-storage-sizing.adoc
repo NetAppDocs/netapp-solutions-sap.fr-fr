@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar 
-permalink: bp/hana-aff-fc-storage-sizing.html 
+permalink: bp/hana-asa-fc-storage-sizing.html 
 keywords:  
 summary:  
 ---
@@ -36,35 +36,9 @@ Le nombre maximal d'hôtes SAP HANA pouvant être exécutés sur un tiroir disqu
 
 
 
-=== Tiroir disque SAS
-
-Avec le tiroir disque SAS 12 Gb (DS224C), le dimensionnement de la performance est réalisé avec des configurations de tiroirs disques fixes :
-
-* Tiroirs disques demi-chargés avec 12 SSD
-* Tiroirs disques entièrement chargés avec 24 disques SSD
-
-
-Les deux configurations utilisent le partitionnement de disque avancé (ADPv2). Un tiroir disque à moitié chargé prend en charge jusqu'à 9 hôtes SAP HANA ; un tiroir entièrement chargé prend en charge jusqu'à 14 hôtes dans un tiroir disque unique. Les hôtes SAP HANA doivent être répartis de manière égale entre les deux contrôleurs de stockage.
-
-
-NOTE: Le tiroir disque DS224C doit être connecté en utilisant SAS 12 Gbit pour prendre en charge le nombre d'hôtes SAP HANA.
-
-Le tiroir disque SAS 6 Gbit/s (DS2246) prend en charge un maximum de 4 hôtes SAP HANA. Les disques SSD et les hôtes SAP HANA doivent être répartis de manière égale entre les deux contrôleurs de stockage. La figure suivante récapitule le nombre pris en charge d'hôtes SAP HANA par tiroir disque.
-
-|===
-|  | Tiroirs SAS 6 Gbit/s (DS2246) entièrement chargés avec 24 disques SSD | Tiroirs SAS 12 Gb (DS224C) demi-chargés avec 12 SSD et ADPv2 | Tiroirs SAS 12 Gb (DS224C) entièrement équipés de 24 SSD et de l'ADPv2 
-
-
-| Nombre maximal d'hôtes SAP HANA par tiroir disque | 4 | 9 | 14 
-|===
-
-NOTE: Ce calcul est indépendant du contrôleur de stockage utilisé. L'ajout de tiroirs disques supplémentaires n'augmente pas le nombre maximal d'hôtes SAP HANA qu'un contrôleur de stockage peut prendre en charge.
-
-
-
 === Tiroir NVMe NS224
 
-Un SSD NVMe (données) prend en charge jusqu'à 2/5 hôtes SAP HANA, selon le disque NVMe utilisé. Les disques SSD et les hôtes SAP HANA doivent être répartis de manière égale entre les deux contrôleurs de stockage. Il en va de même pour les disques NVMe internes des systèmes AFF et ASA.
+Un SSD NVMe (données) prend en charge jusqu'à 2/5 hôtes SAP HANA, selon le disque NVMe utilisé.
 
 
 NOTE: L'ajout de tiroirs disques supplémentaires n'augmente pas le nombre maximal d'hôtes SAP HANA qu'un contrôleur de stockage peut prendre en charge.
@@ -215,4 +189,4 @@ La taille de la mémoire RAM, la taille des données nette sur le disque de chaq
 
 La figure suivante résume le processus de dimensionnement.
 
-image:saphana_aff_fc_image8b.png["Processus de dimensionnement SAP HANA"]
+image:saphana_asa_fc_image8a.png["Processus de dimensionnement SAP HANA"]

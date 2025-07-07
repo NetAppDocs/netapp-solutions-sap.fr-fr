@@ -221,4 +221,4 @@ La taille de la mémoire RAM, la taille des données réseau sur le disque de ch
 
 La figure suivante résume le processus de dimensionnement.
 
-image:saphana_fas_fc_image8.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana_fas_fc_image8a.png["Processus de dimensionnement de SAP HANA"]

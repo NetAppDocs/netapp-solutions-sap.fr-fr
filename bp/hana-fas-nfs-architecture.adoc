@@ -20,7 +20,7 @@ Une infrastructure de commutation redondante est recommandée pour assurer une c
 
 Différents modèles de la gamme de produits des systèmes FAS peuvent être combinés au niveau de la couche de stockage afin de permettre la croissance et les besoins de performances et de capacité variables. Le nombre maximal d'hôtes SAP HANA pouvant être connectés au système de stockage est défini par les exigences de performances SAP HANA et le modèle du contrôleur NetApp utilisé. Le nombre de tiroirs disques requis n'est déterminé que par les exigences de capacité et de performance des systèmes SAP HANA. La figure suivante montre un exemple de configuration avec huit hôtes SAP HANA reliés à une paire haute disponibilité du stockage.
 
-image:saphana-fas-nfs_image2.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana-fas-nfs_image2.png["Huit hôtes SAP HANA connectés à une paire de stockage haute disponibilité (HA)"]
 
 L'architecture peut évoluer en deux dimensions :
 
@@ -30,11 +30,11 @@ L'architecture peut évoluer en deux dimensions :
 
 La figure suivante présente un exemple de configuration dans laquelle davantage d'hôtes SAP HANA sont connectés aux contrôleurs de stockage. Dans cet exemple, il faut davantage de tiroirs disques pour satisfaire à la fois les besoins en capacité et en performances de 16 hôtes SAP HANA. Selon les besoins de débit total, d'autres connexions 10GbE (ou plus rapides) aux contrôleurs de stockage doivent être ajoutées.
 
-image:saphana-fas-nfs_image4.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana-fas-nfs_image4.png["Hôtes SAP HANA supplémentaires vers une paire haute disponibilité de contrôleur de stockage existant"]
 
 Quel que soit le système FAS déployé, le paysage SAP HANA peut également être étendu en ajoutant des contrôleurs de stockage certifiés afin de répondre à la densité de nœud souhaitée (figure suivante).
 
-image:saphana-fas-nfs_image5.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana-fas-nfs_image5a.png["Paire haute disponibilité supplémentaire ajoutée"]
 
 
 
@@ -48,7 +48,7 @@ La technologie NetApp SnapMirror permet de répliquer les copies Snapshot créé
 
 Les journaux de la base de données peuvent être sauvegardés directement sur le stockage secondaire à l'aide d'un montage NFS, comme illustré dans la figure suivante.
 
-image:saphana-fas-nfs_image6.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana_asa_fc_image5a.png["Présentation de SnapCenter"]
 
 Les sauvegardes Snapshot basées sur le stockage offrent un avantage considérable par rapport aux sauvegardes classiques basées sur des fichiers. Ces avantages sont, entre autres, les suivants :
 

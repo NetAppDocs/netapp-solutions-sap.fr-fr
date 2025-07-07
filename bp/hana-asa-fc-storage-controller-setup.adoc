@@ -1,0 +1,105 @@
+---
+sidebar: sidebar 
+permalink: bp/hana-asa-fc-storage-controller-setup.html 
+keywords: storage efficiency, netapp volume encryption, quality of service, qos, fabricpool, Disk shelf, sas, fcp port sets, linux lvm, 
+summary: 'Cette section décrit la configuration du système de stockage NetApp. Vous devez effectuer l"installation et la configuration principales conformément aux guides d"installation et de configuration de Data ONTAP correspondants.' 
+---
+= Configuration du contrôleur de stockage
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Cette section décrit la configuration du système de stockage NetApp. Vous devez effectuer l'installation et la configuration principales conformément aux guides d'installation et de configuration de Data ONTAP correspondants.
+
+
+
+== Efficacité du stockage
+
+La déduplication à la volée, la déduplication entre les volumes, la compression et la compaction à la volée sont prises en charge avec SAP HANA dans une configuration SSD.
+
+
+
+== Qualité de service
+
+La QoS peut être utilisée pour limiter le débit du stockage pour des systèmes SAP HANA spécifiques ou des applications non SAP sur un contrôleur partagé.
+
+
+
+=== Production et développement/test
+
+Dans ce cas, il serait possible de limiter le débit des systèmes de développement et de test de manière à ce qu'ils ne puissent pas influencer les systèmes de production dans une configuration mixte. Au cours du processus de dimensionnement, vous devez déterminer les exigences de performance d'un système non opérationnel. Les systèmes de développement et de test peuvent être dimensionnés avec des valeurs de performances inférieures, généralement dans la plage de 20 à 50 % d'un KPI de système de production tel que défini par SAP. Les E/S d'écriture importantes ont le plus grand impact sur les performances du système de stockage. Par conséquent, la limite de débit de la qualité de service doit être définie sur un pourcentage des valeurs KPI des performances du stockage SAP HANA d'écriture correspondantes dans les volumes de données et de journaux.
+
+
+
+=== Environnements partagés
+
+Autre cas d'usage : limiter le débit de charges de travail en écriture élevées, surtout pour éviter que ces charges de travail aient un impact sur d'autres charges de travail en écriture sensibles à la latence. Dans de tels environnements, il est recommandé d'appliquer une règle de groupe de QoS au plafond de débit non partagé à chaque LUN au sein de chaque SVM afin de limiter le débit maximal de chaque objet de stockage à la valeur donnée. Cela réduit le risque qu'une seule charge de travail puisse avoir une influence négative sur d'autres charges de travail.
+
+Pour cela, il faut créer une group-policy en utilisant l'interface de ligne de commandes du cluster ONTAP pour chaque SVM :
+
+....
+qos policy-group create -policy-group <policy-name> -vserver <vserver name> -max-throughput 1000MB/s -is-shared false
+....
+Et appliquées à chaque LUN au sein du SVM. Voici un exemple d'application de la « policy group » à toutes les LUN existantes au sein d'un SVM :
+
+....
+lun modify -vserver <vserver name>  -path * -qos-policy-group  <policy-name>
+....
+Cela doit être fait pour chaque SVM. Le nom du groupe de police QoS pour chaque SVM doit être différent. Pour les nouveaux LUN, la règle peut être appliquée directement :
+
+....
+lun create -vserver <vserver_name> -path  /vol/<volume_name>/<lun_name>   -size <size> -ostype <e.g. linux>  -qos-policy-group <policy-name>
+....
+Il est recommandé d'utiliser 1 000 Mo/s comme débit maximal pour une LUN donnée. Si une application requiert un débit supérieur, plusieurs LUN avec répartition par LUN doivent être utilisées pour fournir la bande passante nécessaire. Ce guide fournit un exemple de SAP HANA basé sur Linux LVM à la section link:hana-asa-fc-host-setup.html#create-lvm-volume-groups-and-logical-volumes["Configuration de l'hôte"].
+
+
+NOTE: La limite s'applique également aux lectures. Utilisez donc suffisamment de LUN pour remplir les SLA requis pour le délai de démarrage de la base de données SAP HANA et pour les sauvegardes.
+
+
+
+== Configurer le stockage
+
+La présentation suivante résume les étapes de configuration du stockage requises. Chaque étape est traitée de manière plus détaillée dans les sections suivantes. Dans cette section, nous supposons que le matériel de stockage est configuré et que le logiciel ONTAP est déjà installé. De même, la connexion des ports FCP de stockage à la structure SAN doit déjà être en place.
+
+. Vérifiez la configuration correcte des tiroirs disques, comme décrit dans la <<Tiroirs disques basés sur NVMe (100 GbE)>>.
+. Créez des groupes d'initiateurs (igroups) avec des noms mondiaux (WWN) de serveurs HANA comme décrit dans la section lien : saphana-asa-fc-storage-controller-setup.html#initiator-groups <<Groupes d'initiateurs>> .
+. Créez des LUN et mappez-les aux serveurs décrits dans la section link:hana-asa-fc-storage-controller-setup_single_host.html["Configuration LUN pour les systèmes à hôte unique SAP HANA"] et link:hana-asa-fc-storage-controller-setup_multiple_hosts.html["Configuration LUN pour les systèmes multi-hôtes SAP HANA"]
+
+
+
+
+=== Tiroirs disques basés sur NVMe (100 GbE)
+
+Chaque tiroir disque NVMe NS224 est connecté à deux ports 100 GbE par contrôleur, comme illustré dans la figure ci-dessous. Les disques sont automatiquement distribués aux deux contrôleurs de la paire HA.
+
+image:saphana_asa_fc_image11a.png["Connexion au tiroir disque NVMe NS224"]
+
+
+
+=== Groupes d'initiateurs
+
+Un groupe initiateur peut être configuré pour chaque serveur ou pour un groupe de serveurs nécessitant l'accès à une LUN. La configuration d'un groupe initiateur nécessite les noms de port (WWPN) mondiaux des serveurs.
+
+À l'aide du `sanlun` Pour obtenir les WWPN de chaque hôte SAP HANA, exécutez la commande suivante :
+
+....
+sapcc-hana-tst:~ # sanlun fcp show adapter
+/sbin/udevadm
+/sbin/udevadm
+
+host0 ...... WWPN:2100000e1e163700
+host1 ...... WWPN:2100000e1e163701
+....
+
+NOTE: Cet `sanlun` outil fait partie des utilitaires d'hôtes NetApp et doit être installé sur chaque hôte SAP HANA. Pour plus de détails, reportez-vous à la section link:hana-asa-fc-host-setup.html["Configuration de l'hôte."]
+
+Les groupes initiateurs peuvent être créés à l'aide de l'interface de ligne de commandes du cluster ONTAP.
+
+....
+lun igroup create -igroup <igroup name> -protocol fcp -ostype linux -initiator <list of initiators> -vserver <SVM name>
+....

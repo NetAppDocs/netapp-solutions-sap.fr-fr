@@ -22,7 +22,7 @@ Différents modèles de la gamme de produits des systèmes AFF peuvent être com
 
 La figure suivante montre un exemple de configuration avec huit hôtes SAP HANA reliés à une paire haute disponibilité du stockage.
 
-image:saphana_aff_nfs_image2a.png["Huit hôtes SAP HANA reliés à une paire haute disponibilité du stockage"]
+image:saphana_aff_nfs_image2b.png["Huit hôtes SAP HANA reliés à une paire haute disponibilité du stockage"]
 
 L'architecture peut évoluer en deux dimensions :
 
@@ -32,11 +32,11 @@ L'architecture peut évoluer en deux dimensions :
 
 La figure suivante présente un exemple de configuration dans laquelle davantage d'hôtes SAP HANA sont connectés aux contrôleurs de stockage. Dans cet exemple, il faut davantage de tiroirs disques pour satisfaire aux exigences en termes de capacité et de performances des 12 16 hôtes SAP HANA. Selon les besoins en débit total, vous devez ajouter des connexions 10GbE ou plus rapides aux contrôleurs de stockage.
 
-image:saphana_aff_nfs_image3a.png["Hôtes SAP HANA supplémentaires vers une paire haute disponibilité de contrôleur de stockage existant"]
+image:saphana_aff_nfs_image3b.png["Hôtes SAP HANA supplémentaires vers une paire haute disponibilité de contrôleur de stockage existant"]
 
 Quel que soit le système AFF déployé, le paysage SAP HANA peut également être étendu en ajoutant des contrôleurs de stockage certifiés en fonction de la densité de nœud souhaitée, comme l'illustre la figure suivante.
 
-image:saphana_aff_nfs_image4a.png["Paire haute disponibilité supplémentaire ajoutée"]
+image:saphana_aff_nfs_image4b.png["Paire haute disponibilité supplémentaire ajoutée"]
 
 
 
@@ -50,7 +50,7 @@ Grâce à la technologie NetApp SnapMirror, les copies Snapshot créées sur un 
 
 Les journaux de la base de données peuvent être sauvegardés directement sur le stockage secondaire à l'aide d'un montage NFS, comme illustré dans la figure suivante.
 
-image:saphana_aff_nfs_image6.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana_asa_fc_image5a.png["Présentation de SnapCenter"]
 
 Les sauvegardes Snapshot basées sur le stockage offrent des avantages significatifs par rapport aux sauvegardes conventionnelles basées sur des fichiers. Ces avantages sont, entre autres, les suivants :
 

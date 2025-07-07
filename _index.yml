@@ -12,6 +12,8 @@ indexpage:
       url: bp/hana-aff-fc-introduction.html
     - title: 'SAP HANA sur les systèmes NetApp AFF avec NFS : Guide de configuration'
       url: bp/hana-aff-nfs-introduction.html
+    - title: 'SAP HANA sur les systèmes ASA de NetApp avec FCP : Guide de configuration'
+      url: "/bp/hana-asa-fc-introduction.html"
     - title: SAP HANA sur les systèmes NetApp FAS avec le guide de configuration NFS
       url: bp/hana-fas-nfs-introduction.html
     - title: Guide de configuration de SAP HANA sur les systèmes NetApp FAS avec le

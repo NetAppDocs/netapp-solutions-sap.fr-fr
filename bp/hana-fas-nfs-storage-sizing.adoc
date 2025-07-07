@@ -215,4 +215,4 @@ La taille de la mémoire RAM, la taille des données nette sur le disque de chaq
 
 La figure suivante résume le processus de dimensionnement.
 
-image:saphana-fas-nfs_image9.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana-fas-nfs_image9a.png["Processus de dimensionnement du stockage SAP HANA"]

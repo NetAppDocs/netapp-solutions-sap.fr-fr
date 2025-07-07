@@ -34,7 +34,7 @@ image:saphana_fas_fc_image3.png["Figure montrant la boîte de dialogue entrée/s
 
 Quel que soit le modèle de stockage des systèmes FAS déployé, le paysage SAP HANA peut également être étendu par l'ajout de contrôleurs de stockage, comme l'illustre la figure suivante.
 
-image:saphana_fas_fc_image4.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana_fas_fc_image4a.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 
 
@@ -48,7 +48,7 @@ Grâce au logiciel NetApp SnapVault, les copies Snapshot créées sur le stockag
 
 Les journaux de la base de données peuvent être sauvegardés directement sur le stockage secondaire à l'aide d'un montage NFS, comme illustré dans la figure suivante.
 
-image:saphana_fas_fc_image5.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana_asa_fc_image5a.png["Présentation de SnapCenter"]
 
 Les sauvegardes Snapshot basées sur le stockage offrent des avantages significatifs par rapport aux sauvegardes basées sur des fichiers. Ces avantages sont les suivants :
 

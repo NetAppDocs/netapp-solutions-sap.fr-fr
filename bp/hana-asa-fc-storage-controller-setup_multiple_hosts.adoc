@@ -1,0 +1,94 @@
+---
+sidebar: sidebar 
+permalink: bp/hana-asa-fc-storage-controller-setup_multiple_hosts.html 
+keywords: storage efficiency, netapp volume encryption, quality of service, qos, fabricpool, Disk shelf, sas, fcp port sets, linux lvm, 
+summary: Cette section décrit comment créer des LUN pour un système à hôtes multiples 
+---
+= Configuration du contrôleur de stockage – plusieurs hôtes
+:allow-uri-read: 
+
+
+
+
+== Configuration du contrôleur de stockage – plusieurs hôtes
+
+[role="lead"]
+Cette section décrit la configuration du système de stockage NetApp spécifique aux systèmes multi-hôtes SAP HANA
+
+
+
+== Configuration LUN pour les systèmes multi-hôtes SAP HANA
+
+Le LVM Linux est utilisé pour augmenter les performances et pour répondre aux limitations de taille des LUN.
+
+Sur l'hôte SAP HANA, il est nécessaire de créer et de monter des groupes de volumes et des volumes logiques, comme le montre le tableau suivant.
+
+|===
+| Volume logique (LV) | Point de montage sur l'hôte SAP HANA | Remarque 
+
+
+| LV : FC5_data_mnt00001-vol | /hana/data/FC5/mnt00001 | Monté à l'aide d'un connecteur de stockage 
+
+
+| LV : FC5_log_mnt00001-vol | /hana/log/FC5/mnt00001 | Monté à l'aide d'un connecteur de stockage 
+
+
+| LV : FC5_data_mnt00002-vol | /hana/data/FC5/mnt00002 | Monté à l'aide d'un connecteur de stockage 
+
+
+| LV : FC5_log_mnt00002-vol | /hana/log/FC5/mnt00002 | Monté à l'aide d'un connecteur de stockage 
+
+
+| Partage NFS externe : FC5_shared | /hana/partagé | Monté sur tous les hôtes à l'aide de l'entrée NFS et /etc/fstab 
+|===
+
+NOTE: Les systèmes multi-hôtes SAP HANA nécessitent  `/hana/shared` Système de fichiers connecté à tous les hôtes d'un système. Il s'agit généralement d'un partage NFS fourni par un serveur NFS. Il est recommandé d'utiliser un serveur NFS haute disponibilité, tel qu'un système NetApp FAS ou AFF. Une autre option consiste à utiliser le serveur NFS intégré d'un hôte Linux.
+
+
+NOTE: Avec la configuration décrite, le  `/usr/sap/FC5` Le répertoire dans lequel est stocké le répertoire personnel par défaut de l'utilisateur FC5adm se trouve sur le disque local de chaque hôte HANA. Dans une configuration de reprise après sinistre avec réplication sur disque, NetApp recommande d'utiliser quatre LUN supplémentaires pour  `/usr/sap/FC5` système de fichiers de chaque hôte afin que chaque hôte de base de données ait tous ses systèmes de fichiers sur le stockage central.
+
+
+
+== Création de LUN et mappage de LUN à des groupes initiateurs
+
+Vous pouvez utiliser NetApp ONTAP System Manager pour créer des volumes de stockage et des LUN, et les mapper sur les igroups des serveurs et sur l'interface de ligne de commande de ONTAP. Ce guide décrit l'utilisation de l'interface de ligne de commandes.
+
+
+NOTE: Le `sanlun` L'outil fait partie des utilitaires hôtes NetApp et doit être installé sur chaque hôte SAP HANA. Pour plus d'informations, reportez-vous à la section « Host_setup ».
+
+
+
+=== Création de LUN et mappage de LUN à des groupes d'initiateurs à l'aide de l'interface de ligne de commande
+
+Cette section montre un exemple de configuration utilisant la ligne de commande avec ONTAP 9 pour un système hôte multiple SAP HANA 2+1 avec FC5 FC5 utilisant LVM et deux LUN par groupe de volumes LVM :
+
+. Créer toutes les LUN.
++
+....
+lun create -path FC5_data_mnt00001   -size 1t -ostype linux  -class regular
+lun create -path FC5_data2_mnt00001 -size 1t -ostype linux  -class regular
+lun create -path FC5_data_mnt00002 -size 1t -ostype linux  -class regular
+lun create -path FC5_data2_mnt00002 -size 1t -ostype linux  -class regular
+lun create -path FC5_log_mnt00001 -size 260g -ostype linux  -class regular
+lun create -path FC5_log2_mnt00001 -size 260g -ostype linux  -class regular
+lun create -path FC5_log_mnt00002 -size 260g -ostype linux  -class regular
+lun create -path FC5_log2_mnt00002 -size 260g -ostype linux  -class regular
+....
+. Créez le groupe initiateur pour tous les serveurs appartenant au système FC5.
++
+....
+lun igroup create -igroup HANA-FC5 -protocol fcp -ostype linux -initiator 10000090fadcc5fa,10000090fadcc5fb,10000090fadcc5c1,10000090fadcc5c2,10000090fadcc5c3,10000090fadcc5c4 -vserver svm1
+....
+. Mapper toutes les LUN sur le groupe initiateur créé.
++
+....
+lun map -path FC5_data_mnt00001  -igroup HANA-FC5
+lun map -path FC5_data2_mnt00001  -igroup HANA-FC5
+lun map -path FC5_data_mnt00002  -igroup HANA-FC5
+lun map -path FC5_data2_mnt00002  -igroup HANA-FC5
+lun map -path FC5_log_mnt00001  -igroup HANA-FC5
+lun map -path FC5_log2_mnt00001  -igroup HANA-FC5
+lun map -path FC5_log_mnt00002  -igroup HANA-FC5
+lun map -path FC5_log2_mnt00002  -igroup HANA-FC5
+....
+

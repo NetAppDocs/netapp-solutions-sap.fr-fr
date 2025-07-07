@@ -17,7 +17,7 @@ summary:
 Pour en savoir plus sur les informations fournies dans ce document, consultez ces documents et/ou sites web :
 
 * link:../index.html["Solutions logicielles SAP HANA"]
-* link:../backup/hana-dr-sr-pdf-link.html["* TR-4646 : reprise après incident SAP HANA avec réplication du stockage"]
+* link:../backup/hana-dr-sr-pdf-link.html["Tr-4646 : reprise après incident de SAP HANA avec réplication du stockage"]
 * link:../backup/hana-br-scs-overview.html["Tr-4614 : sauvegarde et restauration SAP HANA avec SnapCenter"]
 * link:../lifecycle/sc-copy-clone-introduction.html["Tr-4667 : automatisation des opérations de copie système et de clonage SAP HANA avec SnapCenter"]
 * Centres de documentation NetApp
@@ -26,7 +26,7 @@ https://www.netapp.com/support-and-training/documentation/["https://www.netapp.c
 
 * Matériel de stockage d'entreprise certifié SAP pour SAP HANA
 +
-http://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/enterprise-storage.html["http://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/enterprise-storage.html"^]
+https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/["https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN/"^]
 
 * Exigences de stockage SAP HANA
 +
