@@ -1,0 +1,28 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-vmfs-asar2-sc-backup.html 
+keywords: SAP HANA, VMware, SnapCenter, backup and recovery 
+summary:  
+---
+= Les opérations de sauvegarde
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+Rien de spécifique à VMware avec VMFS.
+
+image:sc-hana-asrr2-vmfs-image18.png["Figure illustrant le contenu discuté"]
+
+image:sc-hana-asrr2-vmfs-image19.png["Figure illustrant le contenu discuté"]
+
+SnapCenter crée un groupe de cohérence (CG) et y ajoute l'unité de stockage hana++_++data++_++VFS. Les snapshots sont créés au niveau du CG.
+
+image:sc-hana-asrr2-vmfs-image20.png["Figure illustrant le contenu discuté"]
+
+image:sc-hana-asrr2-vmfs-image21.png["Figure illustrant le contenu discuté"]
+
+image:sc-hana-asrr2-vmfs-image22.png["Figure illustrant le contenu discuté"]
