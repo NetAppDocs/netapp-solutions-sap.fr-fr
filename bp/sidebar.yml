@@ -19,10 +19,20 @@ entries:
     - title: Synchronisation de l'heure
       url: "/bp/hana-aff-fc-time-synchronization.html"
     - title: Configuration du contrôleur de stockage
+      entries:
+      - title: Configuration LUN d'un seul hôte
+        url: "/bp/hana-aff-fc-storage-controller-setup_single_host.html"
+      - title: Configuration LUN de plusieurs hôtes
+        url: "/bp/hana-aff-fc-storage-controller-setup_multiple_hosts.html"
       url: "/bp/hana-aff-fc-storage-controller-setup.html"
     - title: API du connecteur de stockage SAP HANA
       url: "/bp/hana-aff-fc-storage-connector-api.html"
     - title: Configuration de l'hôte
+      entries:
+      - title: Un seul hôte
+        url: "/bp/hana-aff-fc-host-setup_single.html"
+      - title: Plusieurs hôtes
+        url: "/bp/hana-aff-fc-host-setup_multi.html"
       url: "/bp/hana-aff-fc-host-setup.html"
     - title: Configuration de la pile d'E/S pour SAP HANA
       url: "/bp/hana-aff-fc-io-stack-configuration.html"
@@ -85,22 +95,20 @@ entries:
       url: "/bp/hana-asa-fc-time-synchronization.html"
     - title: Configuration du contrôleur de stockage
       entries:
-      - title: Configuration générale
-        url: "/bp/hana-asa-fc-storage-controller-setup.html"
       - title: Configuration LUN d'un seul hôte
         url: "/bp/hana-asa-fc-storage-controller-setup_single_host.html"
       - title: Configuration LUN de plusieurs hôtes
         url: "/bp/hana-asa-fc-storage-controller-setup_multiple_hosts.html"
+      url: "/bp/hana-asa-fc-storage-controller-setup.html"
     - title: API du connecteur de stockage SAP HANA
       url: "/bp/hana-asa-fc-storage-connector-api.html"
     - title: Configuration de l'hôte
       entries:
-      - title: Configuration du multi-acheminement
-        url: "/bp/hana-asa-fc-host-setup.html"
       - title: Un seul hôte
         url: "/bp/hana-asa-fc-host-setup_single.html"
-      - title: Multi-hôtes
+      - title: Plusieurs hôtes
         url: "/bp/hana-asa-fc-host-setup_multi.html"
+      url: "/bp/hana-asa-fc-host-setup.html"
     - title: Configuration de la pile d'E/S pour SAP HANA
       url: "/bp/hana-asa-fc-io-stack-configuration.html"
     - title: Installation du logiciel SAP HANA

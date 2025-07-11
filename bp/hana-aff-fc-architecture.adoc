@@ -72,21 +72,17 @@ Pour plus d'informations sur les solutions de reprise d'activité SAP HANA, repo
 
 === Réplication du stockage basée sur SnapMirror
 
-La figure suivante présente une solution de reprise sur incident sur trois sites qui utilise la réplication SnapMirror synchrone vers le data Center local de reprise sur incident et SnapMirror asynchrone pour répliquer les données vers le data Center distant de reprise sur incident.
+La figure suivante illustre une solution de reprise après sinistre sur trois sites utilisant la synchronisation active synchrone SnapMirror vers le centre de données DR local et la réplication asynchrone des données vers le centre de données DR distant. La synchronisation active SnapMirror permet aux services métier de continuer à fonctionner même en cas de panne totale du site, en prenant en charge le basculement transparent des applications via une copie secondaire (RPO = 0 et RTO = 0). Aucune intervention manuelle ni script personnalisé n'est nécessaire pour déclencher un basculement avec la synchronisation active SnapMirror. À partir de ONTAP 9.15.1, la synchronisation active SnapMirror prend en charge une fonction active/active symétrique. Le mode actif-actif symétrique permet d'effectuer des opérations de lecture et d'écriture d'E/S à partir des deux copies d'un LUN protégé avec une réplication synchrone bidirectionnelle, de sorte que les deux copies de LUN puissent traiter des opérations d'E/S localement.
 
-La réplication des données à l'aide de SnapMirror synchrone assure un RPO nul. La distance entre le data Center principal et le centre de reprise après incident local est limitée à environ 100 km.
+Plus de détails peuvent être trouvés sur  https://docs.netapp.com/us-en/ontap/snapmirror-active-sync/index.html["Présentation de la synchronisation active SnapMirror dans ONTAP"] ..
 
-La protection contre les défaillances du site principal et du site de reprise sur incident local est effectuée par la réplication des données vers un troisième data Center distant à l'aide de SnapMirror asynchrone. Le RPO dépend de la fréquence des mises à jour de réplication et de la rapidité de leur transfert. En théorie, la distance est illimitée, mais la limite dépend de la quantité de données à transférer et de la connexion disponible entre les centres de données. Les valeurs RPO typiques sont comprises dans une plage de 30 minutes à plusieurs heures.
-
-Le RTO des deux méthodes de réplication dépend principalement du temps nécessaire pour démarrer la base de données HANA sur le site de reprise et charger les données dans la mémoire. L'hypothèse que le débit de lecture des données est de 1 000 Mbit/s, le chargement de 1 To de données prendra environ 18 minutes.
+Le RTO pour la réplication asynchrone SnapMirror dépend principalement du temps nécessaire pour démarrer la base de données HANA sur le site DR et charger les données en mémoire. L'hypothèse que le débit de lecture des données est de 1 000 Mbit/s, le chargement de 1 To de données prendra environ 18 minutes.
 
 Les serveurs des sites de reprise après incident peuvent être utilisés en tant que systèmes de développement et de test en temps normal. En cas d'incident, les systèmes de dév/test doivent être arrêtés et démarrés est en tant que serveurs de production de reprise sur incident.
 
 Les deux méthodes de réplication permettent d'exécuter des tests du workflow de reprise d'activité sans affecter le RPO et RTO. Les volumes FlexClone sont créés sur le stockage et rattachés aux serveurs de test de reprise après incident.
 
-image:saphana_aff_fc_image6.png["Solution SnapMirror"]
-
-La réplication synchrone offre le mode StrictSync. Si l'écriture sur le stockage secondaire n'est pas terminée, pour une raison quelconque, les E/S de l'application échouent, ce qui permet de s'assurer que les systèmes de stockage primaire et secondaire sont identiques. Les E/S de l'application vers le système primaire sont reprises après le retour de la relation SnapMirror à l'état insync. En cas de panne du stockage primaire, les E/S des applications peuvent reprendre sur le stockage secondaire après le basculement, sans perte de données. En mode StrictSync, le RPO est toujours zéro.
+image:saphana_aff_fc_image6a.png["Solution SnapMirror"]
 
 
 
@@ -94,4 +90,4 @@ La réplication synchrone offre le mode StrictSync. Si l'écriture sur le stocka
 
 La figure suivante présente une vue d'ensemble générale de la solution. Le cluster de stockage de chaque site assure une haute disponibilité locale et est utilisé pour la charge de travail de production. Les données de chaque site sont répliquées de manière synchrone sur l'autre emplacement et sont disponibles en cas de basculement.
 
-image:saphana_aff_fc_image7.png["NetApp MetroCluster"]
+image:saphana_aff_image7a.png["NetApp MetroCluster"]

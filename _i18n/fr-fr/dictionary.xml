@@ -128,7 +128,6 @@
   <block id="d7021f52f260e11c8c2dd980991f38ae" category="paragraph">Créez les nouvelles LUN de données avec ONTAP System Manager ou l'interface de ligne de commandes de ONTAP.</block>
   <block id="13d80777c8fd43e555c1f5b1b72d7ef0" category="section-title">Configuration de l'hôte</block>
   <block id="8c74ac3f77233a64ddd5171869c51c2a" category="paragraph">Pour configurer un hôte, procédez comme suit :</block>
-  <block id="5bcb0bf87ac10e193de11e3c3c8eb488" category="list-text">Configurez les chemins d'accès multiples pour les LUN supplémentaires, comme décrit au chapitre 0.</block>
   <block id="572b2316d0cecf8ccd134b71ee2fce66" category="list-text">Créez le système de fichiers XFS sur chaque LUN supplémentaire appartenant au système HANA :</block>
   <block id="f255815987a5727cdc75e965673dc603" category="list-text">Ajoutez le ou les systèmes de fichiers supplémentaires à la<block ref="816a3ef77b62ade41c3f936c958aa555" prefix=" " category="inline-code"></block> fichier de configuration.</block>
   <block id="c9b9bdcff428106a20521627c72baa32" category="admonition">Les systèmes de fichiers XFS pour le LUN de données et de journaux doivent être montés avec le<block ref="c947784f4ae64e8b5d145360be8a793e" prefix=" " category="inline-code"></block> et<block ref="215a5778551b14fe571525c26ffc2211" prefix=" " category="inline-code"></block> options de montage.</block>
@@ -580,8 +579,6 @@
   <block id="29c8d00954b1d81fd235004ad72cdc15" category="admonition">Les étapes 1 à 6 doivent être exécutées sur tous les hôtes workers et de secours dans une configuration SAP HANA à plusieurs hôtes.</block>
   <block id="face2730fdfb3061ad0f284515f9695d" category="paragraph">Pour configurer les chemins d'accès multiples, procédez comme suit :</block>
   <block id="d49e35527dee3aa4c0935558a3ccd40e" category="list-text">Exécutez Linux<block ref="881613bef521487d56e745d69018ffe9" prefix=" " category="inline-code"></block> Commande sur chaque serveur pour détecter les nouvelles LUN.</block>
-  <block id="75be82f3eaed4a8948bb32c324a96484" category="list-text">Exécutez le<block ref="5927da9399de65ab7428ce807e88771e" prefix=" " category="inline-code"></block> Commande et vérification que toutes les LUN requises sont visibles. L'exemple suivant montre le<block ref="5927da9399de65ab7428ce807e88771e" prefix=" " category="inline-code"></block> Résultat de la commande pour un système HANA à plusieurs hôtes 2+1 avec deux LUN de données et deux LUN de journaux. Le résultat affiche les LUN et les fichiers de périphérique correspondants, tels que LUN<block ref="df56860243d26537d92cfad070a8c590" prefix=" " category="inline-code"></block> et le fichier du périphérique<block ref="421d2aadb541bde4541aaac815d59491" prefix=" " category="inline-code"></block> Chaque LUN possède huit chemins FC entre l'hôte et les contrôleurs de stockage.</block>
-  <block id="56674facde12d75bf46b49b5d6316f96" category="list-text">Exécutez le<block ref="800be20e72a4397d094e0267a68f6475" prefix=" " category="inline-code"></block> Commande permettant d'obtenir les identificateurs mondiaux (WWID) des noms de fichiers de périphériques.</block>
   <block id="86551857b20d1627afd561e1111dd48c" category="admonition">Dans cet exemple, il y a quatre LUN.</block>
   <block id="b0a7dea9169ca74da0133eed343854ee" category="list-text">Modifiez le<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> Et ajoutez les WWID et les noms d'alias.</block>
   <block id="649b8d1047ff4dbb68eac12144e5c1d5" category="admonition">L'exemple de résultat montre le contenu du<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> Fichier, qui inclut des noms d'alias pour les quatre LUN d'un système à plusieurs hôtes 2+1. Si aucun fichier multipath.conf n'est disponible, vous pouvez en créer un en exécutant la commande suivante :<block ref="9b1cae9564e7fad60cd7549f7b4aaa86" prefix=" " category="inline-code"></block>.</block>
@@ -589,7 +586,6 @@
   <block id="349df7a76ee939fd3552195d183e56a3" category="list-text">Vérifiez la configuration en exécutant le<block ref="3d80983fc82ff72fd51e5d1f7e90c56d" prefix=" " category="inline-code"></block> Commande permettant de répertorier toutes les LUN, les noms d'alias et les chemins actifs et de secours.</block>
   <block id="3c440be39ee7b8ee32df76222e620417" category="admonition">L'exemple de résultat suivant montre les résultats d'un système HANA à plusieurs hôtes 2+1 avec deux données et deux LUN de journalisation.</block>
   <block id="f54213342718e90a288d6625eb733968" category="section-title">Créez des groupes de volumes LVM et des volumes logiques</block>
-  <block id="eeeec6c7d6ba3ce79b3e9a26d6ebed05" category="paragraph">Cette étape n'est requise que si LVM est utilisé. L'exemple suivant concerne la configuration de l'hôte 2+1 avec SID FC5.</block>
   <block id="72d8906ce88673b5ddc42cd605b2aaa9" category="admonition">Pour une configuration LVM, la configuration multichemin décrite dans la section précédente doit également être terminée. Dans cet exemple, huit LUN doivent être configurées pour les chemins d'accès multiples.</block>
   <block id="baf6ddaa837973f5c39837c3746535f5" category="list-text">Initialisez toutes les LUN en tant que volume physique.</block>
   <block id="e4eae96188ebd77284f0fc28c5c7413d" category="list-text">Création des groupes de volumes pour chaque partition de données et de journaux</block>
@@ -915,7 +911,6 @@
   <block id="d00f7ccbbb090c63d2eb2e3a5ddbd0db" category="list-text"><block ref="c947784f4ae64e8b5d145360be8a793e" prefix="" category="inline-code"></block> et<block ref="215a5778551b14fe571525c26ffc2211" prefix=" " category="inline-code"></block> pour le système de fichiers de données et de journaux</block>
   <block id="3daf48572816497403ca0d7b3ca79c5c" category="list-text">Ajoutez les WWID des partitions de données et de journaux. Les WWID doivent correspondre aux noms d'alias configurés dans le<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> fichier.</block>
   <block id="c5e7e01683b04809035115f6c4c7e4aa" category="paragraph">Le résultat suivant montre un exemple de configuration 2+1 avec plusieurs hôtes dans laquelle l'identifiant système (SID) est SS3.</block>
-  <block id="f206fb31ca322606be1acbaecf34f9fa" category="paragraph">Si le LVM de Linux est utilisé, la configuration requise est différente. L'exemple suivant montre une configuration à plusieurs hôtes 2+1 avec SID=FC5.</block>
   <block id="e698d9fadd050973bab2f9f855248cca" category="admonition">Selon la version du système d'exploitation utilisé, il peut être nécessaire d'installer Python 2.7 avant d'installer la base de données SAP HANA.</block>
   <block id="365912103e9bce0d6c05c8ee64c9b43f" category="summary">En commençant par SAP HANA 2.0 SPS4, vous pouvez configurer des partitions de volume de données supplémentaires, ce qui vous permet de configurer deux volumes ou plus pour le volume de données d'une base de données locataire SAP HANA.</block>
   <block id="35697e7b3429f60c725ef9d7b697ea1e" category="admonition">L'utilisation d'au moins deux volumes individuels pour le volume de données est disponible pour les systèmes SAP HANA à un ou plusieurs hôtes. Vous pouvez ajouter des partitions de volume de données supplémentaires à tout moment, mais cela peut nécessiter un redémarrage de la base de données SAP HANA.</block>
@@ -4156,7 +4151,6 @@ Reportez-vous à la section<block ref="7f3b31b88f0e42104578f538777bc3e6" categor
   <block id="3bcc285c555f1a917d23761e04d98e2c" category="paragraph"><block ref="3bcc285c555f1a917d23761e04d98e2c" category="inline-image-macro-rx" type="image"></block></block>
   <block id="adf2d4c62bc39518d50fe4a1329307e4" category="paragraph">Historique des versions :</block>
   <block id="55d5dfa50d04891918fe3ea9ad00059b" category="paragraph"><block ref="55d5dfa50d04891918fe3ea9ad00059b" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="762fea8d2405197b39e9cd41b76d320c" category="paragraph"><block ref="762fea8d2405197b39e9cd41b76d320c" category="inline-image-macro-rx" type="image"></block></block>
   <block id="e6aabe615d4f04cff649751db99a960f" category="paragraph">Ce document présente la configuration et l'installation de l'infrastructure pour les systèmes NetApp FAS et NFS.</block>
   <block id="43eddd188c3e76947dbca863365a0183" category="paragraph"><block ref="43eddd188c3e76947dbca863365a0183" category="inline-image-macro-rx" type="image"></block></block>
   <block id="47fe5a641384ba3150a9df792aafd860" category="paragraph"><block ref="47fe5a641384ba3150a9df792aafd860" category="inline-image-macro-rx" type="image"></block></block>
@@ -4168,8 +4162,6 @@ Reportez-vous à la section<block ref="7f3b31b88f0e42104578f538777bc3e6" categor
   <block id="265ae4ad07ae6dd3140cd976e6e96a15" category="paragraph"><block ref="265ae4ad07ae6dd3140cd976e6e96a15" category="inline-image-macro-rx" type="image"></block></block>
   <block id="017e522349a0ff07067400d6b880e9df" category="paragraph">= :hardbreaks: :nofooter: :icons: font :linkattrs: :imagesdir: ../media/</block>
   <block id="2267b0943e951c31d5f31c288b6bfbe6" category="paragraph">SAP HANA sur NetApp AFF avec protocole NFS.</block>
-  <block id="80d1a2a3304ad91fb33c08a071649f65" category="paragraph"><block ref="80d1a2a3304ad91fb33c08a071649f65" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="b9dfea2f38da456216fb821bdace0099" category="paragraph"><block ref="b9dfea2f38da456216fb821bdace0099" category="inline-image-macro-rx" type="image"></block></block>
   <block id="1061c8a586da3d6a249f18df930dc33a" category="paragraph">Ce document présente la configuration et l'installation de l'infrastructure pour les systèmes NetApp AFF et NFS.</block>
   <block id="c0c285f4d23d22653eba8dc9a75078b0" category="paragraph"><block ref="c0c285f4d23d22653eba8dc9a75078b0" category="inline-image-macro-rx" type="image"></block></block>
   <block id="bc6f4f64c41295649568c9b08222f2c3" category="paragraph"><block ref="bc6f4f64c41295649568c9b08222f2c3" category="inline-image-macro-rx" type="image"></block></block>
@@ -4177,7 +4169,6 @@ Reportez-vous à la section<block ref="7f3b31b88f0e42104578f538777bc3e6" categor
   <block id="b726daf8a2adf210c59b7ef834090339" category="paragraph"><block ref="b726daf8a2adf210c59b7ef834090339" category="inline-image-macro-rx" type="image"></block></block>
   <block id="c8ad86db51ea3fec014b3b92b80c4f2e" category="paragraph"><block ref="c8ad86db51ea3fec014b3b92b80c4f2e" category="inline-image-macro-rx" type="image"></block></block>
   <block id="d64ce1ec53ddbb70221c0732f05697a6" category="paragraph"><block ref="d64ce1ec53ddbb70221c0732f05697a6" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="c0561b288a8933b1a53451f7c71e958e" category="paragraph"><block ref="c0561b288a8933b1a53451f7c71e958e" category="inline-image-macro-rx" type="image"></block></block>
   <block id="57f3c3545cf78dda99e9898c26f43005" category="paragraph"><block ref="57f3c3545cf78dda99e9898c26f43005" category="inline-image-macro-rx" type="image"></block></block>
   <block id="87c981e26acc223a7d0dba3d39b42d11" category="paragraph"><block ref="87c981e26acc223a7d0dba3d39b42d11" category="inline-image-macro-rx" type="image"></block></block>
   <block id="286a02ac976f208a41714fb1b31d5563" category="paragraph"><block ref="286a02ac976f208a41714fb1b31d5563" category="inline-image-macro-rx" type="image"></block></block>
@@ -4435,9 +4426,7 @@ Reportez-vous à la section<block ref="7f3b31b88f0e42104578f538777bc3e6" categor
   <block id="102c21391acced3e67ae185a05909bc8" category="admonition">Avec la configuration décrite, le<block ref="e049803e41fabe0f53c4ead4b0f14350" prefix=" " category="inline-code"></block> répertoire dans lequel le répertoire home par défaut de l'utilisateur sidadm est stocké se trouve sur le disque local de chaque hôte HANA. Dans une configuration de reprise sur incident avec réplication sur disque, NetApp recommande de créer quatre sous-répertoires supplémentaires dans le<block ref="07fe7fc9aa3cd33458708758a4a5854e" prefix=" " category="inline-code"></block> volume pour le<block ref="e049803e41fabe0f53c4ead4b0f14350" prefix=" " category="inline-code"></block> système de fichiers afin que chaque hôte de base de données dispose de tous ses systèmes de fichiers sur le stockage central.</block>
   <block id="dd3925da178560a888f5c0d4bd90dc73" category="paragraph">Cette section présente un exemple de configuration à l'aide de la ligne de commande avec ONTAP 9 pour un système hôte SAP HANA multiple 2+1 avec SID FC5 utilisant LVM et deux LUN par groupe de volumes LVM.</block>
   <block id="952239c31e0fbf4511610dae4cbe22be" category="paragraph">Un disque SSD NVMe (données) prend en charge jusqu'à 2 hôtes SAP HANA. Les disques SSD et les hôtes SAP HANA doivent être répartis de manière égale entre les deux contrôleurs de stockage.</block>
-  <block id="11f314ab4a94edb93dad0cd1712e5ea2" category="paragraph"><block ref="11f314ab4a94edb93dad0cd1712e5ea2" category="inline-image-macro-rx" type="image"></block></block>
   <block id="01a8d3d035a390b9e2f8a164a50b3d9c" category="inline-image-macro">Configuration réseau spécifique à VMware</block>
-  <block id="0d76c6604b8441a790e29500bb1f3dbe" category="paragraph"><block ref="0d76c6604b8441a790e29500bb1f3dbe" category="inline-image-macro-rx" type="image"></block></block>
   <block id="d4087e3f08b7a7f8751675ca82462e2a" category="list-text">Tr-4667 : automatisation des copies du système SAP à l'aide du plug-in SnapCenter SAP HANA</block>
   <block id="6c112b2b6e22e11b65018895aa298940" category="list-text">SAP HANA sur VMware vSphere Wiki</block>
   <block id="7fd039f168758cb7fad07015245b1afa" category="inline-link"><block ref="7fd039f168758cb7fad07015245b1afa" category="inline-link-rx"></block></block>
@@ -5366,7 +5355,6 @@ Reportez-vous à la section<block ref="7f3b31b88f0e42104578f538777bc3e6" categor
   <block id="4d1bc709bfba771f4ff18cae8cad5821" category="list-text"><block ref="4d1bc709bfba771f4ff18cae8cad5821" category="inline-link-macro-rx"></block></block>
   <block id="d1b4413cecd0416bbd7ac40af6b252af" category="list-text"><block ref="d1b4413cecd0416bbd7ac40af6b252af" category="inline-link-macro-rx"></block></block>
   <block id="caa68a1014a6d7327367831c0e373a1a" category="paragraph">Il existe plusieurs options pour connecter le stockage à des machines virtuelles (VM). La première option consiste à connecter les volumes de stockage avec NFS directement hors du système d'exploitation invité. Cette option est décrite dans <block ref="3ebc92cb08a767ffa51923363e8b791d" category="inline-link-macro-rx"></block>.</block>
-  <block id="a1728c64d9f47fea93e2e1ae0ac49847" category="paragraph">Il est recommandé d'utiliser 1 000 Mo/s comme débit maximal pour une LUN donnée. Si une application requiert un débit supérieur, plusieurs LUN avec répartition par LUN doivent être utilisées pour fournir la bande passante nécessaire. Ce guide fournit un exemple de SAP HANA basé sur Linux LVM à la section <block ref="fcd51d35bad016304c14d35b9e13c40c" category="inline-link-macro-rx"></block>.</block>
   <block id="2d7472524212d38654f8712f8528de00" category="list-text">Créez des groupes initiateurs (igroups) avec des noms WWN (WWN) des serveurs HANA, comme décrit dans la section link:hana-fas-fc-Storage-Controller-setup.html#initiator-groups <block ref="a30a5bc4156d5efb64f9f758389889ed" category="inline-xref-macro-rx"></block>.</block>
   <block id="ca4e28b2d73ad674c0052aaa001a3fbe" category="admonition">Cet<block ref="3a8e4afa851609127d534b04e7d29c08" prefix=" " category="inline-code"></block> outil fait partie des utilitaires d'hôtes NetApp et doit être installé sur chaque hôte SAP HANA. Pour plus de détails, reportez-vous à la section <block ref="f75b5be3cddbf151c8e809ce5b0c771a" category="inline-link-macro-rx"></block></block>
   <block id="60c724065bc332dd941c269b2a5bf0f6" category="paragraph">Outre les tâches décrites dans la section, <block ref="c2cc83b43967a333625e03c0c4e4e13e" category="inline-link-macro-rx"></block>des points de montage et des entrées supplémentaires<block ref="520a0201c5bdee02e1c617ad8c8e2596" prefix=" " category="inline-code"></block> pour les nouveaux volumes de données supplémentaires doivent être créés et les nouveaux volumes doivent être montés.</block>
@@ -5466,9 +5454,7 @@ Reportez-vous à la section<block ref="7f3b31b88f0e42104578f538777bc3e6" categor
   <block id="4ca95b5bca07e84d7755d3c0f50a04c9" category="inline-image-macro">Présentation de SnapCenter</block>
   <block id="391458da3f8da76431f5d01ec21de6bb" category="paragraph"><block ref="391458da3f8da76431f5d01ec21de6bb" category="inline-image-macro-rx" type="image"></block></block>
   <block id="a322193ac8801771c1db2548d778d786" category="inline-image-macro">Solution SnapMirror</block>
-  <block id="5a2dc218d33ade0b8b2fe2666e194bdf" category="paragraph"><block ref="5a2dc218d33ade0b8b2fe2666e194bdf" category="inline-image-macro-rx" type="image"></block></block>
   <block id="164fe74cfbca9ef543331e42b891cf2c" category="inline-image-macro">NetApp MetroCluster</block>
-  <block id="fe7d60267be959d6843d6976892f7248" category="paragraph"><block ref="fe7d60267be959d6843d6976892f7248" category="inline-image-macro-rx" type="image"></block></block>
   <block id="e0688cb7d6291c05b4b81e03674d396f" category="summary">La gamme de produits NetApp AFF est certifiée pour une utilisation avec SAP HANA dans les projets TDI. Ce guide fournit les meilleures pratiques pour SAP HANA sur cette plateforme.</block>
   <block id="43af0fa315980d56444cafe5aa7da0d8" category="paragraph">La gamme de produits NetApp AFF est certifiée pour une utilisation avec SAP HANA dans les projets TDI. Ce guide fournit les meilleures pratiques pour SAP HANA sur cette plateforme pour FCP.</block>
   <block id="f24901db79bd7adbcfdc97deb6526be7" category="list-text">ASA A250, ASA A400, ASA A800, ASA A900</block>
@@ -5578,11 +5564,8 @@ Reportez-vous à la section<block ref="7f3b31b88f0e42104578f538777bc3e6" categor
   <block id="ecc900dd19f5c7d49be2feaf09c11e58" category="paragraph">La gamme de produits NetApp FAS a été certifiée pour une utilisation avec SAP HANA dans le cadre de projets Tailored Data Center Integration (TDI). Ce guide fournit les meilleures pratiques pour SAP HANA sur cette plateforme avec NFS.</block>
   <block id="00f5bf4413a98fc8af35089eab0ae424" category="paragraph"><block ref="00f5bf4413a98fc8af35089eab0ae424" category="inline-image-macro-rx" type="image"></block></block>
   <block id="9c3e0c17f09b278cc6ad14ea10cda021" category="sidebar">SAP HANA sur les systèmes ASA de NetApp avec FCP : Guide de configuration</block>
-  <block id="027add60276a1ee87099d7ae5bb5069e" category="sidebar">Configuration générale</block>
   <block id="ddb55e4334b26446b18503774881a2e5" category="sidebar">Configuration LUN d'un seul hôte</block>
   <block id="526ffb7b57e2db6ab8a3f13077e8988c" category="sidebar">Configuration LUN de plusieurs hôtes</block>
-  <block id="50759eefac4f0ffd82247ab6b82e8407" category="sidebar">Configuration du multi-acheminement</block>
-  <block id="b12ba339120dcf2901d4eb899fd432f4" category="sidebar">Multi-hôtes</block>
   <block id="b5c56e3ba8d38f1f3f0a7a5413fdeef2" category="paragraph">Bonnes pratiques HANA :</block>
   <block id="c7666fa654de87dc33703084f80aa4be" category="list-text"><block ref="7912a6ea019693a170bbf40a62a72e9f" category="inline-link-rx"></block>.</block>
   <block id="1902e4ab89c18ee8b918255bd4a42840" category="list-text"><block ref="1902e4ab89c18ee8b918255bd4a42840" category="inline-link-rx"></block></block>
@@ -5743,4 +5726,23 @@ Reportez-vous à la section<block ref="7f3b31b88f0e42104578f538777bc3e6" categor
   <block id="5e9bba71efcdfbbed1dcf18802f8a227" category="sidebar">Opérations de restauration et de récupération de SnapCenter</block>
   <block id="743ac471396f82caf85eeeeac51160f8" category="sidebar">Actualisation du système SAP</block>
   <block id="3a499e89a73d22ba78550fb47f2e0c88" category="sidebar">Informations complémentaires et historique des versions</block>
+  <block id="000c450c2b1b3fbe68fc0d1893fb42e7" category="list-text">Configurez le multipathing pour les LUN supplémentaires, comme décrit dans le chapitre <block ref="5dbefb7618e64c1782ebe16427fe0a08" category="inline-link-macro-rx"></block> .</block>
+  <block id="6089175223f03bbb436ea3677ff5d54e" category="paragraph"><block ref="6089175223f03bbb436ea3677ff5d54e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3082ebb564b0862e5b62f45e9c7f2918" category="paragraph"><block ref="3082ebb564b0862e5b62f45e9c7f2918" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="8f84ce7565f171f38c52c9b754fcb5c9" category="list-text">SAP HANA, hôte unique et multiple, utilisant le gestionnaire de volumes logiques Linux (LVM)</block>
+  <block id="a235fb941d246b5d166648278909aa43" category="paragraph">La sortie suivante montre un exemple de configuration multi-hôtes 2+1 utilisant LVM avec SID=FC5.</block>
+  <block id="a4505c7307a89303eb52005835050cb8" category="paragraph">Il est recommandé d'utiliser 1 000 Mo/s comme débit maximal pour une LUN donnée. Si une application requiert un débit supérieur, plusieurs LUN avec répartition par LUN doivent être utilisées pour fournir la bande passante nécessaire. Ce guide fournit un exemple de SAP HANA basé sur Linux LVM à la section <block ref="5dbefb7618e64c1782ebe16427fe0a08" category="inline-link-macro-rx"></block>.</block>
+  <block id="1b5ffe4ee0faee4001d5027bc6594589" category="list-text">Créez des groupes d'initiateurs (igroups) avec des noms mondiaux (WWN) de serveurs HANA comme décrit dans la section <block ref="a30a5bc4156d5efb64f9f758389889ed" category="inline-xref-macro-rx"></block> .</block>
+  <block id="a955b97b5c01140f8cd767c62ee1a00b" category="inline-link-macro">Configuration d'un seul hôte</block>
+  <block id="e9c76a6a9dcbd2703cd41df706ca9bad" category="inline-link-macro">Configuration de plusieurs hôtes</block>
+  <block id="ea8677c5cbdecd6a4693230ea4b208f7" category="list-text">Créez et configurez des volumes et des LUN dans les agrégats comme décrit dans la section <block ref="02c588e18cfdd0a8f042f6bb77be7fc8" category="inline-link-macro-rx"></block> pour hôtes individuels ou en section <block ref="bd9b341014e1ef6599e94d8ab2e59792" category="inline-link-macro-rx"></block></block>
+  <block id="ea651f4ee236b38f946242f8bfc0ac46" category="list-text">Créez le groupe initiateur pour tous les ports appartenant aux hôtes sythe de FC5.</block>
+  <block id="9c1e9d82d3220658621f72dca978adb0" category="inline-image-macro">SnapMirror NetApp</block>
+  <block id="71079bf31f8a65ae836b1f5bc217fd74" category="paragraph"><block ref="71079bf31f8a65ae836b1f5bc217fd74" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="26a3afe8370c1799977f1b90c95aa439" category="inline-image-macro">IP NetApp MetroCluster</block>
+  <block id="e37aeb2676a6a4bb6829e2a314fefcdf" category="paragraph"><block ref="e37aeb2676a6a4bb6829e2a314fefcdf" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="18e54879f416d5c92151dba61aa9b093" category="paragraph"><block ref="18e54879f416d5c92151dba61aa9b093" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a46e5bc27436967555509cdbd754e5e7" category="paragraph"><block ref="a46e5bc27436967555509cdbd754e5e7" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="469f70c8bf9e7345451574deea79f80b" category="paragraph"><block ref="469f70c8bf9e7345451574deea79f80b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="cac1665e63972e4a12b392296c7ff08b" category="sidebar">Plusieurs hôtes</block>
 </blocks>

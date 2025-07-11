@@ -1,0 +1,111 @@
+---
+sidebar: sidebar 
+permalink: bp/hana-aff-fc-host-setup_single.html 
+keywords: multipathing, fcp, hba, configure 
+summary: 'Avant de configurer l"hôte, les utilitaires hôtes NetApp SAN doivent être téléchargés depuis le site de support NetApp et installés sur les serveurs HANA. La documentation de l"utilitaire hôte contient des informations sur les logiciels supplémentaires qui doivent être installés en fonction du HBA FCP utilisé.' 
+---
+= Configuration d'un seul hôte
+:allow-uri-read: 
+
+
+
+
+== Configuration d'un seul hôte
+
+[role="lead"]
+Ce chapitre décrit la configuration d'un hôte unique SAP HANA.
+
+
+
+=== Créez des groupes de volumes LVM et des volumes logiques
+
+. Initialisez toutes les LUN en tant que volume physique.
++
+....
+pvcreate /dev/mapper/hana-FC5_data_mnt00001
+pvcreate /dev/mapper/hana-FC5_data2_mnt00001
+pvcreate /dev/mapper/hana-FC5_log_mnt00001
+pvcreate /dev/mapper/hana-FC5_log2_mnt00001
+....
+. Création des groupes de volumes pour chaque partition de données et de journaux
++
+....
+vgcreate FC5_data_mnt00001 /dev/mapper/hana-FC5_data_mnt00001 /dev/mapper/hana-FC5_data2_mnt00001
+vgcreate FC5_log_mnt00001 /dev/mapper/hana-FC5_log_mnt00001 /dev/mapper/hana-FC5_log2_mnt00001
+....
+. Créez un volume logique pour chaque partition de données et de journaux. Utilisez une taille de bande égale au nombre de LUN utilisées par groupe de volumes (dans cet exemple, il y en a deux) et une taille de bande de 256k pour les données et de 64k pour les journaux. SAP ne prend en charge qu'un seul volume logique par groupe de volumes.
++
+....
+lvcreate --extents 100%FREE -i 2 -I 256k --name vol FC5_data_mnt00001
+lvcreate --extents 100%FREE -i 2 -I 64k --name vol FC5_log_mnt00001
+....
+. Analysez les volumes physiques, les groupes de volumes et les groupes de volumes de tous les autres hôtes.
+
+
+....
+modprobe dm_mod
+pvscan
+vgscan
+lvscan
+....
+
+NOTE: Si ces commandes ne trouvent pas les volumes, un redémarrage est nécessaire.
+
+Pour monter les volumes logiques, les volumes logiques doivent être activés. Pour activer les volumes, lancer la commande suivante :
+
+....
+vgchange -a y
+....
+
+
+=== Créer des systèmes de fichiers
+
+Créez le système de fichiers XFS sur tous les volumes logiques de données et de journaux et le LUN partagé Hana.
+
+....
+mkfs.xfs FC5_data_mnt00001-vol
+mkfs.xfs FC5_log_mnt00001-vol
+mkfs.xfs /dev/mapper/svm1-FC5_shared
+....
+
+NOTE: Les commandes d'exemples d'hôtes multiples affichent un système HANA à plusieurs hôtes 2+1.
+
+
+
+=== Créer des points de montage
+
+Pour créer les répertoires de points de montage requis, procédez comme suit :
+
+* Pour un système à un seul hôte, définissez les autorisations et créez des points de montage sur l'hôte de la base de données.
+
+
+....
+sapcc-hana-tst:/ # mkdir -p /hana/data/FC5/mnt00001
+sapcc-hana-tst:/ # mkdir -p /hana/log/FC5/mnt00001
+sapcc-hana-tst:/ # mkdir -p /hana/shared
+sapcc-hana-tst:/ # chmod –R 777 /hana/log/FC5
+sapcc-hana-tst:/ # chmod –R 777 /hana/data/FC5
+sapcc-hana-tst:/ # chmod 777 /hana/shared
+....
+
+
+=== Montez les systèmes de fichiers
+
+Pour monter des systèmes de fichiers lors du démarrage du système à l'aide de l' `/etc/fstab` fichier de configuration, procédez comme suit :
+
+* Dans le cas d'un système à hôte unique, ajoutez les systèmes de fichiers requis à la `/etc/fstab` fichier de configuration.
++
+....
+# cat /etc/fstab
+/dev/mapper/hana-FC5_shared /hana/shared xfs defaults 0 0
+/dev/mapper/FC5_log_mnt00001-vol /hana/log/FC5/mnt00001 xfs relatime,inode64 0 0
+/dev/mapper/FC5_data_mnt00001-vol /hana/data/FC5/mnt00001 xfs relatime,inode64 0 0
+....
++
+
+NOTE: Les systèmes de fichiers XFS pour les LUN de données et de journaux doivent être montés avec le `relatime` et `inode64` options de montage.
+
++
+Pour monter les systèmes de fichiers, exécutez le  `mount –a` commande à l'hôte.
+
+

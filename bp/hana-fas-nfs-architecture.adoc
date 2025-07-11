@@ -94,4 +94,4 @@ La réplication synchrone offre le mode StrictSync. Si l'écriture sur le stocka
 
 La figure suivante présente une vue d'ensemble générale de la solution. Le cluster de stockage de chaque site assure une haute disponibilité locale et est utilisé pour la charge de travail de production. Les données de chaque site sont répliquées de manière synchrone sur l'autre emplacement et sont disponibles en cas de basculement.
 
-image:saphana-fas-nfs_image8.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana_fas_image8.png["IP NetApp MetroCluster"]

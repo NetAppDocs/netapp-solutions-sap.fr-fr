@@ -37,33 +37,7 @@ Avant d'installer le logiciel SAP HANA sur un système à plusieurs hôtes, les 
 
 . Ajoutez les WWID des partitions de données et de journaux. Les WWID doivent correspondre aux noms d'alias configurés dans le `/etc/multipath.conf` fichier.
 +
-Le résultat suivant montre un exemple de configuration 2+1 avec plusieurs hôtes dans laquelle l'identifiant système (SID) est SS3.
-
-+
-....
-stlrx300s8-6:~ # cat /hana/shared/global.ini
-[communication]
-listeninterface = .global
-[persistence]
-basepath_datavolumes = /hana/data/SS3
-basepath_logvolumes = /hana/log/SS3
-[storage]
-ha_provider = hdb_ha.fcClient
-partition_*_*__prtype = 5
-partition_*_data__mountoptions = -o relatime,inode64
-partition_*_log__mountoptions = -o relatime,inode64,nobarrier
-partition_1_data__wwid = hana-SS3_data_mnt00001
-partition_1_log__wwid = hana-SS3_log_mnt00001
-partition_2_data__wwid = hana-SS3_data_mnt00002
-partition_2_log__wwid = hana-SS3_log_mnt00002
-[system_information]
-usage = custom
-[trace]
-ha_fcclient = info
-stlrx300s8-6:~ #
-....
-+
-Si le LVM de Linux est utilisé, la configuration requise est différente. L'exemple suivant montre une configuration à plusieurs hôtes 2+1 avec SID=FC5.
+La sortie suivante montre un exemple de configuration multi-hôtes 2+1 utilisant LVM avec SID=FC5.
 
 +
 ....
@@ -83,8 +57,10 @@ partition_1_log__lvmname = FC5_log_mnt00001-vol
 partition_2_data__lvmname = FC5_data_mnt00002-vol
 partition_2_log__lvmname = FC5_log_mnt00002-vol
 sapcc-hana-tst-03:/hana/shared #
-Using the SAP hdblcm installation tool, start the installation by running the following command at one of the worker hosts. Use the `addhosts` option to add the second worker (sapcc-hana-tst-06) and the standby host (sapcc-hana-tst-07).
 ....
++
+À l’aide de l’outil d’installation SAP hdblcm, démarrez l’installation en exécutant la commande suivante sur l’un des hôtes de travail. Utilisez `addhosts` l'option pour ajouter le second worker (sapcc-hana-tst-06) et l'hôte de secours (sapcc-hana-tst-07).
+
 +
 
 NOTE: Le répertoire dans lequel le fichier préparé `global.ini` est stocké est inclus avec l' `storage_cfg`option CLI (`--storage_cfg=/hana/shared`).
