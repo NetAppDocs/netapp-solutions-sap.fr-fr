@@ -66,14 +66,14 @@ NOTE: La limite s'applique également aux lectures. Utilisez donc suffisamment d
 
 La présentation suivante résume les étapes de configuration du stockage requises. Chaque étape est traitée de manière plus détaillée dans les sections suivantes. Dans cette section, nous supposons que le matériel de stockage est configuré et que le logiciel ONTAP est déjà installé. De même, la connexion des ports FCP de stockage à la structure SAN doit déjà être en place.
 
-. Vérifiez la configuration correcte des tiroirs disques, comme décrit dans la <<Tiroirs disques basés sur NVMe (100 GbE)>>.
+. Vérifiez la configuration correcte des tiroirs disques, comme décrit dans la <<Étagères de disques basées sur NVMe>>.
 . Créez des groupes d'initiateurs (igroups) avec des noms mondiaux (WWN) de serveurs HANA comme décrit dans la section lien : saphana-asa-fc-storage-controller-setup.html#initiator-groups <<Groupes d'initiateurs>> .
 . Créez des LUN et mappez-les aux serveurs décrits dans la section link:hana-asa-fc-storage-controller-setup_single_host.html["Configuration LUN pour les systèmes à hôte unique SAP HANA"] et link:hana-asa-fc-storage-controller-setup_multiple_hosts.html["Configuration LUN pour les systèmes multi-hôtes SAP HANA"]
 
 
 
 
-=== Tiroirs disques basés sur NVMe (100 GbE)
+=== Étagères de disques basées sur NVMe
 
 Chaque tiroir disque NVMe NS224 est connecté à deux ports 100 GbE par contrôleur, comme illustré dans la figure ci-dessous. Les disques sont automatiquement distribués aux deux contrôleurs de la paire HA.
 

@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
-permalink: bp/hana-aff-fc-storage-controller-setup_single_host.html 
-keywords: storage efficiency, netapp volume encryption, quality of service, qos, fabricpool, Disk shelf, sas, fcp port sets, linux lvm, 
-summary: 'Cette section décrit la configuration du système de stockage NetApp. Vous devez effectuer l"installation et la configuration principales conformément aux guides d"installation et de configuration de Data ONTAP correspondants.' 
+permalink: bp/hana-fas-fc-storage-controller-setup_single_host.html 
+keywords: storage, controller, setup, storage, efficiency volume, encryption, quality, configure, disk, connection, aggregate 
+summary: 'Cette section décrit la configuration du système de stockage NetApp. Vous devez effectuer l"installation et la configuration principales conformément aux guides d"installation et de configuration de ONTAP correspondants.' 
 ---
 = Un seul hôte
 :allow-uri-read: 
@@ -19,12 +19,12 @@ Cette section décrit la configuration du système de stockage NetApp spécifiqu
 
 == Configuration de volumes et de LUN pour les systèmes SAP HANA à un seul hôte
 
-La figure suivante montre la configuration de volume de quatre systèmes SAP HANA à hôte unique. Les volumes de données et de journaux de chaque système SAP HANA sont répartis sur différents contrôleurs de stockage. Par exemple, volume `SID1_data_mnt00001` Est configuré sur le contrôleur A, et sur le volume `SID1_log_mnt00001` Est configuré sur le contrôleur B. Une seule LUN est configurée au sein de chaque volume.
+La figure suivante montre la configuration de volume de quatre systèmes SAP HANA à hôte unique. Les volumes de données et de journaux de chaque système SAP HANA sont répartis sur différents contrôleurs de stockage. Par exemple, le volume `SID1_data_mnt00001` est configuré sur le contrôleur A et le volume `SID1_log_mnt00001` sur le contrôleur B. dans chaque volume, une seule LUN est configurée.
 
 
-NOTE: Si un seul contrôleur de stockage d'une paire HA est utilisé pour les systèmes SAP HANA, les volumes de données et les volumes journaux peuvent également être stockés sur le même contrôleur de stockage.
+NOTE: Si un seul contrôleur de stockage d'une paire haute disponibilité est utilisé pour les systèmes SAP HANA, les volumes de données et les volumes de journaux peuvent également être stockés sur le même contrôleur de stockage.
 
-image:saphana_aff_fc_image16a.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:saphana_fas_fc_image18.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
 Pour chaque hôte SAP HANA, un volume de données, un volume de journal et un volume pour `/hana/shared` sont configurés. Le tableau suivant présente un exemple de configuration avec quatre systèmes SAP HANA à un seul hôte.
 
@@ -43,10 +43,10 @@ Pour chaque hôte SAP HANA, un volume de données, un volume de journal et un vo
 
 | Données, journaux et volumes partagés pour le système SID4 | Volume du journal : SID4_log_mnt00001 | – | Volume partagé : SID4_shared | Volume de données : SID4_Data_mnt00001 
 |===
-Le tableau suivant présente un exemple de configuration de point de montage pour un système à un hôte unique.
+Le tableau suivant montre un exemple de configuration de point de montage pour un système à un hôte unique.
 
 |===
-| LUN | Point de montage sur l'hôte SAP HANA | Remarque 
+| LUN | Point de montage sur l'hôte HANA | Remarque 
 
 
 | SID1_Data_mnt00001 | /hana/data/SID1/mnt00001 | Monté à l'aide de l'entrée /etc/fstab 
@@ -75,7 +75,7 @@ NOTE: Il n'est pas nécessaire d'utiliser LVM avec plusieurs LUN pour remplir le
 
 | Données, journaux et volumes partagés pour le système LVM | Volume de données : SID1_Data_mnt00001 | Volume partagé : SID1_Shared Log2 volume : SID1_log2_mnt00001 | Volume de données 2 : SID1_data2_mnt00001 | Volume du journal : SID1_log_mnt00001 
 |===
-Sur l'hôte SAP HANA, il est nécessaire de créer et de monter des groupes de volumes et des volumes logiques, comme le montre le tableau suivant.
+Sur l'hôte SAP HANA, des groupes de volumes et des volumes logiques doivent être créés et montés. Le tableau suivant répertorie les points de montage pour les systèmes à un hôte à l'aide de LVM.
 
 |===
 | Volume logique/LUN | Point de montage sur l'hôte SAP HANA | Remarque 
@@ -109,7 +109,13 @@ Les options de volume répertoriées dans le tableau suivant doivent être véri
 |===
 
 
-=== Création de LUN et mappage de LUN à des groupes d'initiateurs à l'aide de l'interface de ligne de commande
+=== Création de LUN, volumes et mappage de LUN sur des groupes initiateurs
+
+Vous pouvez utiliser NetApp ONTAP System Manager pour créer des volumes de stockage et des LUN, et les mapper sur les igroups des serveurs et sur l'interface de ligne de commande de ONTAP. Ce guide décrit l'utilisation de l'interface de ligne de commandes.
+
+
+
+=== Création de LUN, volumes et mappage de LUN sur des igroups à l'aide de l'interface de ligne de commande
 
 Cette section montre un exemple de configuration utilisant la ligne de commande avec ONTAP 9 pour un système hôte unique SAP HANA avec SID FC5 utilisant LVM et deux LUN par groupe de volumes LVM :
 

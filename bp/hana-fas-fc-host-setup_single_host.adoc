@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
-permalink: bp/hana-asa-fc-host-setup_single.html 
-keywords: multipathing, fcp, hba, configure 
-summary: 'Avant de configurer l"hôte, les utilitaires hôtes NetApp SAN doivent être téléchargés depuis le site de support NetApp et installés sur les serveurs HANA. La documentation de l"utilitaire hôte contient des informations sur les logiciels supplémentaires qui doivent être installés en fonction du HBA FCP utilisé.' 
+permalink: bp/hana-fas-fc-host-setup_single_host.html 
+keywords: configure, multipathing, create, lvm, volume, groups, logical, mount, points, file, systems 
+summary: La documentation contient également des informations sur les configurations multipathing spécifiques à la version de Linux utilisée. 
 ---
 = Configuration d'un seul hôte
 :allow-uri-read: 
@@ -67,9 +67,6 @@ mkfs.xfs FC5_data_mnt00001-vol
 mkfs.xfs FC5_log_mnt00001-vol
 mkfs.xfs /dev/mapper/svm1-FC5_shared
 ....
-
-NOTE: Les commandes d'exemples d'hôtes multiples affichent un système HANA à plusieurs hôtes 2+1.
-
 
 
 === Créer des points de montage

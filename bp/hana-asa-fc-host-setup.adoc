@@ -5,12 +5,13 @@ keywords: multipathing, fcp, hba, configure
 summary: 'Avant de configurer l"hôte, les utilitaires hôtes NetApp SAN doivent être téléchargés depuis le site de support NetApp et installés sur les serveurs HANA. La documentation de l"utilitaire hôte contient des informations sur les logiciels supplémentaires qui doivent être installés en fonction du HBA FCP utilisé.' 
 ---
 = Configuration de l'hôte
+:hardbreaks:
 :allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
 
-
-
-
-== Configuration de l'hôte
 
 [role="lead"]
 Avant de configurer l'hôte, les utilitaires d'hôte SAN de NetApp doivent être téléchargés depuis le http://mysupport.netapp.com/["Support NetApp"^] Et installé sur les serveurs HANA. La documentation de l'utilitaire hôte contient des informations sur les logiciels supplémentaires qui doivent être installés en fonction du HBA FCP utilisé.

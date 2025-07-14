@@ -12,8 +12,6 @@ entries:
     url: "/bp/hana-aff-fc-storage-sizing.html"
   - title: Installation et configuration de l'infrastructure
     entries:
-    - title: Présentation de la configuration et de l'installation de l'infrastructure
-      url: "/bp/hana-aff-fc-infra-setup-config-overview.html"
     - title: Configuration de la structure SAN
       url: "/bp/hana-aff-fc-san-fabric-setup.html"
     - title: Synchronisation de l'heure
@@ -41,6 +39,7 @@ entries:
     - title: Ajout de partitions de volumes de données supplémentaires pour les systèmes
         SAP HANA à un seul hôte
       url: "/bp/hana-aff-fc-add-data-volume-partitions-single-host-systems.html"
+    url: "/bp/hana-aff-fc-infra-setup-config-overview.html"
   - title: Où trouver des informations complémentaires
     url: "/bp/hana-aff-fc-additional-info.html"
   - title: Historique des mises à jour
@@ -87,8 +86,6 @@ entries:
     url: "/bp/hana-asa-fc-storage-sizing.html"
   - title: Installation et configuration de l'infrastructure
     entries:
-    - title: Présentation de la configuration et de l'installation de l'infrastructure
-      url: "/bp/hana-asa-fc-infra-setup-config-overview.html"
     - title: Configuration de la structure SAN
       url: "/bp/hana-asa-fc-san-fabric-setup.html"
     - title: Synchronisation de l'heure
@@ -113,6 +110,7 @@ entries:
       url: "/bp/hana-asa-fc-io-stack-configuration.html"
     - title: Installation du logiciel SAP HANA
       url: "/bp/hana-asa-fc-software-install.html"
+    url: "/bp/hana-asa-fc-infra-setup-config-overview.html"
   - title: Où trouver des informations complémentaires
     url: "/bp/hana-asa-fc-additional-info.html"
   - title: Historique des mises à jour
@@ -159,17 +157,25 @@ entries:
     url: "/bp/hana-fas-fc-storage-sizing.html"
   - title: Installation et configuration de l'infrastructure
     entries:
-    - title: Présentation de la configuration et de l'installation de l'infrastructure
-      url: "/bp/hana-fas-fc-infra-setup-config-overview.html"
     - title: Configuration de la structure SAN
       url: "/bp/hana-fas-fc-san-fabric-setup.html"
     - title: Synchronisation de l'heure
       url: "/bp/hana-fas-fc-time-synchronization.html"
     - title: Configuration du contrôleur de stockage
+      entries:
+      - title: Configuration LUN d'un seul hôte
+        url: "/bp/hana-fas-fc-storage-controller-setup_single_host.html"
+      - title: Configuration LUN de plusieurs hôtes
+        url: "/bp/hana-fas-fc-storage-controller-setup_multiple_hosts.html"
       url: "/bp/hana-fas-fc-storage-controller-setup.html"
     - title: API du connecteur de stockage SAP HANA
       url: "/bp/hana-fas-fc-storage-connector-api.html"
     - title: Configuration de l'hôte
+      entries:
+      - title: Un seul hôte
+        url: "/bp/hana-fas-fc-host-setup_single_host.html"
+      - title: Plusieurs hôtes
+        url: "/bp/hana-fas-fc-host-setup_multiple_hosts.html"
       url: "/bp/hana-fas-fc-host-setup.html"
     - title: Configuration de la pile d'E/S pour SAP HANA
       url: "/bp/hana-fas-fc-io-stack-configuration.html"
@@ -178,6 +184,7 @@ entries:
     - title: Ajout de partitions de volumes de données supplémentaires pour les systèmes
         SAP HANA à un seul hôte
       url: "/bp/hana-fas-fc-add-data-volume-partitions-single-host-systems.html"
+    url: "/bp/hana-fas-fc-infra-setup-config-overview.html"
   - title: Où trouver des informations complémentaires
     url: "/bp/hana-fas-fc-additional-info.html"
   - title: Historique des mises à jour

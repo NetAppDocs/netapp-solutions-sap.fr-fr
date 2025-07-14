@@ -96,12 +96,12 @@ La présentation suivante résume les étapes de configuration du stockage requi
 . Créez un SVM (Storage Virtual machine), comme décrit dans la <<Configuration des serveurs virtuels de stockage>>.
 . Créez des interfaces logiques (LIF), comme décrit dans <<Configuration de l'interface logique>>.
 . Créez des groupes d'initiateurs (igroups) avec des noms mondiaux (WWN) de serveurs HANA comme décrit dans la section <<Groupes d'initiateurs>> .
-. Créez et configurez des volumes et des LUN dans les agrégats comme décrit dans la section link:hana-aff-fc-host-setup_single_host.html["Configuration d'un seul hôte"] pour hôtes individuels ou en section link:hana-aff-fc-host-setup_multiple_hosts.html["Configuration de plusieurs hôtes"]
+. Créez et configurez des volumes et des LUN dans les agrégats comme décrit dans la section link:hana-aff-fc-storage-controller-setup_single_host.html["Configuration d'un seul hôte"] pour hôtes individuels ou en section link:hana-aff-fc-storage-controller-setup_multiple_hosts.html["Configuration de plusieurs hôtes"]
 
 
 
 
-== Connexion du tiroir disque
+== Connexions d'étagères de disques
 
 
 
@@ -116,7 +116,7 @@ image:saphana_aff_fc_image10.png["Connexion du tiroir disque DS224C"]
 
 
 
-=== Tiroirs disques basés sur NVMe (100 GbE)
+=== Étagères de disques basées sur NVMe
 
 Chaque tiroir disque NVMe NS224 est connecté à deux ports 100 GbE par contrôleur, comme illustré dans la figure ci-dessous. Les disques dans chaque tiroir doivent être répartis de manière homogène sur les deux contrôleurs de la paire haute disponibilité. ADPv2 est également utilisé pour le tiroir disque NS224.
 

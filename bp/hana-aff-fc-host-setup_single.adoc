@@ -68,16 +68,10 @@ mkfs.xfs FC5_log_mnt00001-vol
 mkfs.xfs /dev/mapper/svm1-FC5_shared
 ....
 
-NOTE: Les commandes d'exemples d'hôtes multiples affichent un système HANA à plusieurs hôtes 2+1.
-
-
 
 === Créer des points de montage
 
-Pour créer les répertoires de points de montage requis, procédez comme suit :
-
-* Pour un système à un seul hôte, définissez les autorisations et créez des points de montage sur l'hôte de la base de données.
-
+Créez les répertoires de points de montage requis et définissez les autorisations sur l'hôte de la base de données :
 
 ....
 sapcc-hana-tst:/ # mkdir -p /hana/data/FC5/mnt00001
@@ -91,21 +85,15 @@ sapcc-hana-tst:/ # chmod 777 /hana/shared
 
 === Montez les systèmes de fichiers
 
-Pour monter des systèmes de fichiers lors du démarrage du système à l'aide de l' `/etc/fstab` fichier de configuration, procédez comme suit :
+Pour monter des systèmes de fichiers pendant le démarrage du système à l'aide de  `/etc/fstab` fichier de configuration, ajoutez les systèmes de fichiers requis au  `/etc/fstab` fichier de configuration:
 
-* Dans le cas d'un système à hôte unique, ajoutez les systèmes de fichiers requis à la `/etc/fstab` fichier de configuration.
-+
 ....
 # cat /etc/fstab
 /dev/mapper/hana-FC5_shared /hana/shared xfs defaults 0 0
 /dev/mapper/FC5_log_mnt00001-vol /hana/log/FC5/mnt00001 xfs relatime,inode64 0 0
 /dev/mapper/FC5_data_mnt00001-vol /hana/data/FC5/mnt00001 xfs relatime,inode64 0 0
 ....
-+
 
 NOTE: Les systèmes de fichiers XFS pour les LUN de données et de journaux doivent être montés avec le `relatime` et `inode64` options de montage.
 
-+
 Pour monter les systèmes de fichiers, exécutez le  `mount –a` commande à l'hôte.
-
-
