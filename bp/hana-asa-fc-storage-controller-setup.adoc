@@ -97,9 +97,3 @@ host1 ...... WWPN:2100000e1e163701
 ....
 
 NOTE: Cet `sanlun` outil fait partie des utilitaires d'hôtes NetApp et doit être installé sur chaque hôte SAP HANA. Pour plus de détails, reportez-vous à la section link:hana-asa-fc-host-setup.html["Configuration de l'hôte."]
-
-Les groupes initiateurs peuvent être créés à l'aide de l'interface de ligne de commandes du cluster ONTAP.
-
-....
-lun igroup create -igroup <igroup name> -protocol fcp -ostype linux -initiator <list of initiators> -vserver <SVM name>
-....

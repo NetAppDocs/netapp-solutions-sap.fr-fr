@@ -17,21 +17,42 @@ Ce chapitre décrit la configuration d'un hôte unique SAP HANA.
 
 
 
+== Configuration LUN pour les systèmes à hôte unique SAP HANA
+
+Le LVM Linux est utilisé pour augmenter les performances et pour répondre aux limitations de taille des LUN. Sur l'hôte SAP HANA, il est nécessaire de créer et de monter des groupes de volumes et des volumes logiques, comme le montre le tableau suivant.
+
+|===
+| Volume logique/LUN | Point de montage sur l'hôte SAP HANA | Remarque 
+
+
+| LV : FC5_data_mnt00001-vol | /hana/data/FC5/mnt00001 | Monté à l'aide de l'entrée /etc/fstab 
+
+
+| LV : FC5_log_mnt00001-vol | /hana/log/FC5/mnt00001 | Monté à l'aide de l'entrée /etc/fstab 
+
+
+| LUN : FC5_shared | /hana/shared/FC5 | Monté à l'aide de l'entrée /etc/fstab 
+|===
+
+NOTE: Avec la configuration décrite, le  `/usr/sap/FC5` Le répertoire dans lequel est stocké le répertoire personnel par défaut de l'utilisateur FC5adm se trouve sur le disque local. Dans une configuration de reprise après sinistre avec réplication sur disque, NetApp recommande de créer un LUN supplémentaire pour le  `/usr/sap/FC5` répertoire afin que tous les systèmes de fichiers soient sur le stockage central.
+
+
+
 === Créez des groupes de volumes LVM et des volumes logiques
 
 . Initialisez toutes les LUN en tant que volume physique.
 +
 ....
-pvcreate /dev/mapper/hana-FC5_data_mnt00001
-pvcreate /dev/mapper/hana-FC5_data2_mnt00001
-pvcreate /dev/mapper/hana-FC5_log_mnt00001
-pvcreate /dev/mapper/hana-FC5_log2_mnt00001
+pvcreate /dev/mapper/svm1-FC5_data_mnt00001_1
+pvcreate /dev/mapper/svm1-FC5_data_mnt00001_2
+pvcreate /dev/mapper/svm1-FC5_log_mnt00001_1
+pvcreate /dev/mapper/svm1-FC5_log_mnt00001_2
 ....
 . Création des groupes de volumes pour chaque partition de données et de journaux
 +
 ....
-vgcreate FC5_data_mnt00001 /dev/mapper/hana-FC5_data_mnt00001 /dev/mapper/hana-FC5_data2_mnt00001
-vgcreate FC5_log_mnt00001 /dev/mapper/hana-FC5_log_mnt00001 /dev/mapper/hana-FC5_log2_mnt00001
+vgcreate FC5_data_mnt00001 /dev/mapper/svm1-FC5_data_mnt00001_1 /dev/mapper/svm1-FC5_data_mnt00001_2
+vgcreate FC5_log_mnt00001 /dev/mapper/svm1-FC5_log_mnt00001_1 /dev/mapper/svm1-FC5_log_mnt00001_2
 ....
 . Créez un volume logique pour chaque partition de données et de journaux. Utilisez une taille de bande égale au nombre de LUN utilisées par groupe de volumes (dans cet exemple, il y en a deux) et une taille de bande de 256k pour les données et de 64k pour les journaux. SAP ne prend en charge qu'un seul volume logique par groupe de volumes.
 +

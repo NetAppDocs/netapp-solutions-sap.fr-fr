@@ -67,7 +67,7 @@ NOTE: Avec la configuration décrite, le `/usr/sap/SID1` Le répertoire dans leq
 Le LVM de Linux peut être utilisé pour augmenter les performances et répondre aux restrictions de taille des LUN. Les différentes LUN d'un groupe de volumes LVM doivent être stockées dans un agrégat différent et au niveau d'un contrôleur différent. Le tableau ci-dessous présente un exemple de deux LUN par groupe de volumes.
 
 
-NOTE: Il n'est pas nécessaire d'utiliser LVM avec plusieurs LUN pour remplir les KPI SAP HANA. Une seule configuration de LUN remplit les indicateurs clés de performance requis.
+NOTE: Il n’est pas nécessaire d’utiliser LVM avec plusieurs LUN pour répondre aux KPI SAP HANA, mais cela est recommandé.
 
 |===
 | Objectif | Agrégat 1 au niveau du contrôleur A | L'agrégat 2 au niveau du contrôleur A | Agrégat 1 au niveau du contrôleur B | Agrégat 2 au niveau du contrôleur B 
@@ -75,23 +75,6 @@ NOTE: Il n'est pas nécessaire d'utiliser LVM avec plusieurs LUN pour remplir le
 
 | Données, journaux et volumes partagés pour le système LVM | Volume de données : SID1_Data_mnt00001 | Volume partagé : SID1_Shared Log2 volume : SID1_log2_mnt00001 | Volume de données 2 : SID1_data2_mnt00001 | Volume du journal : SID1_log_mnt00001 
 |===
-Sur l'hôte SAP HANA, il est nécessaire de créer et de monter des groupes de volumes et des volumes logiques, comme le montre le tableau suivant.
-
-|===
-| Volume logique/LUN | Point de montage sur l'hôte SAP HANA | Remarque 
-
-
-| LV: SID1_Data_mnt0000-vol | /hana/data/SID1/mnt00001 | Monté à l'aide de l'entrée /etc/fstab 
-
-
-| LV: SID1_log_mnt00001-vol | /hana/log/SID1/mnt00001 | Monté à l'aide de l'entrée /etc/fstab 
-
-
-| LUN : SID1_shared | /hana/shared/SID1 | Monté à l'aide de l'entrée /etc/fstab 
-|===
-
-NOTE: Avec la configuration décrite, le `/usr/sap/SID1` Le répertoire dans lequel le répertoire de base par défaut de l'utilisateur SID1adm est stocké se trouve sur le disque local. Dans le cadre d'une configuration de reprise sur incident avec réplication sur disque, NetApp recommande de créer un LUN supplémentaire au sein du `SID1_shared` volume pour le `/usr/sap/SID1` de sorte que tous les systèmes de fichiers soient dans le stockage central.
-
 
 
 == Options de volume

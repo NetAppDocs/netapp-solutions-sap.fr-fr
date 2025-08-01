@@ -1,0 +1,28 @@
+---
+sidebar: sidebar 
+permalink: briefs/saphana-dr_pdf_link.html 
+keywords: sb-3968, sap, SAP HANA, Disaster Recovery 
+summary: Ce document se concentre sur la reprise après sinistre pour SAP HANA. 
+---
+= SB-3968 : Reprise après sinistre pour SAP HANA
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+
+
+== Le défi
+
+La continuité des activités est essentielle dans les organisations informatiques.  Ils doivent être en mesure de fournir des services de haute disponibilité pour les applications critiques dont leurs clients ont besoin pour gérer leurs activités.  Dans le cas contraire, leurs clients seront confrontés à une baisse de productivité et les entreprises de commerce électronique pourraient être confrontées à un impact direct sur leurs revenus.
+
+
+
+== La solution
+
+NetApp a développé un portefeuille complet de technologies et d'outils pour aider les organisations informatiques à élaborer ou à adapter leurs plans de reprise après sinistre afin de répondre à toutes les demandes de l'entreprise :
+
+link:https://www.netapp.com/pdf.html?item=/media/6998-sb-3968pdf.pdf["https://www.netapp.com/pdf.html?item=/media/6998-sb-3968pdf.pdf"]

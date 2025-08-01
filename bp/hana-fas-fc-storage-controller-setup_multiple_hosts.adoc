@@ -90,7 +90,7 @@ NOTE: Avec la configuration décrite, le `/usr/sap/SID` répertoire dans lequel 
 Le LVM de Linux peut être utilisé pour augmenter les performances et répondre aux restrictions de taille des LUN. Les différentes LUN d'un groupe de volumes LVM doivent être stockées dans un agrégat différent et au niveau d'un contrôleur différent. Le tableau ci-dessous présente un exemple de deux LUN par groupe de volumes pour un système SAP HANA multiple de 2+1.
 
 
-NOTE: Il n'est pas nécessaire d'utiliser LVM pour combiner plusieurs LUN afin d'atteindre les KPI SAP HANA. Une seule configuration de LUN remplit les indicateurs clés de performance requis.
+NOTE: Il n'est pas nécessaire d'utiliser LVM pour combiner plusieurs LUN afin de répondre aux KPI SAP HANA, mais cela est recommandé.
 
 |===
 | Objectif | Agrégat 1 au niveau du contrôleur A | L'agrégat 2 au niveau du contrôleur A | Agrégat 1 au niveau du contrôleur B | Agrégat 2 au niveau du contrôleur B 
@@ -104,29 +104,6 @@ NOTE: Il n'est pas nécessaire d'utiliser LVM pour combiner plusieurs LUN afin d
 
 | Volume partagé pour tous les hôtes | Volume partagé : SID_shared | – | – | – 
 |===
-Sur l'hôte SAP HANA, il est nécessaire de créer et de monter des groupes de volumes et des volumes logiques :
-
-|===
-| Volume logique (VG) ou volume | Point de montage sur l'hôte SAP HANA | Remarque 
-
-
-| LV : SID_data_mnt00001-vol | /hana/data/SID/mnt00001 | Monté à l'aide d'un connecteur de stockage 
-
-
-| LV : SID_log_mnt00001-vol | /hana/log/SID/mnt00001 | Monté à l'aide d'un connecteur de stockage 
-
-
-| LV : SID_data_mnt00002-vol | /hana/data/SID/mnt00002 | Monté à l'aide d'un connecteur de stockage 
-
-
-| LV: SID_log_mnt00002-vol | /hana/log/SID/mnt00002 | Monté à l'aide d'un connecteur de stockage 
-
-
-| Volume : SID_shared | /hana/partagé | Monté sur tous les hôtes à l'aide de l'entrée NFS et /etc/fstab 
-|===
-
-NOTE: Avec la configuration décrite, le `/usr/sap/SID` Le répertoire dans lequel le répertoire de base par défaut de l'utilisateur sidadm est stocké se trouve sur le disque local de chaque hôte HANA. Dans le cadre d'une configuration de reprise après incident avec réplication sur disque, NetApp recommande de créer quatre sous-répertoires supplémentaires dans le `SID_shared` volume pour le `/usr/sap/SID` système de fichiers de sorte que chaque hôte de base de données dispose de tous ses systèmes de fichiers sur le stockage central.
-
 
 
 == Options de volume
