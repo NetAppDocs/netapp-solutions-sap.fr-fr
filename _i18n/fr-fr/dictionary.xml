@@ -978,7 +978,6 @@
   <block id="48d5e63e9107995e8ea0ce708339c7bd" category="inline-link-macro">Tr-4891 : reprise après incident de SAP HANA avec Azure NetApp Files</block>
   <block id="91e3a26ea4105ecd20561989c3c58a32" category="inline-link-macro">Tr-4290 : SAP HANA sur des systèmes NetApp FAS avec guide de configuration NFS</block>
   <block id="c54076227bebe4b120f17a0f5a22ce81" category="summary">NetApp dispose d'un large éventail de rapports techniques, de designs validés, de vidéos, de blogs et de descriptions de solutions pour SAP et SAP HANA.</block>
-  <block id="269e48a148be46c6e5fb065e74629d57" category="doc">Solutions d'application d'entreprise SAP et de base de données SAP HANA</block>
   <block id="8c0446786df20f3bab9e76c7238785bb" category="summary">Outils et conseils pour les meilleures pratiques de configuration SAP</block>
   <block id="c22c310ff34da15c4cf9e24071a8d99a" category="doc">Outils de meilleures pratiques de configuration SAP</block>
   <block id="37efeba04a4ec5b4f483120771d49605" category="paragraph">Présentation des outils de documentation sur les solutions et les solutions de configuration SAP.</block>
@@ -2898,9 +2897,7 @@
   <block id="08fc5b32a35c491189156ebd21b39ecf" category="paragraph">Présentation des outils pour les solutions et la documentation sur les solutions de gestion du cycle de vie SAP.</block>
   <block id="3336391ac14de02458baea06fda369fd" category="inline-link-macro">Storage Services Connector (SSC) pour SAP Lama</block>
   <block id="64089c921d1f873faaec351a3fbb7b06" category="list-text"><block ref="64089c921d1f873faaec351a3fbb7b06" category="inline-link-macro-rx"></block></block>
-  <block id="677f2e7e550075f7bbbdac91e0918f2f" category="sidebar">Solutions SAP</block>
   <block id="b45ecd3afcfa865514a59b475de3e93e" category="sidebar">Solutions FlexPod pour SAP</block>
-  <block id="fcf140abed196b8eba71c45f21312bce" category="sidebar">Les solutions NetApp</block>
   <block id="fa532045e834ec2fac1200964a189516" category="sidebar">Gestion du cycle de vie</block>
   <block id="cd47dd01745339787e4c7300389401f2" category="sidebar">Et des meilleures pratiques</block>
   <block id="88aa48beec8729be73be99084cd76b79" category="sidebar">SAP HANA sur les systèmes AFF de NetApp avec FCP : Guide de configuration</block>
@@ -5790,4 +5787,27 @@ Reportez-vous à la section<block ref="7f3b31b88f0e42104578f538777bc3e6" categor
   <block id="d9bb80ae32f686bbae368979a76f86d7" category="paragraph">NetApp a développé un portefeuille complet de technologies et d'outils pour aider les organisations informatiques à élaborer ou à adapter leurs plans de reprise après sinistre afin de répondre à toutes les demandes de l'entreprise :</block>
   <block id="6a9c098947d8b811552347f2ed990ebd" category="inline-link-macro"><block ref="6a9c098947d8b811552347f2ed990ebd" category="inline-link-rx"></block></block>
   <block id="702c9bfa6d3b8d8b923fbeba4db3625f" category="paragraph"><block ref="702c9bfa6d3b8d8b923fbeba4db3625f" category="inline-link-macro-rx"></block></block>
+  <block id="225b42e7cb6036e97607adda6dcca1c3" category="summary">Journal des modifications récentes apportées aux solutions NetApp pour les garanties SAP.</block>
+  <block id="4a2fff3ce5a292ada8e788cd34005db8" category="doc">Nouveautés des solutions de virtualisation NetApp</block>
+  <block id="2ca0fa0a322d6c31c3d0906a34c85e6c" category="paragraph">Découvrez les nouveautés des solutions pour SAP.</block>
+  <block id="bab52961b58c502c7991d35556c25367" category="section-title">18 août 2025</block>
+  <block id="47e26e0d5bbeef43c544dd9ae72e66b0" category="inline-link-macro">Famille de solutions NetApp</block>
+  <block id="840125a006aee7dc0e8efd313e7b614e" category="paragraph">Le site NetApp Solutions est désormais le<block ref="f083b096ae581e72c5ab727ef8bd5732" category="inline-link-macro-rx"></block> , qui comprend les sites suivants :</block>
+  <block id="e87298059f60b0844dc971f315184cf5" category="inline-link-macro">Solutions d'intelligence artificielle NetApp</block>
+  <block id="ac42ca0e1f789a8367b40d9824726778" category="list-text"><block ref="ac42ca0e1f789a8367b40d9824726778" category="inline-link-macro-rx"></block></block>
+  <block id="9cae574c1dc1ca50a949c1e889637ba7" category="inline-link-macro">Solutions de conteneurs NetApp</block>
+  <block id="31d1ae0120af1d791e4320e17eb10687" category="list-text"><block ref="31d1ae0120af1d791e4320e17eb10687" category="inline-link-macro-rx"></block></block>
+  <block id="3947417923606d3599bcba7a82f71f1b" category="inline-link-macro">Solutions de gestion de données NetApp</block>
+  <block id="56c054d4bb919790ebe189f7a7d11c3c" category="list-text"><block ref="56c054d4bb919790ebe189f7a7d11c3c" category="inline-link-macro-rx"></block></block>
+  <block id="9bb3e58246c5654a6d8e08a7bddd60ec" category="inline-link-macro">Solutions de base de données NetApp</block>
+  <block id="3e2420ab1ec1d6e02b32b017d3ba969a" category="list-text"><block ref="3e2420ab1ec1d6e02b32b017d3ba969a" category="inline-link-macro-rx"></block></block>
+  <block id="a37049a2a78422ac5627c7987db5c337" category="inline-link-macro">Solutions de cloud public et hybride NetApp</block>
+  <block id="144417321224efbf0afc2ae665a84a46" category="list-text"><block ref="144417321224efbf0afc2ae665a84a46" category="inline-link-macro-rx"></block></block>
+  <block id="2729aba3baa90aaaed37b282e515f6e4" category="list-text">Solutions NetApp pour SAP</block>
+  <block id="4ead908c2ca3b4c7156e0e703642415d" category="inline-link-macro">Solutions de virtualisation NetApp</block>
+  <block id="3100186c9f62cec85ac05309c5d10217" category="list-text"><block ref="3100186c9f62cec85ac05309c5d10217" category="inline-link-macro-rx"></block></block>
+  <block id="a96e55f331afdc0c9a301d1a5ad2c3db" category="sidebar">Solutions d'applications métier SAP et de bases de données SAP HANA</block>
+  <block id="7caa0b3fa0fd74ced773a86b62850a8b" category="sidebar">Introduction à SAP sur FlexPod</block>
+  <block id="36211f481e2e2626220b1d9e8a3325bb" category="sidebar">Solutions pour SAP</block>
+  <block id="33871b6190a8d5adbe8b15282054766c" category="sidebar">Quoi de neuf</block>
 </blocks>
