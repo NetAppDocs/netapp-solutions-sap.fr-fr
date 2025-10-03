@@ -69,7 +69,7 @@ Cela doit être fait pour chaque SVM. Le nom du groupe de police QoS pour chaque
 ....
 lun create -vserver <vserver_name> -path  /vol/<volume_name>/<lun_name>   -size <size> -ostype <e.g. linux>  -qos-policy-group <policy-name>
 ....
-Il est recommandé d'utiliser 1 000 Mo/s comme débit maximal pour une LUN donnée. Si une application requiert un débit supérieur, plusieurs LUN avec répartition par LUN doivent être utilisées pour fournir la bande passante nécessaire. Ce guide fournit un exemple de SAP HANA basé sur Linux LVM à la section link:hana-fas-fc-host-setup.html#create-lvm-volume-groups-and-logical-volumes["Configuration de l'hôte"].
+Il est recommandé d'utiliser 1 000 Mo/s comme débit maximal pour un LUN donné.  Si une application nécessite davantage de débit, plusieurs LUN avec répartition LUN doivent être utilisés pour fournir la bande passante nécessaire.  Ce guide fournit un exemple pour SAP HANA basé sur Linux LVM dans la sectionlink:hana-fas-fc-host-setup.html["Configuration de l'hôte"] .
 
 
 NOTE: La limite s'applique également aux lectures. Utilisez donc suffisamment de LUN pour remplir les SLA requis pour le délai de démarrage de la base de données SAP HANA et pour les sauvegardes.
@@ -93,13 +93,17 @@ FabricPool est une bonne option pour déplacer les sauvegardes des journaux vers
 
 La présentation suivante résume les étapes de configuration du stockage requises. Chaque étape est traitée de manière plus détaillée dans les sections suivantes. Avant d'entreprendre ces étapes, terminez la configuration du matériel de stockage, l'installation du logiciel ONTAP et la connexion des ports FCP de stockage à la structure SAN.
 
-. Vérifiez la configuration correcte des tiroirs disques, comme décrit dans la <<Connexion du tiroir disque>>.
+. Vérifiez la configuration correcte de l'étagère de disques, comme décrit dans<<Connexions d'étagères de disques>> .
 . Créez et configurez les agrégats requis, comme décrit à la section <<Configuration d'agrégat>>.
 . Créez un SVM (Storage Virtual machine), comme décrit dans la <<Configuration des serveurs virtuels de stockage>>.
 . Créez des interfaces logiques (LIF), comme décrit dans <<Configuration de l'interface logique>>.
 . Créez des groupes initiateurs (igroups) avec des noms WWN (WWN) des serveurs HANA, comme décrit dans la section link:hana-fas-fc-Storage-Controller-setup.html#initiator-groups <<Groupes d'initiateurs>>.
 . Créez et configurez des volumes et des LUN dans les agrégats comme décrit dans la section link:hana-fas-fc-storage-controller-setup_single_host.html["Configuration d'un seul hôte"] pour hôtes individuels ou en section link:hana-fas-fc-storage-controller-setup_multiple_hosts.html["Configuration de plusieurs hôtes"] pour plusieurs hôtes
 
+
+
+
+== Connexions d'étagères de disques
 
 Avec les disques durs, un maximum de deux tiroirs disques DS2246 ou quatre tiroirs disques DS224C peut être connecté à une pile SAS afin d'assurer les performances nécessaires aux hôtes SAP HANA, comme illustré dans la figure suivante. Les disques dans chaque tiroir doivent être répartis de manière homogène sur les deux contrôleurs de la paire haute disponibilité.
 
