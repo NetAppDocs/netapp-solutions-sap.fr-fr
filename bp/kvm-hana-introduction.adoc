@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: bp/kvm-hana-introduction.html 
-keywords: introduction,KVM, SAP HANA, tailored data center integration, FCP, NFS 
-summary: Ce guide fournit des informations sur la configuration de SUSE KVM pour SAP HANA avec un stockage NetApp . 
+keywords: introduction,KVM, SAP HANA, tailored data center integration, FCP, NFS, workflow, deployment 
+summary: Déploiement de SAP HANA mono-hôte sur SUSE KVM utilisant le stockage NetApp avec des interfaces réseau SR-IOV et un accès au stockage NFS ou FCP.  Suivez ce processus pour configurer les interfaces virtuelles, les affecter aux machines virtuelles et configurer les connexions de stockage pour des performances optimales. 
 ---
-= SAP HANA avec SUSE KVM et stockage NetApp
+= Déploiement de SAP HANA sur SUSE KVM avec stockage NetApp via SR-IOV et NFS
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,27 +14,26 @@ summary: Ce guide fournit des informations sur la configuration de SUSE KVM pour
 
 
 [role="lead"]
-Ce guide fournit des informations sur la configuration de SUSE KVM pour SAP HANA avec un stockage NetApp .
+Déploiement de SAP HANA mono-hôte sur SUSE KVM utilisant le stockage NetApp avec des interfaces réseau SR-IOV et un accès au stockage NFS ou FCP.  Suivez ce processus pour configurer les interfaces virtuelles, les affecter aux machines virtuelles et configurer les connexions de stockage pour des performances optimales.
 
-Marco Schoen, NetApp
+Pour une vue d'ensemble de SAP HANA sur la virtualisation KVM, reportez-vous à la documentation SUSE : https://documentation.suse.com/sbp/sap-15/pdf/SBP-SLES4SAP-HANAonKVM-SLES15SP5_en.pdf["Bonnes pratiques SUSE pour SAP HANA sur KVM"] .
 
+image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Un"]link:kvm-hana-requirements.html["Examiner les exigences de configuration"]
 
+[role="quick-margin-para"]
+Examinez les exigences clés pour le déploiement de SAP HANA sur SUSE KVM utilisant le stockage NetApp avec SR-IOV et les protocoles de stockage.
 
-== Introduction
+image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Deux"]link:kvm-hana-network.html["Configurer les interfaces réseau SR-IOV"]
 
-Ce document décrit les étapes supplémentaires requises pour le déploiement de SAP HANA Single-Host sur SUSE KVM utilisant le stockage NetApp .  Il est basé sur le https://documentation.suse.com/sbp/sap-15/pdf/SBP-SLES4SAP-HANAonKVM-SLES15SP5_en.pdf["Bonnes pratiques SUSE pour SAP HANA sur KVM"] .
+[role="quick-margin-para"]
+Configurez SR-IOV (Single Root I/O Virtualization) sur l'hôte KVM et attribuez des interfaces virtuelles à la VM pour la communication réseau et l'accès au stockage.
 
-Il montre principalement comment configurer les interfaces réseau pour SR-IOV (Single Root I/O Virtualization) sur l'hôte KVM, comment attribuer ces interfaces virtuelles (VF) à une VM et comment configurer les interfaces au sein de la VM pour accéder au stockage pour SAP HANA à l'aide de NFS.  En outre, il décrit comment configurer FCP pour une utilisation avec SAP HANA au sein de la machine virtuelle.
+image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Trois"]link:kvm-hana-fcn.html["Configurer le réseau Fibre Channel"]
 
+[role="quick-margin-para"]
+Attribuez des ports HBA FCP physiques à la VM en tant que périphériques PCI pour l'utilisation des LUN FCP avec SAP HANA.
 
-NOTE: SR-IOV doit être utilisé pour la communication réseau SAP HANA et pour l'accès au stockage via NFS.  Les ports HBA FCP physiques doivent être attribués à la VM en tant que périphériques PCI pour l'utilisation des LUN FCP.  Les systèmes SAP HANA multi-hôtes ne sont pas pris en charge.
+image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Quatre"]link:kvm-hana-storage.html["Configurer le stockage NetApp pour SAP HANA"]
 
-
-
-== Prérequis
-
-Ce guide est valable pour Linux Enterprise Server for SAP Applications 15 SP5/SP6 en tant qu'hôte KVM.  + Des serveurs SAP HANA certifiés et un stockage NetApp doivent être utilisés.  Consultez le répertoire matériel SAP HANA pour connaître les options disponibles. https://www.sap.com/dmc/exp/2014-09-02-hana-hardware/enEN[]
-
-La configuration des hôtes KVM et de la machine virtuelle doit être effectuée conformément aux instructions. https://documentation.suse.com/sbp/sap-15/pdf/SBP-SLES4SAP-HANAonKVM-SLES15SP5_en.pdf["Bonnes pratiques SUSE pour SAP HANA sur KVM"] .
-
-Pour obtenir les informations les plus récentes, notamment sur l'architecture CPU prise en charge et les limitations, consultez la note SAP +https://me.sap.com/notes/3538596["3538596 - SAP HANA sur virtualisation KVM SUSE avec SLES 15 SP5 - SAP for Me"]
+[role="quick-margin-para"]
+Configurez des connexions de stockage NFS ou FCP entre la machine virtuelle et les systèmes de stockage NetApp pour les fichiers de base de données SAP HANA.

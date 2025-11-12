@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: bp/kvm-hana-storage.html 
-keywords: NetApp storage, KVM, SAP HANA, tailored data center integration, NFS, FCP 
-summary: Ce guide fournit des informations sur la configuration de SUSE KVM pour SAP HANA avec un stockage NetApp . 
+keywords: NetApp storage, KVM, SAP HANA, NFS, FCP, ONTAP, storage configuration 
+summary: Configurer le stockage NetApp pour SAP HANA sur SUSE KVM en utilisant les protocoles NFS ou FCP.  Configurez les connexions de stockage entre la machine virtuelle et les systèmes NetApp ONTAP pour des performances optimales de la base de données. 
 ---
-= Connexion du stockage à la machine virtuelle KVM pour SAP HANA
+= Configurer le stockage NetApp pour SAP HANA sur SUSE KVM
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,4 +14,41 @@ summary: Ce guide fournit des informations sur la configuration de SUSE KVM pour
 
 
 [role="lead"]
-Une fois la machine virtuelle correctement configurée, le stockage peut être connecté directement depuis celle-ci.  + Pour NFS, suivez les instructions. https://docs.netapp.com/us-en/netapp-solutions-sap/bp/hana-aff-nfs-introduction.html["SAP HANA sur les systèmes NetApp AFF avec NFS - Guide de configuration"] et pour FCP, suivez soit le https://docs.netapp.com/us-en/netapp-solutions-sap/bp/hana-aff-fc-introduction.html["SAP HANA sur les systèmes AFF de NetApp avec le protocole Fibre Channel"] guide ou le https://docs.netapp.com/us-en/netapp-solutions-sap/bp/hana-asa-fc-introduction.html["SAP HANA sur les systèmes ASA de NetApp avec le protocole Fibre Channel"] guide en fonction du produit de stockage utilisé.
+Configurer le stockage NetApp pour SAP HANA sur SUSE KVM en utilisant les protocoles NFS ou FCP.  Configurez les connexions de stockage entre la machine virtuelle et les systèmes NetApp ONTAP pour des performances optimales de la base de données.
+
+Après avoir configuré la VM avec des interfaces réseau SR-IOV ou des ports FCP HBA, configurez l'accès au stockage depuis la VM.  Utilisez le guide de configuration NetApp SAP HANA approprié en fonction du protocole de stockage que vous avez choisi.
+
+
+
+== Configurer le stockage NFS pour SAP HANA
+
+Utilisez les interfaces réseau SR-IOV créées précédemment si le protocole NFS doit être utilisé pour le stockage SAP HANA.
+
+Suivez les étapes de configuration complètes dans le https://docs.netapp.com/us-en/netapp-solutions-sap/bp/hana-aff-nfs-introduction.html["SAP HANA sur les systèmes NetApp AFF avec NFS - Guide de configuration"] .
+
+Principaux points à prendre en compte pour la configuration des environnements KVM :
+
+* Utilisez les fonctions virtuelles (VF) SR-IOV configurées précédemment pour le trafic réseau
+* Configurez l'agrégation de liens au sein de la machine virtuelle pour assurer la redondance.
+* Assurez-vous d'une commutation réseau correcte entre la VM et les SVM de stockage NetApp .
+* Configurez les contrôleurs de stockage et les machines virtuelles conformément au guide de configuration SAP HANA.
+
+
+
+
+== Configurer le stockage FCP pour SAP HANA
+
+Utilisez les ports HBA physiques attribués à la VM comme périphériques PCI si le protocole FCP doit être utilisé pour le stockage SAP HANA.
+
+Choisissez le guide de configuration approprié en fonction de votre système de stockage NetApp :
+
+* Pour les systèmes NetApp AFF : https://docs.netapp.com/us-en/netapp-solutions-sap/bp/hana-aff-fc-introduction.html["SAP HANA sur les systèmes AFF de NetApp avec le protocole Fibre Channel"]
+* Pour les systèmes NetApp ASA : https://docs.netapp.com/us-en/netapp-solutions-sap/bp/hana-asa-fc-introduction.html["SAP HANA sur les systèmes ASA de NetApp avec le protocole Fibre Channel"]
+
+
+Principaux points à prendre en compte pour la configuration des environnements KVM :
+
+* Utilisez les ports HBA physiques attribués à la machine virtuelle via PCI passthrough.
+* Configurez le multipathing au sein de la VM pour assurer la redondance entre les commutateurs du réseau.
+* Configurez les contrôleurs de stockage et les machines virtuelles conformément au guide de configuration SAP HANA.
+

@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: bp/kvm-hana-fcn.html 
-keywords: fibre channel,KVM, SAP HANA, tailored data center integration, FCP 
-summary: Ce guide fournit des informations sur la configuration de SUSE KVM pour SAP HANA avec un stockage NetApp . 
+keywords: fibre channel,KVM, SAP HANA, FCP, HBA, PCI passthrough, storage 
+summary: 'Configurez le réseau Fibre Channel pour SAP HANA sur SUSE KVM en attribuant des ports HBA physiques aux machines virtuelles en tant que périphériques PCI.  Configurez des connexions FCP redondantes à l"aide de deux ports physiques connectés à des commutateurs de structure différents.' 
 ---
-= Configuration du réseau Fibre Channel
+= Configurer le réseau Fibre Channel pour SAP HANA sur SUSE KVM
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,25 +14,49 @@ summary: Ce guide fournit des informations sur la configuration de SUSE KVM pour
 
 
 [role="lead"]
-Cette section fournit des informations sur la configuration de FCP dans SUSE KVM pour SAP HANA utilisant le stockage NetApp .
+Configurez le réseau Fibre Channel pour SAP HANA sur SUSE KVM en attribuant des ports HBA physiques aux machines virtuelles en tant que périphériques PCI.  Configurez des connexions FCP redondantes à l'aide de deux ports physiques connectés à des commutateurs de structure différents.
 
 
+NOTE: Les étapes suivantes ne sont nécessaires que si FCP est utilisé comme protocole de stockage.  Si NFS est utilisé, ces étapes ne sont pas nécessaires.
 
-== Attribution des ports FCP à la machine virtuelle
-
-Comme il n'existe pas de fonctionnalité similaire à SR-IOV pour FCP, les ports HBA physiques doivent être attribués à la VM.  Il est nécessaire d'utiliser deux ports physiques reliés à des tissus différents.
+.À propos de cette tâche
+Comme il n'existe aucune fonctionnalité équivalente à SR-IOV pour FCP, attribuez directement les ports HBA physiques à la VM.  Utilisez deux ports physiques connectés à des tissus différents pour assurer la redondance.
 
 
 NOTE: Un port physique ne peut être attribué qu'à une seule machine virtuelle.
 
-Pour ce faire, suivez les étapes suivantes :
+.Étapes
+. Démarrer virt-manager :
++
+image:kvm-hana-image2.png["largeur=601,hauteur=385"]
 
-. Démarrer _virt-manager._ +image:kvm-hana-image2.png["largeur=601,hauteur=385"]
-. Ouvrez la machine virtuelle souhaitée. + image:kvm-hana-image3.png["largeur=601,hauteur=385"]
-. Appuyez sur « Ajouter du matériel ». + image:kvm-hana-image4.png["Virtmanager Ajouter du matériel, largeur=601, hauteur=443"]
-. Sélectionnez le port HBA souhaité dans la liste des périphériques hôtes PCI et appuyez sur Terminer.  + Dans cet exemple 0000.A2:00:0. + image:kvm-hana-image9.png["largeur=601,hauteur=441"]
-. Choisissez le port HBA souhaité dans la liste des périphériques hôtes PCI appartenant au deuxième réseau et appuyez sur Terminer.  Dans cet exemple 0000.A2:00:1. + image:kvm-hana-image10.png["largeur=601,hauteur=441"]
-. Ensuite, les ports HBA physiques sont attribués à la machine virtuelle et celle-ci peut être démarrée. + image:kvm-hana-image11.png["largeur=601,hauteur=441"]
+. Ouvrez la machine virtuelle souhaitée.image:kvm-hana-image3.png["largeur=601,hauteur=385"]
+. Sélectionnez *Ajouter du matériel*.
++
+image:kvm-hana-image4.png["Virtmanager Ajouter du matériel, largeur=601, hauteur=443"]
+
+. Sélectionnez le port HBA souhaité dans la liste des périphériques hôtes PCI et appuyez sur Terminer.
++
+Dans cet exemple 0000.A2:00:0.
+
++
+image:kvm-hana-image9.png["largeur=601,hauteur=441"]
+
+. Choisissez le port HBA souhaité dans la liste des périphériques hôtes PCI appartenant au deuxième réseau et appuyez sur Terminer. Dans cet exemple 0000.A2:00:1.
++
+image:kvm-hana-image10.png["largeur=601,hauteur=441"]
+
+. Ensuite, les ports HBA physiques sont attribués à la machine virtuelle et celle-ci peut être démarrée.
++
+image:kvm-hana-image11.png["largeur=601,hauteur=441"]
+
++
+Les ports physiques sont transmis à la machine virtuelle, aucune préparation supplémentaire n'est donc requise au sein de celle-ci.
 
 
-Les ports physiques ayant été transférés à la machine virtuelle, aucune préparation supplémentaire n'est nécessaire.
+
+
+
+== Quelle est la prochaine étape ?
+
+Une fois le réseau Fibre Channel configuré,link:kvm-hana-storage.html["Configurer le stockage NetApp pour SAP HANA"] .
