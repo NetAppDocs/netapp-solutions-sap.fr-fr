@@ -4,7 +4,7 @@ permalink: whats-new.html
 keywords: 'netapp, solutions, sap, sap hana, what"s new, updates, change log' 
 summary: Journal des modifications récentes apportées aux solutions NetApp pour les garanties SAP. 
 ---
-= Nouveautés des solutions de virtualisation NetApp
+= Quelles sont les nouveautés des solutions NetApp pour SAP ?
 :allow-uri-read: 
 :icons: font
 :imagesdir: ./media/

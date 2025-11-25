@@ -103,10 +103,10 @@ vgchange -a y
 Créez le système de fichiers XFS sur tous les volumes logiques de données et de journaux.
 
 ....
-mkfs.xfs FC5_data_mnt00001-vol
-mkfs.xfs FC5_data_mnt00002-vol
-mkfs.xfs FC5_log_mnt00001-vol
-mkfs.xfs FC5_log_mnt00002-vol
+mkfs.xfs /dev/mapper/FC5_data_mnt00001-vol
+mkfs.xfs /dev/mapper/FC5_data_mnt00002-vol
+mkfs.xfs /dev/mapper/FC5_log_mnt00001-vol
+mkfs.xfs /dev/mapper/FC5_log_mnt00002-vol
 ....
 
 
@@ -120,8 +120,8 @@ sapcc-hana-tst:/ # mkdir -p /hana/log/FC5/mnt00001
 sapcc-hana-tst:/ # mkdir -p /hana/data/FC5/mnt00002
 sapcc-hana-tst:/ # mkdir -p /hana/log/FC5/mnt00002
 sapcc-hana-tst:/ # mkdir -p /hana/shared
-sapcc-hana-tst:/ # chmod –R 777 /hana/log/FC5
-sapcc-hana-tst:/ # chmod –R 777 /hana/data/FC5
+sapcc-hana-tst:/ # chmod -R 777 /hana/log/FC5
+sapcc-hana-tst:/ # chmod -R 777 /hana/data/FC5
 sapcc-hana-tst:/ # chmod 777 /hana/shared
 ....
 
@@ -137,4 +137,4 @@ sapcc-hana-tst:/ # cat /etc/fstab
 
 NOTE: Tous les systèmes de fichiers de données et de journaux sont montés via le connecteur de stockage SAP HANA.
 
-Pour monter les systèmes de fichiers, exécutez le `mount –a` commande sur chaque hôte.
+Pour monter les systèmes de fichiers, exécutez la commande suivante : `mount -a` commande sur chaque hôte.

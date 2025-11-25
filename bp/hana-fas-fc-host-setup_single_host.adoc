@@ -84,8 +84,8 @@ vgchange -a y
 Créez le système de fichiers XFS sur tous les volumes logiques de données et de journaux et le LUN partagé Hana.
 
 ....
-mkfs.xfs FC5_data_mnt00001-vol
-mkfs.xfs FC5_log_mnt00001-vol
+mkfs.xfs /dev/mapper/FC5_data_mnt00001-vol
+mkfs.xfs /dev/mapper/FC5_log_mnt00001-vol
 mkfs.xfs /dev/mapper/svm1-FC5_shared
 ....
 
@@ -98,8 +98,8 @@ Créez les répertoires de points de montage requis et définissez les autorisat
 sapcc-hana-tst:/ # mkdir -p /hana/data/FC5/mnt00001
 sapcc-hana-tst:/ # mkdir -p /hana/log/FC5/mnt00001
 sapcc-hana-tst:/ # mkdir -p /hana/shared
-sapcc-hana-tst:/ # chmod –R 777 /hana/log/FC5
-sapcc-hana-tst:/ # chmod –R 777 /hana/data/FC5
+sapcc-hana-tst:/ # chmod -R 777 /hana/log/FC5
+sapcc-hana-tst:/ # chmod -R 777 /hana/data/FC5
 sapcc-hana-tst:/ # chmod 777 /hana/shared
 ....
 
@@ -117,4 +117,4 @@ Pour monter des systèmes de fichiers pendant le démarrage du système à l'aid
 
 NOTE: Les systèmes de fichiers XFS pour les LUN de données et de journaux doivent être montés avec le `relatime` et `inode64` options de montage.
 
-Pour monter les systèmes de fichiers, exécutez le  `mount –a` commande à l'hôte.
+Pour monter les systèmes de fichiers, exécutez la commande suivante : `mount -a` commande sur l'hôte.
