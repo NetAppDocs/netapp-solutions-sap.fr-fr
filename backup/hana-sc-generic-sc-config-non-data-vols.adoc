@@ -1,0 +1,43 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-generic-sc-config-non-data-vols.html 
+keywords: SAP HANA, SnapCenter, backup and recovery, Azure NetApp Files, FSx for NetApp ONTAP 
+summary:  
+---
+= Configurez SnapCenter pour sauvegarder les volumes non liés aux données
+:allow-uri-read: 
+
+
+[role="lead"]
+Configurez SnapCenter pour sauvegarder les volumes non liés aux données, tels que les fichiers exécutables, les fichiers de configuration, les fichiers de trace et les données du serveur d'applications.
+
+La protection du volume des données de la base de données est suffisante pour restaurer et restaurer la base de données SAP HANA à un point donné dans le temps, à condition que les ressources d'installation de la base de données et les journaux requis soient toujours disponibles.
+
+Pour remédier aux situations où d'autres fichiers non liés aux données doivent être restaurés, NetApp recommande de développer une stratégie de sauvegarde supplémentaire pour les volumes non liés aux données afin de compléter la sauvegarde de la base de données SAP HANA. En fonction de vos besoins spécifiques, la fréquence de sauvegarde et les paramètres de conservation des volumes non liés aux données peuvent varier, et vous devez tenir compte de la fréquence à laquelle les fichiers non liés aux données sont modifiés. Par exemple, le volume HANA /hana/shared contient des exécutables, des fichiers de configuration mais aussi des fichiers de trace SAP HANA. Alors que les fichiers exécutables ne changent que lors de la mise à niveau de la base de données SAP HANA, les fichiers de configuration et de trace SAP HANA peuvent nécessiter une fréquence de sauvegarde plus élevée. Les volumes des serveurs d'applications SAP peuvent également être protégés avec SnapCenter à l'aide de sauvegardes de volumes autres que les volumes de données.
+
+La sauvegarde des volumes non liés aux données de SnapCenter permet de créer en quelques secondes des copies Snapshot de tous les volumes concernés, avec la même efficacité d'espace que les sauvegardes de bases de données SAP HANA. La différence réside dans le fait qu'aucune interaction avec la base de données SAP HANA n'est requise.
+
+Dans l'onglet ressource, sélectionnez non-Volume de données et cliquez sur Ajouter base de données SAP HANA.
+
+image:hana-sc-generic-image-055.png["largeur=601,hauteur=173"]
+
+image:hana-sc-generic-image-056.png["largeur=601,hauteur=112"]
+
+À l'étape une de la boîte de dialogue Ajouter une base de données SAP HANA, dans la liste Type de ressource, sélectionnez volumes non data. Spécifiez un nom pour la ressource, le SID associé et l'hôte du plug-in SAP HANA que vous souhaitez utiliser pour la ressource, puis cliquez sur Next (Suivant).
+
+image:hana-sc-generic-image-057.png["largeur=332,hauteur=310"]
+
+Pour les systèmes ONTAP et FSx pour ONTAP , sélectionnez le type de stockage ONTAP et ajoutez le(s) SVM et le(s) volume(s) de stockage comme empreinte de stockage, puis cliquez sur Suivant.
+
+image:hana-sc-generic-image-058.png["largeur=332,hauteur=312"]
+
+Pour ANF, sélectionnez le type de stockage Azure NetApp Files , sélectionnez le compte NetApp et le pool de capacité, ajoutez le ou les volumes ANF comme empreinte de stockage, puis cliquez sur Suivant.
+
+image:hana-sc-generic-image-059.png["largeur=350,hauteur=337"]
+
+Dans l'étape de résumé, cliquez sur Terminer pour enregistrer les paramètres.
+
+Répétez ces étapes pour tous les volumes non liés aux données requis. Poursuivez la configuration de protection de la nouvelle ressource.
+
+
+NOTE: La configuration de protection des données pour les ressources autres que les volumes de données est identique au flux de travail des ressources de base de données SAP HANA et peut être définie au niveau de chaque ressource.

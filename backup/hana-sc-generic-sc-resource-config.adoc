@@ -1,0 +1,207 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-generic-sc-resource-config.html 
+keywords: SAP HANA, SnapCenter, backup and recovery, Azure NetApp Files, FSx for NetApp ONTAP 
+summary:  
+---
+= Configurer les ressources SnapCenter pour chaque base de données SAP HANA
+:allow-uri-read: 
+
+
+[role="lead"]
+Configurez les bases de données SAP HANA individuelles dans SnapCenter en créant des utilisateurs de sauvegarde et des clés de magasin d'utilisateurs, en configurant la réplication du stockage pour les sauvegardes secondaires, en déployant le plug-in HANA pour la découverte automatique et en configurant la protection des ressources avec des politiques et des calendriers.
+
+La configuration d'une base de données HANA dans SnapCenter s'effectue en suivant les étapes suivantes :
+
+. Un utilisateur de sauvegarde SnapCenter doit être configuré dans la base de données du système HANA, et une clé de magasin d'utilisateurs SAP HANA doit être configurée sur l'hôte de la base de données HANA.
+. Si la réplication des données vers un stockage secondaire est requise, la réplication du stockage ONTAP pour le volume de données HANA doit être configurée.
+. Le plug-in SnapCenter HANA doit être déployé sur l'hôte de la base de données HANA.
++
+.. Le processus de découverte automatique démarre
+.. La clé du magasin d'utilisateurs SAP HANA doit être configurée dans SnapCenter.
+.. La deuxième phase de la découverte automatique démarre et la ressource HANA est ajoutée automatiquement par SnapCenter.
+
+
+. La protection des ressources HANA doit être configurée pour la nouvelle ressource HANA ajoutée.
+
+
+La configuration initiale de SnapCenter , telle que décrite dans la rubrique précédente link:hana-sc-generic-initial.html["Configuration initiale de SnapCenter"] Cette étape doit être effectuée en premier, car les informations d'identification, les systèmes de stockage et les politiques sont nécessaires lors de la configuration des ressources de la base de données HANA. La figure ci-dessous résume les étapes et les dépendances.
+
+La figure ci-dessous illustre les différents composants de configuration et leurs dépendances.
+
+image:hana-sc-generic-image-041.png["largeur=601,hauteur=315"] Les sections suivantes décrivent en détail les étapes de configuration requises.
+
+
+
+== Configuration de l'utilisateur de sauvegarde SAP HANA et du magasin d'utilisateurs SAP HANA
+
+NetApp recommande de configurer un utilisateur dédié dans la base de données HANA pour exécuter les opérations de sauvegarde avec SnapCenter. Dans un second temps, une clé de magasin d'utilisateurs SAP HANA est configurée pour cet utilisateur de sauvegarde, et cette clé est fournie dans la configuration SnapCenter .
+
+La figure suivante illustre SAP HANA Studio, interface à travers laquelle l'utilisateur de sauvegarde, ici SNAPCENTER, peut être créé.
+
+
+NOTE: L'utilisateur de sauvegarde doit être configuré avec les privilèges d'administrateur de sauvegarde, de lecture du catalogue, d'administrateur de sauvegarde de base de données et d'opérateur de récupération de base de données.
+
+
+NOTE: L'utilisateur de sauvegarde doit être créé dans la base de données système car toutes les commandes de sauvegarde pour les bases de données système et locataire sont exécutées via la base de données système.
+
+image:hana-sc-generic-image-042.png["largeur=601,hauteur=382"]
+
+
+
+=== Configuration du magasin d'utilisateurs SAP HANA sur l'hôte de la base de données HANA
+
+SnapCenter utilise l'utilisateur <sid>adm pour communiquer avec la base de données HANA. Par conséquent, la clé du magasin d'utilisateurs SAP HANA doit être configurée à l'aide de l'utilisateur <sid>adm sur l'hôte de la base de données.
+
+hdbuserstore set <nom-clé> <hôte>:<port> <utilisateur-base-de-données> <mot-de-passe>
+
+Pour un système SAP HANA MDC, le port de la base de données du système HANA est 3<instanceNo>13.
+
+
+
+=== Exemples de configuration du magasin d'utilisateurs SAP HANA
+
+Le résultat affiche la clé SS1KEY qui a été configurée pour le système HANA avec le numéro d'instance = 00.
+
+....
+ss1adm@hana-1:/usr/sap/SS1/HDB00> hdbuserstore list
+DATA FILE : /usr/sap/SS1/home/.hdb/hana-1/SSFS_HDB.DAT
+KEY FILE : /usr/sap/SS1/home/.hdb/hana-1/SSFS_HDB.KEY
+KEY SS1SAPDBCTRL
+ENV : hana-1:30013
+USER: SAPDBCTRL
+KEY SS1KEY
+ENV : hana-1:30013
+USER: SNAPCENTER
+KEY SYSTEMKEY
+ENV : hana-1:30013
+USER: SYSTEM
+ACTIVE RECORDS : 10
+DELETED RECORDS : 15
+NUMBER OF COMPLETE KEY: 3
+Operation succeed.
+ss1adm@hana-1:/usr/sap/SS1/HDB00>
+....
+Le résultat affiche la clé SM1KEY qui a été configurée pour le système HANA avec le numéro d'instance = 12.
+
+....
+sm1adm@hana-2:/usr/sap/SM1/HDB12> hdbuserstore list
+DATA FILE : /usr/sap/SM1/home/.hdb/hana-2/SSFS_HDB.DAT
+KEY FILE : /usr/sap/SM1/home/.hdb/hana-2/SSFS_HDB.KEY
+KEY SM1SAPDBCTRL
+ENV : hana-2:31213
+USER: SAPDBCTRL
+KEY SM1KEY
+ENV : hana-2:31213
+USER: SNAPCENTER
+ACTIVE RECORDS : 7
+DELETED RECORDS : 9
+NUMBER OF COMPLETE KEY: 2
+Operation succeed.
+sm1adm@hana-2:/usr/sap/SM1/HDB12>
+....
+
+
+== configuration de réplication du stockage
+
+La configuration de la relation de protection des données, ainsi que le transfert de données initial doivent être exécutés avant que les mises à jour de réplication puissent être gérées par SnapCenter.
+
+Les captures d'écran suivantes montrent une configuration utilisant le gestionnaire système ONTAP . Pour les systèmes FSx pour ONTAP , la réplication doit être effectuée à l'aide de l'interface de ligne de commande ONTAP, comme décrit dans la documentation. https://docs.netapp.com/us-en/netapp-solutions-sap/backup/fsxn-backup-replication-with-snapvault-overview.html["Présentation - Sauvegarder la réplication avec SnapVault"].
+
+La figure suivante illustre la relation de protection configurée pour le volume de données du système SAP HANA SS1. Dans cet exemple, le volume source SS1_data_mnt00001 sur le SVM hana-primary est répliqué sur le SVM hana-backup et le volume cible SS1_data_mnt00001_dst.
+
+image:hana-sc-generic-image-043.png["largeur=601,hauteur=183"]
+
+La figure suivante illustre la politique de protection qui a été créée pour cette configuration de laboratoire. La politique de protection utilisée pour la relation de protection définit l'étiquette SnapMirror , ainsi que la conservation des sauvegardes sur le stockage secondaire. Dans cet exemple, l'étiquette utilisée est « Quotidienne » et la durée de conservation est fixée à 5.
+
+
+NOTE: L'étiquette SnapMirror dans la stratégie de réplication doit correspondre à l'étiquette définie dans la configuration de la stratégie SnapCenter .
+
+
+NOTE: La planification de la relation doit être définie sur « Aucun », car SnapCenter déclenche la mise à jour de SnapVault dans le cadre de l'opération de sauvegarde basée sur un instantané cohérent avec l'application créé précédemment.
+
+
+NOTE: La durée de conservation des sauvegardes sur le stockage de sauvegarde secondaire est définie dans la politique et contrôlée par ONTAP.
+
+image:hana-sc-generic-image-044.png["largeur=601,hauteur=180"]
+
+
+
+== Configuration de sauvegarde ANF
+
+Pour la sauvegarde ANF, aucune préparation spécifique n'est requise. Dès que la première sauvegarde avec la sauvegarde ANF activée est exécutée, un coffre de sauvegarde Azure nommé snapcenter-vault est créé par SnapCenter. Ce coffre-fort de sauvegarde est ensuite utilisé par toutes les opérations de sauvegarde ANF suivantes exécutées par SnapCenter.
+
+image:hana-sc-generic-image-045.png["largeur=601,hauteur=227"]
+
+
+
+== Déploiement du plug-in SnapCenter pour SAP HANA
+
+Les exigences relatives à l'hébergement sont indiquées à l'adresse suivante : https://docs.netapp.com/us-en/snapcenter/protect-hana/reference_host_requirements_to_install_snapcenter_plug_in_package_for_linux.html["Configuration requise pour l'installation du package de plug-ins SnapCenter pour Linux"].
+
+Le déploiement du plug-in HANA s'effectue en cliquant sur le bouton Ajouter dans la section Hôtes de l'interface utilisateur de SnapCenter .
+
+image:hana-sc-generic-image-046.png["largeur=601,hauteur=145"]
+
+Sur l'écran Ajouter un hôte, vous devez indiquer le type et le nom de l'hôte ainsi que les informations d'identification à utiliser pour le processus de déploiement. De plus, le plug-in SAP HANA doit être sélectionné. En cliquant sur « Soumettre », le processus de déploiement démarre.
+
+
+NOTE: Pour cette description, nous n'avons pas ajouté de nouvel hôte, mais nous avons montré la configuration des hôtes existants dans SnapCenter.
+
+image:hana-sc-generic-image-047.png["largeur=601,hauteur=154"]
+
+
+
+== Découverte automatique HANA
+
+Une fois le déploiement du plug-in HANA terminé, le processus de découverte automatique démarre. Dans un premier temps, seuls les paramètres de base sont détectés et SnapCenter crée une nouvelle ressource qui apparaît dans la section Ressources de l'interface utilisateur, marquée d'un cadenas rouge.
+
+image:hana-sc-generic-image-048.png["largeur=601,hauteur=169"]
+
+Lorsque vous cliquez sur la ressource, le système vous demande la clé de magasin d'utilisateurs SAP HANA pour cette base de données HANA.
+
+image:hana-sc-generic-image-049.png["largeur=316,hauteur=180"]
+
+Une fois la clé fournie, la deuxième phase du processus de découverte automatique démarre. Le processus de découverte automatique détecte toutes les bases de données locataires dans le système HANA, les détails de configuration de sauvegarde des journaux et des catalogues, ainsi que les rôles de réplication du système HANA. De plus, les détails concernant l'espace de stockage sont automatiquement détectés. Ces paramètres peuvent être vérifiés en sélectionnant une ressource et en cliquant sur le bouton Détails.
+
+
+NOTE: Ce processus de découverte automatique est exécuté à chaque opération de sauvegarde, afin que toute modification apportée au système HANA et pertinente pour l'opération de sauvegarde soit automatiquement détectée.
+
+image:hana-sc-generic-image-050.png["largeur=601,hauteur=219"]
+
+
+
+== Configuration de la protection des ressources
+
+L'écran de configuration de la protection des ressources s'ouvre en cliquant sur une ressource une fois le processus de découverte automatique terminé. Les captures d'écran de cette documentation illustrent la configuration de protection d'une ressource existante.
+
+Configurez un format de nom personnalisé pour l'instantané. NetApp recommande d'utiliser un nom de snapshot personnalisé pour identifier facilement les sauvegardes créées avec quel type de stratégie et de planification.
+
+Dans la configuration indiquée dans la figure suivante, les noms de sauvegarde et de copie Snapshot ont le format suivant :
+
+* Sauvegarde horaire programmée : + SnapCenter_<nom-hôte>_LocalSnap_Hourly_<horodatage>
+* Sauvegarde quotidienne planifiée : + SnapCenter_<nom-hôte>_LocalSnapAndSnapVault_Daily_<horodatage>
+
+
+image:hana-sc-generic-image-051.png["largeur=601,hauteur=294"]
+
+L'écran suivant permet de configurer des scripts qui seront exécutés à différentes étapes du processus de sauvegarde.
+
+image:hana-sc-generic-image-052.png["largeur=601,hauteur=294"]
+
+Des politiques sont désormais associées à la ressource et des calendriers sont définis.
+
+Dans cet exemple, nous avons configuré
+
+* Un contrôle hebdomadaire de l'intégrité des blocs, tous les dimanches
+* Sauvegarde locale par instantané, toutes les 4 heures
+* Une sauvegarde quotidienne par instantané avec réplication SnapVault une fois par jour
+
+
+image:hana-sc-generic-image-053.png["largeur=601,hauteur=294"]
+
+La notification par e-mail peut être configurée.
+
+image:hana-sc-generic-image-054.png["largeur=601,hauteur=294"]
+
+Une fois la configuration de la protection des ressources terminée, les sauvegardes planifiées seront exécutées conformément aux paramètres définis.

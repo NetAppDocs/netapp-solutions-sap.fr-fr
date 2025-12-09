@@ -15,6 +15,14 @@ Découvrez les nouveautés des solutions pour SAP.
 
 
 
+== 2 décembre 2025
+
+Nouvelle solution :link:https://docs.netapp.com/us-en/netapp-solutions-sap/backup/hana-sc-generic-scope.html["Sauvegarde et restauration SAP HANA avec SnapCenter"^]
+
+Cette solution fournit les meilleures pratiques pour la protection des données SAP HANA avec NetApp SnapCenter, couvrant les directives de configuration et d'exploitation de SnapCenter pour la protection des systèmes SAP HANA sur les systèmes ONTAP AFF et ASA , Azure NetApp Files et Amazon FSx pour ONTAP.
+
+
+
 == 12 novembre 2025
 
 Nouvelle solutionlink:https://docs.netapp.com/us-en/netapp-solutions-sap/bp/kvm-hana-introduction.html["SAP HANA avec SUSE KVM et stockage NetApp"^] :

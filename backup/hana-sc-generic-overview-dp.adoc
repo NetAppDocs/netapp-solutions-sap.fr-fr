@@ -1,0 +1,106 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-generic-overview-dp.html 
+keywords: SAP HANA, SnapCenter, backup and recovery, Azure NetApp Files, FSx for NetApp ONTAP 
+summary:  
+---
+= Découvrez la protection des données SAP HANA grâce à la technologie NetApp Snapshot.
+:allow-uri-read: 
+
+
+[role="lead"]
+Découvrez comment la technologie NetApp Snapshot protège les bases de données SAP HANA grâce à des sauvegardes réalisées en quelques minutes, quelle que soit la taille de la base de données. Découvrez les stratégies de sauvegarde et de restauration utilisant les copies Snapshot, SnapRestore pour une restauration rapide et la réplication avec SnapVault ou la sauvegarde de Azure NetApp Files pour une protection secondaire.
+
+Les entreprises exigent aujourd'hui une disponibilité continue et ininterrompue pour leurs applications SAP. Ils attendent des niveaux de performance constants et ont besoin d'opérations quotidiennes automatisées face à des volumes de données toujours croissants et à la nécessité de tâches de maintenance de routine, telles que les sauvegardes système. La réalisation de sauvegardes des bases de données SAP est une tâche essentielle qui peut avoir un impact significatif sur les performances du système SAP de production.
+
+Les fenêtres de sauvegarde se réduisent tandis que la quantité de données à sauvegarder augmente. Il est donc difficile de trouver un moment où l'on peut effectuer des sauvegardes avec un impact minimal sur les processus métier. Le temps nécessaire à la restauration et à la récupération des systèmes SAP est un point important, car les temps d'arrêt des systèmes SAP de production et hors production doivent être minimisés afin de réduire les coûts pour l'entreprise.
+
+
+
+== Sauvegarde et restauration à l'aide de sauvegardes par instantané
+
+Vous pouvez utiliser la technologie NetApp Snapshot pour créer des sauvegardes de bases de données en quelques minutes. Le temps nécessaire à la création d'une copie Snapshot est indépendant de la taille de la base de données, car une copie Snapshot ne déplace aucun bloc de données physique sur la plateforme de stockage. De plus, l'utilisation de la technologie Snapshot n'a aucun impact sur les performances du système SAP en production, puisque toutes les opérations sont exécutées au niveau du système de stockage. Vous pouvez donc planifier la création de copies Snapshot sans tenir compte des périodes de pointe d'activité des dialogues ou des traitements par lots. Les clients SAP sur NetApp programment généralement plusieurs sauvegardes Snapshot en ligne au cours de la journée ; par exemple, une sauvegarde toutes les six heures est courante. Ces sauvegardes instantanées sont généralement conservées pendant trois à cinq jours sur le système de stockage principal avant d'être supprimées ou transférées vers un stockage moins coûteux pour une conservation à long terme.
+
+Les copies instantanées offrent également des avantages clés pour les opérations de restauration et de récupération. Une opération de restauration permet de récupérer les données du système de fichiers en fonction de l'état d'une sauvegarde. Une opération de récupération permet de restaurer l'état de la base de données à un point précis dans le temps à l'aide des sauvegardes des journaux de la base de données.
+
+La technologie NetApp SnapRestore permet la restauration d'une base de données entière ou, alternativement, d'une partie seulement de celle-ci, à partir des sauvegardes Snapshot actuellement disponibles. Le processus de restauration s'achève en quelques secondes, quelle que soit la taille de la base de données. Comme plusieurs sauvegardes instantanées en ligne peuvent être créées au cours de la journée, le temps nécessaire au processus de récupération est considérablement réduit par rapport à une approche traditionnelle de sauvegarde quotidienne. Étant donné que vous pouvez effectuer une restauration avec une copie Snapshot qui date au maximum de quelques heures (au lieu de 24 heures), moins de journaux de transactions doivent être appliqués lors de la récupération. Le temps nécessaire à la restauration et à la récupération est considérablement réduit par rapport aux sauvegardes en continu traditionnelles.
+
+Étant donné que les sauvegardes Snapshot sont stockées sur le même système de disques que les données en ligne actives, NetApp recommande d'utiliser les sauvegardes de type Snapshot en complément plutôt qu'en remplacement des sauvegardes effectuées sur un emplacement secondaire. La plupart des opérations de restauration et de récupération sont gérées par SnapRestore sur le système de stockage principal. La restauration à partir d'un emplacement secondaire n'est nécessaire que si le système de stockage principal contenant les copies Snapshot n'est pas disponible. Vous pouvez également utiliser la sauvegarde secondaire s'il est nécessaire de restaurer une sauvegarde qui n'est plus disponible sur le stockage principal.
+
+La sauvegarde vers un emplacement secondaire repose sur des copies instantanées créées sur le stockage principal. Les données sont donc lues directement depuis le système de stockage principal sans générer de charge sur le serveur de base de données SAP et son réseau. Le stockage principal communique directement avec le stockage secondaire et réplique les données de sauvegarde vers la destination en utilisant soit la fonctionnalité de sauvegarde SnapVault , soit la fonctionnalité de sauvegarde ANF.
+
+Les solutions de sauvegarde SnapVault et ANF offrent des avantages significatifs par rapport aux sauvegardes traditionnelles. Après un transfert de données initial, où toutes les données sont transférées de la source à la destination, toutes les sauvegardes suivantes ne répliquent que les blocs modifiés sur le stockage secondaire. Par conséquent, la charge sur le système de stockage principal et le temps nécessaire à une sauvegarde complète sont considérablement réduits. Étant donné que seuls les blocs modifiés sont stockés à destination, toute sauvegarde complète supplémentaire de la base de données consomme beaucoup moins d'espace disque.
+
+
+
+== Exécution des opérations de sauvegarde et de restauration Snapshot
+
+La figure suivante illustre l'environnement HANA Studio d'un client utilisant des opérations de sauvegarde par instantané. L'image montre que la base de données HANA (d'une taille d'environ 4 To) est sauvegardée en 1 minute et 20 secondes en utilisant la technologie de sauvegarde Snapshot et en plus de 4 heures avec une opération de sauvegarde basée sur des fichiers.
+
+La plus grande partie du temps d'exécution global du flux de travail de sauvegarde correspond au temps nécessaire à l'exécution de l'opération de capture instantanée de la base de données HANA. La sauvegarde du snapshot de stockage elle-même s'effectue en quelques secondes, indépendamment de la taille de la base de données HANA.
+
+image:hana-sc-generic-image-001.png["largeur=624,hauteur=267"]
+
+
+
+== Comparaison des objectifs de délai de restauration (RTO)
+
+Cette section présente une comparaison de l'objectif de temps de récupération (RTO) des sauvegardes Snapshot basées sur des fichiers et sur le stockage. Le RTO est défini par la somme du temps nécessaire pour restaurer, récupérer, puis démarrer la base de données.
+
+
+
+=== Temps nécessaire pour restaurer la base de données
+
+Avec une sauvegarde basée sur des fichiers, le temps de restauration dépend de la taille de l'infrastructure de base de données et de sauvegarde, qui définit la vitesse de restauration en mégaoctets par seconde. Par exemple, si l'infrastructure prend en charge une opération de restauration à une vitesse de 250 Mbit/s, il faut environ 4.5 heures pour restaurer une base de données de 4 To sur la persistance.
+
+Avec les sauvegardes NetApp Snapshot, le temps de restauration est indépendant de la taille de la base de données et se situe toujours dans une plage de quelques secondes.
+
+
+
+=== Temps nécessaire pour restaurer la base de données
+
+La durée de restauration dépend du nombre de journaux qui doivent être appliqués après la restauration. Ce nombre est déterminé par la fréquence à laquelle les sauvegardes de données sont effectuées.
+
+Avec les sauvegardes de données basées sur des fichiers, la planification des sauvegardes est généralement une fois par jour. Étant donné que la sauvegarde dégrade les performances en termes de production, une fréquence de sauvegarde plus élevée est généralement impossible. Par conséquent, dans le pire des cas, tous les journaux qui ont été écrits pendant la journée doivent être appliqués lors de la récupération avant.
+
+Les sauvegardes par instantané sont généralement programmées à une fréquence plus élevée car elles n'ont aucun impact sur les performances de la base de données SAP HANA. Par exemple, si des sauvegardes par instantané sont programmées toutes les six heures, les journaux devraient être appliqués dans le pire des cas pour les six dernières heures, si la panne survient juste avant la création du prochain instantané. Dans le pire des cas, il faudrait utiliser les journaux de sauvegarde des fichiers pour une sauvegarde quotidienne des dernières 24 heures.
+
+
+
+=== Temps nécessaire au démarrage de la base de données
+
+L'heure de démarrage de la base de données dépend de la taille de la base de données et du temps nécessaire pour charger les données dans la mémoire. Dans les exemples suivants, on suppose que les données peuvent être chargées avec 1 000 Mbit/s. Le chargement de 4 To en mémoire prend environ 1 heure et 10 minutes. L'heure de début est la même pour les opérations de restauration et de restaurations basées sur des fichiers et des snapshots.
+
+
+
+=== Calcul d'échantillon de restauration et de récupération
+
+La figure suivante présente une comparaison entre les opérations de restauration et de récupération avec une sauvegarde quotidienne basée sur des fichiers et des sauvegardes par instantané avec différents calendriers.
+
+Les deux premières barres indiquent que, même avec une seule sauvegarde Snapshot par jour, la restauration et la restauration sont réduites à 43 % en raison de la vitesse de restauration à partir d'une sauvegarde Snapshot. Si plusieurs sauvegardes Snapshot par jour sont créées, l'exécution peut être réduite encore davantage, car moins de journaux doivent être appliqués lors de la restauration avant transfert.
+
+La figure suivante montre également que quatre à six sauvegardes Snapshot par jour sont les plus utiles, car la fréquence plus élevée n'a plus d'influence sur le temps d'exécution global.
+
+image:hana-sc-generic-image-002.png["largeur=624,hauteur=326"]
+
+
+
+== Cas d'utilisation et valeurs d'opérations de sauvegarde et de clonage accélérées
+
+L'exécution des sauvegardes est un élément essentiel de toute stratégie de protection des données. Les sauvegardes sont planifiées régulièrement pour vous assurer qu'elles peuvent être restaurées en cas de panne système. Il s'agit là du cas d'utilisation le plus évident, mais d'autres tâches de gestion du cycle de vie SAP jouent un rôle crucial dans l'accélération des opérations de sauvegarde et de restauration.
+
+La mise à niveau du système SAP HANA est un exemple où une sauvegarde à la demande avant la mise à niveau et une éventuelle opération de restauration en cas d'échec de la mise à niveau ont un impact significatif sur le temps d'indisponibilité global prévu. Avec l'exemple d'une base de données de 4 To, vous pouvez réduire le temps d'arrêt planifié de 8 heures, ou vous disposez de 8 heures supplémentaires pour analyser et corriger les erreurs en utilisant les opérations de sauvegarde et de restauration basées sur des instantanés.
+
+Un autre cas d'utilisation serait un cycle de test typique, où les tests doivent être effectués sur plusieurs itérations avec différents ensembles de données ou paramètres. En tirant parti des opérations rapides de sauvegarde et de restauration, vous pouvez facilement créer des points de sauvegarde au sein de votre cycle de test et réinitialiser le système à n'importe lequel de ces points de sauvegarde précédents si un test échoue ou doit être répété. Cela permet de terminer les tests plus tôt ou d'effectuer davantage de tests simultanément et d'améliorer les résultats des tests.
+
+image:hana-sc-generic-image-003.png["largeur=618,hauteur=279"]
+
+Une fois les sauvegardes par instantané mises en œuvre, elles peuvent être utilisées pour répondre à de nombreux autres cas d'utilisation nécessitant des copies d'une base de données HANA. Vous pouvez créer un nouveau volume à partir du contenu de n'importe quelle sauvegarde Snapshot disponible. La durée d'exécution de cette opération est de quelques secondes, indépendamment de la taille du volume.
+
+Le cas d'utilisation le plus courant est l'actualisation du système SAP, où les données du système de production doivent être copiées vers le système de test ou d'assurance qualité. En tirant parti de la fonction de clonage ONTAP ou ANF, vous pouvez provisionner le volume pour le système de test à partir de n'importe quelle copie Snapshot du système de production en quelques secondes. Le nouveau volume doit ensuite être rattaché au système de test et la base de données HANA doit être récupérée.
+
+Le deuxième cas d'utilisation concerne la création d'un système de réparation, utilisé pour remédier aux corruptions logiques dans le système de production. Dans ce cas, une sauvegarde Snapshot plus ancienne du système de production est utilisée pour démarrer un système de réparation, qui est un clone identique du système de production avec les données antérieures à la corruption. Le système de réparation est ensuite utilisé pour analyser le problème et exporter les données nécessaires avant qu'elles ne soient corrompues.
+
+Le dernier cas d'utilisation est la possibilité d'exécuter un test de basculement de reprise après sinistre sans interrompre la réplication et donc sans influencer l'objectif de temps de récupération (RTO) et l'objectif de point de récupération (RPO) de la configuration de reprise après sinistre. Lorsque la réplication ONTAP SnapMirror ou la réplication interrégionale ANF est utilisée pour répliquer les données vers le site de reprise après sinistre, les sauvegardes Snapshot de production sont également disponibles sur le site de reprise après sinistre et peuvent ensuite être utilisées pour créer un nouveau volume pour les tests de reprise après sinistre.
+
+image:hana-sc-generic-image-004.png["largeur=627,hauteur=328"]

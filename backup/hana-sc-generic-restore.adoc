@@ -1,0 +1,363 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-generic-restore.html 
+keywords: SAP HANA, SnapCenter, backup and recovery, Azure NetApp Files, FSx for NetApp ONTAP 
+summary:  
+---
+= Restaurez et récupérez les bases de données SAP HANA avec SnapCenter.
+:allow-uri-read: 
+
+
+[role="lead"]
+Restaurez et récupérez les systèmes SAP HANA à l'aide de SnapCenter grâce à des options de récupération automatisées ou manuelles. Cela inclut les restaurations complètes du système, les restaurations mono-locataire pour les bases de données HANA sur ONTAP, Azure NetApp Files et FSx pour ONTAP.
+
+SnapCenter prend en charge les opérations de restauration et de récupération suivantes.
+
+* Systèmes SAP HANA MDC avec un seul locataire
++
+** Restauration et récupération automatisées de bout en bout
+** Restauration automatisée de bout en bout et récupération manuelle (sélectionnable)
+
+
+* Systèmes SAP HANA MDC multilocataires
++
+** Restauration automatisée de bout en bout, la récupération doit être effectuée manuellement.
+
+
+* Restauration d'un seul locataire
++
+** Restauration automatisée de bout en bout, la récupération doit être effectuée manuellement.
+
+
+
+
+
+NOTE: La récupération automatisée n'est prise en charge que lorsque le plug-in HANA est déployé sur l'hôte de la base de données HANA et que le système HANA a été automatiquement détecté par SnapCenter. Avec une configuration d'hôte de plug-in centralisée, la récupération doit être effectuée manuellement après l'opération de restauration avec SnapCenter.
+
+
+NOTE: La restauration à partir du volume ANF principal est prise en charge. La restauration à partir d'une sauvegarde ANF n'est pas encore prise en charge. Une restauration sur place ou une restauration vers un nouveau volume à partir d'une sauvegarde ANF doit être effectuée manuellement à l'aide du portail Azure ou de l'interface de ligne de commande (CLI).
+
+
+
+== Restauration et récupération automatisées pour les systèmes SAP HANA MDC avec un seul locataire
+
+Une opération de restauration est lancée en sélectionnant une sauvegarde Snapshot dans la vue de topologie des ressources et en cliquant sur Restaurer.
+
+image:hana-sc-generic-image-098.png["largeur=601,hauteur=294"]
+
+Pour les systèmes HANA utilisant NFS sur ANF, FSx pour ONTAP ou les systèmes de stockage ONTAP, vous pouvez sélectionner une restauration complète avec ou sans opération de restauration de volume pour les snapshots de volume principal.
+
+* La restauration complète des ressources sans restauration de volume utilise Single File SnapRestore (SFSR) pour restaurer tous les fichiers de la base de données.
+* La restauration complète des ressources avec restauration de volume utilise une opération de restauration basée sur le volume (VBSR) pour rétablir l'intégralité du volume dans l'état du snapshot sélectionné.
+
+
+
+NOTE: La restauration de volume ne peut pas être utilisée si vous devez restaurer un instantané antérieur à l'instantané de réplication SnapVault ou SnapMirror actif.
+
+
+NOTE: Une opération de restauration de volume supprimera toutes les sauvegardes Snapshot plus récentes que le Snapshot sélectionné pour l'opération de restauration.
+
+
+NOTE: Une restauration avec SFSR est presque aussi rapide qu'une opération de restauration de volume, mais bloque toute opération de capture d'instantané jusqu'à ce que le processus en arrière-plan ait terminé les opérations sur les métadonnées.
+
+image:hana-sc-generic-image-099.png["largeur=300"]
+
+Pour les systèmes HANA sur des hôtes bare metal utilisant FC SAN, une restauration de volume (VBSR) n'est pas prise en charge ; SFSR est toujours utilisé pour l'opération de restauration. Pour les systèmes HANA exécutés sur VMware avec VMFS, une opération de clonage, de montage et de copie sera utilisée.
+
+image:hana-sc-generic-image-100.png["largeur=345,hauteur=325"]
+
+Pour effectuer une restauration à partir d'une sauvegarde secondaire, vous devez sélectionner l'emplacement de l'archive.
+
+image:hana-sc-generic-image-101.png["largeur=345,hauteur=323"]
+
+Avec l'option de récupération, vous pouvez sélectionner une récupération « à l'état le plus récent », « à un point dans le temps » ou une récupération à partir d'un point de sauvegarde sans utiliser de sauvegardes de journal. Si vous ne sélectionnez aucune récupération, SnapCenter exécute uniquement l'opération de restauration et la récupération doit être effectuée manuellement comme décrit. link:hana-sc-generic-restore.html#manual-recovery-with-hana-studio["Récupération manuelle avec HANA Studio"].
+
+
+NOTE: SnapCenter utilise les chemins configurés dans SAP HANA pour les emplacements de sauvegarde des journaux et des catalogues. Si vous disposez de sauvegardes hiérarchisées vers un emplacement supplémentaire, vous pouvez ajouter ces chemins supplémentaires.
+
+image:hana-sc-generic-image-102.png["largeur=346,hauteur=324"]
+
+Vous pouvez ajouter, si vous le souhaitez, des scripts avant et après la restauration.
+
+image:hana-sc-generic-image-103.png["largeur=348,hauteur=326"]
+
+image:hana-sc-generic-image-104.png["largeur=359,hauteur=335"]
+
+En cliquant sur Terminer dans l'écran récapitulatif, l'opération de restauration et de récupération démarre.
+
+image:hana-sc-generic-image-105.png["largeur=361,hauteur=336"]
+
+Le processus de restauration et de récupération peut être divisé en trois sections principales.
+
+* Arrêt du système HANA
+* Opération de restauration
++
+** Préparations spécifiques au système de fichiers, par exemple l'opération de démontage
+** Opération de restauration d'instantané
+** opérations de post-traitement spécifiques au système de fichiers, par exemple l'opération de montage
+
+
+* Récupération HANA
++
+** Restauration des bases de données du système
+** Restauration des bases de données des locataires
+
+
+
+
+image:hana-sc-generic-image-106.png["largeur=357,hauteur=439"]
+
+
+
+== Récupération manuelle avec HANA Studio
+
+Pour restaurer et récupérer un système SAP HANA MDC avec un ou plusieurs locataires à l'aide de SAP HANA Studio et SnapCenter, procédez comme suit :
+
+. Préparez le processus de restauration et de restauration avec SAP HANA Studio :
++
+.. Sélectionnez Recover System Database et confirmez l'arrêt du système SAP HANA.
+.. Sélectionnez le type de récupération et indiquez l'emplacement du catalogue de sauvegarde.
+.. La liste des sauvegardes de données s'affiche. Sélectionnez Sauvegarder pour afficher l'ID de sauvegarde externe.
+
+
+. Exécutez le processus de restauration avec SnapCenter :
++
+.. Dans la vue topologique de la ressource, sélectionnez Copies locales pour restaurer à partir du stockage principal ou Copies Vault si vous souhaitez restaurer à partir d'un stockage de sauvegarde secondaire.
+.. Sélectionnez la sauvegarde SnapCenter qui correspond au champ ID de sauvegarde externe ou commentaire de SAP HANA Studio.
+.. Démarrez le processus de restauration.
+
+
+. Exécutez le processus de restauration de la base de données système avec SAP HANA Studio :
++
+.. Cliquez sur Actualiser dans la liste de sauvegarde et sélectionnez la sauvegarde disponible pour la restauration (indiquée par une icône verte).
+.. Démarrez le processus de restauration. Une fois le processus de récupération terminé, la base de données système démarre.
+
+
+. Exécutez le processus de restauration de la base de données des locataires avec SAP HANA Studio :
++
+.. Sélectionnez récupérer la base de données des locataires et sélectionnez le locataire à récupérer.
+.. Sélectionnez le type de récupération et l'emplacement de sauvegarde du journal.
+.. Une liste de sauvegardes de données s'affiche. Le volume de données ayant déjà été restauré, la sauvegarde du locataire est indiquée comme disponible (en vert).
+.. Sélectionnez cette sauvegarde et démarrez le processus de restauration. Une fois le processus de restauration terminé, la base de données des locataires démarre automatiquement.
+
+
+. Pour un système HANA avec plusieurs locataires, répétez l'étape 4 pour chaque locataire.
+
+
+
+NOTE: La récupération manuelle avec SAP HANA Cockpit s'effectue en suivant les mêmes étapes.
+
+La section suivante décrit les étapes des opérations de restauration et de récupération d'un système SAP HANA MDC à locataire unique.
+
+Dans HANA Studio, sélectionnez Sauvegarde et restauration, puis Restaurez la base de données système.
+
+image:hana-sc-generic-image-107.png["largeur=450,hauteur=368"]
+
+Confirmer l'opération d'arrêt ; requis uniquement si le système HANA est toujours en cours d'exécution.
+
+image:hana-sc-generic-image-108.png["largeur=349,hauteur=83"]
+
+Sélectionnez l'opération de récupération. Dans cet exemple, nous souhaitons revenir à l'état le plus récent.
+
+image:hana-sc-generic-image-109.png["largeur=345,hauteur=359"]
+
+Indiquez l'emplacement du catalogue de sauvegarde.
+
+image:hana-sc-generic-image-110.png["largeur=343,hauteur=356"]
+
+HANA Studio répertorie les sauvegardes les plus récentes stockées dans le catalogue de sauvegardes HANA.
+
+Une liste des sauvegardes disponibles est affichée en fonction du contenu du catalogue de sauvegardes. Choisissez la sauvegarde requise et notez l'identifiant de la sauvegarde externe : dans cet exemple, la sauvegarde la plus récente.
+
+image:hana-sc-generic-image-111.png["largeur=391,hauteur=283"]
+
+Dans l'interface graphique de SnapCenter , sélectionnez la vue de topologie des ressources et sélectionnez la sauvegarde à restaurer, dans cet exemple, la sauvegarde principale la plus récente. Cliquez sur l'icône Restaurer pour lancer la restauration.
+
+image:hana-sc-generic-image-112.png["largeur=601,hauteur=294"]
+
+L'assistant de restauration SnapCenter démarre. Sélectionnez le type de restauration « Restauration complète des ressources et du volume » pour utiliser une restauration basée sur un volume.
+
+image:hana-sc-generic-image-113.png["largeur=346,hauteur=325"]
+
+Sélectionnez « Aucune récupération » pour exclure les opérations de récupération du flux de travail SnapCenter .
+
+image:hana-sc-generic-image-114.png["largeur=358,hauteur=336"]
+
+Cliquez sur Terminer pour lancer l'opération de restauration.
+
+image:hana-sc-generic-image-115.png["largeur=361,hauteur=339"]
+
+SnapCenter est en train d'exécuter l'opération de restauration.
+
+* Préparations spécifiques au système de fichiers, par exemple l'opération de démontage
+* Opération de restauration d'instantané
+* Opérations post-processus spécifiques au système de fichiers, par exemple opération de montage
+
+
+image:hana-sc-generic-image-116.png["largeur=322,hauteur=398"]
+
+Lorsque le snapshot a été restauré par SnapCenter , un fichier snapshot_databackup_0_1 est disponible dans le sous-répertoire de base de données système et locataire du volume de données HANA. Ce fichier a été créé par la base de données HANA lors de la création de l'instantané de la base de données HANA. HANA supprime le fichier une fois l'opération de sauvegarde terminée, de sorte que les fichiers ne sont visibles que dans la sauvegarde Snapshot. Ces fichiers sont nécessaires à toute opération de récupération. Après la récupération, les fichiers sont supprimés par la base de données HANA.
+
+....
+
+hana-1:~ # cd /hana/data/SS1/mnt00001/
+hana-1:/hana/data/SS1/mnt00001 # ls -al *
+-rw-r--r-- 1 ss1adm sapsys 16 Aug 26 06:00 nameserver.lck
+hdb00001:
+total 4992236
+drwxr-x--- 2 ss1adm sapsys 4096 Aug 26 06:00 .
+drwxr-x--- 5 ss1adm sapsys 4096 Aug 26 06:00 ..
+-rw-r----- 1 ss1adm sapsys 0 Nov 3 2020 __DO_NOT_TOUCH_FILES_IN_THIS_DIRECTORY__
+-rw-r----- 1 ss1adm sapsys 5100273664 Aug 26 06:00 datavolume_0000.dat
+-rw-r----- 1 ss1adm sapsys 36 Aug 25 10:30 landscape.id
+-rw-r----- 1 ss1adm sapsys 163840 Aug 26 06:00 snapshot_databackup_0_1
+hdb00002.00003:
+total 201420
+drwxr-xr-- 2 ss1adm sapsys 4096 Nov 3 2020 .
+drwxr-x--- 5 ss1adm sapsys 4096 Aug 26 06:00 ..
+-rw-r--r-- 1 ss1adm sapsys 0 Nov 3 2020 __DO_NOT_TOUCH_FILES_IN_THIS_DIRECTORY__
+-rw-r--r-- 1 ss1adm sapsys 335544320 Aug 26 06:00 datavolume_0000.dat
+hdb00003.00003:
+total 4803140
+drwxr-xr-- 2 ss1adm sapsys 4096 Aug 26 06:00 .
+drwxr-x--- 5 ss1adm sapsys 4096 Aug 26 06:00 ..
+-rw-r--r-- 1 ss1adm sapsys 0 Nov 3 2020 __DO_NOT_TOUCH_FILES_IN_THIS_DIRECTORY__
+-rw-r--r-- 1 ss1adm sapsys 4898947072 Aug 26 06:00 datavolume_0000.dat
+-rw-r----- 1 ss1adm sapsys 159744 Aug 26 06:00 snapshot_databackup_0_1
+hana-1:/hana/data/SS1/mnt00001 #
+
+....
+Accédez à SAP HANA Studio et cliquez sur Actualiser pour mettre à jour la liste des sauvegardes disponibles. La sauvegarde restaurée avec SnapCenter est désormais affichée avec une icône verte dans la liste des sauvegardes. Sélectionnez la sauvegarde et cliquez sur Suivant.
+
+image:hana-sc-generic-image-117.png["largeur=400,hauteur=290"]
+
+Indiquez l'emplacement des sauvegardes des journaux. Cliquez sur Suivant.
+
+
+NOTE: SAP HANA Studio utilise les chemins configurés dans SAP HANA pour les emplacements de sauvegarde des journaux et des catalogues. Si vous disposez de sauvegardes hiérarchisées vers un emplacement supplémentaire, vous pouvez ajouter ces chemins supplémentaires.
+
+image:hana-sc-generic-image-118.png["largeur=465,hauteur=296"]
+
+Sélectionnez les autres paramètres requis. Assurez-vous que l'option utiliser les sauvegardes Delta n'est pas sélectionnée. Cliquez sur Suivant.
+
+image:hana-sc-generic-image-119.png["largeur=466,hauteur=296"]
+
+Vérifiez les paramètres de restauration et cliquez sur Terminer.
+
+En cliquant sur « Afficher l'instruction SQL », HANA Studio affiche la commande SQL exécutée pour l'opération de récupération.
+
+image:hana-sc-generic-image-120.png["largeur=464,hauteur=295"]
+
+Le processus de récupération commence. Attendez que la récupération de la base de données système soit terminée.
+
+image:hana-sc-generic-image-121.png["largeur=376,hauteur=239"]
+
+Dans SAP HANA Studio, sélectionnez l'entrée de la base de données système et lancez Backup Recovery - recover tenant Database.
+
+image:hana-sc-generic-image-122.png["largeur=476,hauteur=315"]
+
+Sélectionnez le locataire à restaurer et cliquez sur Next (Suivant).
+
+image:hana-sc-generic-image-123.png["largeur=342,hauteur=355"]
+
+Spécifiez le type de récupération et cliquez sur Suivant.
+
+image:hana-sc-generic-image-124.png["largeur=343,hauteur=356"]
+
+Confirmez l'emplacement du catalogue de sauvegarde et cliquez sur Next (Suivant).
+
+image:hana-sc-generic-image-125.png["largeur=342,hauteur=355"]
+
+Confirmez l'arrêt de la base de données du locataire.
+
+image:hana-sc-generic-image-126.png["largeur=348,hauteur=85"]
+
+Comme la restauration du volume de données a été effectuée avant la récupération de la base de données système, la sauvegarde du locataire est immédiatement disponible. Sélectionnez la sauvegarde surlignée en vert et cliquez sur Suivant.
+
+image:hana-sc-generic-image-127.png["largeur=433,hauteur=349"]
+
+Indiquez l'emplacement des sauvegardes des journaux. Cliquez sur Suivant.
+
+
+NOTE: SAP HANA Studio utilise les chemins configurés dans SAP HANA pour les emplacements de sauvegarde des journaux et des catalogues. Si vous disposez de sauvegardes hiérarchisées vers un emplacement supplémentaire, vous pouvez ajouter ces chemins supplémentaires.
+
+image:hana-sc-generic-image-128.png["largeur=384,hauteur=310"]
+
+Sélectionnez les autres paramètres requis. Assurez-vous que l'option utiliser les sauvegardes Delta n'est pas sélectionnée. Cliquez sur Suivant.
+
+image:hana-sc-generic-image-129.png["largeur=384,hauteur=310"]
+
+Vérifiez les paramètres de restauration et cliquez sur Terminer.
+
+En cliquant sur « Afficher l'instruction SQL », HANA Studio affiche la commande SQL exécutée pour l'opération de récupération.
+
+image:hana-sc-generic-image-130.png["largeur=380,hauteur=307"]
+
+Attendez que la récupération soit terminée et que la base de données des locataires démarre.
+
+image:hana-sc-generic-image-131.png["largeur=378,hauteur=305"]
+
+Une fois la récupération du locataire terminée, le système SAP HANA est opérationnel.
+
+
+NOTE: Pour un système SAP HANA MDC avec plusieurs locataires, vous devez répéter la récupération du locataire pour chaque locataire.
+
+
+
+== Récupération manuelle avec commandes SQL
+
+Vous pouvez également utiliser des instructions SQL pour la récupération du système HANA.
+
+Vous devez d'abord récupérer la base de données système.
+
+....
+
+HDBSettings.sh recoverSys.py --command="RECOVER DATABASE UNTIL TIMESTAMP '2026-08-26 10:55:49' USING CATALOG PATH ('mnt/log-backup/SYSTEMDB') USING LOG PATH ('mnt/log-backup/SYSTEMDB') USING SNAPSHOT"
+....
+Dans un second temps, vous devez vous connecter à la base de données système et démarrer la récupération de la ou des bases de données locataires. Dans cet exemple, la base de données du locataire est SS1.
+
+....
+
+hdbsql SYSTEMDB=> RECOVER DATABASE FOR SS1 UNTIL TIMESTAMP '2026-08-26 10:55:49' USING CATALOG PATH ('mnt/log-backup/DB_SS1') USING LOG PATH ('mnt/log-backup/DB_SS1') USING SNAPSHOT
+....
+
+
+== Restauration et récupération pour locataire unique
+
+Une opération de restauration et de récupération d'un seul locataire avec SnapCenter est très similaire au flux de travail décrit dans la rubrique précédente. link:hana-sc-generic-restore.html#manual-recovery-with-hana-studio["Récupération manuelle avec HANA Studio"].
+
+Pour restaurer et restaurer un système à locataire unique SAP HANA MDC à l'aide de SAP HANA Studio et SnapCenter, effectuez les opérations suivantes :
+
+. Préparez le processus de restauration et de restauration avec SAP HANA Studio :
++
+.. Sélectionnez « Récupérer la base de données du locataire » et confirmez l'arrêt de la base de données du locataire.
+.. Sélectionnez le type de récupération et indiquez l'emplacement du catalogue de sauvegarde.
+.. La liste des sauvegardes de données s'affiche. Sélectionnez Sauvegarder pour afficher l'ID de sauvegarde externe.
+
+
+. Exécutez le processus de restauration avec SnapCenter :
++
+.. Dans la vue topologique de la ressource, sélectionnez Copies locales pour restaurer à partir du stockage principal ou Copies Vault si vous souhaitez restaurer à partir d'un stockage de sauvegarde secondaire.
+.. Sélectionnez la sauvegarde SnapCenter qui correspond au champ ID de sauvegarde externe ou commentaire de SAP HANA Studio.
+.. Démarrez le processus de restauration du locataire.
+
+
+. Exécutez le processus de restauration de la base de données des locataires avec SAP HANA Studio :
++
+.. Cliquez sur Actualiser dans la liste de sauvegarde et sélectionnez la sauvegarde disponible pour la restauration (indiquée par une icône verte).
+.. Démarrez le processus de récupération. Une fois le processus de récupération terminé, la base de données du locataire est démarrée.
+
+
+
+
+
+
+== Restauration des volumes non liés aux données
+
+Une opération de restauration pour un volume non-données est lancée en sélectionnant une sauvegarde Snapshot dans la vue topologique de la ressource de volume non-données et en cliquant sur Restaurer.
+
+image:hana-sc-generic-image-132.png["largeur=601,hauteur=294"]
+
+Pour les volumes non liés aux données avec NFS, une opération de restauration complète des ressources (VBSR) ou une opération de restauration au niveau des fichiers (SFSR) peut être sélectionnée. Pour la restauration au niveau fichier, il est possible de définir soit tous les fichiers, soit des fichiers individuels pour l'opération de restauration.
+
+image:hana-sc-generic-image-133.png["largeur=369,hauteur=344"]

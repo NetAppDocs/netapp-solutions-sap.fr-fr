@@ -1,0 +1,104 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-generic-advanced-config.html 
+keywords: SAP HANA, SnapCenter, backup and recovery, Azure NetApp Files, FSx for NetApp ONTAP 
+summary:  
+---
+= Configurer les options avancées de SnapCenter pour SAP HANA
+:allow-uri-read: 
+
+
+[role="lead"]
+Configurez les paramètres avancés de SnapCenter pour les environnements SAP HANA, notamment la suppression des messages d'avertissement VMware pour les montages NFS dans l'invité, la désactivation du nettoyage automatisé des sauvegardes de journaux et l'activation du chiffrement SSL pour les connexions à la base de données HANA.
+
+
+
+== Message d'avertissement concernant les environnements virtualisés et les montages dans la machine virtuelle
+
+Lors de l'utilisation, par exemple, de VMware avec des montages NFS dans la machine virtuelle, SnapCenter émet un message d'avertissement indiquant que le plug-in SnapCenter pour VMware doit être utilisé. Le plug-in VMWare n'étant pas requis pour les montages dans la machine virtuelle invitée, le message d'avertissement peut être ignoré et désactivé. Pour configurer SnapCenter afin de supprimer cet avertissement, la configuration suivante doit être appliquée :
+
+. Dans l'onglet Paramètres, sélectionnez Paramètres globaux.
+. Pour les paramètres de l'hyperviseur, sélectionnez les machines virtuelles disposent de disques iSCSI à connexion directe ou de NFS pour tous les hôtes et mettez à jour les paramètres.
+
+
+image:hana-sc-generic-image-134.png["largeur=601,hauteur=176"]
+
+
+
+== Désactiver l'organisation automatique des sauvegardes de journaux
+
+La gestion des sauvegardes de journaux est activée par défaut et peut être désactivée au niveau de l'hôte du plug-in HANA. Utilisez la commande PowerShell :
+
+La commande Set-SmConfigSettings -Plugin -HostName <pluginhostname> -PluginCode hana -configSettings @{"LOG_CLEANUP_DISABLE" = "Y"} désactive la maintenance de sauvegarde des journaux pour cet hôte SAP HANA.
+
+
+
+== Activez la communication sécurisée sur la base de données HANA
+
+Si les bases de données HANA sont configurées avec une communication sécurisée, la commande hdbsql exécutée par SnapCenter doit utiliser des options de ligne de commande supplémentaires.
+
+Il existe différentes options pour configurer la communication SSL. Par défaut, SnapCenter utilise l'option de ligne de commande -e ssltrustcert hdbsql. Cette option permet une communication SSL sans validation du certificat serveur et fonctionne également pour les systèmes HANA où SSL n'est pas activé.
+
+Si la validation du certificat côté serveur et/ou côté client est requise, différentes options de ligne de commande hdbsql sont nécessaires, et vous devez configurer l'environnement PSE en conséquence, comme décrit dans le guide de sécurité SAP HANA.
+
+Ceci peut être réalisé en utilisant un script wrapper qui appelle hdbsql avec les options requises. Au lieu de configurer l'exécutable hdbsql dans les fichiers hana.properties, le script wrapper est ajouté.
+
+....
+
+HANA_HDBSQL_CMD = /usr/sap/SM1/HDB12/exe/hdbsqls
+....
+Le script wrapper hdbsqls appelle hdbsql avec les options de ligne de commande requises.
+
+....
+#/bin/bash
+/usr/sap/SM1/HDB12/exe/hdbsql <command line options> $*
+....
+
+
+== Désactiver la détection automatique sur l'hôte du plug-in HANA
+
+Pour désactiver la découverte automatique sur l'hôte du plug-in HANA, procédez comme suit :
+
+. Sur le serveur SnapCenter , ouvrez PowerShell. Connectez-vous au serveur SnapCenter en exécutant la commande Open-SmConnection et spécifiez le nom d'utilisateur et le mot de passe dans la fenêtre de connexion qui s'ouvre.
+. Pour désactiver la découverte automatique, exécutez la commande Set-SmConfigSettings.
+
+
+Pour un hôte HANA hana-2, la commande est la suivante :
+
+....
+
+PS C:\Users\administrator.SAPCC> Set-SmConfigSettings -Agent -Hostname hana-2 -configSettings @{"DISABLE_AUTO_DISCOVERY"="true"}
+
+Name Value
+
+---- -----
+
+DISABLE_AUTO_DISCOVERY true
+
+PS C:\Users\administrator.SAPCC>
+
+Verify the configuration by running the Get- SmConfigSettings command.
+
+PS C:\Users\administrator.SAPCC> Get-SmConfigSettings -Agent -Hostname hana-2 -key all
+
+Key: CUSTOMPLUGINS_OPERATION_TIMEOUT_IN_MSEC Value: 3600000 Details: Plug-in API operation Timeout
+
+Key: CUSTOMPLUGINS_HOSTAGENT_TO_SERVER_TIMEOUT_IN_SEC Value: 1800 Details: Web Service API Timeout
+
+Key: CUSTOMPLUGINS_ALLOWED_CMDS Value: *; Details: Allowed Host OS Commands
+
+Key: DISABLE_AUTO_DISCOVERY Value: true Details:
+
+Key: PORT Value: 8145 Details: Port for server communication
+
+PS C:\Users\administrator.SAPCC>
+
+....
+La configuration est écrite dans le fichier de configuration de l'agent sur l'hôte et reste disponible après une mise à niveau du plug-in avec SnapCenter.
+
+....
+
+hana-2:/opt/NetApp/snapcenter/scc/etc # cat /opt/NetApp/snapcenter/scc/etc/agent.properties | grep DISCOVERY
+DISABLE_AUTO_DISCOVERY = true
+hana-2:/opt/NetApp/snapcenter/scc/etc #
+....
