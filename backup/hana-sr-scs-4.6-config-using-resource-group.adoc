@@ -22,7 +22,7 @@ SnapCenter 4.6 prend en charge la détection automatique des systèmes HANA conf
 
 La figure suivante illustre la configuration de laboratoire utilisée pour ce chapitre. Deux hôtes HANA, hana-3 et hana-4, ont été configurés avec la réplication système HANA.
 
-Un utilisateur de base de données « SnapCenter » a été créé pour la base de données du système HANA avec le Privileges requis pour exécuter les opérations de sauvegarde et de restauration (voir link:hana-br-scs-overview.html["SAP HANA : sauvegarde et restauration avec SnapCenter"^]). Une clé de magasin d'utilisateurs HANA doit être configurée sur les deux hôtes à l'aide de l'utilisateur de base de données ci-dessus.
+Un utilisateur de base de données «SnapCenter» a été créé pour la base de données du système HANA avec les privilèges requis pour exécuter les opérations de sauvegarde et de restauration (voir link:hana-sc-generic-scope.html["SAP HANA : sauvegarde et restauration avec SnapCenter"^]). Une clé de magasin d'utilisateurs HANA doit être configurée sur les deux hôtes en utilisant l'utilisateur de base de données ci-dessus.
 
 ....
 ss2adm@hana- 3: / > hdbuserstore set SS2KEY hana- 3:33313 SNAPCENTER <password>
@@ -157,6 +157,6 @@ La figure suivante représente un scénario dans lequel plusieurs sauvegardes Sn
 
 image:saphana-sr-scs-image26.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
 
-Les opérations de restauration et de récupération d'une configuration de groupes de ressources SnapCenter 4.6 sont identiques à celles d'une configuration de réplication non système autodécouverte. Toutes les options de restauration et de récupération automatisée sont disponibles. Pour plus de détails, voir le rapport technique link:hana-br-scs-overview.html["Tr-4614 : sauvegarde et restauration SAP HANA avec SnapCenter"^].
+Les opérations de restauration et de récupération pour une configuration de groupe de ressources SnapCenter 4.6 sont identiques à celles d'une configuration de réplication non système découverte automatiquement. Toutes les options de restauration et de récupération automatisée sont disponibles. Pour plus de détails, veuillez consulter le rapport technique. link:hana-sc-generic-scope.html["SAP HANA : sauvegarde et restauration avec SnapCenter"^].
 
 Une opération de restauration à partir d'une sauvegarde créée sur l'autre hôte est décrite dans la section link:hana-sr-scs-restore-recovery-other-host-backup.html["Restauration à partir d'une sauvegarde créée sur l'autre hôte"].

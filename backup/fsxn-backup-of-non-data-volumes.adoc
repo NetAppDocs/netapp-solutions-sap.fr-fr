@@ -123,7 +123,7 @@ image:amazon-fsx-image69.png["Figure montrant la boîte de dialogue entrée/sort
 
 . Sélectionnez la portée et le type de restauration.
 +
-Pour les systèmes HANA MDC à un seul locataire, le scénario standard consiste à utiliser une ressource complète avec restauration du volume. Dans le cas d'un système MDC HANA avec plusieurs locataires, il se peut que vous ne souhaitiez restaurer qu'un seul locataire. Pour plus d'informations sur la restauration d'un seul tenant, reportez-vous à la section link:hana-br-scs-restore-recovery.html["Restauration et récupération (netapp.com)"^].
+Le scénario standard pour les systèmes HANA MDC à locataire unique consiste à utiliser des ressources complètes avec restauration de volume. Pour un système HANA MDC comportant plusieurs locataires, vous pourriez souhaiter restaurer un seul locataire. Pour plus d'informations sur la restauration du logement d'un seul locataire, consultez link:hana-sc-generic-restore.html["Restauration et récupération (netapp.com)"^].
 
 +
 image:amazon-fsx-image70.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]

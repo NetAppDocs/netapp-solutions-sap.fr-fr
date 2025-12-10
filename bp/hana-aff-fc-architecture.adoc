@@ -58,7 +58,7 @@ Les sauvegardes Snapshot basées sur le stockage offrent des avantages significa
 * Réplication compacte et économique en bande passante sur le stockage secondaire en fonction des modifications apportées aux blocs
 
 
-Pour plus d'informations sur la solution de sauvegarde et de restauration SAP HANA, reportez-vous à link:../backup/hana-br-scs-overview.html["Tr-4614 : sauvegarde et restauration SAP HANA avec SnapCenter"^]la section .
+Pour plus d'informations sur la solution de sauvegarde et de restauration SAP HANA, consultez link:../backup/hana-sc-generic-scope.html["SAP HANA : sauvegarde et restauration avec SnapCenter"^].
 
 
 

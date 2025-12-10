@@ -25,7 +25,7 @@ La configuration d'une base de données HANA dans SnapCenter s'effectue en suiva
 . La protection des ressources HANA doit être configurée pour la nouvelle ressource HANA ajoutée.
 
 
-La configuration initiale de SnapCenter , telle que décrite dans la rubrique précédente link:hana-sc-generic-initial.html["Configuration initiale de SnapCenter"] Cette étape doit être effectuée en premier, car les informations d'identification, les systèmes de stockage et les politiques sont nécessaires lors de la configuration des ressources de la base de données HANA. La figure ci-dessous résume les étapes et les dépendances.
+La configuration initiale de SnapCenter , telle que décrite dans la rubrique précédente link:hana-sc-generic-sc-initial-config.html["Configuration initiale de SnapCenter"] Cette étape doit être effectuée en premier, car les informations d'identification, les systèmes de stockage et les politiques sont nécessaires lors de la configuration des ressources de la base de données HANA. La figure ci-dessous résume les étapes et les dépendances.
 
 La figure ci-dessous illustre les différents composants de configuration et leurs dépendances.
 

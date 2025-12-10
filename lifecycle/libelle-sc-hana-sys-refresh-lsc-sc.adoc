@@ -24,7 +24,7 @@ Dans cette section, l'intégration entre LSC et SnapCenter est décrite à l'aid
 * *Une installation de SnapCenter avec un hôte de communication central.* Un hôte de communication central est installé avec l'agent SnapCenter, le plug-in SAP HANA et le client de base de données HANA qui gère toutes les opérations liées à la base de données nécessaires pour sauvegarder et restaurer une base de données SAP HANA pour plusieurs systèmes SAP HANA en environnement. Par conséquent, un hôte de communication central n'a pas besoin d'installer un système de base de données SAP HANA complet.
 
 
-Pour plus d'informations sur ces différents agents SnapCenter et sur les options d'installation du plug-in de base de données SAP HANA, consultez le rapport technique link:../backup/hana-br-scs-overview.html["Tr-4614 : sauvegarde et restauration SAP HANA avec SnapCenter"^].
+Pour plus de détails concernant ces différents agents SnapCenter et les options d'installation du plug-in de base de données SAP HANA, veuillez consulter le rapport technique. link:../backup/hana-sc-generic-scope.html["Sauvegarde et restauration SAP HANA avec SnapCenter"^].
 
 Les sections suivantes mettent en évidence les différences entre l'intégration de LSC à SnapCenter à l'aide de l'installation standard ou de l'hôte de communication central. Par exemple, toutes les étapes de configuration qui ne sont pas mises en évidence sont les mêmes, quelle que soit l'option d'installation et la base de données utilisée.
 
@@ -89,9 +89,8 @@ Ressources de documentation :
 
 * https://docs.netapp.com/us-en/snapcenter/["Centre de documentation SnapCenter"^]
 * https://www.netapp.com/pdf.html?item=/media/12403-tr4700.pdf["Tr-4700 : plug-in SnapCenter pour base de données Oracle"^]
-* https://www.netapp.com/pdf.html?item=/media/12405-tr4614pdf.pdf["Tr-4614 : sauvegarde et restauration SAP HANA avec SnapCenter"^]
+* link:../backup/hana-sc-generic-scope.html["SAP HANA : sauvegarde et restauration avec SnapCenter"^]
 * link:sc-copy-clone-introduction.html["Tr-4667 : automatisation des opérations de copie système et de clonage SAP HANA avec SnapCenter"^]
-* https://fieldportal.netapp.com/content/883721["Tr-4769 -instructions de dimensionnement et meilleures pratiques de SnapCenter"^]
 * https://library.netapp.com/ecm/ecm_download_file/ECMLP2880726["Guide de référence de l'applet de commande SnapCenter 4.6"^]
 
 

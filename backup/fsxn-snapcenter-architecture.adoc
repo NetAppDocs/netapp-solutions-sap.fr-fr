@@ -84,7 +84,7 @@ Lors de l'exécution d'une sauvegarde Snapshot basée sur le stockage de la base
 
 == Portée de ce document
 
-Ce document décrit l'option de configuration SnapCenter la plus courante pour un système hôte unique MDC SAP HANA avec un seul locataire sur FSX pour ONTAP. D'autres options de configuration sont possibles et, dans certains cas, requises pour des systèmes SAP HANA spécifiques, par exemple, pour un système hôte multiple. Pour une description détaillée des autres options de configuration, reportez-vous à link:hana-br-scs-concepts-best-practices.html["Concepts et bonnes pratiques SnapCenter (netapp.com)"^]la section .
+Ce document décrit l'option de configuration SnapCenter la plus courante pour un système SAP HANA MDC à hôte unique avec un seul locataire sur FSx pour ONTAP. D'autres options de configuration sont possibles et, dans certains cas, nécessaires pour certains systèmes SAP HANA, par exemple pour un système multi-hôtes. Pour une description détaillée des autres options de configuration, voir link:hana-sc-generic-concepts.html["Concepts et bonnes pratiques SnapCenter (netapp.com)"^].
 
 Dans ce document, nous utilisons la console Amazon Web Services (AWS) et l'interface de ligne de commande FSX pour ONTAP pour exécuter les étapes de configuration requises au niveau de la couche de stockage. Vous pouvez également utiliser NetApp Cloud Manager pour gérer FSX pour ONTAP, mais ce document n'est pas périmètre. Pour plus d'informations sur l'utilisation de NetApp Cloud Manager pour FSX pour ONTAP, consultez la page https://docs.netapp.com/us-en/occm/concept_fsx_aws.html["En savoir plus sur Amazon FSX pour ONTAP (netapp.com)"^].
 
