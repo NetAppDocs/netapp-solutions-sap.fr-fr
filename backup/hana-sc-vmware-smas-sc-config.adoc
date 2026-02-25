@@ -18,9 +18,9 @@ Comme indiqué au début de ce document, l'objectif de ce document est de fourni
 
 link:hana-sc-generic-scope.html["Sauvegarde et restauration SAP HANA avec SnapCenter"]
 
-link:hana-sr-scs-system-replication-overview.html["Tr-4719 : réplication système SAP HANA - sauvegarde et restauration avec SnapCenter"]
+link:hana-sr-scs-system-replication-overview.html["Réplication système SAP HANA : sauvegarde et restauration avec SnapCenter"]
 
-link:../lifecycle/sc-copy-clone-introduction.html["Tr-4667 : automatisation des opérations de copie système et de clonage SAP HANA avec SnapCenter"]
+link:../lifecycle/sc-copy-clone-introduction.html["Automatisation des opérations de copie et de clonage du système SAP HANA avec SnapCenter"]
 
 
 

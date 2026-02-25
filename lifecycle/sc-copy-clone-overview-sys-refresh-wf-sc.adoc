@@ -54,7 +54,7 @@ Dans la plupart des cas, les systèmes de test/QA cibles sont utilisés pendant 
 NOTE: Lors du fractionnement du volume FlexClone, SnapCenter supprime toutes les sauvegardes créées sur le système cible.
 
 
-NOTE: Avec SnapCenter et Azure NetApp Files, l'opération de répartition des clones n'est pas disponible, car Azure NetApp Files divise toujours le clone après sa création.
+NOTE: Avec SnapCenter et Azure NetApp Files, l'opération de division du clone n'est pas disponible, le clone est toujours divisé après sa création.
 
 L'opération d'actualisation, y compris la répartition des clones, comprend les étapes suivantes.
 

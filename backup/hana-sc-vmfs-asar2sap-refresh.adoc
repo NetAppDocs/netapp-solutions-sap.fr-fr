@@ -8,7 +8,7 @@ summary:
 :allow-uri-read: 
 
 
-Des informations détaillées sur les opérations d'actualisation du système SAP à l'aide de SnapCenter sont disponibles à l'adresse  https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/sc-copy-clone-introduction.html["Tr-4667 : automatisation des opérations de copie système et de clonage SAP HANA avec SnapCenter"] .
+Des informations détaillées sur les opérations d'actualisation du système SAP à l'aide de SnapCenter peuvent être trouvées à  https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/sc-copy-clone-introduction.html["Automatisation des opérations de copie et de clonage du système SAP HANA avec SnapCenter"].
 
 Le deuxième système HANA QFS a été provisionné de la même manière que décrit dans le chapitre link:hana-sc-vmfs-asar2-hana-prov.html["« Provisionnement et installation du système HANA »"] .
 
@@ -16,7 +16,7 @@ Le deuxième système HANA QFS a été provisionné de la même manière que dé
 
 === Prérequis
 
-La version actuelle de SnapCenter (6.1P1) présente certaines limitations qui devraient être corrigées avec les prochaines versions.
+Pour les versions de SnapCenter < 6.2, il existe des limitations à prendre en compte.
 
 . Il est nécessaire de redémarrer le processus spl après chaque workflow « création de clone » et « suppression de clone » à l'aide de la commande « systemctl restart spl » sur l'hôte HANA cible.
 . Les machines virtuelles HANA utilisées comme source et cible de l’opération d’actualisation du système SAP doivent s’exécuter sur le même hôte ESX.
@@ -174,4 +174,4 @@ La capture d'écran suivante montre les étapes du travail exécutées par SnapC
 
 image:sc-hana-asrr2-vmfs-image39.png["Figure illustrant le contenu discuté"]
 
-Comme mentionné dans la section « Prérequis », le service SnapCenter spl sur l’hôte HANA doit être redémarré à l’aide de la commande « systemctl restart spl » pour lancer un nettoyage approprié.
+Comme mentionné dans la section « Prérequis », pour les versions de SnapCenter < 6.2, le service spl de SnapCenter sur l’hôte HANA doit être redémarré à l’aide de la commande « systemctl restart spl » pour initier un nettoyage approprié.

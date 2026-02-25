@@ -35,7 +35,10 @@ SnapCenter prend en charge les opérations de restauration et de récupération 
 NOTE: La récupération automatisée n'est prise en charge que lorsque le plug-in HANA est déployé sur l'hôte de la base de données HANA et que le système HANA a été automatiquement détecté par SnapCenter. Avec une configuration d'hôte de plug-in centralisée, la récupération doit être effectuée manuellement après l'opération de restauration avec SnapCenter.
 
 
-NOTE: La restauration à partir du volume ANF principal est prise en charge. La restauration à partir d'une sauvegarde ANF n'est pas encore prise en charge. Une restauration sur place ou une restauration vers un nouveau volume à partir d'une sauvegarde ANF doit être effectuée manuellement à l'aide du portail Azure ou de l'interface de ligne de commande (CLI).
+NOTE: Avec Azure NetApp Files, les opérations de restauration sont prises en charge pour les volumes ANF principaux ou les sauvegardes ANF. Pour les volumes ANF principaux, une restauration de volume est effectuée ; pour les sauvegardes ANF, une restauration sur place avec restauration d’un seul fichier est réalisée. Dans les deux cas, la configuration des groupes de volumes d’application sera conservée.
+
+
+NOTE: Si le chiffrement du volume est activé et que le stockage local sécurisé SAP (LSS) est utilisé, une restauration avec SnapCenter est prise en charge tant que le mot de passe de sauvegarde de la clé racine dans le LSS n'a pas été modifié depuis la sauvegarde. Si le mot de passe a été modifié et qu'une restauration et une récupération sont effectuées à l'aide d'un snapshot antérieur avec un mot de passe différent, la récupération doit être effectuée manuellement et l'ancien mot de passe doit être fourni avec l'instruction de récupération : « RECOVER DATA USING SNAPSHOT CLEAR LOG ENCRYPTION ROOT KEYS BACKUP PASSWORD 'old-password' »
 
 
 

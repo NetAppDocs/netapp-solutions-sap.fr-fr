@@ -4,7 +4,7 @@ permalink: backup/hana-sr-scs-system-replication-overview.html
 keywords: tr4719, 4719, introduction, system replication, dr, snapcenter, high availability, RPO, RTO 
 summary: 'La réplication système SAP HANA est souvent utilisée comme solution haute disponibilité ou de reprise après incident pour les bases de données SAP HANA. La réplication système SAP HANA propose différents modes de fonctionnement selon le cas d"utilisation ou les besoins de disponibilité.' 
 ---
-= Tr-4719 : réplication système SAP HANA - sauvegarde et restauration avec SnapCenter
+= Réplication système SAP HANA : sauvegarde et restauration avec SnapCenter
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

@@ -29,15 +29,25 @@ Cette règle ne s'applique qu'à un système SAP HANA avec un seul locataire, do
 
 NOTE: Dès qu'une opération de création, de renommage ou de DROP de locataire est exécutée sur le système source, cet indicateur de configuration est supprimé par la base de données SAP HANA. Par conséquent, même si la configuration a été ramenée au locataire = SID, l'indicateur n'est plus disponible et l'exception concernant la récupération du locataire avec le workflow 3 n'est plus possible. Dans ce cas, l'option 2 est le flux de travail requis.
 
-image:sc-copy-clone-image10.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:sc-copy-clone-image10.png[""]
 
-image:sc-copy-clone-image11.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:sc-copy-clone-image11.png[""]
 
 
 
 == Workflow d'actualisation du système avec chiffrement SAP HANA activé
 
-Lorsque le chiffrement de persistance SAP HANA est activé, des étapes supplémentaires sont requises pour pouvoir restaurer la base de données SAP HANA sur le système cible.
+Lorsque le chiffrement de la persistance SAP HANA est activé et, selon le magasin sécurisé utilisé pour les clés racines de chiffrement, instance SFSS ou magasin sécurisé local LSS, des étapes supplémentaires sont nécessaires avant de pouvoir récupérer la base de données SAP HANA sur le système cible.
+
+Avec SFSS, les clés racine sont stockées dans le système de fichiers et doivent être sauvegardées séparément en plus de la base de données HANA. Les sauvegardes des clés racine doivent ensuite être importées sur le système cible pour permettre la restauration de la base de données HANA. Cela doit être fait une seule fois, si les clés racine ne sont pas modifiées.
+
+Avec LSS, les clés racine sont sauvegardées et restaurées en même temps que la base de données HANA en une seule opération. Pour pouvoir récupérer la base de données HANA, vous devez disposer du mot de passe utilisé pour la sauvegarde des clés racine.
+
+Les opérations requises sont décrites plus en détail dans les chapitres suivants.
+
+
+
+=== Stockage sécurisé SFSS
 
 Sur le système source, vous devez créer une sauvegarde des clés de cryptage root pour la base de données système, ainsi que pour toutes les bases de données de tenant. Les fichiers de sauvegarde doivent être copiés sur le système cible et les clés racine doivent être importées à partir de la sauvegarde avant l'exécution de l'opération de récupération.
 
@@ -45,7 +55,7 @@ Voir aussi https://help.sap.com/docs/SAP_HANA_PLATFORM/6b94445c94ae495c83a19646e
 
 
 
-=== Sauvegarde des clés racine
+==== Sauvegarde des clés racine
 
 Une sauvegarde des clés racine est toujours nécessaire si des modifications ont été apportées aux clés racine. La commande backup requiert dbid comme paramètre CLI. Les dbid peuvent être identifiés à l’aide de l’instruction SQL ci-dessous.
 
@@ -96,7 +106,7 @@ done.
 ....
 
 
-=== Importation des clés racine sur le système cible
+==== Importation des clés racine sur le système cible
 
 L'importation des clés racine est initialement requise pour la première opération d'actualisation du système. Si les clés racine ne sont pas modifiées sur le système source, aucune importation supplémentaire n'est requise. La commande d'importation requiert dbid comme paramètre CLI. Les dbid peuvent être identifiés de la même manière que pour la sauvegarde de la clé racine.
 
@@ -125,10 +135,40 @@ qs1adm@hana-7:/usr/sap/QS1/HDB11>
 ....
 
 
-=== Importation de clé racine, si dbid n'existe pas sur la cible
+==== Importation de clé racine, si dbid n'existe pas sur la cible
 
 Comme décrit dans le chapitre précédent, dbid est nécessaire pour importer la clé racine du système et de toutes les bases de données de tenant. Bien que la base de données système ait toujours dbid=0, les bases de données locataires peuvent avoir des dbid différents.
 
-image:sc-copy-clone-image13.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+image:sc-copy-clone-image13.png[""]
 
 La sortie ci-dessus montre deux locataires avec dbid=3 et dbid=4. Si le système cible n'a pas encore hébergé de locataire avec dbid=4, l'importation de la clé racine échouera. Dans ce cas, vous devez d'abord restaurer la base de données système, puis importer la clé du tenant avec dbid=4.
+
+
+
+=== Stockage sécurisé LSS
+
+
+NOTE: Vous devez utiliser au moins la version 2.00.088 de HANA, sinon la procédure décrite ne fonctionnera pas, voir également la note SAP 3613110.
+
+Pour récupérer un système HANA qui utilise le chiffrement et LSS, vous avez besoin du mot de passe qui a été utilisé pour sauvegarder les clés racine.
+
+L'instruction SQL
+
+....
+alter system set encryption root keys backup password <backup-pw-of-source-system>;
+....
+Cette commande permet de définir le mot de passe du système source dans la configuration LSS du système cible. La même instruction doit être utilisée pour la base de données système et la base de données locataire.
+
+Si le mot de passe n'a pas été défini au préalable, vous pouvez le fournir lors de l'opération de récupération.
+
+base de données système
+
+....
+./exe/Python/bin/python /usr/sap/QM1/HDB22/exe/python_support/recoverSys.py --command "RECOVER DATA USING SNAPSHOT CLEAR LOG ENCRYPTION ROOT KEYS BACKUP PASSWORD '<backup-pw-of-source-system>'"
+....
+base de données du locataire :
+
+....
+hdbsql SYSTEMDB=> RECOVER DATA for QM1 USING SNAPSHOT CLEAR LOG ENCRYPTION ROOT KEYS BACKUP PASSWORD '<backup-pw-of-source-system>';
+
+....

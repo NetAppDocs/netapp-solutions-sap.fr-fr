@@ -4,7 +4,7 @@ permalink: backup/hana-dr-anf-data-protection-overview.html
 keywords:  
 summary:  
 ---
-= Tr-4891 : reprise après incident de SAP HANA avec Azure NetApp Files
+= Reprise d'activité SAP HANA avec Azure NetApp Files
 :allow-uri-read: 
 
 

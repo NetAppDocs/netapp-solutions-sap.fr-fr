@@ -224,25 +224,25 @@ NOTE: Seule la colonne 1 (montages NFS) du tableau ci-dessous est pertinente pou
 | *Sauvegarder et restaurer les volumes non liés aux données* |  |  
 
 
-| Sauvegarde par instantané | Oui (*) | Oui (*) 
+| Sauvegarde par instantané | Oui. | Oui (*) 
 
 
-| Restaurer à partir d'un instantané | SFSR de LUN complet (*) | SFSR de LUN complet (*) 
+| Restaurer à partir d'un instantané | SFSR du LUN complet | SFSR de LUN complet (*) 
 
 
-| Réplication SnapVault | Oui (*) | Oui (*) 
+| Réplication SnapVault | Oui. | Oui (*) 
 
 
-| Restaurer à partir de la cible SnapVault | Oui (*) | Oui (*) 
+| Restaurer à partir de la cible SnapVault | Oui. | Oui (*) 
 
 
 | *Actualisation du système SAP* |  |  
 
 
-| À partir de l'instantané principal | Oui (**) | Oui (**) 
+| À partir de l'instantané principal | Oui. | Oui (**) 
 
 
-| Cible SnapVault | Oui (**) | Oui (**) 
+| Cible SnapVault | Oui. | Oui (**) 
 
 
 | *HA et DR* |  |  

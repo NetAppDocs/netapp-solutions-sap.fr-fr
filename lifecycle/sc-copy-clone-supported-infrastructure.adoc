@@ -23,20 +23,21 @@ Ce document utilise un paysage SAP HANA s'exécutant sur des systèmes NetApp su
 |  | *Systèmes NetApp sur site* | *AWS FSX pour NetApp ONTAP* | *Azure NetApp Files* 
 
 
-| Protocole de stockage | NFS et Fibre Channel | NFS | NFS 
+| Protocole de stockage et système de fichiers | Bare metal : NFS, FC avec XFS VMware : montages NFS dans l'invité, FC avec VMDK et XFS | NFS | NFS 
 
 
-| Clone dynamique (FlexClone) | Oui. | Oui. | Non. Avec la version actuelle d'ANF, le volume cloné est toujours divisé 
+| Clone dynamique (FlexClone) | Oui. | Oui. | Oui, mais pas intégré dans SnapCenter 
 
 
-| Opération de séparation des clones | Oui. | Oui. | S/O 
+| Opération de séparation des clones | Oui. | Oui. | Oui, mais pas intégré dans SnapCenter 
 
 
 | Clonage depuis le stockage primaire | Oui. | Oui. | Oui. 
 
 
-| Clonage à partir d'une sauvegarde hors site | Oui. | Oui. | Non 
+| Clonage à partir d'une sauvegarde hors site | Oui. | Oui. | Oui, restaurer sur un nouveau volume à partir de la sauvegarde ANF 
 
 
 | Clonage sur le site de reprise après incident | Oui. | Oui. | Oui, mais pas intégré dans SnapCenter 
 |===
+Des informations supplémentaires sur les opérations de mise à jour du système SAP pour HANA avec VMware VMFS et les systèmes NetApp ASAr2 sont disponibles à  https://docs.netapp.com/us-en/netapp-solutions-sap/backup/hana-sc-vmfs-asar2sap-refresh.html["Actualisation du système SAP"].
