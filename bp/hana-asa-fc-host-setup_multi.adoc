@@ -39,10 +39,10 @@ Sur l'hôte SAP HANA, il est nécessaire de créer et de monter des groupes de v
 | LV : FC5_log_mnt00002-vol | /hana/log/FC5/mnt00002 | Monté à l'aide d'un connecteur de stockage 
 
 
-| Partage NFS externe : FC5_shared | /hana/partagé | Monté sur tous les hôtes à l'aide de l'entrée NFS et /etc/fstab 
+| Partage NFS externe : + FC5_shared | /hana/partagé | Monté sur tous les hôtes à l'aide de l'entrée NFS et /etc/fstab 
 |===
 
-NOTE: Les systèmes multi-hôtes SAP HANA nécessitent  `/hana/shared` Système de fichiers connecté à tous les hôtes d'un système. Il s'agit généralement d'un partage NFS fourni par un serveur NFS. Il est recommandé d'utiliser un serveur NFS haute disponibilité, tel qu'un système NetApp FAS ou AFF. Une autre option consiste à utiliser le serveur NFS intégré d'un hôte Linux.
+NOTE: Les systèmes SAP HANA multi-hôtes nécessitent le  `/hana/shared` système de fichiers et les  `/lss/shared` systèmes de fichiers, dans le cas où le service SAP Local Secure Store (LSS) est utilisé, connectés à tous les hôtes d’un système. Il s’agit généralement d’un partage NFS fourni par un serveur NFS. Il est recommandé d’utiliser un serveur NFS à haute disponibilité, par exemple un système NetApp FAS ou AFF. Une autre option consiste à utiliser le serveur NFS intégré d’un hôte LINUX pour cela.
 
 
 NOTE: Avec la configuration décrite, le  `/usr/sap/FC5` Le répertoire dans lequel est stocké le répertoire personnel par défaut de l'utilisateur FC5adm se trouve sur le disque local de chaque hôte HANA. Dans une configuration de reprise après sinistre avec réplication sur disque, NetApp recommande d'utiliser quatre LUN supplémentaires pour  `/usr/sap/FC5` système de fichiers de chaque hôte afin que chaque hôte de base de données ait tous ses systèmes de fichiers sur le stockage central.

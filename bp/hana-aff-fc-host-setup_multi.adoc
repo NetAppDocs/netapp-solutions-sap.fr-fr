@@ -43,6 +43,9 @@ Sur l'hôte SAP HANA, il est nécessaire de créer et de monter des groupes de v
 NOTE: Avec la configuration décrite, le `/usr/sap/FC5` Le répertoire dans lequel est stocké le répertoire personnel par défaut de l'utilisateur FC5adm se trouve sur le disque local de chaque hôte HANA.  Dans une configuration de reprise après sinistre avec réplication sur disque, NetApp recommande de créer quatre sous-répertoires supplémentaires dans le `FC5_shared` volume pour le `/usr/sap/FC5` système de fichiers afin que chaque hôte de base de données ait tous ses systèmes de fichiers sur le stockage central.
 
 
+NOTE: Si le service SAP Local Secure Store (LSS) est utilisé, le `/lss/shared/SID` répertoire doit être accessible depuis tous les hôtes. NetApp recommande de créer un volume pour le `/lss/shared/SID` répertoire et de le monter sur tous les hôtes à l'aide de NFS.
+
+
 
 === Créez des groupes de volumes LVM et des volumes logiques
 

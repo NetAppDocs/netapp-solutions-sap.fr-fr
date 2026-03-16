@@ -38,6 +38,14 @@ SAP HANA prend en charge l'utilisation du chiffrement de volume NetApp (NVE) et 
 
 
 
+== Protection autonome contre les ransomwares ONTAP
+
+Les snapshots créés par ONTAP Autonomous Ransomware Protection ne peuvent pas être utilisés pour la restauration avancée de la base de données SAP HANA. Par conséquent, il n'est pas recommandé de les utiliser pour les volumes de données et de journaux SAP HANA et cette fonctionnalité doit être désactivée pour ces volumes. Utilisez plutôt la protection des données basée sur SnapCenter avec des snapshots inviolables pour la protection contre les ransomwares : link:../backup/hana-sc-generic-scope.html["Sauvegarde et restauration SAP HANA avec SnapCenter"]. ONTAP Autonomous Ransomware Protection peut être bénéfique pour d'autres volumes tels que /hana/shared.
+
+Il est possible de désactiver l'activation automatique de cette fonctionnalité lors de la création d'un volume pour un cluster ONTAP, cependant il est recommandé de conserver le paramètre par défaut et de la désactiver pour les volumes où cette fonctionnalité n'est pas nécessaire.
+
+
+
 == Qualité de service
 
 La QoS peut être utilisée pour limiter le débit du stockage pour des systèmes SAP HANA spécifiques ou des applications non SAP sur un contrôleur partagé.
