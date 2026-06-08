@@ -56,7 +56,7 @@ image:saphana_aff_fc_image1.png["Figure montrant la boîte de dialogue entrée/s
 
 Pour plus d'informations sur les prérequis et les recommandations de systèmes SAP HANA productifs, consultez la ressource suivante :
 
-* http://go.sap.com/documents/2016/05/e8705aae-717c-0010-82c7-eda71af511fa.html["FAQ sur l'intégration de SAP HANA Tailored Data Center Integration"^]
+* https://help.sap.com/docs/SAP_HANA_PLATFORM/eb3777d5495d46c5b2fa773206bbfb46/0b15a92d554c4941a452c9ca127f8c70.html["Intégration personnalisée des centres de données SAP HANA"^]
 
 
 
