@@ -466,7 +466,6 @@
   <block id="611a4a6b98272a717f8e1f6bf5ba787b" category="paragraph">Marco Schoen, NetApp</block>
   <block id="4bb047f8c530785002e490ef17fa725e" category="doc">Où trouver des informations complémentaires</block>
   <block id="345245c83d2b2c4c2a5eb9f2887da627" category="paragraph">Pour en savoir plus sur les informations fournies dans ce document, consultez ces documents et/ou sites web :</block>
-  <block id="06ad3435fb38e020aa7a36d8924c9f5c" category="inline-link"><block ref="06ad3435fb38e020aa7a36d8924c9f5c" category="inline-link-rx"></block></block>
   <block id="6137d44b5191549a06e7bea8ffd942d3" category="inline-link"><block ref="6137d44b5191549a06e7bea8ffd942d3" category="inline-link-rx"></block></block>
   <block id="96affa74630cd326f32e3a646b2bf9ad" category="admonition">Le domaine NFSv4 doit être défini sur la même valeur sur tous les serveurs et SVM Linux. Définissez le paramètre de domaine <block ref="7aa88ce33241da69cac24b82eba0b7f2" prefix="“" category="inline-code"></block>” dans le fichier<block ref="f606fb2da2ae329157d791c6955a0337" prefix=" " category="inline-code"></block> Pour les hôtes Linux.</block>
   <block id="90c5b46276106ab7121fe824091fdfde" category="paragraph">Activez et démarrez le service NFS idmapd :</block>
@@ -557,7 +556,6 @@
   <block id="019dc6de8e76037cb2c701eebcc7885a" category="summary">Pour en savoir plus sur les informations fournies dans ce document, consultez ces documents et/ou sites web.</block>
   <block id="0efd230d120bc177f0918dac852f2cf2" category="list-text">Matériel de stockage d'entreprise certifié SAP pour SAP HANA</block>
   <block id="244d98fed97800c3bc8073163dc1e3b2" category="list-text">Exigences de stockage SAP HANA</block>
-  <block id="3710f13cc62644ea40b0af38f0b1198e" category="paragraph"><block ref="3710f13cc62644ea40b0af38f0b1198e" category="inline-link-rx"></block></block>
   <block id="c54847a2046020d06d345fd8b61fc169" category="list-text">Centres de documentation NetApp</block>
   <block id="1f97b7a68d0268791593f9152a2471f4" category="list-text">Solutions logicielles SAP HANA</block>
   <block id="535db3cbff51345ddc48fb6dbd091125" category="summary">Avant de configurer l'hôte, les utilitaires hôtes NetApp SAN doivent être téléchargés depuis le site de support NetApp et installés sur les serveurs HANA. La documentation de l'utilitaire hôte contient des informations sur les logiciels supplémentaires qui doivent être installés en fonction du HBA FCP utilisé.</block>
@@ -5891,8 +5889,11 @@ définissez admin</block>
   <block id="3d4f8b4b1b1faa02f0aa9e9f49fe9088" category="paragraph">Les snapshots créés par ONTAP Autonomous Ransomware Protection ne peuvent pas être utilisés pour la restauration avancée de la base de données SAP HANA. Par conséquent, il n'est pas recommandé de l'utiliser pour les volumes de données et de journaux SAP HANA et elle doit être désactivée pour ces volumes. Utilisez plutôt la protection des données basée sur SnapCenter avec des snapshots inviolables pour la protection contre les ransomwares : <block ref="f7a9a89a273a9d57fcd022d94d56f53f" category="inline-link-macro-rx"></block>. ONTAP Autonomous Ransomware Protection peut être bénéfique pour d'autres volumes tels que /hana/shared.</block>
   <block id="5c9e36a122daafc35d852512bd535596" category="admonition">Si le service SAP Local Secure Store (LSS) est utilisé, le<block ref="1d7604fd1dd9d655c19ff0843bcd1cab" prefix=" " category="inline-code"></block> répertoire, le répertoire d'installation par défaut de LSS se trouve sur le disque local. Dans le cadre d'une configuration de reprise après sinistre avec réplication sur disque, NetApp recommande de créer un répertoire au sein du<block ref="07fe7fc9aa3cd33458708758a4a5854e" prefix=" " category="inline-code"></block> volume pour le<block ref="1d7604fd1dd9d655c19ff0843bcd1cab" prefix=" " category="inline-code"></block> répertoire afin que tous les systèmes de fichiers soient situés sur le stockage central.</block>
   <block id="3ee7f42a5f57f42357faa6066ecfb5d8" category="cell">/lss/shared/</block>
-  <block id="e72900b6484d9e136f9baaf67301d38d" category="paragraph"><block ref="8878a31e958f2f4fbc2f0cb5299a88fc" category="inline-link-rx"></block>]</block>
   <block id="b0b3e68761dd70d0fa49b725910dc993" category="list-text">Intégration personnalisée des centres de données SAP HANA</block>
   <block id="37716fa00dd641976ad10af0418c9f93" category="inline-link">Intégration personnalisée des centres de données SAP HANA</block>
   <block id="74e5a15645e2d65a375593199e01c962" category="list-text"><block ref="74e5a15645e2d65a375593199e01c962" category="inline-link-rx"></block></block>
+  <block id="44fee80ab2b2a3105ec17b94b206cc8f" category="inline-link"><block ref="44fee80ab2b2a3105ec17b94b206cc8f" category="inline-link-rx"></block></block>
+  <block id="55162df4eaa40993b4b04219f5dd5e87" category="paragraph"><block ref="55162df4eaa40993b4b04219f5dd5e87" category="inline-link-rx"></block></block>
+  <block id="9b3c3b7775f8b0fe4b367630784b02be" category="inline-link"><block ref="9b3c3b7775f8b0fe4b367630784b02be" category="inline-link-rx"></block></block>
+  <block id="09e3bfa407b8475f684f4afa0d1a65d0" category="paragraph"><block ref="09e3bfa407b8475f684f4afa0d1a65d0" category="inline-link-rx"></block></block>
 </blocks>
