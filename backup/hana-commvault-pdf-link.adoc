@@ -18,4 +18,4 @@ Ce document décrit la conception d'une solution NetApp et Commvault pour SAP HA
 
 Auteurs : Marco Schoen, NetApp; Dr Tristan Daude, CommVault Systems
 
-link:https://www.netapp.com/pdf.html?item=/media/17050-tr4711pdf.pdf["https://www.netapp.com/pdf.html?item=/media/17050-tr4711pdf.pdf"]
+link:https://www.netapp.com/pdf.html?item=/media/17050-tr4711.pdf["https://www.netapp.com/pdf.html?item=/media/17050-tr4711.pdf"^]
