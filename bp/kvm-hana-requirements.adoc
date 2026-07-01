@@ -31,14 +31,14 @@ Assurez-vous que les composants et configurations suivants sont en place :
 * adaptateurs réseau compatibles SR-IOV (par exemple, la série Mellanox ConnectX)
 * Adaptateurs Fibre Channel HBA pour l'accès au stockage FCP
 * Infrastructure réseau prenant en charge les VLAN et les segments de réseau requis
-* VM configurée conformément à la https://documentation.suse.com/sbp/sap-15/pdf/SBP-SLES4SAP-HANAonKVM-SLES15SP5_en.pdf["Bonnes pratiques SUSE pour SAP HANA sur KVM"^]
+* Machine virtuelle configurée conformément à la  https://documentation.suse.com/sbp/sap-15/html/SBP-SLES4SAP-HANAonKVM-SLES15SP7/["Bonnes pratiques SUSE pour SAP HANA sur KVM"^]
 
 
 
 
 == Considérations importantes
 
-* SR-IOV doit être utilisé pour la communication réseau SAP HANA et pour l'accès au stockage via NFS. Chaque fonction virtuelle (VF) attribuée à une VM nécessite une bande passante d'au moins 10 Gbit/s.
+* SR-IOV doit être utilisé pour la communication réseau SAP HANA et pour l'accès au stockage via NFS si possible, mais le mode pont est également pris en charge. Chaque fonction virtuelle (VF) affectée à une machine virtuelle nécessite une bande passante d'au moins 10 Gbit/s.
 * Les ports HBA FCP physiques doivent être attribués à la VM en tant que périphériques PCI pour utiliser les LUN FCP.  Un port physique ne peut être attribué qu'à une seule machine virtuelle.
 * Les systèmes SAP HANA multi-hôtes ne sont pas pris en charge dans cette configuration.
 
@@ -47,7 +47,7 @@ Assurez-vous que les composants et configurations suivants sont en place :
 
 == Ressources supplémentaires
 
-* Pour obtenir les informations les plus récentes, notamment sur l'architecture des processeurs pris en charge et les limitations, veuillez consulter la note SAP. https://me.sap.com/notes/3538596["3538596 - SAP HANA sur virtualisation KVM SUSE avec SLES 15 SP5 - SAP for Me"] .
+* Pour obtenir les informations les plus récentes, notamment sur l'architecture du processeur prise en charge et les limitations, veuillez consulter la note SAP https://me.sap.com/notes/3741904["3741904 - SAP HANA sur virtualisation KVM SUSE avec SLES 15 SP7 - SAP for Me"].
 * Pour plus d'informations sur la configuration des systèmes de stockage ONTAP , reportez-vous à la documentation. https://docs.netapp.com/us-en/ontap["Documentation ONTAP 9"] .
 * Pour la configuration du stockage SAP HANA avec les systèmes NetApp , veuillez consulter la documentation. https://docs.netapp.com/us-en/netapp-solutions-sap/["Documentation des solutions SAP de NetApp"] .
 

@@ -16,7 +16,7 @@ summary: Déploiement de SAP HANA mono-hôte sur SUSE KVM utilisant le stockage 
 [role="lead"]
 Déploiement de SAP HANA mono-hôte sur SUSE KVM utilisant le stockage NetApp avec des interfaces réseau SR-IOV et un accès au stockage NFS ou FCP.  Suivez ce processus pour configurer les interfaces virtuelles, les affecter aux machines virtuelles et configurer les connexions de stockage pour des performances optimales.
 
-Pour une vue d'ensemble de SAP HANA sur la virtualisation KVM, reportez-vous à la documentation SUSE : https://documentation.suse.com/sbp/sap-15/pdf/SBP-SLES4SAP-HANAonKVM-SLES15SP5_en.pdf["Bonnes pratiques SUSE pour SAP HANA sur KVM"] .
+Pour une vue d'ensemble de SAP HANA sur la virtualisation KVM, reportez-vous à la documentation SUSE : https://documentation.suse.com/sbp/sap-15/html/SBP-SLES4SAP-HANAonKVM-SLES15SP7/["Bonnes pratiques SUSE pour SAP HANA sur KVM"].
 
 image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Un"]link:kvm-hana-requirements.html["Examiner les exigences de configuration"]
 
