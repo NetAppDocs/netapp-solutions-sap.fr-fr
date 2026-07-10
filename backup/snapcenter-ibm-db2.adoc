@@ -18,6 +18,7 @@ Ce document décrit les caractéristiques d'intégration de SnapCenter pour la b
 
 
 
+[[introduction]]
 == Introduction
 
 Ce document ne doit pas être une description détaillée de la configuration de l'environnement complet, mais il couvre les concepts et les détails pertinents relatifs aux éléments suivants :
@@ -32,6 +33,7 @@ Auteur: Michael Schlosser, NetApp
 
 
 
+[[example-configuration-overview]]
 == Exemple de présentation de la configuration
 
 Exemple d'implémentation pour le plug-in DB2 SnapCenter pour un système SAP s'exécutant sur la plateforme Azure.
@@ -45,10 +47,12 @@ image:sc-ibm-db2-image01.png["Diagramme de l'exemple d'implémentation avec IBM 
 
 
 
+[[demo-environment]]
 == Environnement de démonstration
 
 
 
+[[software-versions]]
 === Versions logicielles
 
 [cols="50%, 50%"]
@@ -69,6 +73,7 @@ image:sc-ibm-db2-image01.png["Diagramme de l'exemple d'implémentation avec IBM 
 |===
 
 
+[[db2-volume-design]]
 === Conception de volumes DB2
 
 Vous devez utiliser la mise en page de volume minimum suivante pour activer la sauvegarde/restauration et le clonage des cas d'utilisation de la base de données DB2. L'exemple de configuration utilise <SID>: D01.
@@ -146,6 +151,7 @@ image:sc-ibm-db2-image02.png["Capture d'écran des chemins des fichiers de base 
 
 
 
+[[steps-to-protect-database-d01]]
 === Étapes pour protéger la base de données D01
 
 * Vérifiez la distribution du fichier, en fonction de la disposition de l'échantillon
@@ -157,6 +163,7 @@ image:sc-ibm-db2-image02.png["Capture d'écran des chemins des fichiers de base 
 
 
 
+[[prerequisites-on-host]]
 === Conditions préalables sur l'hôte
 
 Vous trouverez des informations plus récentes à l'adresse suivante :
@@ -179,6 +186,7 @@ Avant d'ajouter un hôte et d'installer le package de plug-ins pour Linux, vous 
 
 
 
+[[prerequisites-for-the-database-enable-logging-and-backups]]
 === Conditions requises pour la base de données : activez la journalisation et les sauvegardes
 
 
@@ -202,6 +210,7 @@ NOTE: pour activer les journaux hors ligne, une sauvegarde complète hors ligne 
 
 
 
+[[deploy-snapcenter-agent-to-host-vm-d01]]
 === Déployez l'agent SnapCenter sur l'hôte vm-d01
 
 Pour plus d'informations, consultez le link:https://docs.netapp.com/us-en/snapcenter/protect-scu/task_add_hosts_and_install_the_snapcenter_plug_ins_package_for_linux.html["Documentation SnapCenter"].
@@ -217,6 +226,7 @@ image:sc-ibm-db2-image04.png["Capture d'écran de la découverte de la base de d
 
 
 
+[[create-resource-configuration-for-database-d01]]
 === Créer une configuration de ressource pour la base de données D01
 
 Sélectionnez ressource découverte D01
@@ -252,6 +262,7 @@ Et terminez la configuration.
 
 
 
+[[recover-database-d01]]
 === Restaurer la base de données D01
 
 * Arrêter SAP System + DB D01 sur l'hôte vm-d01
@@ -304,6 +315,7 @@ NOTE: “Db2inidb D01 en tant que miroir” fait partie du workflow de restaurat
 
 
 
+[[additional-information-and-version-history]]
 == Informations supplémentaires et historique des versions
 
 Les démonstrations recodées suivantes sont disponibles pour prendre en charge la documentation.
@@ -330,6 +342,7 @@ Pour en savoir plus sur les informations données dans ce livre blanc, consultez
 
 
 
+[[version-history]]
 === Historique des versions
 
 [cols="25 %, 25%, 50%"]

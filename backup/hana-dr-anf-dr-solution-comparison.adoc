@@ -26,6 +26,7 @@ image:saphana-dr-anf_image3.png["Figure montrant la boîte de dialogue entrée/s
 
 
 
+[[sap-hana-system-replication]]
 == Réplication système SAP HANA
 
 La réplication système SAP HANA fonctionne au niveau de la couche base de données. La solution repose sur un système SAP HANA supplémentaire sur le site de reprise d'activité, qui reçoit les modifications du système principal. Ce système secondaire doit être identique au système principal.
@@ -56,6 +57,7 @@ image:saphana-dr-anf_image4.png["Figure montrant la boîte de dialogue entrée/s
 
 
 
+[[sap-hana-system-replication-with-data-preloaded-into-memory]]
 === Réplication système SAP HANA avec données préchargées dans la mémoire
 
 De très faibles valeurs RTO avec SAP HANA ne peuvent être obtenues qu'avec la réplication système SAP HANA avec des données préchargées dans la mémoire. La réplication système SAP HANA avec un serveur secondaire dédié sur le site de reprise d'activité permet d'obtenir une valeur RTO d'environ 1 minute au maximum. Les données répliquées sont reçues et préchargées dans la mémoire du système secondaire. Du fait de ce faible temps de basculement, la réplication système SAP HANA est également souvent utilisée pour les opérations de maintenance sans interruption quasi-nul, telles que les mises à niveau du logiciel HANA.
@@ -64,6 +66,7 @@ Généralement, la réplication système SAP HANA est configurée de façon sync
 
 
 
+[[sap-system-replication-without-data-preloaded-into-memory]]
 === Réplication système SAP sans données préchargées dans la mémoire
 
 Pour les exigences RTO moins strictes, vous pouvez utiliser la réplication système SAP HANA sans données préchargées. Dans ce mode opérationnel, les données de la région de reprise après sinistre ne sont pas chargées en mémoire. Le serveur de la région de reprise après incident est toujours utilisé pour traiter la réplication système SAP HANA exécutant tous les processus SAP HANA requis. Cependant, la majeure partie de la mémoire du serveur est disponible pour exécuter d'autres services, tels que les systèmes de développement/test SAP HANA.
@@ -72,6 +75,7 @@ En cas d'incident, le système de développement/test doit être arrêté, le ba
 
 
 
+[[sap-hana-disaster-recovery-with-anf-cross-region-replication]]
 == Reprise après incident SAP HANA avec la réplication inter-région ANF
 
 La réplication inter-régions ANF est intégrée à ANF comme une solution de reprise après incident grâce à la réplication asynchrone des données. La réplication inter-région ANF est configurée par le biais d'une relation de protection des données entre deux volumes ANF sur une région Azure primaire et secondaire. La réplication inter-région ANF permet de mettre à jour le volume secondaire grâce à des réplications différentielles de bloc efficaces. Des planifications de mise à jour peuvent être définies au cours de la configuration de la réplication.
@@ -90,6 +94,7 @@ image:saphana-dr-anf_image5.png["Figure montrant la boîte de dialogue entrée/s
 
 
 
+[[summary-of-disaster-recovery-solutions]]
 == Récapitulatif des solutions de reprise sur incident
 
 Le tableau suivant compare les solutions de reprise sur incident abordées dans cette section et met en évidence les indicateurs les plus importants.

@@ -33,6 +33,7 @@ image:hana-sc-generic-image-041.png["largeur=601,hauteur=315"] Les sections suiv
 
 
 
+[[sap-hana-backup-user-and-sap-hana-user-store-configuration]]
 == Configuration de l'utilisateur de sauvegarde SAP HANA et du magasin d'utilisateurs SAP HANA
 
 NetApp recommande de configurer un utilisateur dédié dans la base de données HANA pour exécuter les opérations de sauvegarde avec SnapCenter. Dans un second temps, une clé de magasin d'utilisateurs SAP HANA est configurée pour cet utilisateur de sauvegarde, et cette clé est fournie dans la configuration SnapCenter .
@@ -49,6 +50,7 @@ image:hana-sc-generic-image-042.png["largeur=601,hauteur=382"]
 
 
 
+[[sap-hana-user-store-configuration-on-the-hana-database-host]]
 === Configuration du magasin d'utilisateurs SAP HANA sur l'hôte de la base de données HANA
 
 SnapCenter utilise l'utilisateur <sid>adm pour communiquer avec la base de données HANA. Par conséquent, la clé du magasin d'utilisateurs SAP HANA doit être configurée à l'aide de l'utilisateur <sid>adm sur l'hôte de la base de données.
@@ -59,6 +61,7 @@ Pour un système SAP HANA MDC, le port de la base de données du système HANA e
 
 
 
+[[sap-hana-user-store-configuration-examples]]
 === Exemples de configuration du magasin d'utilisateurs SAP HANA
 
 Le résultat affiche la clé SS1KEY qui a été configurée pour le système HANA avec le numéro d'instance = 00.
@@ -102,6 +105,7 @@ sm1adm@hana-2:/usr/sap/SM1/HDB12>
 ....
 
 
+[[storage-replication-configuration]]
 == configuration de réplication du stockage
 
 La configuration de la relation de protection des données, ainsi que le transfert de données initial doivent être exécutés avant que les mises à jour de réplication puissent être gérées par SnapCenter.
@@ -127,6 +131,7 @@ image:hana-sc-generic-image-044.png["largeur=601,hauteur=180"]
 
 
 
+[[anf-backup-configuration]]
 == Configuration de sauvegarde ANF
 
 Pour la sauvegarde ANF, aucune préparation spécifique n'est requise. Dès que la première sauvegarde avec la sauvegarde ANF activée est exécutée, un coffre de sauvegarde Azure nommé snapcenter-vault est créé par SnapCenter. Ce coffre-fort de sauvegarde est ensuite utilisé par toutes les opérations de sauvegarde ANF suivantes exécutées par SnapCenter.
@@ -135,6 +140,7 @@ image:hana-sc-generic-image-045.png["largeur=601,hauteur=227"]
 
 
 
+[[deployment-of-snapcenter-plug-in-for-sap-hana]]
 == Déploiement du plug-in SnapCenter pour SAP HANA
 
 Les exigences relatives à l'hébergement sont indiquées à l'adresse suivante : https://docs.netapp.com/us-en/snapcenter/protect-hana/reference_host_requirements_to_install_snapcenter_plug_in_package_for_linux.html["Configuration requise pour l'installation du package de plug-ins SnapCenter pour Linux"].
@@ -152,6 +158,7 @@ image:hana-sc-generic-image-047.png["largeur=601,hauteur=154"]
 
 
 
+[[hana-auto-discovery]]
 == Découverte automatique HANA
 
 Une fois le déploiement du plug-in HANA terminé, le processus de découverte automatique démarre. Dans un premier temps, seuls les paramètres de base sont détectés et SnapCenter crée une nouvelle ressource qui apparaît dans la section Ressources de l'interface utilisateur, marquée d'un cadenas rouge.
@@ -171,6 +178,7 @@ image:hana-sc-generic-image-050.png["largeur=601,hauteur=219"]
 
 
 
+[[resource-protection-configuration]]
 == Configuration de la protection des ressources
 
 L'écran de configuration de la protection des ressources s'ouvre en cliquant sur une ressource une fois le processus de découverte automatique terminé. Les captures d'écran de cette documentation illustrent la configuration de protection d'une ressource existante.

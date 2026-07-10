@@ -45,10 +45,12 @@ Les chapitres suivants décrivent les étapes de configuration initiale.
 
 
 
+[[credentials-configuration]]
 == Configuration des identifiants
 
 
 
+[[credentials-for-hana-plug-in-deployment]]
 === Identifiants pour le déploiement du plug-in HANA
 
 Les identifiants sont configurés dans la section Paramètres, en sélectionnant l'onglet Identifiants. Vous pouvez ajouter des identifiants en cliquant sur l'icône +.
@@ -61,6 +63,7 @@ image:hana-sc-generic-image-019.png["largeur=287,hauteur=247"]
 
 
 
+[[credentials-for-azure-netapp-files]]
 === Informations d'identification pour Azure NetApp Files
 
 Un principal de service Azure doit être préparé, ce qui permet à SnapCenter d'exécuter les opérations requises pour les volumes ANF. L'exemple ci-dessous illustre les autorisations minimales requises, qui doivent être incluses.
@@ -155,10 +158,12 @@ image:hana-sc-generic-image-021.png["largeur=252,hauteur=246"]
 
 
 
+[[storage-system-configuration]]
 == Configuration du système de stockage
 
 
 
+[[ontap-systems-and-fsx-for-ontap]]
 === Systèmes ONTAP et FSx pour ONTAP
 
 Le système ONTAP ou FSx pour ONTAP peut être ajouté à SnapCenter soit en fournissant les informations d'identification du cluster, soit les informations d'identification de chaque SVM requis. Lorsque les informations d'identification du cluster sont fournies, toutes les SVM du cluster sont ajoutées à SnapCenter.
@@ -188,6 +193,7 @@ image:hana-sc-generic-image-024.png["largeur=331,hauteur=199"]
 
 
 
+[[azure-netapp-files]]
 === Azure NetApp Files
 
 Une fois les informations d'identification ANF configurées, le ou les comptes NetApp ANF peuvent être ajoutés à SnapCenter. Les comptes NetApp sont configurés dans la section Systèmes de stockage, en sélectionnant l'onglet Azure NetApp Files . Un nouveau compte NetApp est ajouté en cliquant sur l'icône +.
@@ -200,12 +206,14 @@ image:hana-sc-generic-image-026.png["largeur=401,hauteur=176"]
 
 
 
+[[storage-configuration-when-using-snapmirror-active-sync]]
 === Configuration du stockage lors de l'utilisation de SnapMirror ActiveSync
 
 Les étapes spécifiques de configuration du stockage sont décrites à l'adresse suivante : https://docs.netapp.com/us-en/netapp-solutions-sap/backup/hana-sc-vmware-smas-sc-config.html#add-storage-systems["Configuration du stockage avec synchronisation active SnapMirror"].
 
 
 
+[[policies-configuration]]
 == Configuration des règles
 
 Comme indiqué dans la section relative aux stratégies de protection des données, celles-ci sont généralement configurées indépendamment de la ressource et peuvent être utilisées pour plusieurs systèmes SAP HANA.
@@ -232,6 +240,7 @@ image:hana-sc-generic-image-028.png["largeur=601,hauteur=138"]
 
 
 
+[[snapshot-backups-with-ontap-systems-and-fsx-for-ontap]]
 === Sauvegardes par instantané avec les systèmes ONTAP et FSx pour ONTAP
 
 Les politiques de sauvegarde par instantané pour le système ONTAP ou FSx pour ONTAP peuvent combiner un instantané local avec des opérations de réplication ou de verrouillage d'instantané (instantané inviolable). Cet exemple illustre une politique de réplication vers un stockage secondaire utilisant SnapVault.
@@ -263,6 +272,7 @@ image:hana-sc-generic-image-032.png["largeur=385,hauteur=119"]
 
 
 
+[[snapshot-backups-with-azure-netapp-files]]
 === Sauvegardes instantanées avec Azure NetApp Files
 
 Les stratégies de sauvegarde d'instantanés pour Azure NetApp Files peuvent combiner un instantané local avec une sauvegarde ANF, qui réplique les données de l'instantané vers un blob Azure. Cet exemple illustre une politique utilisée pour la réplication avec sauvegarde ANF.
@@ -292,6 +302,7 @@ image:hana-sc-generic-image-036.png["largeur=376,hauteur=138"]
 
 
 
+[[block-integrity-check-operations-for-all-platforms]]
 === Opérations de contrôle d'intégrité des blocs pour toutes les plateformes
 
 
@@ -328,6 +339,7 @@ image:hana-sc-generic-image-040.png["largeur=366,hauteur=101"]
 
 
 
+[[policy-configuration-when-using-snapmirror-active-sync]]
 === Configuration des stratégies lors de l'utilisation de la synchronisation active SnapMirror
 
 Les étapes spécifiques de configuration des politiques sont décrites dans le document. https://docs.netapp.com/us-en/netapp-solutions-sap/backup/hana-sc-vmware-smas-sc-config.html#policy-configuration["Configuration de la stratégie SnapMirror synchronisation active"].

@@ -18,6 +18,7 @@ Ce document est axé sur l'intégration des systèmes de stockage NetApp®, qu'i
 
 
 
+[[solution-overview]]
 == Présentation de la solution
 
 Les systèmes SAP sont très complexes. Cependant, pour les entreprises qui utilisent SAP, ces systèmes sont essentiels à leurs processus métier. En automatisant les tâches opérationnelles quotidiennes récurrentes, les administrateurs système SAP peuvent gérer davantage de systèmes avec moins d'efforts, produire des résultats reproductibles et réduire les erreurs humaines.
@@ -26,12 +27,14 @@ Ce document est axé sur l'intégration des systèmes de stockage NetApp®, qu'i
 
 
 
+[[target-audience]]
 === Public visé
 
 Ce document s'adresse aux administrateurs système SAP qui n'ont pas eu beaucoup (ou pas) d'expérience dans le domaine de l'automatisation Ansible. Il doit vous aider à utiliser Ansible, à exécuter vos premiers playbooks et à configurer et exécuter votre première opération d'actualisation du système basée sur SAP Lama.
 
 
 
+[[sap-system-clone-copy-and-refresh-scenarios]]
 === Scénarios de clonage, de copie et d'actualisation de systèmes SAP
 
 Le terme copie système SAP est souvent utilisé comme synonyme de trois processus différents : clone du système SAP, copie du système SAP et actualisation du système SAP. Il est important de faire la distinction entre les différentes opérations, car les flux de travail et les cas d'utilisation diffèrent.
@@ -47,6 +50,7 @@ image:sap-lama-image1.png["Image présentant les étapes du workflow Lama de clo
 
 
 
+[[solution-technology]]
 === Technologie de la solution
 
 La solution globale comprend les principaux composants suivants :
@@ -72,6 +76,7 @@ image:sap-lama-image2.png["Image montrant comment les systèmes de stockage SAP 
 
 
 
+[[use-case-summary]]
 === Récapitulatif du cas d'utilisation
 
 Il existe plusieurs scénarios dans lesquels les données d'un système source doivent être mises à la disposition d'un système cible à des fins de test ou de formation. Ces systèmes de test et de formation doivent être régulièrement mis à jour avec les données du système source pour s'assurer que les tests et l'entraînement sont réalisés avec le dataset actuel. Ces opérations d'actualisation du système consistent en plusieurs tâches au niveau de l'infrastructure, de la base de données et des applications. Elles peuvent prendre plusieurs jours, selon le niveau d'automatisation.
@@ -84,6 +89,7 @@ image:sap-lama-image3.png["Image illustrant les éventuelles améliorations en t
 
 
 
+[[integrating-the-different-technology-components]]
 === L'intégration des différents composants technologiques
 
 Pour intégrer SAP Lama avec les systèmes de stockage NetApp à l'aide d'Ansible, vous devez disposer d'un nœud sur lequel vous pouvez exécuter les playbooks Ansible. Nous vous recommandons d'utiliser Ansible Automation Platform. Pour exécuter des scripts shell et des playbooks Ansible sur cet hôte, provenant de SAP Lama, vous devez exécuter SAP Host Agent sur ce serveur. SAP Host Agent prend le contrôle de la communication bidirectionnelle avec SAP Lama et exécute des scripts shell qui déclencheront les playbooks réels.
@@ -92,6 +98,7 @@ Cette architecture à couplage lâche vous donne la liberté de démarrer des wo
 
 
 
+[[conclusion]]
 == Conclusion
 
 L'association de NetApp, SAP Lama et Ansible Automation Platform offre une solution puissante qui réduit considérablement le temps et les efforts nécessaires aux tâches les plus complexes et les plus chronophages liés à l'administration du système SAP. Cette combinaison peut également aider à éviter la dérive de configuration que l'erreur humaine peut causer entre les systèmes.
@@ -100,6 +107,7 @@ Les mises à jour du système, les copies, les clones et les tests de reprise d'
 
 
 
+[[where-to-find-additional-information]]
 == Où trouver des informations complémentaires
 
 Pour en savoir plus sur les informations données dans ce livre blanc, consultez ces documents et sites web :
@@ -112,6 +120,7 @@ Pour en savoir plus sur les informations données dans ce livre blanc, consultez
 
 
 
+[[version-history]]
 == Historique des versions
 
 [cols="25,25,50"]

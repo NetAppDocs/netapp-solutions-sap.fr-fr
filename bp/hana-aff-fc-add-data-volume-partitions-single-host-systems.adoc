@@ -26,6 +26,7 @@ L'ajout de partitions de volume de données supplémentaires peut être effectu�
 
 
 
+[[enabling-additional-data-volume-partitions]]
 == Activation de partitions de volume de données supplémentaires
 
 Pour activer d'autres partitions de volume de données, procédez comme suit :
@@ -41,6 +42,7 @@ persistence_datavolume_partition_multipath = true
 
 
 
+[[volume-and-lun-configuration]]
 == Configuration de volumes et de LUN
 
 L'organisation des volumes et des LUN est similaire à celle d'un hôte unique avec une partition du volume de données, mais avec un volume de données et une LUN supplémentaires stockés sur un autre agrégat en tant que volume du journal et l'autre volume de données. Le tableau suivant présente un exemple de configuration de systèmes SAP HANA à un seul hôte avec deux partitions de volume de données.
@@ -72,6 +74,7 @@ Créez les nouvelles LUN de données avec ONTAP System Manager ou l'interface de
 
 
 
+[[host-configuration]]
 == Configuration de l'hôte
 
 Pour configurer un hôte, procédez comme suit :
@@ -106,6 +109,7 @@ stlrx300s8-6:/ # chmod –R 777 /hana/data2/FC5
 
 
 
+[[adding-an-additional-datavolume-partition]]
 == Ajout d'une partition de volume de données supplémentaire
 
 Pour ajouter une partition de volume de données supplémentaire à votre base de données de tenant, exécutez l'instruction SQL suivante sur la base de données de tenant. Chaque LUN supplémentaire peut avoir un chemin différent :

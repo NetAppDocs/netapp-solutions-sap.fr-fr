@@ -18,6 +18,7 @@ L'intégration d'un framework d'automatisation moderne tel qu'Ansible dans les w
 
 
 
+[[where-to-find-additional-information]]
 == Où trouver des informations complémentaires
 
 Pour en savoir plus sur les informations données dans ce livre blanc, consultez ces documents et/ou sites web :
@@ -70,6 +71,7 @@ https://www.netapp.com/support-and-training/documentation/["https://www.netapp.c
 
 
 
+[[version-history]]
 == Historique des versions
 
 |===

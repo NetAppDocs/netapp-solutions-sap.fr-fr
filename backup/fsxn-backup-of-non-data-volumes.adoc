@@ -24,6 +24,7 @@ La sauvegarde de volumes sans données SnapCenter permet de créer en quelques s
 
 
 
+[[configure-non-data-volume-resources]]
 === Configurez les ressources sans volume de données
 
 La procédure suivante permet de configurer des ressources sans volume de données :

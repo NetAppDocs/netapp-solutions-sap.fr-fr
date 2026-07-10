@@ -22,6 +22,7 @@ image:amazon-fsx-image8.png["Figure montrant la boîte de dialogue entrée/sorti
 
 
 
+[[overview-of-configuration-steps]]
 === Présentation des étapes de configuration
 
 Il existe plusieurs étapes de configuration que vous devez exécuter sur la couche FSX pour ONTAP. Vous pouvez effectuer cette opération soit avec NetApp Cloud Manager, soit avec la ligne de commande FSX pour ONTAP.

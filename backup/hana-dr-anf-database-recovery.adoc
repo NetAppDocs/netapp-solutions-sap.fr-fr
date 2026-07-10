@@ -35,6 +35,7 @@ Les sous-sections suivantes décrivent le processus de restauration avec et sans
 
 
 
+[[recovery-to-latest-hana-data-volume-backup-savepoint]]
 == Restauration vers le point de sauvegarde du volume de données HANA le plus récent
 
 La restauration vers le point de sauvegarde le plus récent est exécutée avec les commandes suivantes en tant qu'utilisateur pr1adm :
@@ -57,6 +58,7 @@ Le résultat de la commande suivante affiche l'exécution de la restauration.
 
 
 
+[[system-database-recovery]]
 === Restauration des bases de données du système
 
 ....
@@ -87,6 +89,7 @@ pr1adm@vm-pr1:/usr/sap/PR1/HDB01>
 ....
 
 
+[[tenant-database-recovery]]
 === Restauration des bases de données des locataires
 
 Si aucune clé de magasin utilisateur n'a été créée pour l'utilisateur pr1adm sur le système source, une clé doit être créée sur le système cible. L'utilisateur de base de données configuré dans la clé doit disposer des privilèges nécessaires pour exécuter les opérations de récupération du locataire.
@@ -109,6 +112,7 @@ La base de données HANA est à présent opérationnelle, et le workflow de repr
 
 
 
+[[recovery-with-forward-recovery-using-logcatalog-backups]]
 == Restauration par transfert à l'aide des sauvegardes de journaux/catalogues
 
 Les sauvegardes du journal et le catalogue de sauvegardes HANA sont répliquées à partir du système source.
@@ -136,6 +140,7 @@ Le résultat de la commande suivante affiche l'exécution de la restauration.
 
 
 
+[[system-database-recovery]]
 === Restauration des bases de données du système
 
 ....
@@ -165,6 +170,7 @@ recoverSys finished successfully: 2021-02-19 16:07:20
 ....
 
 
+[[tenant-database-recovery]]
 === Restauration des bases de données des locataires
 
 ....
@@ -182,6 +188,7 @@ La base de données HANA est à présent opérationnelle, et le workflow de repr
 
 
 
+[[check-consistency-of-latest-log-backups]]
 == Vérifier la cohérence des dernières sauvegardes des journaux
 
 La réplication du volume de sauvegarde des journaux étant effectuée indépendamment du processus de sauvegarde des journaux exécuté par la base de données SAP HANA, il peut y avoir des fichiers de sauvegarde des journaux ouverts et incohérents sur le site de reprise d'activité. Seuls les fichiers de sauvegarde des journaux les plus récents peuvent être incohérents, et ces fichiers doivent être vérifiés avant qu'une restauration par transfert ne soit effectuée sur le site de reprise d'activité à l'aide de l' `hdbbackupcheck` outil.

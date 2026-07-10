@@ -38,6 +38,7 @@ image:saphana-fas-nfs_image5a.png["Paire haute disponibilité supplémentaire aj
 
 
 
+[[sap-hana-backup]]
 == Sauvegarde SAP HANA
 
 Le logiciel ONTAP présent sur tous les contrôleurs de stockage NetApp offre un mécanisme intégré pour sauvegarder les bases de données SAP HANA sans nuire aux performances. Les sauvegardes Snapshot NetApp basées sur le stockage sont une solution de sauvegarde entièrement prise en charge et intégrée disponible pour les conteneurs uniques SAP HANA et pour les systèmes MDC (conteneur de base de données mutualisée SAP HANA) avec un ou plusieurs locataires.
@@ -62,6 +63,7 @@ Pour plus d'informations sur la solution de sauvegarde et de restauration SAP HA
 
 
 
+[[sap-hana-disaster-recovery]]
 == Reprise d'activité SAP HANA
 
 La reprise d'activité de SAP HANA peut être effectuée soit sur la couche de base de données à l'aide de la réplication du système SAP HANA, soit sur la couche de stockage grâce aux technologies de réplication du stockage. La section suivante présente les solutions de reprise sur incident basées sur la réplication du stockage.
@@ -70,6 +72,7 @@ Pour plus d'informations sur les solutions de reprise d'activité SAP HANA, repo
 
 
 
+[[storage-replication-based-on-snapmirror]]
 === Réplication du stockage basée sur SnapMirror
 
 La figure suivante présente une solution de reprise sur incident sur trois sites qui utilise la réplication SnapMirror synchrone vers le data Center local de reprise après incident et SnapMirror asynchrone pour répliquer les données vers le data Center distant de reprise après incident.
@@ -90,6 +93,7 @@ La réplication synchrone offre le mode StrictSync. Si l'écriture sur le stocka
 
 
 
+[[storage-replication-based-on-metrocluster]]
 === Réplication du stockage basée sur MetroCluster
 
 La figure suivante présente une vue d'ensemble générale de la solution. Le cluster de stockage de chaque site assure une haute disponibilité locale et est utilisé pour la charge de travail de production. Les données de chaque site sont répliquées de manière synchrone sur l'autre emplacement et sont disponibles en cas de basculement.

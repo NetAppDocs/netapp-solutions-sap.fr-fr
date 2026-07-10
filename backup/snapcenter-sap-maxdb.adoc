@@ -18,6 +18,7 @@ Ce document décrit les spécificités d'intégration SnapCenter pour la base de
 
 
 
+[[introduction]]
 == Introduction
 
 Ce document ne doit pas être une description détaillée de la configuration de l'environnement complet, mais il couvre les concepts et les détails pertinents relatifs aux éléments suivants :
@@ -30,6 +31,7 @@ Ce document ne doit pas être une description détaillée de la configuration de
 
 
 
+[[example-configuration-overview]]
 == Exemple de présentation de la configuration
 
 Exemple d'implémentation pour le plug-in MaxDB SnapCenter pour un système SAP s'exécutant dans notre centre de démonstration.
@@ -41,12 +43,14 @@ Vous pouvez également utiliser la structure de volume décrite à la sectionlin
 
 
 
+[[demo-environment]]
 == Environnement de démonstration
 
 image:sc-sap-maxdb-image01.png["Figure illustrant l'environnement de démonstration utilisé"]
 
 
 
+[[software-versions]]
 == Versions logicielles
 
 [cols="50%, 50%"]
@@ -67,6 +71,7 @@ image:sc-sap-maxdb-image01.png["Figure illustrant l'environnement de démonstrat
 |===
 
 
+[[maxdb-volume-design]]
 == Conception de volume maxdb
 
 La mise en page du volume minimal suivante doit être utilisée pour activer la sauvegarde/restauration et les utilisations de clonage pour la base de données SAP MaxDB. L'exemple de configuration utilise <SID>: M02.
@@ -107,6 +112,7 @@ La mise en page du volume minimal suivante doit être utilisée pour activer la 
 |===
 
 
+[[steps-to-protect-database-m02]]
 == Procédure de protection de la base de données M02
 
 * Vérifiez la distribution du fichier, en fonction de la disposition de l'échantillon
@@ -118,6 +124,7 @@ La mise en page du volume minimal suivante doit être utilisée pour activer la 
 
 
 
+[[prerequisites-on-host]]
 == Conditions préalables sur l'hôte
 
 Des informations plus récentes peuvent être disponibles link:https://docs.netapp.com/us-en/snapcenter/protect-scu/reference_prerequisites_for_adding_hosts_and_installing_snapcenter_plug_ins_package_for_linux.html["ici"].
@@ -136,6 +143,7 @@ Avant d'ajouter un hôte et d'installer le package de plug-ins pour Linux, vous 
 
 
 
+[[prerequisites-for-the-database-create-backup-templates-enable-logbackup]]
 == Conditions requises pour la base de données – Créer des modèles de sauvegarde, Activer la sauvegarde de journal
 
 * Créer des répertoires pour les sauvegardes de données et de journaux (/sapdb/M02/backup/data, /sapdb/M02/backup/log – owner sdb:sdba – permissions 755)
@@ -177,6 +185,7 @@ Avant d'ajouter un hôte et d'installer le package de plug-ins pour Linux, vous 
 
 
 
+[[deploy-snapcenter-agent-to-host-sap-lnx25]]
 == Déployez l'agent SnapCenter pour héberger sap-lnx25
 
 Pour plus d'informations, consultez le link:https://docs.netapp.com/us-en/snapcenter/protect-scu/task_add_hosts_and_install_the_snapcenter_plug_ins_package_for_linux.html["Documentation SnapCenter"].
@@ -187,6 +196,7 @@ image:sc-sap-maxdb-image02.png["Capture d'écran de l'interface utilisateur Add 
 
 
 
+[[create-snapcenter-resource-configuration-for-database-m02]]
 == Créer la configuration de ressources SnapCenter pour la base de données M02
 
 Ressources -> SAP MaxDB -> Ajouter des ressources
@@ -246,6 +256,7 @@ image:sc-sap-maxdb-image13.png["Capture d'écran de l'interface utilisateur Ajou
 
 
 
+[[sequence-to-recover-system-m02]]
 == Séquence de récupération du système M02
 
 . Arrêtez le système SAP M02 (y compris la base de données), arrêtez sapinit
@@ -262,6 +273,7 @@ image:sc-sap-maxdb-image13.png["Capture d'écran de l'interface utilisateur Ajou
 
 
 
+[[recover-instance-m02]]
 == Récupérer l'instance M02
 
 * Arrêtez SAP System + DB M02 sur l'hôte SAP-lnx25
@@ -371,10 +383,12 @@ NOTE: Pour plus d'informations sur la récupération, reportez-vous au link:http
 
 
 
+[[additional-information-and-version-history]]
 == Informations supplémentaires et historique des versions
 
 
 
+[[recorded-demos]]
 === Démonstrations enregistrées
 
 Les démonstrations recodées suivantes sont disponibles pour prendre en charge la documentation.
@@ -385,6 +399,7 @@ video::4b9ca452-d282-44c1-82ab-b2e501188b0f[panopto,width=360]
 video::ecd66443-637f-4e67-90a0-b2e501188acf[panopto,width=360]
 
 
+[[external-documentation]]
 === Documentation externe
 
 Pour en savoir plus sur les informations données dans ce livre blanc, consultez ces documents et/ou sites web :
@@ -408,6 +423,7 @@ Pour en savoir plus sur les informations données dans ce livre blanc, consultez
 
 
 
+[[version-history]]
 === Historique des versions
 
 [cols="25%, 25%, 50%"]

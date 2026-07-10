@@ -20,6 +20,7 @@ Après avoir configuré la VM avec des interfaces réseau SR-IOV ou des ports FC
 
 
 
+[[configure-nfs-storage-for-sap-hana]]
 == Configurer le stockage NFS pour SAP HANA
 
 Utilisez les interfaces réseau SR-IOV créées précédemment si le protocole NFS doit être utilisé pour le stockage SAP HANA.
@@ -36,6 +37,7 @@ Principaux points à prendre en compte pour la configuration des environnements 
 
 
 
+[[configure-fcp-storage-for-sap-hana]]
 == Configurer le stockage FCP pour SAP HANA
 
 Utilisez les ports HBA physiques attribués à la VM comme périphériques PCI si le protocole FCP doit être utilisé pour le stockage SAP HANA.

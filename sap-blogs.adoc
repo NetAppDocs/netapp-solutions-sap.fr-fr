@@ -18,18 +18,22 @@ Présentation des blogs portant sur SAP sur NetApp.
 
 
 
+[[sap-solution-blogs]]
 == Blogs sur les solutions SAP
 
 
 
+[[sap-configuration-best-practices-blogs]]
 == Blogs sur les meilleures pratiques en matière de configuration SAP
 
 
 
+[[sap-backup-restore-and-disaster-recovery-blogs]]
 === Blogs sur la sauvegarde, la restauration et la reprise après incident SAP
 
 
 
+[[sap-lifecycle-management-blogs]]
 == Blogs sur la gestion du cycle de vie SAP
 
 * link:https://blogs.sap.com/2021/10/27/whitepaper-sap-landscape-management-with-netapp/["Gestion de l'environnement SAP avec NetApp"]

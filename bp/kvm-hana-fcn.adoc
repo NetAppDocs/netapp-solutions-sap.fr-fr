@@ -57,6 +57,7 @@ Les ports physiques sont transmis à la machine virtuelle, aucune préparation s
 
 
 
+[[whats-next]]
 == Quelle est la prochaine étape ?
 
 Une fois le réseau Fibre Channel configuré,link:kvm-hana-storage.html["Configurer le stockage NetApp pour SAP HANA"] .

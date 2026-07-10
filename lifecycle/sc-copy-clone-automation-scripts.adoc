@@ -26,6 +26,7 @@ NOTE: Les scripts exemple sont fournis en l'état et ne sont pas pris en charge 
 
 
 
+[[script-sc-system-refresh-sh]]
 == Script sc-system-refresh.sh
 
 L'exemple de script `sc-system-refresh.sh` est utilisé pour exécuter des opérations de récupération et d'arrêt. Le script est appelé avec des options de ligne de commande spécifiques dans les workflows SnapCenter clone create and clone delete, comme indiqué dans la figure ci-dessous.
@@ -41,6 +42,7 @@ image:sc-copy-clone-image14.png["Figure montrant la boîte de dialogue entrée/s
 
 
 
+[[supported-tenant-recovery-operations]]
 === Prise en charge des opérations de restauration par locataire
 
 Comme décrit dans la section « workflows d'actualisation des systèmes SAP HANA à l'aide d'une Snapshot de stockage », les opérations de restauration possibles des locataires sur le système cible dépendent de la configuration des locataires du système source. Le script `sc-system-refresh.sh` prend en charge toutes les opérations de restauration des locataires, qui peuvent dépendre de la configuration du système source, comme indiqué dans le tableau ci-dessous.
@@ -62,6 +64,7 @@ Si un autre nom de locataire est requis sur le système cible, le locataire doit
 |===
 
 
+[[script-sc-mount-volume-sh]]
 == Script sc-mount-volume.sh
 
 L'exemple de script `sc-mount-volume.sh` est utilisé pour exécuter mount et unmount pour n'importe quel volume. Le script permet de monter le volume partagé SAP HANA avec l'opération de clonage du système SAP HANA. Le script est appelé avec des options de ligne de commande spécifiques dans les workflows SnapCenter clone create and clone delete, comme indiqué dans la figure ci-dessous.
@@ -73,6 +76,7 @@ image:sc-copy-clone-image15.png["Figure montrant la boîte de dialogue entrée/s
 
 
 
+[[snapcenter-environment-variables]]
 === Les variables d'environnement SnapCenter
 
 SnapCenter fournit un ensemble de variables d'environnement disponibles dans le script exécuté sur l'hôte cible. Le script utilise ces variables pour déterminer les paramètres de configuration appropriés.
@@ -85,6 +89,7 @@ SnapCenter fournit un ensemble de variables d'environnement disponibles dans le 
 
 
 
+[[script-to-get-snapcenter-environment-variables]]
 == Script pour obtenir les variables d'environnement SnapCenter
 
 Si les scripts d'automatisation ne doivent pas être utilisés et que la procédure doit être exécutée manuellement, vous devez connaître le chemin de jonction du système de stockage du volume FlexClone. La Junction path n'est pas visible dans SnapCenter. Vous devez soit rechercher le Junction path directement sur le système de stockage, soit utiliser un script simple qui fournit les variables d'environnement SnapCenter sur l'hôte cible. Ce script doit être ajouté en tant que script d'opération de montage dans l'opération de création du clone SnapCenter.

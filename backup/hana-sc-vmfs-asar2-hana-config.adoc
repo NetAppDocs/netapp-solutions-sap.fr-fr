@@ -15,6 +15,7 @@ summary:
 
 
 
+[[configure-snapcenter-database-user]]
 == Configurer l'utilisateur de la base de données SnapCenter
 
 Un magasin d'utilisateurs pour un utilisateur de base de données système doit être créé, qui doit être utilisé par SnapCenter.
@@ -23,6 +24,7 @@ image:sc-hana-asrr2-vmfs-image8.png["Figure illustrant le contenu discuté"]
 
 
 
+[[configure-hdb-userstore-key]]
 == Configurer la clé du magasin d'utilisateurs hdb
 
 Une clé de stockage utilisateur doit être créée pour l'utilisateur vfsadm. Le numéro d'instance HANA doit être défini en conséquence pour la communication via le port. Dans notre installation, le numéro d'instance « 45 » est utilisé.

@@ -22,6 +22,7 @@ La préparation de l'hôte cible comprend également l'arrêt du système d'assu
 
 
 
+[[target-server-host-name-and-ip-address]]
 == Nom d'hôte et adresse IP du serveur cible
 
 Le nom d'hôte du serveur cible doit être identique au nom d'hôte du système source. L'adresse IP peut être différente.
@@ -31,6 +32,7 @@ NOTE: Une clôture correcte du serveur cible doit être établie de sorte qu'il 
 
 
 
+[[install-required-software]]
 == Installez le logiciel requis
 
 Le logiciel de l'agent hôte SAP doit être installé sur le serveur cible. Pour plus d'informations, reportez-vous à la section https://help.sap.com/viewer/9f03f1852ce94582af41bb49e0a667a7/103/en-US["Agent hôte SAP"^] Sur le portail d'aide SAP.
@@ -40,6 +42,7 @@ NOTE: Si l'hôte est utilisé comme système d'assurance qualité ou de test HAN
 
 
 
+[[configure-users-ports-and-sap-services]]
 == Configuration des utilisateurs, des ports et des services SAP
 
 Les utilisateurs et groupes requis pour la base de données SAP HANA doivent être disponibles sur le serveur cible. En général, la gestion centralisée des utilisateurs est utilisée ; aucune étape de configuration n'est donc nécessaire sur le serveur cible. Les ports requis pour la base de données HANA doivent être configurés sur les hôtes cibles. La configuration peut être copiée à partir du système source en copiant `/etc/services` vers le serveur cible.
@@ -54,6 +57,7 @@ limit.descriptors=1048576
 ....
 
 
+[[prepare-hana-log-volume]]
 == Préparez le volume du journal HANA
 
 Comme le volume de journal HANA ne fait pas partie de la réplication, un volume de journal vide doit exister sur l'hôte cible. Le volume de journalisation doit inclure les mêmes sous-répertoires que le système HANA source.
@@ -70,6 +74,7 @@ vm-pr1:~ #
 ....
 
 
+[[prepare-log-backup-volume]]
 == Préparez le volume de sauvegarde des journaux
 
 Comme le système source est configuré avec un volume distinct pour les sauvegardes de journaux HANA, un volume de sauvegarde de journal doit également être disponible au niveau de l'hôte cible. Un volume pour les sauvegardes des journaux doit être configuré et monté sur l'hôte cible.
@@ -78,6 +83,7 @@ Si la réplication du volume de sauvegarde des journaux fait partie de la config
 
 
 
+[[prepare-file-system-mounts]]
 == Préparer les montages du système de fichiers
 
 Le tableau suivant présente les conventions de nommage utilisées dans la configuration du laboratoire. Les noms des volumes du site de reprise d'activité sont inclus dans la `/etc/fstab`.

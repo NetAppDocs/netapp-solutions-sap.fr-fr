@@ -10,6 +10,7 @@ summary: 'À partir de SAP HANA 1.0 SPS10, SAP a introduit des paramètres perme
 
 
 
+[[io-stack-configuration-for-sap-hana]]
 == Configuration de la pile d'E/S pour SAP HANA
 
 À partir de SAP HANA 1.0 SPS10, SAP a introduit des paramètres permettant d'ajuster le comportement des E/S et d'optimiser la base de données pour le système de fichiers et de stockage utilisé.

@@ -21,6 +21,7 @@ NOTE: Les scripts exemple sont fournis en l'état et ne sont pas pris en charge 
 
 
 
+[[provider-configuration-file-netappclone-conf]]
 == Fichier de configuration du fournisseur netapp_clone.conf
 
 Le fichier de configuration est créé comme décrit dans https://help.sap.com/doc/700f9a7e52c7497cad37f7c46023b7ff/3.0.11.0/en-US/250dfc5eef4047a38bab466c295d3a49.html["Documentation SAP Lama - Configuration des scripts enregistrés SAP Host Agent"^]. Ce fichier de configuration doit se trouver sur le nœud de contrôle Ansible où l'agent hôte SAP est installé.
@@ -40,12 +41,14 @@ Platform: Unix
 ....
 
 
+[[provider-script-netappclone-sh]]
 == Script de fournisseur netapp_clone.sh
 
 Le script du fournisseur doit être stocké dans `/usr/sap/scripts` tel qu'il est configuré dans le fichier de configuration du fournisseur.
 
 
 
+[[variables]]
 === Variables
 
 Les variables suivantes sont codées en dur dans le script et doivent être adaptées en conséquence.
@@ -61,18 +64,21 @@ NOTE: Si plusieurs clusters ou SVM sont requis pour différents systèmes SAP, c
 
 
 
+[[function-create-inventory-file]]
 === Fonction : créer un fichier d'inventaire
 
 Pour rendre l'exécution de PlayBook Ansible plus dynamique, un `inventory. yml` le fichier est créé à la volée. Certaines valeurs statiques sont configurées dans la section variable et certaines sont créées dynamiquement pendant l'exécution.
 
 
 
+[[function-run-ansible-playbook]]
 === Fonction : exécutez un PlayBook Ansible
 
 Cette fonction permet d'exécuter le PlayBook Ansible ainsi que la création dynamique `inventory.yml` fichier. la convention de nommage des playbooks est `netapp_lama_${HookOperationName}.yml`. Les valeurs de `${HookOperationName}` Dépend de l'opération Lama et est transmise par Lama en tant que paramètre de ligne de commande.
 
 
 
+[[section-main]]
 === Section principale
 
 Cette section contient le plan d'exécution principal. La variable `${HookOperationName}` Contient le nom de l'action de remplacement Lama et est fourni par Lama lorsque le script est appelé.
@@ -97,6 +103,7 @@ Cette section contient le plan d'exécution principal. La variable `${HookOperat
 
 
 
+[[hookoperationname-clonevolumes]]
 === HookOperationName = Clonevolumes
 
 Avec cette étape, le PlayBook Ansible déclenche l'opération de copie Snapshot et de clonage. Les noms de volumes et la configuration de montage sont transmis par SAP Lama via un fichier XML défini dans la variable `$MOUNT_XML_PATH`. Ce fichier est enregistré car il est utilisé ultérieurement dans l'étape `FinalizeCloneVolumes` pour créer la nouvelle configuration de point de montage. Les noms de volumes sont extraits du fichier XML et le PlayBook de clonage Ansible est exécuté pour chaque volume.
@@ -106,6 +113,7 @@ NOTE: Dans cet exemple, l'instance EN TANT qu'instance et les services centraux 
 
 
 
+[[hookoperationname-postclonevolumes]]
 === HookOperationName = PostClonevolumes
 
 Au cours de cette étape, les propriétés personnalisées `ClonePostFix` et `SnapPostFix` et la configuration du point de montage du système cible est maintenue.
@@ -128,6 +136,7 @@ NOTE: Dans cet exemple, les qtrees sur le système de stockage sont utilisés co
 
 
 
+[[hookoperationname-serviceconfigremoval]]
 === HookOperationName = ServiceConfigRemovation
 
 Dans cette étape, le PlayBook Ansible responsable de la suppression des clones de volumes s'exécute.
@@ -141,6 +150,7 @@ NOTE: Dans cet exemple, l'instance EN TANT qu'instance et les services centraux 
 
 
 
+[[hookoperationname-clearmountconfig]]
 === HookOperationName = ClearMountConfig
 
 Dans cette étape, le PlayBook Ansible responsable de la suppression des clones de volumes lors d'un workflow de mise à jour du système est en cours d'exécution.
@@ -373,6 +383,7 @@ exit 0
 ....
 
 
+[[ansible-playbook-netapplamaclonevolumes-yml]]
 == PlayBook NetApp_lama_Clonevolumes.yml
 
 Le PlayBook qui s'exécute lors de l'étape Clonevolumes du workflow de clonage du système Lama est une combinaison de `create_snapshot.yml` et `create_clone.yml` (voir https://github.com/sap-linuxlab/demo.netapp_ontap/blob/main/netapp_ontap.md["Modules NetApp Ansible - fichiers YAML"^]). Ce manuel peut être facilement étendu pour couvrir d'autres cas d'utilisation, comme le clonage à partir des opérations de fractionnement de clones et secondaires.
@@ -416,6 +427,7 @@ root@sap-jump:~# cat /usr/sap/scripts/ansible/netapp_lama_CloneVolumes.yml
 ....
 
 
+[[ansible-playbook-netapplamaserviceconfigremoval-yml]]
 == PlayBook NetApp_lama_ServiceConfigRemoval.yml
 
 Manuel de vente exécuté pendant le `ServiceConfigRemoval` La phase du workflow de destruction du système Lama est combinée à `delete_clone.yml` et `delete_snapshot.yml` (voir https://github.com/sap-linuxlab/demo.netapp_ontap/blob/main/netapp_ontap.md["Modules NetApp Ansible - fichiers YAML"^]). Il doit être aligné sur les étapes d'exécution du `netapp_lama_CloneVolumes` manuel de vente.
@@ -458,6 +470,7 @@ root@sap-jump:~#
 ....
 
 
+[[ansible-playbook-netapplamaclearmountconfig-yml]]
 == Ansible PlayBook netapp_lama_ClearMountConfig.yml
 
 Le PlayBook, qui est exécuté pendant la `netapp_lama_ClearMountConfig` La phase du workflow d'actualisation du système Lama est combinée `delete_clone.yml` et `delete_snapshot.yml` (voir https://github.com/sap-linuxlab/demo.netapp_ontap/blob/main/netapp_ontap.md["Modules NetApp Ansible - fichiers YAML"^]). Il doit être aligné sur les étapes d'exécution du `netapp_lama_CloneVolumes` manuel de vente.
@@ -500,6 +513,7 @@ root@sap-jump:~#
 ....
 
 
+[[sample-ansible-inventory-yml]]
 == Exemple de Ansible Inventory.yml
 
 Ce fichier d'inventaire est créé dynamiquement lors de l'exécution du workflow et n'est présenté ici qu'à titre d'illustration.

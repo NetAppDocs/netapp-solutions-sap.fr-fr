@@ -18,12 +18,14 @@ Cette section décrit la configuration du système de stockage NetApp. Vous deve
 
 
 
+[[storage-efficiency]]
 == Efficacité du stockage
 
 La déduplication à la volée, la déduplication entre les volumes, la compression et la compaction à la volée sont prises en charge avec SAP HANA dans une configuration SSD.
 
 
 
+[[ontap-autonomous-ransomware-protection]]
 == Protection autonome contre les ransomwares ONTAP
 
 Les snapshots créés par ONTAP Autonomous Ransomware Protection ne peuvent pas être utilisés pour la restauration avancée de la base de données SAP HANA. Par conséquent, il n'est pas recommandé de les utiliser pour les volumes de données et de journaux SAP HANA et cette fonctionnalité doit être désactivée pour ces volumes. Utilisez plutôt la protection des données basée sur SnapCenter avec des snapshots inviolables pour la protection contre les ransomwares : link:../backup/hana-sc-generic-scope.html["Sauvegarde et restauration SAP HANA avec SnapCenter"]. ONTAP Autonomous Ransomware Protection peut être bénéfique pour d'autres volumes tels que /hana/shared.
@@ -32,18 +34,21 @@ Il est possible de désactiver l'activation automatique de cette fonctionnalité
 
 
 
+[[quality-of-service]]
 == Qualité de service
 
 La QoS peut être utilisée pour limiter le débit du stockage pour des systèmes SAP HANA spécifiques ou des applications non SAP sur un contrôleur partagé.
 
 
 
+[[production-and-devtest]]
 === Production et développement/test
 
 Dans ce cas, il serait possible de limiter le débit des systèmes de développement et de test de manière à ce qu'ils ne puissent pas influencer les systèmes de production dans une configuration mixte. Au cours du processus de dimensionnement, vous devez déterminer les exigences de performance d'un système non opérationnel. Les systèmes de développement et de test peuvent être dimensionnés avec des valeurs de performances inférieures, généralement dans la plage de 20 à 50 % d'un KPI de système de production tel que défini par SAP. Les E/S d'écriture importantes ont le plus grand impact sur les performances du système de stockage. Par conséquent, la limite de débit de la qualité de service doit être définie sur un pourcentage des valeurs KPI des performances du stockage SAP HANA d'écriture correspondantes dans les volumes de données et de journaux.
 
 
 
+[[shared-environments]]
 === Environnements partagés
 
 Autre cas d'usage : limiter le débit de charges de travail en écriture élevées, surtout pour éviter que ces charges de travail aient un impact sur d'autres charges de travail en écriture sensibles à la latence. Dans de tels environnements, il est recommandé d'appliquer une règle de groupe de QoS au plafond de débit non partagé à chaque LUN au sein de chaque SVM afin de limiter le débit maximal de chaque objet de stockage à la valeur donnée. Cela réduit le risque qu'une seule charge de travail puisse avoir une influence négative sur d'autres charges de travail.
@@ -70,6 +75,7 @@ NOTE: La limite s'applique également aux lectures. Utilisez donc suffisamment d
 
 
 
+[[configure-storage]]
 == Configurer le stockage
 
 La présentation suivante résume les étapes de configuration du stockage requises. Chaque étape est traitée de manière plus détaillée dans les sections suivantes. Dans cette section, nous supposons que le matériel de stockage est configuré et que le logiciel ONTAP est déjà installé. De même, la connexion des ports FCP de stockage à la structure SAN doit déjà être en place.
@@ -81,6 +87,7 @@ La présentation suivante résume les étapes de configuration du stockage requi
 
 
 
+[[nvme-based-disk-shelves]]
 === Étagères de disques basées sur NVMe
 
 Chaque tiroir disque NVMe NS224 est connecté à deux ports 100 GbE par contrôleur, comme illustré dans la figure ci-dessous. Les disques sont automatiquement distribués aux deux contrôleurs de la paire HA.
@@ -89,6 +96,7 @@ image:saphana_asa_fc_image11a.png["Connexion au tiroir disque NVMe NS224"]
 
 
 
+[[initiator-groups]]
 === Groupes d'initiateurs
 
 Un groupe initiateur peut être configuré pour chaque serveur ou pour un groupe de serveurs nécessitant l'accès à une LUN. La configuration d'un groupe initiateur nécessite les noms de port (WWPN) mondiaux des serveurs.

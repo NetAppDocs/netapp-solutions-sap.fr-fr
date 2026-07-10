@@ -18,12 +18,14 @@ Cette section décrit la préparation nécessaire à l'installation de SAP HANA 
 
 
 
+[[installation-on-single-host-system]]
 == Installation sur un système à hôte unique
 
 L'installation du logiciel SAP HANA ne nécessite aucune préparation supplémentaire pour un système à un hôte unique.
 
 
 
+[[installation-on-multiple-host-system]]
 == Installation sur un système à plusieurs hôtes
 
 Avant de commencer l'installation, créez un `global.ini` Fichier permettant d'utiliser le connecteur de stockage SAP pendant le processus d'installation. Le connecteur de stockage SAP monte les systèmes de fichiers requis sur les hôtes worker pendant le processus d'installation. Le `global.ini` le fichier doit être disponible dans un système de fichiers accessible depuis tous les hôtes, tels que `/hana/shared` système de fichiers.

@@ -24,6 +24,7 @@ La configuration d'un hôte de plug-in central comprend les étapes suivantes :
 
 
 
+[[snapcenter-hana-plug-in-deployment]]
 == Déploiement du plug-in SnapCenter HANA
 
 Les exigences relatives à l'hébergement sont indiquées à l'adresse suivante : https://docs.netapp.com/us-en/snapcenter/protect-hana/reference_host_requirements_to_install_snapcenter_plug_in_package_for_linux.html["Configuration requise pour l'installation du package de plug-ins SnapCenter pour Linux"].
@@ -38,6 +39,7 @@ image:hana-sc-generic-image-060.png["largeur=601,hauteur=166"]
 
 
 
+[[sap-hana-hdbsql-client-software-installation-and-configuration]]
 == Installation et configuration du logiciel client SAP HANA hdbsql
 
 Le logiciel client SAP HANA hdbsql doit être installé sur le même hôte que le plug-in SAP HANA. Le logiciel peut être téléchargé depuis le https://support.sap.com/en/index.html["Portail de support SAP"].
@@ -60,6 +62,7 @@ HANA_HDBSQL_CMD=/usr/sap/hdbclient/hdbsql
 ....
 
 
+[[sap-hana-user-store-configuration-for-a-central-plug-in-host]]
 == Configuration du magasin d'utilisateurs SAP HANA pour un hôte de plug-in central
 
 Pour chaque système HANA géré par l'hôte du plug-in central, une clé de magasin d'utilisateurs SAP HANA doit être configurée. Avant de pouvoir configurer la clé sur l'hôte du plug-in central, un utilisateur de base de données doit être créé comme décrit dans link:hana-sc-generic-sc-resource-config.html#sap-hana-backup-user-and-sap-hana-user-store-configuration["Configuration de l'utilisateur de sauvegarde SAP HANA et du magasin d'utilisateurs SAP HANA"].
@@ -97,6 +100,7 @@ C:\Program Files\sap\hdbclient>
 ....
 
 
+[[hana-manual-resource-configuration]]
 == Configuration manuelle des ressources HANA
 
 Une ressource système HANA configurée manuellement est créée dans SnapCenter en cliquant sur le bouton Ajouter dans la vue des ressources.

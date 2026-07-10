@@ -18,6 +18,7 @@ Les solutions NetApp pour l'optimisation de la gestion du cycle de vie SAP sont 
 
 
 
+[[tenant-names-at-target-system]]
 == Nom(s) de locataire sur le système cible
 
 La procédure d'actualisation d'un système SAP HANA dépend de la configuration des locataires du système source et du nom de locataire requis sur le système cible, comme illustré dans la figure ci-dessous.
@@ -35,6 +36,7 @@ image:sc-copy-clone-image11.png[""]
 
 
 
+[[system-refresh-workflow-with-enabled-sap-hana-encryption]]
 == Workflow d'actualisation du système avec chiffrement SAP HANA activé
 
 Lorsque le chiffrement de la persistance SAP HANA est activé et, selon le magasin sécurisé utilisé pour les clés racines de chiffrement, instance SFSS ou magasin sécurisé local LSS, des étapes supplémentaires sont nécessaires avant de pouvoir récupérer la base de données SAP HANA sur le système cible.
@@ -47,6 +49,7 @@ Les opérations requises sont décrites plus en détail dans les chapitres suiva
 
 
 
+[[secure-store-sfss]]
 === Stockage sécurisé SFSS
 
 Sur le système source, vous devez créer une sauvegarde des clés de cryptage root pour la base de données système, ainsi que pour toutes les bases de données de tenant. Les fichiers de sauvegarde doivent être copiés sur le système cible et les clés racine doivent être importées à partir de la sauvegarde avant l'exécution de l'opération de récupération.
@@ -145,6 +148,7 @@ La sortie ci-dessus montre deux locataires avec dbid=3 et dbid=4. Si le système
 
 
 
+[[secure-store-lss]]
 === Stockage sécurisé LSS
 
 

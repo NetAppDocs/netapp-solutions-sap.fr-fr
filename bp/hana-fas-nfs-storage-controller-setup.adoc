@@ -18,6 +18,7 @@ Cette section décrit la configuration du système de stockage NetApp. Vous deve
 
 
 
+[[storage-efficiency]]
 == Efficacité du stockage
 
 La déduplication à la volée, la déduplication entre les volumes, la compression et la compaction à la volée sont prises en charge avec SAP HANA dans une configuration SSD.
@@ -26,18 +27,21 @@ L'activation des fonctions d'efficacité du stockage dans une configuration bas�
 
 
 
+[[netapp-flexgroup-volumes]]
 == NetApp FlexGroup volumes
 
 L'utilisation de NetApp FlexGroup volumes n'est pas prise en charge pour SAP HANA. L'architecture de SAP HANA rend l'utilisation de FlexGroup volumes moins avantageuse et peut entraîner des problèmes de performances.
 
 
 
+[[netapp-volume-and-aggregate-encryption]]
 == Chiffrement de volume et d'agrégat NetApp
 
 SAP HANA prend en charge l'utilisation du chiffrement de volume NetApp (NVE) et du chiffrement d'agrégat NetApp (NAE).
 
 
 
+[[ontap-autonomous-ransomware-protection]]
 == Protection autonome contre les ransomwares ONTAP
 
 Les snapshots créés par ONTAP Autonomous Ransomware Protection ne peuvent pas être utilisés pour la restauration avancée de la base de données SAP HANA. Par conséquent, il n'est pas recommandé de l'utiliser pour les volumes de données et de journaux SAP HANA et elle doit être désactivée pour ces volumes. Utilisez plutôt la protection des données basée sur SnapCenter avec des snapshots inviolables pour la protection contre les ransomwares : link:../backup/hana-sc-generic-scope.html["Sauvegarde et restauration SAP HANA avec SnapCenter"]. ONTAP Autonomous Ransomware Protection peut être bénéfique pour d'autres volumes tels que /hana/shared.
@@ -46,6 +50,7 @@ Il est possible de désactiver l'activation automatique de cette fonctionnalité
 
 
 
+[[quality-of-service]]
 == Qualité de service
 
 La qualité de service peut être utilisée pour limiter le débit du stockage de systèmes SAP HANA spécifiques ou d'autres applications sur un contrôleur à usage partagé. Dans ce cas, il serait possible de limiter le débit des systèmes de développement et de test de manière à ce qu'ils ne puissent pas influencer les systèmes de production dans une configuration mixte.
@@ -58,6 +63,7 @@ Les E/S d'écriture importantes ont le plus grand impact sur les performances du
 
 
 
+[[netapp-fabricpool]]
 == NetApp FabricPool
 
 La technologie NetApp FabricPool ne doit pas être utilisée pour des systèmes de fichiers primaires actifs dans des systèmes SAP HANA. Cela inclut les systèmes de fichiers pour la zone des données et du journal ainsi que pour le `/hana/shared` système de fichiers. Ce qui entraîne des performances imprévisibles, en particulier lors du démarrage d'un système SAP HANA.
@@ -71,6 +77,7 @@ FabricPool est une bonne option pour déplacer les sauvegardes des journaux vers
 
 
 
+[[storage-configuration]]
 == Configuration de stockage sous-jacente
 
 La présentation suivante résume les étapes de configuration du stockage requises. Chaque étape est traitée en détail dans les sections suivantes. Dans cette section, nous supposons que le matériel de stockage est configuré et que le logiciel ONTAP est déjà installé. De même, les connexions entre les ports de stockage (10GbE ou plus rapides) et le réseau doivent déjà être en place.
@@ -87,6 +94,7 @@ La présentation suivante résume les étapes de configuration du stockage requi
 
 
 
+[[disk-shelf-connection]]
 == Connexion du tiroir disque
 
 Avec les disques durs, un maximum de deux tiroirs disques DS2246 ou quatre tiroirs disques DS224C peut être connecté à une pile SAS afin d'assurer les performances nécessaires aux hôtes SAP HANA, comme illustré dans la figure suivante. Les disques dans chaque tiroir doivent être répartis de manière homogène sur les deux contrôleurs de la paire haute disponibilité.
@@ -99,6 +107,7 @@ image:saphana-fas-nfs_image14.png["Figure montrant la boîte de dialogue entrée
 
 
 
+[[nvme-100gbe-disk-shelves]]
 === Tiroirs disques NVMe (100 GbE)
 
 Chaque tiroir disque NVMe NS224 est connecté à deux ports 100 GbE par contrôleur, comme illustré dans la figure ci-dessous. Les disques dans chaque tiroir doivent être répartis de manière homogène sur les deux contrôleurs de la paire haute disponibilité.
@@ -107,12 +116,14 @@ image:saphana_fas_ns224.png["Connexions des tiroirs disques MVME"]
 
 
 
+[[aggregate-configuration]]
 == Configuration d'agrégat
 
 En général, vous devez configurer deux agrégats par contrôleur, indépendamment du tiroir disque ou de la technologie de disque (SSD ou HDD) utilisée. Pour les systèmes de la gamme FAS2000, un seul agrégat de données suffit.
 
 
 
+[[aggregate-configuration-with-hdds]]
 === Configuration agrégée avec des disques durs
 
 La figure suivante montre une configuration pour huit hôtes SAP HANA. Quatre hôtes SAP HANA sont connectés à chaque contrôleur de stockage. Deux agrégats distincts, un par contrôleur de stockage, sont configurés. Chaque agrégat est configuré avec 4 × 10 = 40 disques de données (HDD).
@@ -121,6 +132,7 @@ image:saphana-fas-nfs_image15.png["Figure montrant la boîte de dialogue entrée
 
 
 
+[[aggregate-configuration-with-sdd-only-systems]]
 === Configuration d'agrégat avec des systèmes SDD uniquement
 
 De manière générale, vous devez configurer deux agrégats par contrôleur, quel que soit le tiroir disque ou la technologie HDD utilisée. Pour les systèmes de la gamme FAS2000, un seul agrégat de données suffit.
@@ -131,6 +143,7 @@ image:saphana-fas-nfs_image16.png["Figure montrant la boîte de dialogue entrée
 
 
 
+[[storage-virtual-machine-configuration]]
 == Configuration des serveurs virtuels de stockage
 
 Plusieurs paysages SAP avec des bases de données SAP HANA peuvent utiliser une seule machine virtuelle de stockage. Un SVM peut également être attribué à chaque paysage SAP, si nécessaire, en cas de gestion par différentes équipes au sein d'une entreprise.
@@ -142,6 +155,7 @@ vserver modify -vserver <svm-name> -qos-policy-group none
 ....
 
 
+[[logical-interface-configuration]]
 == Configuration de l'interface logique
 
 Pour les systèmes de production SAP HANA, vous devez utiliser différentes LIF pour le montage du volume de données et du volume de journaux depuis l'hôte SAP HANA. Par conséquent, au moins deux LIF sont requises.
@@ -165,6 +179,7 @@ Pour les systèmes de production, de développement et de test, le `/hana/shared
 
 
 
+[[volume-configuration-for-sap-hana-single-host-systems]]
 == Configuration de volumes pour les systèmes SAP HANA à un seul hôte
 
 La figure suivante montre la configuration de volume de quatre systèmes SAP HANA à hôte unique. Les volumes de données et de journaux de chaque système SAP HANA sont répartis sur différents contrôleurs de stockage. Par exemple, volume `SID1_data_mnt00001` Est configuré sur le contrôleur A, et sur le volume `SID1_log_mnt00001` Est configuré sur le contrôleur B.
@@ -213,6 +228,7 @@ NOTE: Si le service SAP Local Secure Store (LSS) est utilisé, le `/lss/shared/S
 |===
 
 
+[[volume-configuration-for-sap-hana-multiple-host-systems]]
 == Configuration de volume pour les systèmes SAP HANA à plusieurs hôtes
 
 La figure suivante montre la configuration de volume d'un système SAP HANA 4+1. Les volumes de données et de journaux de chaque hôte SAP HANA sont distribués sur différents contrôleurs de stockage. Par exemple, volume `SID1_data1_mnt00001` Est configuré sur le contrôleur A, et sur le volume `SID1_log1_mnt00001` Est configuré sur le contrôleur B.
@@ -300,6 +316,7 @@ NOTE: Si le service SAP Local Secure Store (LSS) est utilisé, le `/lss/shared/S
 |===
 
 
+[[volume-options]]
 == Options de volume
 
 Vous devez vérifier et définir les options du volume répertoriées dans le tableau suivant sur tous les SVM. Pour certaines commandes, vous devez passer au mode de privilège avancé au sein de ONTAP.
@@ -321,6 +338,7 @@ Vous devez vérifier et définir les options du volume répertoriées dans le ta
 |===
 
 
+[[nfs-configuration-for-nfsv3]]
 == Configuration NFS pour NFSv3
 
 Les options NFS répertoriées dans le tableau suivant doivent être vérifiées et définies sur l'ensemble des contrôleurs de stockage.
@@ -341,6 +359,7 @@ NOTE: Dans les environnements partagés avec différentes charges de travail, la
 
 
 
+[[nfs-configuration-for-nfsv4]]
 == Configuration NFS pour NFSv4
 
 Les options NFS répertoriées dans le tableau suivant doivent être vérifiées et définies sur l'ensemble des SVM.
@@ -404,6 +423,7 @@ En cas d'utilisation de systèmes SAP HANA à plusieurs hôtes avec basculement 
 |===
 
 
+[[mount-volumes-to-namespace-and-set-export-policies]]
 == Montez les volumes sur l'espace de noms et définissez des règles d'exportation
 
 Lors de la création d'un volume, celui-ci doit être monté sur le namespace. Dans ce document, nous supposons que le nom du chemin de jonction est identique au nom du volume. Par défaut, le volume est exporté avec la règle par défaut. La export-policy peut être adaptée si nécessaire.

@@ -10,6 +10,7 @@ summary: 'Cette section décrit la configuration du système de stockage NetApp.
 
 
 
+[[single-host]]
 == Un seul hôte
 
 [role="lead"]
@@ -17,6 +18,7 @@ Cette section décrit la configuration du système de stockage NetApp spécifiqu
 
 
 
+[[volume-and-lun-configuration-for-sap-hana-single-host-systems]]
 == Configuration de volumes et de LUN pour les systèmes SAP HANA à un seul hôte
 
 La figure suivante montre la configuration de volume de quatre systèmes SAP HANA à hôte unique. Les volumes de données et de journaux de chaque système SAP HANA sont répartis sur différents contrôleurs de stockage. Par exemple, le volume `SID1_data_mnt00001` est configuré sur le contrôleur A et le volume `SID1_log_mnt00001` sur le contrôleur B. dans chaque volume, une seule LUN est configurée.
@@ -65,6 +67,7 @@ NOTE: Si le service SAP Local Secure Store (LSS) est utilisé, le `/lss/shared/S
 
 
 
+[[volume-and-lun-configuration-for-sap-hana-single-host-systems-using-linux-lvm]]
 == Configuration de volume et de LUN pour les systèmes SAP HANA à un seul hôte avec Linux LVM
 
 Le LVM de Linux peut être utilisé pour augmenter les performances et répondre aux restrictions de taille des LUN. Les différentes LUN d'un groupe de volumes LVM doivent être stockées dans un agrégat différent et au niveau d'un contrôleur différent. Le tableau ci-dessous présente un exemple de deux LUN par groupe de volumes.
@@ -80,6 +83,7 @@ NOTE: Il n'est pas nécessaire d'utiliser LVM avec plusieurs LUN pour répondre 
 |===
 
 
+[[volume-options]]
 == Options de volume
 
 Les options de volume répertoriées dans le tableau suivant doivent être vérifiées et définies sur tous les volumes utilisés pour SAP HANA.
@@ -101,12 +105,14 @@ NOTE: L'exemple ci-dessous configure ces options lors de la création du volume
 
 
 
+[[creating-luns-volumes-and-mapping-luns-to-initiator-groups]]
 === Création de LUN, volumes et mappage de LUN sur des groupes initiateurs
 
 Vous pouvez utiliser NetApp ONTAP System Manager pour créer des volumes de stockage et des LUN, et les mapper sur les igroups des serveurs et sur l'interface de ligne de commande de ONTAP. Ce guide décrit l'utilisation de l'interface de ligne de commandes.
 
 
 
+[[creating-luns-volumes-and-mapping-luns-to-igroups-using-the-cli]]
 === Création de LUN, volumes et mappage de LUN sur des igroups à l'aide de l'interface de ligne de commande
 
 Cette section montre un exemple de configuration utilisant la ligne de commande avec ONTAP 9 pour un système hôte unique SAP HANA avec SID FC5 utilisant LVM et deux LUN par groupe de volumes LVM :

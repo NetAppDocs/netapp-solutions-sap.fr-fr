@@ -13,6 +13,7 @@ Ce document décrit comment Avantra s'intègre à la plate-forme NetApp SnapCent
 
 
 
+[[solution-overview]]
 == Présentation de la solution
 
 Les opérations des systèmes et solutions SAP sont très complexes. Cependant, pour les entreprises qui utilisent SAP, ces systèmes et services sont essentiels à leurs processus métier. En automatisant les tâches opérationnelles quotidiennes récurrentes, telles que les opérations de copie et d'actualisation du système, les administrateurs système SAP peuvent gérer davantage de systèmes avec moins d'efforts, produire des résultats reproductibles et réduire les erreurs humaines.
@@ -23,12 +24,14 @@ Ce document décrit comment Avantra s'intègre à la plate-forme NetApp SnapCent
 
 
 
+[[target-audience]]
 === Public visé
 
 Ce document s'adresse aux administrateurs système SAP qui ont déjà réalisé manuellement des copies du système SAP et qui souhaitent automatiser cette activité avec Avantra. L'objectif visé est d'associer les copies NetApp Snapshot et FlexClone, orchestrées par NetApp SnapCenter, aux workflows Avantra, afin d'accélérer les copies du système SAP en les automatisant entièrement.
 
 
 
+[[sap-system-clone-copy-and-refresh-scenarios]]
 === Scénarios de clonage, de copie et d'actualisation de systèmes SAP
 
 Le terme copie système SAP est souvent utilisé comme terme générique pour trois processus différents : le clone du système SAP, la copie du système SAP et l'actualisation du système SAP. Il est important de faire la distinction entre les différentes opérations, car les flux de travail et les cas d'utilisation diffèrent.
@@ -52,6 +55,7 @@ Même si nous avons trois cas d'utilisation différents, le processus de gestion
 
 
 
+[[solution-technology]]
 === Technologie de la solution
 
 La solution globale comprend les principaux composants suivants :
@@ -81,6 +85,7 @@ image:sap-avantra-image4.png["Image illustrant le serveur Avantra, le serveur Ne
 
 
 
+[[use-case-summary]]
 === Récapitulatif du cas d'utilisation
 
 Il existe plusieurs scénarios dans lesquels les données d'un système source doivent être mises à la disposition d'un système cible à des fins de test ou de formation. Ces systèmes de test et de formation doivent être régulièrement mis à jour avec les données du système source pour s'assurer que les tests et l'entraînement sont réalisés avec le dataset actuel. Ces opérations d'actualisation du système consistent en plusieurs tâches au niveau de l'infrastructure, de la base de données et des applications. Elles peuvent prendre plusieurs jours, selon le niveau d'automatisation.
@@ -93,6 +98,7 @@ image:sap-avantra-image5.png["Image illustrant les éventuelles améliorations e
 
 
 
+[[integrating-the-different-technology-components]]
 === L'intégration des différents composants technologiques
 
 L'intégration réelle de SnapCenter dans un flux de travail Avantra consiste à utiliser JavaScript pour accéder à l'API REST NetApp SnapCenter. Cette intégration basée sur l'API REST crée une copie Snapshot du système source SAP, crée un volume FlexClone et le monte sur le système cible SAP.
@@ -101,6 +107,7 @@ Les administrateurs du stockage et SAP ont investi du temps et du savoir-faire p
 
 
 
+[[conclusion]]
 == Conclusion
 
 L'association des technologies de gestion des données Avantra et NetApp constitue une solution puissante qui permet de réduire considérablement le temps et les efforts nécessaires aux tâches les plus complexes et les plus chronophages liées à l'administration du système SAP. Cette combinaison peut également aider à éviter la dérive de configuration que l'erreur humaine peut causer entre les systèmes.
@@ -109,6 +116,7 @@ L'association des technologies de gestion des données Avantra et NetApp constit
 
 
 
+[[where-to-find-additional-information]]
 == Où trouver des informations complémentaires
 
 Pour en savoir plus sur les informations données dans ce livre blanc, consultez ces documents et sites web :
@@ -120,6 +128,7 @@ Pour en savoir plus sur les informations données dans ce livre blanc, consultez
 
 
 
+[[version-history]]
 == Historique des versions
 
 [cols="25,25,50"]

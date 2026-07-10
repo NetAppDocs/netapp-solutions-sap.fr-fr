@@ -34,6 +34,7 @@ image:saphana-dr-anf_image16.png["Figure montrant la boîte de dialogue entrée/
 
 
 
+[[replicated-snapshot-backups]]
 == Sauvegardes Snapshot répliquées
 
 À chaque mise à jour de réplication du volume source vers le volume cible, toutes les modifications de bloc effectuées entre le dernier et la mise à jour actuelle sont répliquées vers le volume cible. Les snapshots, qui ont été créés au niveau du volume source, sont également inclus. La capture d'écran suivante montre les snapshots disponibles sur le volume cible. Comme mentionné précédemment, chacun des snapshots créés par l'outil AzAcSnap est des images cohérentes avec les applications de la base de données HANA qui peuvent être utilisées pour exécuter un point de sauvegarde ou une restauration avant.

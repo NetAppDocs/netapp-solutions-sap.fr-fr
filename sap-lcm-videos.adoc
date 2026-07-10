@@ -18,6 +18,7 @@ Présentation des vidéos et démonstrations sur la gestion du cycle de vie SAP.
 
 
 
+[[sap-lifecycle-management-videos-and-demos]]
 == Vidéos et démonstrations relatives à la gestion du cycle de vie SAP
 
 * link:https://media.netapp.com/video-detail/c1229d10-fe84-58f1-9cdf-ca3c0f9d9104/ensure-continuity-for-lines-of-business-in-the-face-of-unexpected-events["Assurer la continuité pour les secteurs d'activité face aux événements imprévus"^]

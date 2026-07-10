@@ -18,6 +18,7 @@ Vous pouvez créer une sauvegarde Snapshot à la demande et effectuer un contrô
 
 
 
+[[create-an-on-demand-snapshot-backup]]
 == Créer une sauvegarde Snapshot à la demande
 
 Procédez comme suit pour créer des sauvegardes Snapshot à la demande.
@@ -78,6 +79,7 @@ sapcc-hana-svm::>
 ....
 
 
+[[create-an-on-demand-block-integrity-check-operation]]
 == Créer une opération de contrôle d'intégrité des blocs à la demande
 
 Une opération de vérification de l'intégrité des blocs à la demande est exécutée de la même manière qu'une tâche de sauvegarde Snapshot, en sélectionnant la règle BlockIntegrtyCheck. Lorsque vous planifiez des sauvegardes à l'aide de cette règle, SnapCenter crée une sauvegarde standard des fichiers SAP HANA pour les bases de données système et locataires.

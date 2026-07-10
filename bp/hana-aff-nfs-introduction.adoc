@@ -72,6 +72,7 @@ NOTE: Reportez-vous aux notes SAP correspondantes pour les instructions de confi
 
 
 
+[[sap-hana-tailored-data-center-integration]]
 == SAP HANA Tailored Data Center Integration
 
 Les contrôleurs de stockage AFF NetApp sont certifiés dans le programme SAP HANA TDI en utilisant les protocoles NFS (NAS) et FC (SAN). Ils peuvent être déployés dans tous les scénarios SAP HANA actuels, tels que SAP Business Suite sur HANA, S/4HANA, BW/HANA ou SAP Business Warehouse sur HANA, soit sur un ou plusieurs hôtes. Tous les serveurs certifiés pour une utilisation avec SAP HANA peuvent être associés à des solutions de stockage certifiées NetApp. Pour une présentation de l'architecture de SAP HANA TDI, reportez-vous à la figure suivante.
@@ -85,6 +86,7 @@ Pour plus d'informations sur les prérequis et les recommandations pour les syst
 
 
 
+[[sap-hana-using-vmware-vsphere]]
 == SAP HANA avec VMware vSphere
 
 Il existe plusieurs options pour connecter le stockage à des machines virtuelles. L'option privilégiée est de connecter les volumes de stockage avec NFS directement hors du système d'exploitation invité. Grâce à cette option, la configuration des hôtes et du stockage ne diffère pas entre les hôtes physiques et les machines virtuelles.

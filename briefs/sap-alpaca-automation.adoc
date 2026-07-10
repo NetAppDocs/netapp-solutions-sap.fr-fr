@@ -18,6 +18,7 @@ Ce document porte sur l'intégration des technologies NetApp® Snapshot™ et Fl
 
 
 
+[[solution-overview]]
 == Présentation de la solution
 
 Les opérations des systèmes et solutions SAP sont très complexes. Cependant, pour les entreprises qui utilisent SAP, les systèmes et les services sont au cœur de leurs processus métier. En automatisant les tâches opérationnelles quotidiennes récurrentes, telles que les opérations de copie et d'actualisation du système, les administrateurs système SAP peuvent gérer davantage de systèmes avec moins d'efforts, produire des résultats reproductibles et réduire les erreurs humaines.
@@ -32,12 +33,14 @@ Ce document décrit l'intégration d'ALPAGA à NetApp SnapCenter®, l'outil qui 
 
 
 
+[[target-audience]]
 === Public visé
 
 Ce document est destiné aux administrateurs système SAP qui ont réalisé les copies du système SAP manuellement et qui souhaitent automatiser cette activité avec ALPAGA. L'objectif visé est de combiner les technologies NetApp Snapshot et FlexClone orchestrées par NetApp SnapCenter, avec des flux de travail ALPAGA, de réduire la durée des copies du système SAP entièrement automatisées.
 
 
 
+[[sap-system-clone-copy-and-refresh-scenarios]]
 === Scénarios de clonage, de copie et d'actualisation de systèmes SAP
 
 Le terme copie système SAP est souvent utilisé comme synonyme de trois processus différents : clone du système SAP, copie du système SAP et actualisation du système SAP. Il est important de faire la distinction entre ces opérations, car les flux de travail et les cas d'utilisation diffèrent.
@@ -61,6 +64,7 @@ Même s'il s'agit de trois cas d'utilisation différents, le processus de gestio
 
 
 
+[[solution-technology]]
 === Technologie de la solution
 
 La solution globale comprend les principaux composants suivants :
@@ -90,6 +94,7 @@ image:sap-alpaca-image5.png["Image illustrant le serveur ALPAGA, le serveur NetA
 
 
 
+[[use-case-summary]]
 === Récapitulatif du cas d'utilisation
 
 Il existe plusieurs scénarios dans lesquels les données d'un système source doivent être mises à la disposition d'un système cible à des fins de test ou de formation. Ces systèmes de test et de formation doivent être régulièrement mis à jour avec les données du système source pour s'assurer que les tests et l'entraînement sont réalisés avec le dataset actuel. Ces opérations d'actualisation du système consistent en plusieurs tâches au niveau de l'infrastructure, de la base de données et des applications. Elles peuvent prendre plusieurs jours, selon le niveau d'automatisation.
@@ -102,12 +107,14 @@ image:sap-alpaca-image6.png["Image illustrant les éventuelles améliorations en
 
 
 
+[[integrating-the-technology-components]]
 === L'intégration des composants technologiques
 
 L'intégration réelle de SnapCenter dans un workflow d'ALPAGA consiste à utiliser des scripts shell pour accéder à l'API REST de NetApp SnapCenter. Cette intégration basée sur l'API REST crée une copie Snapshot du système source SAP, crée un volume FlexClone et le monte sur le système cible SAP. Les administrateurs du stockage et SAP savent comment développer des scripts déclenchés par SnapCenter et exécutés par l'agent SnapCenter pour automatiser les tâches quotidiennes récurrentes. Cette architecture à couplage lâche, qui déclenche des tâches SnapCenter via des scripts shell, leur permet de réutiliser leurs procédures d'automatisation existantes pour obtenir les résultats souhaités plus rapidement en utilisant ALPAGA comme moteur de workflow pour une automatisation de bout en bout.
 
 
 
+[[conclusion]]
 == Conclusion
 
 L'association d'ALPACA et des technologies de gestion des données NetApp offre une solution puissante qui permet de réduire considérablement le temps et les efforts nécessaires aux tâches les plus complexes et les plus chronophages liées à l'administration du système SAP. Cette combinaison peut également aider à éviter la dérive de configuration que l'erreur humaine peut causer entre les systèmes.
@@ -116,6 +123,7 @@ L'association d'ALPACA et des technologies de gestion des données NetApp offre 
 
 
 
+[[where-to-find-additional-information]]
 == Où trouver des informations complémentaires
 
 Pour en savoir plus sur les informations contenues dans ce document, consultez les documents et sites web suivants :
@@ -127,6 +135,7 @@ Pour en savoir plus sur les informations contenues dans ce document, consultez l
 
 
 
+[[version-history]]
 == Historique des versions
 
 [cols="25,25,50"]

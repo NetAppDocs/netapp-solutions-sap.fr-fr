@@ -20,6 +20,7 @@ Marco Schoen, NetApp
 
 
 
+[[introduction]]
 == Introduction
 
 Les gammes NetApp ASA A-Series et ASA C-Series ont été certifiées pour une utilisation avec SAP HANA dans le cadre de projets TDI (Tailored Data Center Integration). Ce guide décrit les meilleures pratiques pour les modèles certifiés suivants :
@@ -39,6 +40,7 @@ Dans un environnement SAP HANA à plusieurs hôtes, le connecteur de stockage st
 
 
 
+[[sap-hana-tailored-data-center-integration]]
 == SAP HANA Tailored Data Center Integration
 
 Les systèmes de stockage NetApp ASA sont certifiés dans le programme SAP HANA TDI à l'aide des protocoles FC (SAN). Ils peuvent être déployés dans n'importe quel scénario SAP HANA actuel, tel que SAP Business Suite sur HANA, S/4HANA, BW/4HANA ou SAP Business Warehouse sur HANA dans des configurations à hôte unique ou à hôtes multiples. Tous les serveurs certifiés pour une utilisation avec SAP HANA peuvent être associés à des solutions de stockage certifiées NetApp. La figure suivante montre une vue d'ensemble de l'architecture.

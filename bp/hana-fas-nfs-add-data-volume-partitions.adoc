@@ -21,6 +21,7 @@ NOTE: L'utilisation d'au moins deux volumes individuels pour le volume de donné
 
 
 
+[[enabling-additional-data-volume-partitions]]
 == Activation de partitions de volume de données supplémentaires
 
 . Pour activer des partitions de volume de données supplémentaires, ajoutez l'entrée suivante dans `global.ini` Utilisation de SAP HANA Studio ou Cockpit dans la configuration SYSTEMDB.
@@ -35,6 +36,7 @@ NOTE: Ajout manuel du paramètre à `global.ini` le fichier requiert le redémar
 
 
 
+[[volume-configuration-for-a-single-host-sap-hana-system]]
 == Configuration de volumes pour un système SAP HANA à un seul hôte
 
 La disposition des volumes d'un système SAP HANA à un seul hôte avec plusieurs partitions est similaire à celle d'un système avec une partition du volume de données, mais avec un volume de données supplémentaire stocké sur un agrégat différent en tant que volume du journal et de l'autre volume de données. Le tableau suivant présente un exemple de configuration d'un système SAP HANA à un seul hôte avec deux partitions de volume de données.
@@ -66,6 +68,7 @@ Créez le nouveau volume de données et montez-le sur l'espace de noms à l'aide
 
 
 
+[[volume-configuration-for-multiple-host-sap-hana-system]]
 == Configuration de volumes pour le système SAP HANA à plusieurs hôtes
 
 La disposition des volumes d'un système SAP HANA à plusieurs hôtes avec plusieurs partitions est similaire à celle d'un système avec une partition du volume de données, mais avec un volume de données supplémentaire stocké sur un agrégat différent en tant que volume du journal et de l'autre volume de données. Le tableau suivant présente un exemple de configuration d'un système SAP HANA à plusieurs hôtes avec deux partitions de volume de données.
@@ -151,6 +154,7 @@ Créez le nouveau volume de données et montez-le sur l'espace de noms à l'aide
 
 
 
+[[host-configuration]]
 == Configuration de l'hôte
 
 Outre les tâches décrites dans la sectionlink:hana-fas-nfs-host-setup.html["“Configuration de l'hôte,”"], vous devez créer des points de montage et des entrées fstab supplémentaires pour le ou les nouveaux volumes de données supplémentaires, et vous devez monter les nouveaux volumes.
@@ -205,6 +209,7 @@ NOTE: Utilisez une interface virtuelle de stockage différente pour vous connect
 
 
 
+[[adding-an-additional-data-volume-partition]]
 == Ajout d'une partition de volume de données supplémentaire
 
 Exécutez l'instruction SQL suivante sur la base de données du locataire pour ajouter une partition de volume de données supplémentaire à la base de données de votre locataire. Utilisez le chemin d'accès à d'autres volumes :

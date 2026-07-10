@@ -20,6 +20,7 @@ La documentation contient également des informations sur les configurations mul
 
 
 
+[[configure-multipathing]]
 == Configurer les chemins d'accès multiples
 
 

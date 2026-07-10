@@ -27,6 +27,7 @@ Les sections suivantes décrivent les différentes opérations pour les système
 
 
 
+[[sap-hana-snapshot-backups-in-snapcenter]]
 == Sauvegardes de snapshots SAP HANA dans SnapCenter
 
 La topologie des ressources SnapCenter affiche la liste des sauvegardes créées par SnapCenter. La figure suivante présente les sauvegardes disponibles sur le stockage principal et met en évidence la sauvegarde la plus récente.
@@ -43,6 +44,7 @@ image:hana-sc-generic-image-066.png["largeur=601,hauteur=293"]
 
 
 
+[[sap-hana-snapshot-backups-in-sap-hana-studio]]
 == Sauvegardes de snapshots SAP HANA dans SAP HANA Studio
 
 Lors de l'exécution d'une sauvegarde à l'aide de snapshots de stockage pour un système SAP HANA MDC, une copie snapshot du volume de données est créée. Ce volume de données contient les données de la base de données système ainsi que les données de toutes les bases de données locataires. Pour refléter cette architecture physique, SAP HANA effectue en interne un instantané combiné de la base de données système ainsi que de toutes les bases de données locataires chaque fois que SnapCenter déclenche une sauvegarde Snapshot. Cela génère plusieurs entrées de sauvegarde distinctes dans le catalogue de sauvegarde SAP HANA : une pour la base de données système et une pour chaque base de données locataire.
@@ -58,6 +60,7 @@ NOTE: SnapCenter n'a connaissance que de ses propres sauvegardes. Les sauvegarde
 
 
 
+[[sap-hana-snapshot-backups-on-storage-layer]]
 == Sauvegardes par instantané SAP HANA sur la couche de stockage
 
 Pour consulter les sauvegardes sur la couche de stockage, vous pouvez utiliser NetApp System Manager et sélectionner le volume de la base de données. La capture d'écran suivante montre les sauvegardes disponibles pour le volume de base de données SS1_data_mnt00001 sur le stockage principal. La sauvegarde mise en évidence est celle affichée dans SnapCenter et SAP HANA Studio dans les images précédentes et utilise la même convention d'appellation.
@@ -70,6 +73,7 @@ image:hana-sc-generic-image-070.png["largeur=601,hauteur=294"]
 
 
 
+[[sap-hana-snapshot-backups-with-anf]]
 == Sauvegardes par instantané SAP HANA avec ANF
 
 La capture d'écran suivante montre la vue topologique d'un système HANA utilisant Azure NetApp Files. Pour ce système HANA, des sauvegardes Snapshot locales ainsi qu'une réplication de sauvegarde utilisant la sauvegarde ANF ont été configurées.
@@ -90,6 +94,7 @@ image:hana-sc-generic-image-074.png["largeur=601,hauteur=216"]
 
 
 
+[[snapshot-backups-of-non-data-volumes]]
 == Sauvegardes instantanées de volumes non liés aux données
 
 La topologie des ressources SnapCenter affiche la liste des sauvegardes pour les volumes non destinés aux données. La figure suivante répertorie les sauvegardes du volume partagé HANA.
@@ -98,6 +103,7 @@ image:hana-sc-generic-image-075.png["largeur=601,hauteur=294"]
 
 
 
+[[backup-workflow-for-hana-database-backups]]
 == Flux de travail de sauvegarde pour les sauvegardes de bases de données HANA
 
 Le flux de travail de sauvegarde pour une sauvegarde de snapshot de base de données HANA se compose de trois sections principales.
@@ -147,6 +153,7 @@ image:hana-sc-generic-image-076.png["largeur=339,hauteur=475"]
 
 
 
+[[backup-workflow-for-non-data-volumes]]
 == Flux de travail de sauvegarde pour les volumes non liés aux données
 
 Pour un volume ne contenant pas de données, le flux de travail de sauvegarde comprend l'opération de capture instantanée et l'opération de gestion de la rétention.
@@ -155,6 +162,7 @@ image:hana-sc-generic-image-077.png["largeur=329,hauteur=404"]
 
 
 
+[[cleanup-of-secondary-backups]]
 == Nettoyage des sauvegardes secondaires
 
 Comme décrit dans link:hana-sc-generic-concepts.html#retention-management-of-backups-at-the-secondary-storage-snapvault["Gestion de la conservation des sauvegardes secondaires"], la gestion de la conservation des sauvegardes de données sur un stockage de sauvegarde secondaire est assurée par ONTAP. SnapCenter vérifie périodiquement si ONTAP a supprimé des sauvegardes sur le stockage de sauvegarde secondaire en exécutant une tâche de nettoyage avec une planification hebdomadaire par défaut.
@@ -169,6 +177,7 @@ Tant que ce nettoyage programmé n'est pas terminé, SAP HANA et SnapCenter cont
 
 
 
+[[change-the-frequency-of-the-snapcenter-cleanup-job]]
 === Modifiez la fréquence de la tâche de nettoyage SnapCenter
 
 SnapCenter exécute par défaut la tâche de nettoyage SnapCenter_RemoveSecondaryBackup pour toutes les ressources chaque semaine. Cela peut être modifié à l'aide d'une cmdlet PowerShell SnapCenter .
@@ -233,6 +242,7 @@ image:hana-sc-generic-image-080.png["largeur=601,hauteur=257"]
 
 
 
+[[manual-refresh-on-resource-level]]
 === Actualisation manuelle au niveau des ressources
 
 Si nécessaire, un nettoyage manuel des sauvegardes secondaires peut également être effectué dans la vue topologique d'une ressource. SnapCenter affiche les sauvegardes sur le stockage de sauvegarde secondaire lors de la sélection des sauvegardes secondaires, comme illustré dans la capture d'écran suivante. SnapCenter effectue une opération de nettoyage à l'aide de l'icône Actualiser afin de synchroniser les sauvegardes de cette ressource.

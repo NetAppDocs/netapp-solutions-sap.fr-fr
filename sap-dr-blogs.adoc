@@ -18,4 +18,5 @@ Présentation des blogs portant sur la sauvegarde, la restauration et la reprise
 
 
 
+[[sap-backup-restore-and-disaster-recovery-blogs]]
 === Blogs sur la sauvegarde, la restauration et la reprise après incident SAP

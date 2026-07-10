@@ -15,6 +15,7 @@ Pour les volumes non-données tels que HANA partagés, les opérations de sauveg
 
 
 
+[[failure-of-the-storage-system-configured-in-snapcenter]]
 == Défaillance du système de stockage configuré dans SnapCenter
 
 En cas de défaillance du système de stockage configuré dans SnapCenter, SnapCenter ne bascule pas automatiquement sur l'autre système de stockage. La ressource non-volume de données doit être adaptée manuellement pour que la copie miroir du volume soit utilisée pour les opérations de sauvegarde et de restauration.
@@ -23,6 +24,7 @@ image:sc-saphana-vmware-smas-image39.png["Figure illustrant le contenu discuté"
 
 
 
+[[backup-operations]]
 == Les opérations de sauvegarde
 
 Même si SnapCenter ne connaît pas la configuration de synchronisation active SnapMirror pour le volume partagé HANA, les snapshots sont répliqués sur les deux sites.
@@ -33,6 +35,7 @@ image:sc-saphana-vmware-smas-image41.png["Figure illustrant le contenu discuté"
 
 
 
+[[restore-operation]]
 == Opération de restauration
 
 Dans le cas d'une restauration, SnapCenter exécutera simplement une restauration de volume sans aucune étape spécifique à VMware. Normalement, vous devez démonter le volume partagé HANA sur l'hôte Linux, déconnecter le datastore, puis restaurer le volume, reconnecter le datastore et monter le système de fichiers sur l'hôte Linux. Comme une opération manuelle, vous pouvez arrêter la machine virtuelle HANA, restaurer le volume partagé HANA avec SnapCenter, puis redémarrer la machine virtuelle à nouveau.

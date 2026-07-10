@@ -20,6 +20,7 @@ NFS version 4 et ultérieure requiert l'authentification utilisateur. Cette auth
 
 
 
+[[sap-hana-hosts]]
 == Hôtes SAP HANA
 
 S'il n'existe pas, le `sapsys` Le groupe doit être créé sur l'hôte SAP HANA. Il est nécessaire de choisir un ID de groupe unique qui n'entre pas en conflit avec les ID de groupe existants sur les contrôleurs de stockage.
@@ -44,6 +45,7 @@ NOTE: Les noyaux Linux les plus récents ne nécessitent pas cette étape. Vous 
 
 
 
+[[storage-controllers]]
 == Contrôleurs de stockage
 
 L'ID utilisateur et l'ID de groupe doivent être identiques sur les hôtes SAP HANA et les contrôleurs de stockage. Le groupe et l'utilisateur sont créés en entrant les commandes suivantes sur le cluster de stockage :

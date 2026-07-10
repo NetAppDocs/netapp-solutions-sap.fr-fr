@@ -18,6 +18,7 @@ Cette section décrit la configuration du système de stockage NetApp. Vous deve
 
 
 
+[[storage-efficiency]]
 == Efficacité du stockage
 
 La déduplication à la volée, la déduplication entre les volumes, la compression et la compaction à la volée sont prises en charge avec SAP HANA dans une configuration SSD.
@@ -26,18 +27,21 @@ L'activation des fonctions d'efficacité du stockage dans une configuration HDD 
 
 
 
+[[netapp-flexgroup-volumes]]
 == NetApp FlexGroup volumes
 
 L'utilisation de NetApp FlexGroup volumes n'est pas prise en charge pour SAP HANA. L'architecture de SAP HANA rend l'utilisation de FlexGroup volumes moins avantageuse et peut entraîner des problèmes de performances.
 
 
 
+[[netapp-volume-and-aggregate-encryption]]
 == Chiffrement de volume et d'agrégat NetApp
 
 SAP HANA prend en charge l'utilisation du chiffrement de volume NetApp (NVE) et du chiffrement d'agrégat NetApp (NAE).
 
 
 
+[[ontap-autonomous-ransomware-protection]]
 == Protection autonome contre les ransomwares ONTAP
 
 Les snapshots créés par ONTAP Autonomous Ransomware Protection ne peuvent pas être utilisés pour la restauration avancée de la base de données SAP HANA. Par conséquent, il n'est pas recommandé de les utiliser pour les volumes de données et de journaux SAP HANA et cette fonctionnalité doit être désactivée pour ces volumes. Utilisez plutôt la protection des données basée sur SnapCenter avec des snapshots inviolables pour la protection contre les ransomwares : link:../backup/hana-sc-generic-scope.html["Sauvegarde et restauration SAP HANA avec SnapCenter"]. ONTAP Autonomous Ransomware Protection peut être bénéfique pour d'autres volumes tels que /hana/shared.
@@ -46,18 +50,21 @@ Il est possible de désactiver l'activation automatique de cette fonctionnalité
 
 
 
+[[quality-of-service]]
 == Qualité de service
 
 La QoS peut être utilisée pour limiter le débit du stockage pour des systèmes SAP HANA spécifiques ou des applications non SAP sur un contrôleur partagé.
 
 
 
+[[production-and-devtest]]
 === Production et développement/test
 
 Dans ce cas, il serait possible de limiter le débit des systèmes de développement et de test de manière à ce qu'ils ne puissent pas influencer les systèmes de production dans une configuration mixte. Au cours du processus de dimensionnement, vous devez déterminer les exigences de performance d'un système non opérationnel. Les systèmes de développement et de test peuvent être dimensionnés avec des valeurs de performances inférieures, généralement dans la plage de 20 à 50 % d'un KPI de système de production tel que défini par SAP. Les E/S d'écriture importantes ont le plus grand impact sur les performances du système de stockage. Par conséquent, la limite de débit de la qualité de service doit être définie sur un pourcentage des valeurs KPI des performances du stockage SAP HANA d'écriture correspondantes dans les volumes de données et de journaux.
 
 
 
+[[shared-environments]]
 === Environnements partagés
 
 Autre cas d'usage : limiter le débit de charges de travail en écriture élevées, surtout pour éviter que ces charges de travail aient un impact sur d'autres charges de travail en écriture sensibles à la latence. Dans de tels environnements, il est recommandé d'appliquer une règle de groupe de QoS au plafond de débit non partagé à chaque LUN au sein de chaque SVM afin de limiter le débit maximal de chaque objet de stockage à la valeur donnée. Cela réduit le risque qu'une seule charge de travail puisse avoir une influence négative sur d'autres charges de travail.
@@ -84,6 +91,7 @@ NOTE: La limite s'applique également aux lectures. Utilisez donc suffisamment d
 
 
 
+[[netapp-fabricpool]]
 == NetApp FabricPool
 
 La technologie NetApp FabricPool ne doit pas être utilisée pour des systèmes de fichiers primaires actifs dans des systèmes SAP HANA. Cela inclut les systèmes de fichiers pour la zone des données et du journal ainsi que pour le `/hana/shared` système de fichiers. Ce qui entraîne des performances imprévisibles, en particulier lors du démarrage d'un système SAP HANA.
@@ -97,6 +105,7 @@ FabricPool est une bonne option pour déplacer les sauvegardes des journaux vers
 
 
 
+[[configure-storage]]
 == Configurer le stockage
 
 La présentation suivante résume les étapes de configuration du stockage requises. Chaque étape est traitée de manière plus détaillée dans les sections suivantes. Avant d'entreprendre ces étapes, terminez la configuration du matériel de stockage, l'installation du logiciel ONTAP et la connexion des ports FCP de stockage à la structure SAN.
@@ -111,6 +120,7 @@ La présentation suivante résume les étapes de configuration du stockage requi
 
 
 
+[[disk-shelf-connections]]
 == Connexions d'étagères de disques
 
 Avec les disques durs, un maximum de deux tiroirs disques DS2246 ou quatre tiroirs disques DS224C peut être connecté à une pile SAS afin d'assurer les performances nécessaires aux hôtes SAP HANA, comme illustré dans la figure suivante. Les disques dans chaque tiroir doivent être répartis de manière homogène sur les deux contrôleurs de la paire haute disponibilité.
@@ -123,6 +133,7 @@ image:saphana_fas_fc_image11.png["Figure montrant la boîte de dialogue entrée/
 
 
 
+[[nvme-disk-shelves]]
 === Étagères de disques NVMe
 
 Chaque tiroir disque NVMe NS224 est connecté à deux ports 100 GbE par contrôleur, comme illustré dans la figure ci-dessous. Les disques dans chaque tiroir doivent être répartis de manière homogène sur les deux contrôleurs de la paire haute disponibilité.
@@ -131,12 +142,14 @@ image:saphana_fas_ns224.png["Connexions des tiroirs disques MVME"]
 
 
 
+[[aggregate-configuration]]
 == Configuration d'agrégat
 
 De manière générale, vous devez configurer deux agrégats par contrôleur, quel que soit le tiroir disque ou la technologie HDD utilisée. Cette étape est nécessaire pour que vous puissiez utiliser toutes les ressources disponibles du contrôleur. Pour les systèmes FAS de la gamme 2000, un seul agrégat de données est suffisant.
 
 
 
+[[aggregate-configuration-with-hdds]]
 === Configuration agrégée avec des disques durs
 
 La figure suivante montre une configuration pour huit hôtes SAP HANA. Quatre hôtes SAP HANA sont connectés à chaque contrôleur de stockage. Deux agrégats distincts, un par contrôleur de stockage, sont configurés. Chaque agrégat est configuré avec 4 × 10 = 40 disques de données (HDD).
@@ -145,6 +158,7 @@ image:saphana_fas_fc_image12.png["Figure montrant la boîte de dialogue entrée/
 
 
 
+[[aggregate-configuration-with-sdd-only-systems]]
 === Configuration d'agrégat avec des systèmes SDD uniquement
 
 En règle générale, deux agrégats par contrôleur doivent être configurés, indépendamment desquels le tiroir disque ou la technologie HDD sont utilisés.
@@ -155,12 +169,14 @@ image:saphana_fas_fc_image13.png["Figure montrant la boîte de dialogue entrée/
 
 
 
+[[storage-virtual-machine-configuration]]
 == Configuration des serveurs virtuels de stockage
 
 Plusieurs paysages SAP avec des bases de données SAP HANA peuvent utiliser une seule machine virtuelle de stockage. Un SVM peut également être attribué à chaque paysage SAP si nécessaire en cas de gestion par différentes équipes au sein d'une entreprise. Les captures d'écran et les sorties de commande de ce document utilisent un SVM nommé `hana`.
 
 
 
+[[logical-interface-configuration]]
 == Configuration de l'interface logique
 
 Dans la configuration du cluster de stockage, une interface réseau (LIF) doit être créée et attribuée à un port FCP dédié. Si, par exemple, quatre ports FCP sont requis pour des raisons de performances, quatre LIF doivent être créées. La figure suivante présente une capture d'écran des huit LIF configurées sur le SVM.
@@ -175,6 +191,7 @@ image:saphana_fas_fc_image15a.png["Création des SVM"]
 
 
 
+[[initiator-groups]]
 == Groupes d'initiateurs
 
 Un groupe initiateur peut être configuré pour chaque serveur ou pour un groupe de serveurs nécessitant l'accès à une LUN. La configuration d'un groupe initiateur nécessite les noms de port (WWPN) mondiaux des serveurs.

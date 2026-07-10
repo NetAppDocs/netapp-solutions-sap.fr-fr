@@ -20,6 +20,7 @@ SnapCenter gère les données dans les différents terminaux de la Data Fabric o
 
 
 
+[[snapcenter-components]]
 == Composants de SnapCenter
 
 SnapCenter inclut le serveur SnapCenter, le module de plug-in SnapCenter pour Windows et le module de plug-in SnapCenter pour Linux. Chaque offre comprend des plug-ins à SnapCenter pour divers composants d'infrastructure et d'applications.
@@ -28,6 +29,7 @@ image:amazon-fsx-image5.png["Figure montrant la boîte de dialogue entrée/sorti
 
 
 
+[[snapcenter-sap-hana-backup-solution]]
 == Solution de sauvegarde SnapCenter SAP HANA
 
 La solution de sauvegarde SnapCenter pour SAP HANA couvre les domaines suivants :
@@ -82,6 +84,7 @@ Lors de l'exécution d'une sauvegarde Snapshot basée sur le stockage de la base
 
 
 
+[[scope-of-this-document]]
 == Portée de ce document
 
 Ce document décrit l'option de configuration SnapCenter la plus courante pour un système SAP HANA MDC à hôte unique avec un seul locataire sur FSx pour ONTAP. D'autres options de configuration sont possibles et, dans certains cas, nécessaires pour certains systèmes SAP HANA, par exemple pour un système multi-hôtes. Pour une description détaillée des autres options de configuration, voir link:hana-sc-generic-concepts.html["Concepts et bonnes pratiques SnapCenter (netapp.com)"^].
@@ -90,6 +93,7 @@ Dans ce document, nous utilisons la console Amazon Web Services (AWS) et l'inter
 
 
 
+[[data-protection-strategy]]
 == Stratégie de protection des données
 
 La figure suivante montre une architecture de sauvegarde type pour SAP HANA sur FSX pour ONTAP. Le système HANA se trouve dans la zone de disponibilité AWS 1 et utilise un système de fichiers FSX pour ONTAP au sein de la même zone de disponibilité. Les opérations de sauvegarde Snapshot sont exécutées pour les données et le volume partagé de la base de données HANA. Outre les sauvegardes Snapshot locales, conservées pendant 3-5 jours, les sauvegardes sont également répliquées vers un stockage hors site pour une conservation à long terme. Le stockage de sauvegarde hors site est un second système de fichiers FSX pour ONTAP, situé dans une zone de disponibilité AWS différente. Les sauvegardes des données HANA et des volumes partagés sont répliquées avec SnapVault sur le deuxième système de fichiers FSX pour ONTAP, et conservées pendant 2-3 semaines.
@@ -177,6 +181,7 @@ Dans cet exemple, les règles de protection et la conservation des ressources de
 
 
 
+[[example-lab-setup]]
 == Exemple de configuration de laboratoire
 
 La configuration de laboratoire suivante a été utilisée comme exemple de configuration pour le reste de ce document.

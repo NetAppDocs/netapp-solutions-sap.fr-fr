@@ -13,6 +13,7 @@ Découvrez les options de déploiement de SnapCenter , les stratégies de protec
 
 
 
+[[deployment-options-for-snapcenter-plug-in-for-sap-hana]]
 == Options de déploiement du plug-in SnapCenter pour SAP HANA
 
 La figure suivante illustre la vue logique de la communication entre le serveur SnapCenter , la base de données SAP HANA et le système de stockage. Le serveur SnapCenter utilise les plug-ins HANA et Linux pour communiquer avec la base de données HANA et les systèmes d'exploitation Linux.
@@ -49,6 +50,7 @@ Bien que SnapCenter prenne en charge le déploiement centralisé de plug-ins pou
 
 
 
+[[snapcenter-plug-in-for-hana-deployed-on-the-sap-hana-database-host]]
 === Module d'extension SnapCenter pour HANA déployé sur l'hôte de base de données SAP HANA
 
 Le serveur SnapCenter communique avec les bases de données HANA via le plug-in HANA. Le plug-in HANA utilise le logiciel client hdbsql de HANA pour exécuter des commandes SQL sur les bases de données HANA. Le fichier userstore hdb de HANA est utilisé pour fournir les informations d'identification de l'utilisateur, le nom d'hôte et les informations de port permettant d'accéder aux bases de données HANA. Le plugin SnapCenter pour Linux permet de gérer toutes les opérations sur le système de fichiers hôte ainsi que la découverte automatique des ressources du système de fichiers et de stockage.
@@ -59,6 +61,7 @@ image:hana-sc-generic-image-009.png["largeur=601,hauteur=304"]
 
 
 
+[[snapcenter-server-high-availability]]
 === Haute disponibilité du serveur SnapCenter
 
 SnapCenter peut être configuré dans une configuration HA à deux nœuds. Dans une telle configuration, un équilibreur de charge (par exemple, F5) est utilisé pour accéder aux hôtes SnapCenter . Le référentiel SnapCenter (la base de données MySQL) est répliqué par SnapCenter entre les deux hôtes afin que les données SnapCenter soient toujours synchronisées.
@@ -69,6 +72,7 @@ image:hana-sc-generic-image-010.png["largeur=601,hauteur=307"]
 
 
 
+[[central-plug-in-host]]
 === Hôte de plug-in central
 
 Comme indiqué dans le chapitre précédent, un module central est nécessaire pour
@@ -92,6 +96,7 @@ image:hana-sc-generic-image-012.png["largeur=601,hauteur=338"]
 
 
 
+[[sap-hana-block-consistency-check]]
 == Vérification de la cohérence des blocs SAP HANA
 
 SAP recommande d'inclure des contrôles réguliers de cohérence des blocs HANA dans la stratégie de sauvegarde globale. Avec les sauvegardes traditionnelles basées sur des fichiers, cette vérification est effectuée à chaque opération de sauvegarde. Avec les sauvegardes par instantané, le contrôle de cohérence doit être exécuté en plus des opérations de sauvegarde par instantané, par exemple une fois par semaine.
@@ -123,6 +128,7 @@ NetApp recommande d'utiliser hdbpersdiag pour exécuter des contrôles de cohér
 
 
 
+[[data-protection-strategy]]
 == Stratégie de protection des données
 
 Avant de configurer SnapCenter et le plug-in SAP HANA, la stratégie de protection des données doit être définie en fonction des exigences RTO et RPO des divers systèmes SAP.
@@ -189,6 +195,7 @@ image:hana-sc-generic-image-013.png["largeur=601,hauteur=192"]
 
 
 
+[[backup-of-encryption-root-keys]]
 == Sauvegarde des clés racines de chiffrement
 
 Lorsque le chiffrement persistant HANA est utilisé, il est essentiel de créer des sauvegardes des clés racine en plus des sauvegardes de données standard. Des sauvegardes de la clé racine sont nécessaires pour récupérer la base de données HANA en cas de perte du volume de données et du système de fichiers d'installation HANA. Pour plus d'informations, consultez https://help.sap.com/docs/SAP_HANA_PLATFORM/6b94445c94ae495c83a19646e7c3fd56/b1e7562e2c704c19bd86f2f9f4feedc4.html["Guide d'administration de SAP HANA"].
@@ -198,6 +205,7 @@ NOTE: N'oubliez pas que si une clé racine est modifiée, la nouvelle clé racin
 
 
 
+[[backup-operations]]
 == Les opérations de sauvegarde
 
 SnapCenter prend en charge les opérations de sauvegarde par instantané des systèmes HANA MDC avec un ou plusieurs locataires. SnapCenter prend également en charge deux opérations de restauration différentes d'un système HANA MDC. Vous pouvez soit restaurer l'intégralité du système, la base de données système et tous les locataires, soit restaurer un seul locataire. Certaines conditions préalables sont nécessaires pour permettre à SnapCenter d'exécuter ces opérations.
@@ -223,6 +231,7 @@ image:hana-sc-generic-image-014.png["largeur=601,hauteur=237"]
 
 
 
+[[backup-retention-management]]
 == Gestion de la rétention des sauvegardes
 
 La gestion de la conservation des sauvegardes de données et le nettoyage des sauvegardes de journaux peuvent être divisés en cinq domaines, notamment la gestion de la conservation de :
@@ -240,18 +249,21 @@ image:hana-sc-generic-image-015.png["largeur=601,hauteur=309"]
 
 
 
+[[retention-management-of-local-backups-at-the-primary-storage]]
 === Gestion de la conservation des sauvegardes locales sur le stockage primaire
 
 SnapCenter gère la maintenance des sauvegardes de la base de données SAP HANA et des sauvegardes de volumes non liés aux données en supprimant les copies Snapshot sur le stockage principal et dans le référentiel SnapCenter selon une période de rétention définie dans la politique de sauvegarde SnapCenter . La gestion de la rétention est incluse dans chaque flux de travail de sauvegarde de SnapCenter. Les sauvegardes locales sur le stockage principal peuvent également être supprimées manuellement dans SnapCenter.
 
 
 
+[[retention-management-of-file-based-backups]]
 === Gestion de la conservation des sauvegardes basées sur des fichiers
 
 SnapCenter gère la maintenance des sauvegardes de fichiers en supprimant ces dernières du système de fichiers selon une période de conservation définie dans la politique de sauvegarde de SnapCenter . La logique de gestion de la rétention est exécutée avec chaque flux de travail de sauvegarde dans SnapCenter.
 
 
 
+[[retention-management-of-backups-at-the-secondary-storage-snapvault]]
 === Gestion de la conservation des sauvegardes sur le stockage secondaire (SnapVault)
 
 La gestion de la rétention des sauvegardes sur le stockage secondaire (SnapVault) est gérée par ONTAP en fonction de la rétention définie dans la relation de protection ONTAP . Pour synchroniser ces modifications sur le stockage secondaire du référentiel SnapCenter , SnapCenter utilise une tâche de nettoyage planifiée. Cette tâche de nettoyage synchronise toutes les sauvegardes de stockage secondaire avec le référentiel SnapCenter pour tous les plug-ins SnapCenter et toutes les ressources.
@@ -260,18 +272,21 @@ La tâche de nettoyage est programmée par défaut une fois par semaine. Ce cale
 
 
 
+[[retention-management-of-backups-at-the-secondary-storage-anf-backup]]
 === Gestion de la conservation des sauvegardes sur le stockage secondaire (sauvegarde ANF)
 
 La conservation des sauvegardes ANF est configurée et gérée par SnapCenter. SnapCenter gère la maintenance des sauvegardes ANF en supprimant les sauvegardes selon une période de rétention définie dans la politique de sauvegarde SnapCenter . La gestion de la rétention est incluse dans chaque flux de travail de sauvegarde de SnapCenter.
 
 
 
+[[retention-management-of-data-backups-within-the-sap-hana-backup-catalog]]
 === Gestion de la conservation des sauvegardes de données dans le catalogue des sauvegardes SAP HANA
 
 Lorsque SnapCenter supprime une sauvegarde, qu'il s'agisse d'un instantané local ou d'un fichier, ou s'il SnapCenter une suppression de sauvegarde sur le stockage secondaire, cette sauvegarde de données est également supprimée du catalogue de sauvegarde SAP HANA. Avant de supprimer l'entrée du catalogue SAP HANA pour une sauvegarde Snapshot locale sur le stockage principal, SnapCenter vérifie si la sauvegarde existe toujours sur le stockage secondaire.
 
 
 
+[[retention-management-of-log-backups]]
 === Gestion de la conservation des sauvegardes des journaux
 
 La base de données SAP HANA crée automatiquement des sauvegardes de journaux. Ces opérations créent des fichiers de sauvegarde pour chaque service SAP HANA individuel dans un répertoire de sauvegarde configuré dans SAP HANA. Les sauvegardes de journaux antérieures à la dernière sauvegarde de données ne sont plus nécessaires pour la restauration et peuvent donc être supprimées. SnapCenter gère la maintenance des sauvegardes de fichiers journaux au niveau du système de fichiers ainsi que dans le catalogue de sauvegarde SAP HANA en exécutant les étapes suivantes :

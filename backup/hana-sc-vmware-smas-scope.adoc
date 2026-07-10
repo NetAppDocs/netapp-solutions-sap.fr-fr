@@ -24,6 +24,7 @@ Auteur: Nils Bauer, NetApp
 
 
 
+[[scope-of-this-document]]
 == Portée de ce document
 
 Ce document ne doit pas être une description détaillée de la configuration de l'environnement complet, mais il couvre les concepts et les détails pertinents relatifs aux éléments suivants :

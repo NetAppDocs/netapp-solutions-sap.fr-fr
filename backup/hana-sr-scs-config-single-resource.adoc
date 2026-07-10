@@ -41,6 +41,7 @@ image:saphana-sr-scs-image29.png["Figure montrant la boîte de dialogue entrée/
 
 
 
+[[snapcenter-configuration]]
 == Configuration SnapCenter
 
 La figure suivante présente la configuration du laboratoire et un aperçu de la configuration SnapCenter requise.
@@ -73,6 +74,7 @@ image:saphana-sr-scs-image33.png["Figure montrant la boîte de dialogue entrée/
 
 
 
+[[snapcenter-backup-operation]]
 == Opération de sauvegarde SnapCenter
 
 Les opérations de sauvegarde sont désormais exécutées normalement. L'organisation des sauvegardes des données et des journaux est indépendante desquelles l'hôte SAP HANA est primaire ou secondaire.
@@ -96,6 +98,7 @@ image:saphana-sr-scs-image36.png["Figure montrant la boîte de dialogue entrée/
 
 
 
+[[restore-and-recovery]]
 == Restauration et reprise
 
 Comme indiqué précédemment, vous devez être en mesure d'identifier l'emplacement de création de la sauvegarde sélectionnée pour définir l'opération de restauration requise. Si la base de données SAP HANA est toujours en ligne, vous pouvez utiliser SAP HANA Studio pour identifier l'hôte sur lequel la sauvegarde a été créée. Si la base de données est hors ligne, les informations sont uniquement disponibles dans le journal des tâches de sauvegarde SnapCenter.
@@ -124,6 +127,7 @@ image:saphana-sr-scs-image38.png["Figure montrant la boîte de dialogue entrée/
 
 
 
+[[snapcenter-restore-of-the-valid-backup-only]]
 === Restauration SnapCenter de la sauvegarde valide uniquement
 
 La figure suivante présente un aperçu du scénario de restauration et de récupération décrit dans cette section.
@@ -167,6 +171,7 @@ image:saphana-sr-scs-image44.png["Figure montrant la boîte de dialogue entrée/
 
 
 
+[[snapcenter-restore-of-valid-backup-and-crash-image]]
 === Restauration SnapCenter d'une image de sauvegarde et de panne valide
 
 La figure suivante présente un aperçu du scénario de restauration et de récupération décrit dans cette section.

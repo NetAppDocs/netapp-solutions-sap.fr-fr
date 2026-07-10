@@ -37,6 +37,7 @@ image:saphana_asa_fc_image4a.png["Ajout d'une paire haute disponibilité de stoc
 
 
 
+[[sap-hana-backup]]
 == Sauvegarde SAP HANA
 
 Le logiciel ONTAP présent sur tous les contrôleurs de stockage NetApp offre un mécanisme intégré pour sauvegarder les bases de données SAP HANA sans nuire aux performances. Les sauvegardes Snapshot NetApp basées sur le stockage sont une solution de sauvegarde entièrement prise en charge et intégrée disponible pour les conteneurs uniques SAP HANA et pour les systèmes SAP HANA MDC avec un ou plusieurs locataires.
@@ -62,6 +63,7 @@ NOTE: Lors de la création de ces documents, seules les machines virtuelles bas�
 
 
 
+[[sap-hana-disaster-recovery]]
 == Reprise d'activité SAP HANA
 
 La reprise d'activité de SAP HANA peut être effectuée soit sur la couche de base de données à l'aide de la réplication du système SAP HANA, soit sur la couche de stockage grâce aux technologies de réplication du stockage. La section suivante présente les solutions de reprise sur incident basées sur la réplication du stockage.
@@ -70,6 +72,7 @@ Pour plus d'informations sur les solutions de reprise d'activité SAP HANA, repo
 
 
 
+[[storage-replication-based-on-snapmirror]]
 === Réplication du stockage basée sur SnapMirror
 
 La figure suivante illustre une solution de reprise après sinistre sur trois sites utilisant la synchronisation active synchrone SnapMirror vers le centre de données DR local et la réplication asynchrone des données vers le centre de données DR distant. La synchronisation active SnapMirror permet aux services métier de continuer à fonctionner même en cas de panne totale du site, en prenant en charge le basculement transparent des applications via une copie secondaire (RPO = 0 et RTO = 0). Aucune intervention manuelle ni script personnalisé n'est nécessaire pour déclencher un basculement avec la synchronisation active SnapMirror. À partir de ONTAP 9.15.1, la synchronisation active SnapMirror prend en charge une fonction active/active symétrique. Le mode actif-actif symétrique permet d'effectuer des opérations de lecture et d'écriture d'E/S à partir des deux copies d'un LUN protégé avec une réplication synchrone bidirectionnelle, de sorte que les deux copies de LUN puissent traiter des opérations d'E/S localement.

@@ -14,6 +14,7 @@ Le deuxième système HANA QFS a été provisionné de la même manière que dé
 
 
 
+[[prerequisites]]
 === Prérequis
 
 Pour les versions de SnapCenter < 6.2, il existe des limitations à prendre en compte.
@@ -24,6 +25,7 @@ Pour les versions de SnapCenter < 6.2, il existe des limitations à prendre en c
 
 
 
+[[workflow-summary]]
 === Résumé du flux de travail
 
 Avant d'exécuter la première actualisation du système SAP, le système HANA cible doit être installé et l'hôte ajouté à SnapCenter. Ensuite, le système HANA doit être arrêté et le disque de données HANA démonté de l'hôte.
@@ -60,6 +62,7 @@ Durée : 11 minutes
 
 
 
+[[snapcenter-clone-create-workflow]]
 === Flux de travail de création de clone SnapCenter
 
 Le flux de travail de création de clone est démarré en sélectionnant l'instantané souhaité et en cliquant sur le bouton Cloner.
@@ -160,6 +163,7 @@ image:sc-hana-asrr2-vmfs-image36.png["Figure illustrant le contenu discuté"]
 
 
 
+[[snapcenter-clone-delete-workflow]]
 === Flux de travail de suppression de clone SnapCenter
 
 Le flux de travail de suppression de clone est démarré en sélectionnant le clone dans la ressource HANA source et en cliquant sur le bouton Supprimer.

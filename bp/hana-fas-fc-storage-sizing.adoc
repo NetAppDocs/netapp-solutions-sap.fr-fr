@@ -21,6 +21,7 @@ NOTE: Contactez votre ingénieur commercial partenaire NetApp ou NetApp pour gé
 
 
 
+[[performance-considerations]]
 == Performances
 
 SAP a défini un ensemble statique d'indicateurs clés de performance du stockage. Ces indicateurs clés de performance sont valides pour tous les environnements SAP HANA de production indépendamment de la taille de mémoire des hôtes de base de données et des applications qui utilisent la base de données SAP HANA. Ces indicateurs clés de performance sont valides pour les environnements à hôte unique, multihôte, Business Suite sur HANA, Business Warehouse sur HANA, S/4HANA et BW/HANA. Par conséquent, l'approche actuelle de dimensionnement des performances dépend uniquement du nombre d'hôtes SAP HANA actifs connectés au système de stockage.
@@ -39,6 +40,7 @@ Ce document décrit le dimensionnement des disques pour les disques durs SAS et 
 
 
 
+[[hard-disk-drives]]
 === Disques durs
 
 Un minimum de 10 disques de données (SAS 10 000 tours/min) par nœud SAP HANA est requis pour remplir les indicateurs de performance du stockage de SAP.
@@ -48,6 +50,7 @@ NOTE: Ce calcul est indépendant du contrôleur de stockage et du tiroir disque 
 
 
 
+[[solid-state-drives]]
 === Disques SSD
 
 Avec les disques SSD, le nombre de disques de données est déterminé par le débit de la connexion SAS entre les contrôleurs de stockage et le tiroir SSD.
@@ -73,12 +76,14 @@ NOTE: Ce calcul est indépendant du contrôleur de stockage utilisé. L'ajout de
 
 
 
+[[ns224-nvme-shelf]]
 === Tiroir NVMe NS224
 
 Un disque SSD NVMe (données) prend en charge jusqu'à 2 hôtes SAP HANA. Les disques SSD et les hôtes SAP HANA doivent être répartis de manière égale entre les deux contrôleurs de stockage.
 
 
 
+[[mixed-workloads]]
 == Workloads mixtes
 
 SAP HANA et les autres charges de travail applicatives s'exécutant sur le même contrôleur de stockage ou dans le même agrégat de stockage sont pris en charge. Il s'agit cependant d'une bonne pratique NetApp de séparer les workloads SAP HANA de toutes les autres charges de travail applicatives.
@@ -89,6 +94,7 @@ L'outil de test SAP HCMT doit être utilisé pour vérifier si d'autres hôtes S
 
 
 
+[[capacity-considerations]]
 == Considérations sur la capacité
 
 Une description détaillée des besoins en capacité pour SAP HANA se trouve dans https://launchpad.support.sap.com/#/notes/1900823["Note SAP 1900823"^] livre blanc.
@@ -98,6 +104,7 @@ NOTE: Le dimensionnement de la capacité de l'environnement SAP global avec plus
 
 
 
+[[configuration-of-performance-test-tool]]
 == Configuration de l'outil de test des performances
 
 À partir de SAP HANA 1.0 SPS10, SAP a introduit des paramètres permettant d'ajuster le comportement des E/S et d'optimiser la base de données pour le système de fichiers et de stockage utilisé. Ces paramètres doivent également être définis pour l'outil de test des performances du SAP (fsperf) lorsque les performances de stockage sont testées à l'aide de l'outil de test SAP.
@@ -211,6 +218,7 @@ Ces variables doivent être utilisées pour la configuration de test. C'est gén
 ....
 
 
+[[storage-sizing-process-overview]]
 == Présentation des processus de dimensionnement du stockage
 
 Le nombre de disques par hôte HANA et la densité hôte SAP HANA pour chaque modèle de stockage ont été déterminés à l'aide de l'outil de test SAP HANA.

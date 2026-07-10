@@ -18,12 +18,14 @@ La configuration requise pour l'installation du logiciel SAP HANA est la suivant
 
 
 
+[[install-on-single-host-system]]
 == Installez sur un système à hôte unique
 
 L'installation du logiciel SAP HANA ne nécessite aucune préparation supplémentaire pour un système à hôte unique.
 
 
 
+[[install-on-multiple-host-system]]
 == Installez sur un système à plusieurs hôtes
 
 Pour installer SAP HANA sur un système à plusieurs hôtes, procédez comme suit :
