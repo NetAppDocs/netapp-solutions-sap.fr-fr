@@ -27,4 +27,4 @@ La continuité des activités est essentielle dans les organisations informatiqu
 
 NetApp a développé un portefeuille complet de technologies et d'outils pour aider les organisations informatiques à élaborer ou à adapter leurs plans de reprise après sinistre afin de répondre à toutes les demandes de l'entreprise :
 
-link:https://www.netapp.com/pdf.html?item=/media/6998-sb-3968pdf.pdf["https://www.netapp.com/pdf.html?item=/media/6998-sb-3968pdf.pdf"]
+link:https://www.netapp.com/pdf.html?item=/media/6998-sb-3968.pdf["https://www.netapp.com/pdf.html?item=/media/6998-sb-3968.pdf"]

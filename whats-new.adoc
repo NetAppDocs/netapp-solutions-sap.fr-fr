@@ -15,6 +15,13 @@ Découvrez les nouveautés des solutions pour SAP.
 
 
 
+[[05-august-2026]]
+== 05 août 2026
+
+La nouvelle solution https://review.docs.netapp.com/us-en/netapp-solutions-sap_hana-sc-bare-metal-asar2/backup/hana-sc-bare-metal-asar2-scope.html["NetApp SnapCenter pour SAP HANA sur serveurs physiques avec les systèmes NetApp ASA"^] fournit les meilleures pratiques pour la protection des données SAP HANA avec NetApp SnapCenter, couvrant les directives de configuration et d’exploitation de SnapCenter pour la protection des systèmes SAP HANA sur les systèmes ONTAP ASA avec des serveurs bare metal.
+
+
+
 [[26-february-2026]]
 == 26 février 2026
 

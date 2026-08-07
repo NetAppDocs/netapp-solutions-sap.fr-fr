@@ -27,4 +27,4 @@ Avec les opérations de sauvegarde et de restauration SAP HANA, votre organisati
 
 Avec les solutions de stockage NetApp® qui exécutent le logiciel de gestion des données NetApp ONTAP®, en combinaison avec le logiciel de protection des données NetApp SnapCenter®, vous pouvez relever tous ces défis.  Et avec la technologie NetApp Snapshot™ incluse dans le logiciel ONTAP , vous pouvez créer des sauvegardes ou exécuter des opérations de restauration de jeux de données de n'importe quelle taille en quelques secondes.  SAP HANA prend en charge l’utilisation de copies Snapshot basées sur le stockage comme opération de sauvegarde valide.
 
-link:https://www.netapp.com/pdf.html?item=/media/6997-sb-3965pdf.pdf["https://www.netapp.com/pdf.html?item=/media/6997-sb-3965pdf.pdf"]
+link:https://www.netapp.com/pdf.html?item=/media/6997-sb-3965.pdf["https://www.netapp.com/pdf.html?item=/media/6997-sb-3965.pdf"]

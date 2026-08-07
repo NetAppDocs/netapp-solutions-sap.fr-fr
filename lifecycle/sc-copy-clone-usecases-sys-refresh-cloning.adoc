@@ -59,6 +59,6 @@ Pour les tests de reprise d'activité de SnapMirror asynchrone et synchrone, les
 
 image:sc-copy-clone-image6.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"] Vous trouverez une description détaillée étape par étape dans les rapports techniques
 
-https://www.netapp.com/pdf.html?item=/media/8584-tr4646pdf.pdf["Reprise après incident de SAP HANA avec la réplication du stockage"]
+https://www.netapp.com/pdf.html?item=/media/8584-tr4646.pdf["Reprise après incident de SAP HANA avec la réplication du stockage"]
 
 link:../backup/hana-dr-anf-data-protection-overview.html["Reprise d'activité SAP HANA avec Azure NetApp Files"]
