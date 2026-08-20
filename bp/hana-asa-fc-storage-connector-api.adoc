@@ -13,6 +13,7 @@ summary: 'Un connecteur de stockage n"est nécessaire que dans les environnement
 :imagesdir: ../media/
 
 
+[role="lead"]
 Un connecteur de stockage n'est nécessaire que dans les environnements à plusieurs hôtes disposant de fonctionnalités de basculement. Dans des configurations à plusieurs hôtes, SAP HANA offre des fonctionnalités haute disponibilité afin qu'un hôte de base de données SAP HANA puisse basculer vers un hôte en veille.
 
 Dans ce cas, les LUN de l'hôte en panne sont accessibles et utilisées par l'hôte en veille. Le connecteur de stockage est utilisé pour s'assurer qu'une partition de stockage est activement accessible par un seul hôte de base de données à la fois.

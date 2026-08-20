@@ -5,14 +5,15 @@ keywords: FCP, fibre channel, fiber channel, configuration,
 summary:  
 ---
 = Architecture
-:hardbreaks:
 :allow-uri-read: 
-:nofooter: 
-:icons: font
-:linkattrs: 
-:imagesdir: ../media/
 
 
+
+
+[[architecture]]
+== Architecture
+
+[role="lead"]
 Les hôtes SAP HANA sont connectés aux contrôleurs de stockage via une infrastructure FCP redondante et un logiciel multivoie. Une infrastructure de commutateur FCP redondante est nécessaire pour assurer une connectivité hôte vers stockage SAP HANA tolérante aux pannes en cas de défaillance d'un commutateur ou d'un adaptateur de bus hôte (HBA). La segmentation appropriée doit être configurée au niveau du switch pour permettre à tous les hôtes HANA d'atteindre les LUN requises sur les contrôleurs de stockage.
 
 Différents modèles de la gamme de produits des systèmes ASA peuvent être combinés au niveau de la couche de stockage afin de permettre la croissance et les besoins de performances et de capacité variables. Le nombre maximal d'hôtes SAP HANA pouvant être connectés au système de stockage est défini par les exigences de performances SAP HANA et le modèle du contrôleur NetApp utilisé. Le nombre de tiroirs disques requis n'est déterminé que par les exigences de capacité et de performance des systèmes SAP HANA.

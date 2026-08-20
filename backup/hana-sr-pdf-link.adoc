@@ -18,4 +18,4 @@ Le rapport TR-4719 décrit comment la technologie NetApp SnapCenter et le plug-i
 
 Nils Bauer, NetApp
 
-link:https://www.netapp.com/pdf.html?item=/media/17030-tr4719pdf.pdf["https://www.netapp.com/pdf.html?item=/media/17030-tr4719pdf.pdf"]
+link:https://www.netapp.com/pdf.html?item=/media/17030-tr4719.pdf["https://www.netapp.com/pdf.html?item=/media/17030-tr4719.pdf"]

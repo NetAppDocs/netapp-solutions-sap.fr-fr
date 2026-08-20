@@ -1,0 +1,42 @@
+---
+sidebar: sidebar 
+permalink: backup/hana-sc-vmfs-asar2-smas-sc-br-syscopy.html 
+keywords: SAP HANA, SnapCenter, backup and recovery, system copy 
+summary:  
+---
+= SnapCenter Sauvegarde et restauration et copie du système SAP HANA
+:allow-uri-read: 
+
+
+
+
+[[snapcenter-backup-recovery-and-sap-hana-system-copy]]
+== SnapCenter Sauvegarde et restauration et copie du système SAP HANA
+
+[role="lead"]
+NetApp SnapCenter optimise les tâches du cycle de vie de SAP HANA telles que la sauvegarde et la restauration ainsi que la copie du système SAP HANA, et est intégré aux outils de gestion de la base de données et du cycle de vie de SAP HANA, combinant une protection des données intégrée aux applications avec la mise à disposition flexible des systèmes de test SAP, comme le montre la figure suivante.
+
+image:hana-sc-vmfs-asar2-smas-image-080.png["Figure montrant la boîte de dialogue entrée/sortie ou représentant le contenu écrit"]
+
+Ce chapitre fournit des informations sur l'endroit où trouver des informations supplémentaires concernant SnapCenter Backup & Recovery et les opérations de copie du système SAP HANA.
+
+
+
+[[backup-operations]]
+=== Les opérations de sauvegarde
+
+Les opérations de sauvegarde sont exécutées de la même manière que décrit dans https://docs.netapp.com/us-en/netapp-solutions-sap/backup/hana-sc-generic-backup-operations.html["Découvrez les opérations de sauvegarde pour les snapshots SAP HANA dans SnapCenter."].
+
+
+
+[[restore-and-recovery]]
+=== Restauration et reprise
+
+Les opérations de restauration et de récupération sont exécutées de la même manière que décrit https://docs.netapp.com/us-en/netapp-solutions-sap/backup/hana-sc-generic-restore.html["Restaurez et récupérez les bases de données SAP HANA avec SnapCenter."].
+
+
+
+[[sap-system-refresh]]
+=== Actualisation du système SAP
+
+Des informations plus détaillées sur les opérations de rafraîchissement et de clonage du système SAP à l'aide de SnapCenter sont disponibles à  https://docs.netapp.com/us-en/netapp-solutions-sap/lifecycle/sc-copy-clone-introduction.html["Automatisation des opérations de copie et de clonage du système SAP HANA avec SnapCenter"].

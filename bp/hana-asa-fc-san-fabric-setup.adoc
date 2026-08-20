@@ -13,6 +13,7 @@ summary: 'Chaque serveur SAP HANA doit disposer d"une connexion SAN FCP redondan
 :imagesdir: ../media/
 
 
+[role="lead"]
 Chaque serveur SAP HANA doit disposer d'une connexion SAN FCP redondante avec un débit minimal de 8 Go/s. Pour chaque hôte SAP HANA connecté à un contrôleur de stockage, une bande passante d'au moins 8 Go/s doit être configurée au niveau du contrôleur de stockage.
 
 La figure suivante montre un exemple avec quatre hôtes SAP HANA connectés à deux contrôleurs de stockage. Chaque hôte SAP HANA dispose de deux ports FCP connectés à la structure redondante. Au niveau de la couche de stockage, quatre ports FCP sont configurés pour fournir le débit requis pour chaque hôte SAP HANA.
