@@ -13,6 +13,9 @@ summary: Ce document se concentre sur la reprise après sinistre pour SAP HANA.
 :imagesdir: ../media/
 
 
+[role="lead"]
+Utilisez le portefeuille de technologies et d’outils NetApp pour élaborer ou adapter des plans de reprise après sinistre qui garantissent la disponibilité des applications SAP HANA critiques.
+
 
 
 [[the-challenge]]

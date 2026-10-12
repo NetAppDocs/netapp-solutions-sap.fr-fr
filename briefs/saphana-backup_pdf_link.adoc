@@ -13,6 +13,9 @@ summary: Ce document se concentre sur la sauvegarde et la récupération pour SA
 :imagesdir: ../media/
 
 
+[role="lead"]
+Utilisez le stockage NetApp ONTAP, la technologie Snapshot et le logiciel SnapCenter pour sauvegarder et restaurer des bases de données SAP HANA de toute taille en quelques secondes sans affecter les performances de production.
+
 
 
 [[the-challenge]]
